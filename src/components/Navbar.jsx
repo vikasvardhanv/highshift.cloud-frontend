@@ -35,9 +35,9 @@ export default function Navbar() {
                     <div className="flex-shrink-0">
                         <Link to="/" className="flex items-center gap-2">
                             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                                <span className="font-bold text-white">H</span>
+                                <span className="font-bold text-white">U</span>
                             </div>
-                            <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">HighShift</span>
+                            <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Upload-Post</span>
                         </Link>
                     </div>
 

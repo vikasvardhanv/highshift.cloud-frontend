@@ -8,7 +8,10 @@ import Ghostwriter from './pages/Ghostwriter';
 import MediaLibrary from './pages/MediaLibrary';
 import History from './pages/History';
 import AuthCallback from './pages/AuthCallback';
+import TermsOfUse from './pages/TermsOfUse';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -26,8 +29,11 @@ function App() {
             <Route path="/media" element={<MediaLibrary />} />
             <Route path="/history" element={<History />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/terms" element={<TermsOfUse />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );
