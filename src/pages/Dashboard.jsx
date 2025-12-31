@@ -173,15 +173,24 @@ export default function Dashboard() {
                     <div className="pt-6 border-t border-white/5">
                         <h4 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider text-xs">Link New Account</h4>
                         <div className="grid grid-cols-2 gap-2">
-                            {PLATFORMS.map(p => (
-                                <button
-                                    key={p.id}
-                                    onClick={() => handleConnect(p.id)}
-                                    className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-surface hover:bg-surfaceHighlight transition-colors text-xs font-medium border border-white/5 hover:border-primary/30 hover:text-primary"
-                                >
-                                    <p.icon className="w-3.5 h-3.5" /> {p.name}
-                                </button>
-                            ))}
+                            {PLATFORMS.map(p => {
+                                const isLinked = accounts.some(acc => acc.platform === p.id);
+                                return (
+                                    <button
+                                        key={p.id}
+                                        onClick={() => !isLinked && handleConnect(p.id)}
+                                        disabled={isLinked}
+                                        className={`flex items-center gap-2 px-3 py-2.5 rounded-lg transition-colors text-xs font-medium border
+                                        ${isLinked
+                                                ? 'bg-green-500/10 border-green-500/20 text-green-500 cursor-default'
+                                                : 'bg-surface hover:bg-surfaceHighlight border-white/5 hover:border-primary/30 hover:text-primary'}`}
+                                    >
+                                        <p.icon className="w-3.5 h-3.5" />
+                                        {p.name}
+                                        {isLinked && <Check className="w-3 h-3 ml-auto" />}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
