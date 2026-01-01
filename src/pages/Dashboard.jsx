@@ -310,6 +310,14 @@ export default function Dashboard() {
 
                         <div className="flex items-center justify-end mt-auto pt-4 border-t border-white/5">
                             <button
+                                onClick={handleAutoSchedule}
+                                disabled={posting || !postText || selectedAccounts.length === 0}
+                                className="px-6 py-3 rounded-full bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 border border-indigo-500/30 font-semibold transition-all flex items-center gap-2 mr-3"
+                            >
+                                <Zap className="w-4 h-4" />
+                                Smart Schedule
+                            </button>
+                            <button
                                 onClick={handlePost}
                                 disabled={posting || !postText || selectedAccounts.length === 0}
                                 className="px-8 py-3 rounded-full bg-primary hover:bg-primaryHover disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition-all shadow-lg flex items-center gap-2 hover:translate-y-[-1px]"
@@ -323,8 +331,8 @@ export default function Dashboard() {
                             <div className={`mt-6 p-4 rounded-xl flex items-start gap-3 border ${postResult.success ? 'bg-green-500/5 border-green-500/20 text-green-400' : 'bg-red-500/5 border-red-500/20 text-red-400'}`}>
                                 {postResult.success ? <CheckCircle className="w-5 h-5 mt-0.5 shrink-0" /> : <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" />}
                                 <div>
-                                    <h4 className="font-bold text-sm">{postResult.success ? 'Published Successfully' : 'Failed to Publish'}</h4>
-                                    {postResult.error && <p className="text-xs opacity-80 mt-1">{postResult.error}</p>}
+                                    <h4 className="font-bold text-sm">{postResult.success ? 'Success' : 'Failed'}</h4>
+                                    <p className="text-xs opacity-80 mt-1">{postResult.message || postResult.error || 'Operation completed'}</p>
                                 </div>
                             </div>
                         )}
