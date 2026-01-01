@@ -110,3 +110,26 @@ export const generateContent = async (topic, platform, tone) => {
     const res = await api.post('/ai/generate', { topic, platform, tone });
     return res.data.result;
 };
+
+// ============ NEW: Media Upload ============
+export const uploadAndPost = async (accounts, content, files = [], mediaUrls = []) => {
+    const formData = new FormData();
+    formData.append('accounts', JSON.stringify(accounts));
+    formData.append('content', content);
+    formData.append('media_urls', JSON.stringify(mediaUrls));
+
+    files.forEach((file) => {
+        formData.append('files', file);
+    });
+
+    const res = await api.post('/post/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return res.data;
+};
+
+// ============ NEW: Calendar View ============
+export const getScheduleCalendar = async () => {
+    const res = await api.get('/schedule/calendar');
+    return res.data.calendar;
+};

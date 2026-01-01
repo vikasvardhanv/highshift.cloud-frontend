@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { getAccounts, getAuthUrl, postContent, disconnectAccount } from '../services/api';
+import { useEffect, useState, useRef } from 'react';
+import { getAccounts, getAuthUrl, postContent, disconnectAccount, uploadAndPost } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube,
     Send, Trash2, Check, Sparkles, X, Zap,
-    AtSign, Pin, MessageSquare, Cloud, Music, Plus, Calendar, Clock, Loader2, AlertCircle, CheckCircle
+    AtSign, Pin, MessageSquare, Cloud, Music, Plus, Calendar, Clock, Loader2, AlertCircle, CheckCircle,
+    Upload, Link2, FileText, Image as ImageIcon
 } from 'lucide-react';
 import { generateContent, schedulePost } from '../services/api';
 
@@ -20,6 +21,12 @@ const PLATFORMS = [
     { id: 'tiktok', name: 'TikTok', icon: Music, color: 'hover:text-pink-400' },
 ];
 
+const UPLOAD_METHODS = [
+    { id: 'text', label: 'Text Only', icon: FileText },
+    { id: 'url', label: 'Media URL', icon: Link2 },
+    { id: 'file', label: 'Upload File', icon: Upload },
+];
+
 export default function Dashboard() {
     const [accounts, setAccounts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,6 +41,12 @@ export default function Dashboard() {
     const [showConnect, setShowConnect] = useState(false);
     const [showScheduleModal, setShowScheduleModal] = useState(false);
     const [scheduledTime, setScheduledTime] = useState('');
+
+    // NEW: Upload method state
+    const [uploadMethod, setUploadMethod] = useState('text');
+    const [mediaUrls, setMediaUrls] = useState('');
+    const [selectedFiles, setSelectedFiles] = useState([]);
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         if (apiKey) {
@@ -88,10 +101,25 @@ export default function Dashboard() {
             .map(a => ({ platform: a.platform, accountId: a.accountId }));
 
         try {
-            const res = await postContent(targetAccounts, postText);
+            let res;
+
+            if (uploadMethod === 'file' && selectedFiles.length > 0) {
+                // Use file upload endpoint
+                res = await uploadAndPost(targetAccounts, postText, selectedFiles, []);
+            } else if (uploadMethod === 'url' && mediaUrls.trim()) {
+                // Use URL-based upload
+                const urls = mediaUrls.split(',').map(u => u.trim()).filter(u => u);
+                res = await uploadAndPost(targetAccounts, postText, [], urls);
+            } else {
+                // Text-only post
+                res = await postContent(targetAccounts, postText);
+            }
+
             setPostResult({ success: true, data: res });
             setPostText('');
             setSelectedAccounts([]);
+            setMediaUrls('');
+            setSelectedFiles([]);
             setTimeout(() => setPostResult(null), 5000);
         } catch (err) {
             setPostResult({ success: false, error: err.response?.data?.message || err.message });
@@ -307,13 +335,82 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
+                            {/* Upload Method Toggle */}
+                            <div className="mb-6 relative z-10">
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 block">Content Type:</label>
+                                <div className="flex gap-2">
+                                    {UPLOAD_METHODS.map(method => (
+                                        <button
+                                            key={method.id}
+                                            onClick={() => setUploadMethod(method.id)}
+                                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all border ${uploadMethod === method.id
+                                                ? 'bg-secondary/20 text-secondary border-secondary/50'
+                                                : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10'
+                                                }`}
+                                        >
+                                            <method.icon className="w-4 h-4" />
+                                            {method.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Conditional Media Inputs */}
+                            {uploadMethod === 'url' && (
+                                <div className="mb-6 relative z-10">
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 block">Media URL(s):</label>
+                                    <input
+                                        type="text"
+                                        value={mediaUrls}
+                                        onChange={(e) => setMediaUrls(e.target.value)}
+                                        placeholder="https://example.com/image.jpg (comma-separate for multiple)"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:border-secondary/50 focus:outline-none transition-all"
+                                    />
+                                </div>
+                            )}
+
+                            {uploadMethod === 'file' && (
+                                <div className="mb-6 relative z-10">
+                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 block">Upload Media:</label>
+                                    <div
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className="border-2 border-dashed border-white/20 rounded-2xl p-8 text-center cursor-pointer hover:border-white/40 hover:bg-white/5 transition-all"
+                                    >
+                                        <input
+                                            ref={fileInputRef}
+                                            type="file"
+                                            multiple
+                                            accept="image/*,video/*"
+                                            onChange={(e) => setSelectedFiles(Array.from(e.target.files || []))}
+                                            className="hidden"
+                                        />
+                                        {selectedFiles.length > 0 ? (
+                                            <div className="flex flex-wrap gap-2 justify-center">
+                                                {selectedFiles.map((file, idx) => (
+                                                    <div key={idx} className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full text-sm">
+                                                        <ImageIcon className="w-4 h-4 text-secondary" />
+                                                        {file.name}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <Upload className="w-8 h-8 text-gray-500 mx-auto mb-3" />
+                                                <p className="text-gray-400">Click to upload photos or videos</p>
+                                                <p className="text-xs text-gray-600 mt-1">Supports JPG, PNG, GIF, MP4, MOV</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
                             {/* Editor Area */}
                             <div className="flex-1 relative mb-6 group">
                                 <textarea
                                     value={postText}
                                     onChange={(e) => setPostText(e.target.value)}
                                     placeholder="What's happening today?"
-                                    className="w-full h-full min-h-[300px] bg-black/20 hover:bg-black/30 border border-white/5 focus:border-primary/50 focus:bg-black/40 rounded-2xl p-6 text-lg text-white placeholder-gray-600 focus:outline-none transition-all resize-none shadow-inner"
+                                    className="w-full h-full min-h-[200px] bg-black/20 hover:bg-black/30 border border-white/5 focus:border-primary/50 focus:bg-black/40 rounded-2xl p-6 text-lg text-white placeholder-gray-600 focus:outline-none transition-all resize-none shadow-inner"
                                 ></textarea>
 
                                 {/* Character Count (Simple) */}

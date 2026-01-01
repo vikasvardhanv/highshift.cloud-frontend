@@ -3,6 +3,7 @@ import {
     LayoutDashboard,
     BarChart2,
     Calendar,
+    CalendarDays,
     Image,
     PenTool,
     MessageSquare,
@@ -18,9 +19,9 @@ import { useState } from 'react';
 
 const MENU_ITEMS = [
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-    // { label: 'Connections', path: '/connections', icon: MessageSquare }, // Merged into Dashboard
-    { label: 'Analytics', path: '/analytics', icon: LineChart },
+    { label: 'Analytics', path: '/analytics', icon: BarChart2 },
     { label: 'Schedule', path: '/schedule', icon: Calendar },
+    { label: 'Calendar View', path: '/schedule/calendar', icon: CalendarDays },
     { label: 'Media', path: '/media', icon: Image },
     { label: 'Ghostwriter', path: '/ai', icon: PenTool },
     { label: 'Brand Kit', path: '/brand', icon: Palette },

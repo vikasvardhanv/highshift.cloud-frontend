@@ -5,6 +5,7 @@ import Connections from './pages/Connections';
 import Settings from './pages/Settings';
 import Analytics from './pages/Analytics';
 import Schedule from './pages/Schedule';
+import ScheduleCalendar from './pages/ScheduleCalendar';
 import BrandKit from './pages/BrandKit';
 import Ghostwriter from './pages/Ghostwriter';
 import MediaLibrary from './pages/MediaLibrary';
@@ -39,7 +40,6 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
         <Route path="/terms" element={<PublicLayout><TermsOfUse /></PublicLayout>} />
-        <Route path="/terms" element={<PublicLayout><TermsOfUse /></PublicLayout>} />
         <Route path="/privacy" element={<PublicLayout><PrivacyPolicy /></PublicLayout>} />
         <Route path="/pricing" element={<PublicLayout><Pricing /></PublicLayout>} />
         <Route path="/login" element={<Login />} />
@@ -54,6 +54,7 @@ function App() {
         <Route path="/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
         <Route path="/analytics" element={<DashboardLayout><Analytics /></DashboardLayout>} />
         <Route path="/schedule" element={<DashboardLayout><Schedule /></DashboardLayout>} />
+        <Route path="/schedule/calendar" element={<DashboardLayout><ScheduleCalendar /></DashboardLayout>} />
         <Route path="/brand" element={<DashboardLayout><BrandKit /></DashboardLayout>} />
         <Route path="/ai" element={<DashboardLayout><Ghostwriter /></DashboardLayout>} />
         <Route path="/media" element={<DashboardLayout><MediaLibrary /></DashboardLayout>} />
