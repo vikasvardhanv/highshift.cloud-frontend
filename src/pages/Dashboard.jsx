@@ -46,7 +46,11 @@ export default function Dashboard() {
     const loadAccounts = async () => {
         try {
             const data = await getAccounts();
-            setAccounts(data.accounts || []);
+            if (data && Array.isArray(data.accounts)) {
+                setAccounts(data.accounts);
+            } else {
+                setAccounts([]);
+            }
         } catch (err) {
             console.error(err);
         } finally {
@@ -261,12 +265,12 @@ export default function Dashboard() {
                             <div className="py-20 flex justify-center"><div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" /></div>
                         ) : (
                             <div className="space-y-3">
-                                {accounts.map(acc => (
+                                {Array.isArray(accounts) && accounts.map(acc => (
                                     <div key={acc.accountId} className="group p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all flex items-center justify-between cursor-default">
                                         <div className="flex items-center gap-4">
                                             <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-surfaceHighlight to-surface border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
                                                 {/* Dynamic Icon based on platform */}
-                                                {PLATFORMS.find(p => p.id === acc.platform)?.icon({ className: "w-5 h-5 text-gray-300" }) || <Zap className="w-5 h-5" />}
+                                                {(PLATFORMS.find(p => p.id === acc.platform) || { icon: Zap }).icon({ className: "w-5 h-5 text-gray-300" })}
                                             </div>
                                             <div className="overflow-hidden">
                                                 <div className="font-semibold text-sm truncate max-w-[150px]">{acc.displayName}</div>
@@ -282,7 +286,7 @@ export default function Dashboard() {
                                         </button>
                                     </div>
                                 ))}
-                                {accounts.length === 0 && (
+                                {(!accounts || accounts.length === 0) && (
                                     <div className="text-center py-10 opacity-50">
                                         <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3">
                                             <Cloud className="w-8 h-8 text-gray-600" />
