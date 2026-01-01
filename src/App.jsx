@@ -7,6 +7,7 @@ import BrandKit from './pages/BrandKit';
 import Ghostwriter from './pages/Ghostwriter';
 import MediaLibrary from './pages/MediaLibrary';
 import History from './pages/History';
+import ApiKeys from './pages/ApiKeys';
 import AuthCallback from './pages/AuthCallback';
 import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -47,6 +48,7 @@ function App() {
         <Route path="/ai" element={<DashboardLayout><Ghostwriter /></DashboardLayout>} />
         <Route path="/media" element={<DashboardLayout><MediaLibrary /></DashboardLayout>} />
         <Route path="/history" element={<DashboardLayout><History /></DashboardLayout>} />
+        <Route path="/apikeys" element={<DashboardLayout><ApiKeys /></DashboardLayout>} />
       </Routes>
     </Router>
   );

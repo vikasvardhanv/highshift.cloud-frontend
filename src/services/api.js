@@ -43,8 +43,25 @@ export const postContent = async (accounts, content) => {
     });
     return res.data;
 };
+// API Keys
+export const getKeys = async () => {
+    const res = await api.get('/keys');
+    return res.data.keys;
+};
+
+export const createKey = async (name) => {
+    const res = await api.post('/keys', { name });
+    return res.data; // { key: {...}, rawApiKey: "..." }
+};
+
+export const deleteKey = async (keyId) => {
+    const res = await api.delete(`/keys/${keyId}`);
+    return res.data;
+};
 
 export const regenerateKey = async () => {
+    // Legacy support or remove?
+    // Keeping for now if needed, but new system prefers createKey
     const res = await api.post('/key/regenerate-key');
     return res.data.apiKey;
 };

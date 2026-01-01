@@ -181,30 +181,8 @@ export default function Dashboard() {
 
     return (
         <div className="space-y-8 animate-fade-in">
-            {/* Header / API Key */}
-            <div className="glass-card rounded-2xl p-8 overflow-hidden relative border-primary/20">
-                <div className="absolute -top-10 -right-10 p-4 opacity-50 blur-3xl">
-                    <div className="w-64 h-64 bg-primary/20 rounded-full"></div>
-                </div>
-                <div className="absolute top-4 right-4 text-white/5">
-                    <Key className="w-24 h-24 rotate-12" />
-                </div>
-
-                <div className="relative z-10">
-                    <h2 className="text-2xl font-bold mb-2">Connect Channels</h2>
-                    <p className="text-gray-400 mb-6 max-w-xl">Link your social media accounts to start automating your content. Your single API key works across all connected platforms.</p>
-
-                    <div className="flex items-center gap-2 bg-black/40 p-4 rounded-lg border border-white/5 max-w-2xl">
-                        <div className="flex-1">
-                            <div className="text-xs text-gray-500 uppercase font-semibold mb-1">Your Master API Key</div>
-                            <code className="text-primary font-mono text-sm break-all">{apiKey}</code>
-                        </div>
-                        <button onClick={copyKey} className="p-2 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white" title="Copy Key">
-                            <Copy className="w-4 h-4" />
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {/* Header / API Key - REMOVED and moved to /apikeys */}
+            {/* <div className="glass-card rounded-2xl p-8 ..."> ... </div> */}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column: Accounts */}

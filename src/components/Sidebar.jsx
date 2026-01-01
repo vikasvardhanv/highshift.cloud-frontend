@@ -11,7 +11,8 @@ import {
     LogOut,
     Settings,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    Key
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -23,7 +24,9 @@ const MENU_ITEMS = [
     { label: 'Media', path: '/media', icon: Image },
     { label: 'Ghostwriter', path: '/ai', icon: PenTool },
     { label: 'Brand Kit', path: '/brand', icon: Palette },
+    { label: 'Brand Kit', path: '/brand', icon: Palette },
     { label: 'History', path: '/history', icon: History },
+    { label: 'API Keys', path: '/apikeys', icon: Key },
 ];
 
 export default function Sidebar({ isOpen, onToggle }) {
