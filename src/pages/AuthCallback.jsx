@@ -8,49 +8,35 @@ export default function AuthCallback() {
     const [status, setStatus] = useState('processing');
 
     useEffect(() => {
-        // 1. Check for JWT Token (Login/Register via Google)
+        // Extract all parameters
         const token = searchParams.get('token');
+        const apiKey = searchParams.get('apiKey');
+        const platform = searchParams.get('platform');
+        const accountId = searchParams.get('accountId');
+        const error = searchParams.get('error');
+
+        // 1. Store JWT token if present (for ALL flows: login, registration, platform connection)
         if (token) {
             localStorage.setItem('token', token);
-            setStatus('success');
-            setTimeout(() => {
-                navigate('/dashboard');
-            }, 1000); // Faster redirect for login
-            return;
         }
 
-        // 2. Check for Social API Key (Legacy/Platform Connection)
-        const apiKey = searchParams.get('apiKey');
-
+        // 2. Store API Key if present (legacy support, new user registration)
         if (apiKey) {
             localStorage.setItem('social_api_key', apiKey);
         }
 
-        // Check for success indicators
-        const platform = searchParams.get('platform');
-        const accountId = searchParams.get('accountId');
-
-        if (platform || accountId) {
+        // 3. Determine success/error status
+        if (error) {
+            setStatus('error');
+        } else if (token || platform || accountId || apiKey) {
+            // Success if we have any valid OAuth response parameter
             setStatus('success');
             setTimeout(() => {
                 navigate('/dashboard');
-            }, 1500);
+            }, token && !platform ? 1000 : 1500); // Faster redirect for pure login flows
         } else {
-            const error = searchParams.get('error');
-            if (error) {
-                setStatus('error');
-            } else {
-                // Determine if we just have apiKey (successful registration via google potentially?)
-                if (apiKey && !platform && !accountId) {
-                    setStatus('success');
-                    setTimeout(() => {
-                        navigate('/dashboard');
-                    }, 1500);
-                } else {
-                    // Fallback/Timeout or unknown state
-                    setStatus('error');
-                }
-            }
+            // No valid parameters - unknown state
+            setStatus('error');
         }
     }, [searchParams, navigate]);
 
