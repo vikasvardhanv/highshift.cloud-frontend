@@ -3,7 +3,7 @@ import { getAccounts, getAuthUrl, postContent, disconnectAccount } from '../serv
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube,
     Send, Trash2, Check, Sparkles, X, Zap,
-    AtSign, Pin, MessageSquare, Cloud, Music, Plus
+    AtSign, Pin, MessageSquare, Cloud, Music, Plus, Calendar, Clock, Loader2, AlertCircle, CheckCircle
 } from 'lucide-react';
 import { generateContent, schedulePost } from '../services/api';
 
@@ -31,7 +31,9 @@ export default function Dashboard() {
     const [aiPrompt, setAiPrompt] = useState('');
     const [showAiModal, setShowAiModal] = useState(false);
     const [generating, setGenerating] = useState(false);
-    const [showConnect, setShowConnect] = useState(false); // New state for connect modal
+    const [showConnect, setShowConnect] = useState(false);
+    const [showScheduleModal, setShowScheduleModal] = useState(false);
+    const [scheduledTime, setScheduledTime] = useState('');
 
     useEffect(() => {
         if (apiKey) {
@@ -86,7 +88,7 @@ export default function Dashboard() {
             setPostResult({ success: true, data: res });
             setPostText('');
             setSelectedAccounts([]);
-            setTimeout(() => setPostResult(null), 5000); // clear msg
+            setTimeout(() => setPostResult(null), 5000);
         } catch (err) {
             setPostResult({ success: false, error: err.response?.data?.message || err.message });
         } finally {
@@ -122,29 +124,66 @@ export default function Dashboard() {
         setShowAiModal(true);
     };
 
-    const handleAutoSchedule = async () => {
-        if (!postText || selectedAccounts.length === 0) return alert('Select accounts and add content first');
+    const calculateSmartTime = () => {
+        // Simple "Smart" Logic: Tomorrow at 10 AM, or next weekday if weekend?
+        const now = new Date();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(10, 0, 0, 0);
+
+        // Format for datetime-local: YYYY-MM-DDTHH:mm
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+        const hh = String(tomorrow.getHours()).padStart(2, '0');
+        const min = String(tomorrow.getMinutes()).padStart(2, '0');
+
+        return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+    }
+
+    const openScheduleModal = (isSmart = false) => {
+        if (!postText) return alert('Please add content first');
+        if (selectedAccounts.length === 0) return alert('Select at least one account');
+
+        if (isSmart) {
+            setScheduledTime(calculateSmartTime());
+        } else {
+            // Default to now + 1 hour
+            const now = new Date();
+            now.setHours(now.getHours() + 1);
+            // Format...
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const hh = String(now.getHours()).padStart(2, '0');
+            const min = String(now.getMinutes()).padStart(2, '0');
+            setScheduledTime(`${yyyy}-${mm}-${dd}T${hh}:${min}`);
+        }
+        setShowScheduleModal(true);
+    }
+
+    const confirmSchedule = async () => {
         setPosting(true);
         try {
             const targetAccounts = accounts.filter(a => selectedAccounts.includes(a.accountId))
                 .map(a => ({ platform: a.platform, accountId: a.accountId }));
 
-            // Assume 24h from now for MVP "Smart"
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(10, 0, 0, 0);
+            // Convert local time to ISO with timezone if possible, or just send ISO
+            const dateObj = new Date(scheduledTime);
 
-            await schedulePost(targetAccounts, postText, tomorrow.toISOString());
-            setPostResult({ success: true, message: 'Auto-scheduled for optimal time (Tomorrow 10AM)' });
+            await schedulePost(targetAccounts, postText, dateObj.toISOString());
+            setPostResult({ success: true, message: `Scheduled for ${dateObj.toLocaleString()}` });
             setPostText('');
             setSelectedAccounts([]);
-            setTimeout(() => setPostResult(null), 5000); // clear msg
+            setShowScheduleModal(false);
+            setTimeout(() => setPostResult(null), 5000);
         } catch (err) {
             setPostResult({ success: false, error: err.message });
         } finally {
             setPosting(false);
         }
-    };
+    }
+
 
     if (!apiKey) {
         return (
@@ -186,8 +225,6 @@ export default function Dashboard() {
                     <h1 className="text-3xl font-display font-bold text-white mb-1">Command Center</h1>
                     <p className="text-gray-400 text-sm">Overview of your social ecosystem</p>
                 </div>
-
-                {/* Quick Actions (Future) */}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -271,13 +308,22 @@ export default function Dashboard() {
                                     Creation Studio
                                 </h3>
 
-                                <button
-                                    onClick={openAiModal}
-                                    className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20 border border-violet-500/30 hover:border-violet-500/50 transition-all text-xs font-bold uppercase tracking-wider text-violet-300 hover:text-white hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)]"
-                                >
-                                    <Sparkles className="w-4 h-4 group-hover:animate-pulse" />
-                                    AI Assist
-                                </button>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => openScheduleModal(false)}
+                                        className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 transition-all text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white"
+                                    >
+                                        <Clock className="w-4 h-4" />
+                                        Schedule
+                                    </button>
+                                    <button
+                                        onClick={openAiModal}
+                                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20 border border-violet-500/30 hover:border-violet-500/50 transition-all text-xs font-bold uppercase tracking-wider text-violet-300 hover:text-white hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)]"
+                                    >
+                                        <Sparkles className="w-4 h-4 group-hover:animate-pulse" />
+                                        AI Assist
+                                    </button>
+                                </div>
                             </div>
 
                             {/* Account Selector */}
@@ -335,7 +381,7 @@ export default function Dashboard() {
 
                                 <div className="flex items-center gap-3 w-full sm:w-auto">
                                     <button
-                                        onClick={handleAutoSchedule}
+                                        onClick={() => openScheduleModal(true)}
                                         disabled={posting || !postText || selectedAccounts.length === 0}
                                         className="flex-1 sm:flex-none px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-medium transition-all text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                                     >
@@ -358,47 +404,70 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* AI Modal (Keeping functional but styling match) */}
+            {/* AI Modal */}
             {showAiModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+                    <div className="glass-card w-full max-w-md p-6 rounded-2xl relative">
+                        <button onClick={() => setShowAiModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                            <X className="w-5 h-5" />
+                        </button>
+                        <div className="flex items-center gap-3 mb-6">
+                            <Sparkles className="w-6 h-6 text-purple-400" />
+                            <h3 className="text-lg font-bold">Ghostwriter</h3>
+                        </div>
+                        <textarea
+                            value={aiPrompt}
+                            onChange={(e) => setAiPrompt(e.target.value)}
+                            placeholder="Describe what you want to write..."
+                            className="w-full h-32 bg-black/40 border border-white/10 rounded-xl p-4 text-sm focus:outline-none mb-4"
+                        ></textarea>
+                        <button
+                            onClick={handleAiGenerate}
+                            disabled={generating || !aiPrompt}
+                            className="w-full py-3 bg-purple-600 hover:bg-purple-500 rounded-xl font-bold text-white flex items-center justify-center gap-2"
+                        >
+                            {generating ? <Loader2 className="animate-spin w-4 h-4" /> : "Generate"}
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Schedule Modal */}
+            {showScheduleModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-                    <div className="glass-card w-full max-w-lg p-1 rounded-3xl relative animate-slide-up shadow-[0_0_50px_-10px_rgba(139,92,246,0.3)]">
-                        <div className="bg-surface/90 rounded-[20px] p-8 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-[50px] -z-10" />
+                    <div className="glass-card w-full max-w-sm p-6 rounded-3xl relative animate-slide-up">
+                        <button onClick={() => setShowScheduleModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                            <X className="w-5 h-5" />
+                        </button>
 
-                            <button onClick={() => setShowAiModal(false)} className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors">
-                                <X className="w-5 h-5" />
+                        <div className="mb-6">
+                            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                                <Calendar className="w-5 h-5 text-secondary" /> Schedule Post
+                            </h3>
+                            <p className="text-sm text-gray-400">
+                                Pick a time or use our AI recommended slot.
+                            </p>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Publish Date & Time</label>
+                                <input
+                                    type="datetime-local"
+                                    value={scheduledTime}
+                                    onChange={(e) => setScheduledTime(e.target.value)}
+                                    className="w-full bg-black/30 border border-white/10 rounded-xl p-3 text-white focus:border-secondary/50 outline-none transition-all"
+                                />
+                            </div>
+
+                            <button
+                                onClick={confirmSchedule}
+                                disabled={posting}
+                                className="w-full py-3.5 bg-gradient-to-r from-secondary to-blue-600 rounded-xl font-bold text-white shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                            >
+                                {posting ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <Clock className="w-5 h-5" />}
+                                Confirm Schedule
                             </button>
-
-                            <div className="flex items-center gap-4 mb-8">
-                                <div className="p-3 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl shadow-lg">
-                                    <Sparkles className="w-6 h-6 text-white" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-white">Ghostwriter AI</h3>
-                                    <p className="text-sm text-gray-400">Your personal content strategist</p>
-                                </div>
-                            </div>
-
-                            <div className="space-y-6">
-                                <div>
-                                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Prompt</label>
-                                    <textarea
-                                        value={aiPrompt}
-                                        onChange={(e) => setAiPrompt(e.target.value)}
-                                        placeholder="e.g. Write a thread about the benefits of automation..."
-                                        className="w-full h-32 bg-black/30 border border-white/10 rounded-xl p-4 text-sm focus:border-primary/50 outline-none resize-none transition-all placeholder-gray-600"
-                                    ></textarea>
-                                </div>
-
-                                <button
-                                    onClick={handleAiGenerate}
-                                    disabled={generating || !aiPrompt}
-                                    className="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-                                >
-                                    {generating ? <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" /> : <Sparkles className="w-5 h-5" />}
-                                    Generate Magic
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
