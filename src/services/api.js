@@ -133,3 +133,28 @@ export const getScheduleCalendar = async () => {
     const res = await api.get('/schedule/calendar');
     return res.data.calendar;
 };
+
+// ============ NEW: User Profiles ============
+export const getProfiles = async () => {
+    const res = await api.get('/profiles');
+    return res.data.profiles;
+};
+
+export const createProfile = async (name) => {
+    const res = await api.post('/profiles', { name });
+    return res.data.profile;
+};
+
+export const deleteProfile = async (profileName) => {
+    await api.delete(`/profiles/${encodeURIComponent(profileName)}`);
+};
+
+export const assignAccountToProfile = async (profileName, accountId) => {
+    const res = await api.post(`/profiles/${encodeURIComponent(profileName)}/accounts/${accountId}`);
+    return res.data;
+};
+
+export const getProfileAccounts = async (profileName) => {
+    const res = await api.get(`/profiles/${encodeURIComponent(profileName)}/accounts`);
+    return res.data.accounts;
+};

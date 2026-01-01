@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
-import { getAccounts, getAuthUrl, postContent, disconnectAccount, uploadAndPost } from '../services/api';
+import { getAccounts, getAuthUrl, postContent, disconnectAccount, uploadAndPost, getProfiles, createProfile } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube,
     Send, Trash2, Check, Sparkles, X, Zap,
     AtSign, Pin, MessageSquare, Cloud, Music, Plus, Calendar, Clock, Loader2, AlertCircle, CheckCircle,
-    Upload, Link2, FileText, Image as ImageIcon
+    Upload, Link2, FileText, Image as ImageIcon, ChevronDown, User
 } from 'lucide-react';
 import { generateContent, schedulePost } from '../services/api';
 
@@ -48,13 +48,42 @@ export default function Dashboard() {
     const [selectedFiles, setSelectedFiles] = useState([]);
     const fileInputRef = useRef(null);
 
+    // NEW: Profile state
+    const [profiles, setProfiles] = useState([]);
+    const [selectedProfile, setSelectedProfile] = useState('all');
+    const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+    const [newProfileName, setNewProfileName] = useState('');
+    const [showNewProfile, setShowNewProfile] = useState(false);
+
     useEffect(() => {
         if (apiKey) {
             loadAccounts();
+            loadProfiles();
         } else {
             setLoading(false);
         }
     }, [apiKey]);
+
+    const loadProfiles = async () => {
+        try {
+            const data = await getProfiles();
+            setProfiles(data || []);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleCreateProfile = async () => {
+        if (!newProfileName.trim()) return;
+        try {
+            await createProfile(newProfileName.trim());
+            setNewProfileName('');
+            setShowNewProfile(false);
+            await loadProfiles();
+        } catch (err) {
+            alert(err.response?.data?.detail || 'Failed to create profile');
+        }
+    };
 
     const loadAccounts = async () => {
         try {
@@ -256,6 +285,64 @@ export default function Dashboard() {
                 <div>
                     <h1 className="text-3xl font-display font-bold text-white mb-1">Command Center</h1>
                     <p className="text-gray-400 text-sm">Overview of your social ecosystem</p>
+                </div>
+
+                {/* Profile Selector */}
+                <div className="relative">
+                    <button
+                        onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+                    >
+                        <User className="w-4 h-4 text-secondary" />
+                        <span className="font-medium">{selectedProfile === 'all' ? 'All Accounts' : selectedProfile}</span>
+                        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showProfileDropdown ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {showProfileDropdown && (
+                        <div className="absolute right-0 mt-2 w-56 bg-surface border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-fade-in">
+                            <button
+                                onClick={() => { setSelectedProfile('all'); setShowProfileDropdown(false); }}
+                                className={`w-full text-left px-4 py-3 hover:bg-white/5 transition-colors ${selectedProfile === 'all' ? 'bg-primary/10 text-primary' : ''}`}
+                            >
+                                All Accounts
+                            </button>
+                            {profiles.map(p => (
+                                <button
+                                    key={p.name}
+                                    onClick={() => { setSelectedProfile(p.name); setShowProfileDropdown(false); }}
+                                    className={`w-full text-left px-4 py-3 hover:bg-white/5 transition-colors ${selectedProfile === p.name ? 'bg-primary/10 text-primary' : ''}`}
+                                >
+                                    {p.name}
+                                </button>
+                            ))}
+                            <div className="border-t border-white/10">
+                                {showNewProfile ? (
+                                    <div className="p-3 flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={newProfileName}
+                                            onChange={(e) => setNewProfileName(e.target.value)}
+                                            placeholder="Profile name"
+                                            className="flex-1 bg-black/30 border border-white/10 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-primary"
+                                            autoFocus
+                                            onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
+                                        />
+                                        <button onClick={handleCreateProfile} className="px-3 py-1.5 bg-primary rounded-lg text-sm font-medium">
+                                            Add
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={() => setShowNewProfile(true)}
+                                        className="w-full text-left px-4 py-3 hover:bg-white/5 text-secondary flex items-center gap-2"
+                                    >
+                                        <Plus className="w-4 h-4" />
+                                        New Profile
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
