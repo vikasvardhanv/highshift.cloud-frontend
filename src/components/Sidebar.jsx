@@ -18,8 +18,8 @@ import { useState } from 'react';
 
 const MENU_ITEMS = [
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-    { label: 'Connections', path: '/connections', icon: MessageSquare }, // Separate Connections page
-    { label: 'Analytics', path: '/analytics', icon: BarChart2 },
+    // { label: 'Connections', path: '/connections', icon: MessageSquare }, // Merged into Dashboard
+    { label: 'Analytics', path: '/analytics', icon: LineChart },
     { label: 'Schedule', path: '/schedule', icon: Calendar },
     { label: 'Media', path: '/media', icon: Image },
     { label: 'Ghostwriter', path: '/ai', icon: PenTool },
