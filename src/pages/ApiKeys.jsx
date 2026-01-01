@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getKeys, createKey, deleteKey } from '../services/api';
-import { Key, Plus, Trash2, Copy, Check, Loader2, AlertCircle } from 'lucide-react';
+import { Key, Plus, Trash2, Copy, Check, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 export default function ApiKeys() {
     const [keys, setKeys] = useState([]);
@@ -9,6 +9,7 @@ export default function ApiKeys() {
     const [newKeyName, setNewKeyName] = useState('');
     const [showNewKey, setShowNewKey] = useState(null); // { name, rawApiKey }
     const [copied, setCopied] = useState(false);
+    const [isKeyVisible, setIsKeyVisible] = useState(false);
 
     useEffect(() => {
         loadKeys();
@@ -106,10 +107,20 @@ export default function ApiKeys() {
                                 <p className="text-sm text-green-400/80">Copy this key now. You won't be able to see it again!</p>
                             </div>
                             <div className="flex items-center gap-2 bg-black/40 p-3 rounded-lg border border-white/5">
-                                <code className="flex-1 font-mono text-green-300 break-all">{showNewKey.rawApiKey}</code>
+                                <code className="flex-1 font-mono text-green-300 break-all">
+                                    {isKeyVisible ? showNewKey.rawApiKey : '•'.repeat(40)}
+                                </code>
+                                <button
+                                    onClick={() => setIsKeyVisible(!isKeyVisible)}
+                                    className="p-2 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white"
+                                    title={isKeyVisible ? "Hide Key" : "Show Key"}
+                                >
+                                    {isKeyVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                </button>
                                 <button
                                     onClick={() => copyToClipboard(showNewKey.rawApiKey)}
                                     className="p-2 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white"
+                                    title="Copy Key"
                                 >
                                     {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                                 </button>
