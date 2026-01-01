@@ -410,7 +410,11 @@ export default function Dashboard() {
                                             >
                                                 {/* Platform Icon */}
                                                 <div className={`p-1 rounded-full ${isSelected ? 'bg-white/20' : 'bg-black/20'}`}>
-                                                    {(PLATFORMS.find(p => p.id === acc.platform) || { icon: Zap }).icon({ className: "w-3 h-3" })}
+                                                    {(() => {
+                                                        const platform = PLATFORMS.find(p => p.id === acc.platform);
+                                                        const IconComponent = platform ? platform.icon : Zap;
+                                                        return <IconComponent className="w-3 h-3" />;
+                                                    })()}
                                                 </div>
                                                 <div className="flex flex-col items-start leading-none">
                                                     <span className="text-[10px] opacity-70 mb-0.5 uppercase tracking-wider">{acc.platform}</span>
@@ -598,7 +602,11 @@ export default function Dashboard() {
 
                                     <div className="flex flex-col items-center text-center pt-2">
                                         <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-surfaceHighlight to-surface border border-white/10 flex items-center justify-center shadow-lg mb-4">
-                                            {(PLATFORMS.find(p => p.id === acc.platform) || { icon: Zap }).icon({ className: "w-7 h-7 text-gray-200" })}
+                                            {(() => {
+                                                const platform = PLATFORMS.find(p => p.id === acc.platform);
+                                                const IconComponent = platform ? platform.icon : Zap;
+                                                return <IconComponent className="w-7 h-7 text-gray-200" />;
+                                            })()}
                                         </div>
                                         <h3 className="font-bold text-base truncate w-full px-2">{acc.displayName}</h3>
                                         <p className="text-xs text-gray-400 mb-4">@{acc.username}</p>
