@@ -53,7 +53,7 @@ export default function AuthCallback() {
                 <>
                     <XCircle className="w-12 h-12 text-red-500 mb-4" />
                     <h2 className="text-2xl font-bold">Connection Failed</h2>
-                    <p className="text-gray-400 mt-2">We couldn't verify the connection.</p>
+                    <p className="text-gray-400 mt-2">{searchParams.get('error') || "We couldn't verify the connection."}</p>
                     <button onClick={() => navigate('/dashboard')} className="mt-6 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
                         Back to Dashboard
                     </button>
