@@ -19,8 +19,8 @@ export default {
         error: "rgb(var(--error) / <alpha-value>)",
       },
       fontFamily: {
-        atmosphere: ['Water Brush', 'cursive'],
-        sans: ['Kalam', 'cursive', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
+        atmosphere: ['Caveat', 'cursive'],
         heading: ['Outfit', 'sans-serif'],
       },
       animation: {

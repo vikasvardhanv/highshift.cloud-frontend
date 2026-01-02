@@ -51,7 +51,7 @@
 }
 
 body {
-  @apply bg-background text-slate-900 dark:text-white antialiased font-sans text-lg overflow-x-hidden transition-colors duration-300;
+  @apply bg-background text-slate-900 dark:text-white antialiased font-sans text-base overflow-x-hidden transition-colors duration-300;
 
   /* Light Mode Background - Watercolor Paper Texture */
   background-color: rgb(var(--background));
