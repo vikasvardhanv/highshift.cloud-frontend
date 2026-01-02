@@ -19,8 +19,9 @@ export default {
         error: "rgb(var(--error) / <alpha-value>)",
       },
       fontFamily: {
+        atmosphere: ['Water Brush', 'cursive'],
         sans: ['Inter', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'], // Optional for headings if you add fonts
+        heading: ['Outfit', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
