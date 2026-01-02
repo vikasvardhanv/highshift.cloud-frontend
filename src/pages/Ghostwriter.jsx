@@ -27,8 +27,8 @@ export default function Ghostwriter() {
         <div className="h-[calc(100vh-140px)] flex flex-col glass-card rounded-2xl overflow-hidden">
             {/* Header */}
             <div className="p-6 border-b border-white/5 flex items-center gap-3 bg-white/5">
-                <div className="p-2 bg-purple-500/20 rounded-lg">
-                    <Sparkles className="w-5 h-5 text-purple-400" />
+                <div className="p-2 bg-primary/20 rounded-lg">
+                    <Sparkles className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                     <h2 className="font-bold">AI Ghostwriter</h2>
@@ -41,7 +41,7 @@ export default function Ghostwriter() {
                 {messages.map((msg, idx) => (
                     <div key={idx} className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 
-                            ${msg.role === 'assistant' ? 'bg-purple-500/20 text-purple-400' : 'bg-white/10 text-white'}`}>
+                            ${msg.role === 'assistant' ? 'bg-primary/20 text-primary' : 'bg-white/10 text-white'}`}>
                             {msg.role === 'assistant' ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                         </div>
                         <div className={`max-w-[70%] p-4 rounded-2xl whitespace-pre-wrap

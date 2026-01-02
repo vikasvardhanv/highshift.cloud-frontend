@@ -65,13 +65,13 @@ export default function DashboardLayout({ children }) {
     // Get theme colors based on route
     const getPageTheme = () => {
         const path = location.pathname;
-        if (path.includes('/schedule') || path.includes('/calendar')) return 'from-emerald-900/20 to-teal-900/20';
-        if (path.includes('/analytics')) return 'from-violet-900/20 to-indigo-900/20';
-        if (path.includes('/media')) return 'from-rose-900/20 to-orange-900/20';
-        if (path.includes('/ai')) return 'from-cyan-900/20 to-blue-900/20';
-        if (path.includes('/brand')) return 'from-amber-900/20 to-yellow-900/20';
+        if (path.includes('/schedule') || path.includes('/calendar')) return 'from-emerald-800/20 to-teal-800/20';
+        if (path.includes('/analytics')) return 'from-teal-900/20 to-cyan-900/20';
+        if (path.includes('/media')) return 'from-cyan-900/20 to-sky-900/20';
+        if (path.includes('/ai')) return 'from-green-900/20 to-emerald-900/20';
+        if (path.includes('/brand')) return 'from-teal-900/20 to-emerald-900/20';
         if (path.includes('/history')) return 'from-gray-800/20 to-slate-800/20';
-        return 'from-primary/5 to-secondary/5'; // Default Dashboard
+        return 'from-primary/10 to-secondary/10'; // Default Dashboard
     };
 
     return (

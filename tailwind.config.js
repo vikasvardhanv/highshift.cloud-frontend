@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#030014", // Deep space violet
-        surface: "#0F0B29",    // Slightly lighter violet for cards
-        surfaceHighlight: "#2A2450",
-        primary: "#8B5CF6",    // Electric Violet
-        primaryHover: "#7C3AED",
-        secondary: "#06B6D4",  // Neon Cyan
-        accent: "#F472B6",     // Pink accent
+        background: "#020907", // Deep Forest Black
+        surface: "#0A1A16",    // Dark Emerald Charcoal
+        surfaceHighlight: "#132F28",
+        primary: "#00ED64",    // Soulful Bright Green (Spotify/Eco style)
+        primaryHover: "#00C653",
+        secondary: "#2DD4BF",  // Teal for depth
+        accent: "#F472B6",     // Pink accent (kept for contrast)
         success: "#10B981",    // Emerald
         error: "#EF4444",      // Red
       },

@@ -392,7 +392,7 @@ export default function Dashboard() {
                                     </button>
                                     <button
                                         onClick={openAiModal}
-                                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20 border border-violet-500/30 hover:border-violet-500/50 transition-all text-xs font-bold uppercase tracking-wider text-violet-300 hover:text-white hover:shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)]"
+                                        className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 hover:border-primary/50 transition-all text-xs font-bold uppercase tracking-wider text-primary hover:text-white hover:shadow-[0_0_20px_-5px_rgba(16,185,129,0.3)]"
                                     >
                                         <Sparkles className="w-4 h-4 group-hover:animate-pulse" />
                                         AI Assist
@@ -650,7 +650,7 @@ export default function Dashboard() {
                             <X className="w-5 h-5" />
                         </button>
                         <div className="flex items-center gap-3 mb-6">
-                            <Sparkles className="w-6 h-6 text-purple-400" />
+                            <Sparkles className="w-6 h-6 text-primary" />
                             <h3 className="text-lg font-bold">Ghostwriter</h3>
                         </div>
                         <textarea

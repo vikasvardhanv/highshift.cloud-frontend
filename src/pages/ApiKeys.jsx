@@ -67,8 +67,8 @@ export default function ApiKeys() {
                     <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">API Keys</h2>
                     <p className="text-gray-400 mt-2">Manage your API keys for external integrations.</p>
                 </div>
-                <div className="p-3 bg-purple-500/10 rounded-full border border-purple-500/20">
-                    <Key className="w-6 h-6 text-purple-400" />
+                <div className="p-3 bg-primary/10 rounded-full border border-primary/20">
+                    <Key className="w-6 h-6 text-primary" />
                 </div>
             </div>
 

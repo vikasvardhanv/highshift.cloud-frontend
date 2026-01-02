@@ -8,39 +8,43 @@
 
 body {
   @apply bg-background text-white antialiased font-sans overflow-x-hidden;
-  background-image: 
-    radial-gradient(circle at 50% 0%, #1a1050 0%, transparent 50%),
-    radial-gradient(circle at 0% 50%, #110D33 0%, transparent 40%),
-    radial-gradient(circle at 100% 50%, #0c082b 0%, transparent 40%);
+  background-image:
+    radial-gradient(circle at 50% 0%, #064e3b 0%, transparent 50%),
+    /* Deep Emerald Top */
+    radial-gradient(circle at 0% 50%, #022c22 0%, transparent 40%),
+    /* Dark Green Left */
+    radial-gradient(circle at 100% 50%, #0f172a 0%, transparent 40%);
+  /* Slate Right */
   background-attachment: fixed;
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-surface/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] transition-all duration-300;
+    @apply bg-surface/40 backdrop-blur-xl border border-white/5 shadow-[0_8px_32px_0_rgba(0, 0, 0, 0.3)] transition-all duration-300;
   }
-  
+
   .glass-card:hover {
-    @apply border-white/20 bg-surface/50 shadow-[0_8px_32px_0_rgba(99,102,241,0.2)];
+    @apply border-primary/20 bg-surface/60 shadow-[0_8px_32px_0_rgba(16, 185, 129, 0.15)];
+    /* Green Glow */
   }
 
   .glass-button {
-    @apply bg-white/5 hover:bg-white/10 border border-white/5 transition-all duration-300;
+    @apply bg-white/5 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 transition-all duration-300;
   }
-  
+
   .aurora-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-success via-primary to-secondary;
   }
-  
+
   .input-futuristic {
-    @apply bg-surface/30 border border-white/10 focus:border-secondary/50 focus:ring-1 focus:ring-secondary/50 rounded-xl transition-all outline-none text-white placeholder-gray-500 backdrop-blur-sm;
+    @apply bg-surface/30 border border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 rounded-xl transition-all outline-none text-white placeholder-gray-500 backdrop-blur-sm;
   }
 
   .nav-link {
     @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5;
   }
-  
+
   .nav-link.active {
-    @apply bg-primary/20 text-white border border-primary/20 shadow-[0_0_15px_-3px_rgba(139,92,246,0.5)];
+    @apply bg-primary/10 text-primary border border-primary/20 shadow-[0_0_15px_-3px_rgba(16, 185, 129, 0.3)];
   }
 }
