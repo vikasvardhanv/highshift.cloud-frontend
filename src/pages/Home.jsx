@@ -3,6 +3,7 @@ import {
     Calendar, TrendingUp, Sparkles, Users,
     Globe, CheckCircle, Clock, BarChart3
 } from 'lucide-react';
+import HowItWorks from '../components/HowItWorks';
 
 export default function Home() {
     return (
@@ -84,33 +85,8 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* How It Works Section */}
-            <div className="mt-32 w-full max-w-6xl px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-                    <p className="text-slate-600 dark:text-gray-400 text-lg">
-                        Get started in 3 simple steps
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <StepCard
-                        number="1"
-                        title="Connect Your Accounts"
-                        desc="Link your social media profiles in seconds with our secure OAuth integration."
-                    />
-                    <StepCard
-                        number="2"
-                        title="Create & Schedule"
-                        desc="Compose your posts, add media, set your schedule, and let us handle the rest."
-                    />
-                    <StepCard
-                        number="3"
-                        title="Track & Optimize"
-                        desc="Monitor performance metrics and refine your strategy with our analytics dashboard."
-                    />
-                </div>
-            </div>
+            {/* How It Works Section - Animated */}
+            <HowItWorks />
 
             {/* Benefits Grid */}
             <div className="mt-32 w-full max-w-6xl px-4">
@@ -169,18 +145,6 @@ function FeatureCard({ icon, title, desc }) {
         <div className="glass-card p-6 rounded-2xl hover:shadow-lg dark:hover:bg-white/5 transition-all border border-slate-200 dark:border-white/10">
             <div className="w-14 h-14 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center mb-4">
                 {icon}
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{title}</h3>
-            <p className="text-slate-600 dark:text-gray-400 leading-relaxed">{desc}</p>
-        </div>
-    );
-}
-
-function StepCard({ number, title, desc }) {
-    return (
-        <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-primary">{number}</span>
             </div>
             <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{title}</h3>
             <p className="text-slate-600 dark:text-gray-400 leading-relaxed">{desc}</p>
