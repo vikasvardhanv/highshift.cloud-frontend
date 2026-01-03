@@ -267,32 +267,51 @@ export default function Dashboard() {
         );
     }
 
-    if (!isAuthenticated) {
+    // ONBOARDING VIEW: If authenticated but no accounts connected
+    if (!loading && isAuthenticated && (!accounts || accounts.length === 0)) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[50vh] text-center px-4 animate-slide-up">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px] -z-10 animate-blob mix-blend-screen" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-10 animate-blob animation-delay-2000 mix-blend-screen" />
+            <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4 animate-slide-up">
+                <div className="glass-card max-w-3xl w-full p-10 rounded-[2rem] border border-slate-200 dark:border-white/5 bg-white dark:bg-surface/50 shadow-2xl">
+                    <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                        <Sparkles className="w-10 h-10 text-primary" />
+                    </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 aurora-text">Welcome to HighShift</h2>
-                <p className="text-gray-400 mb-10 max-w-md mx-auto text-lg leading-relaxed">
-                    The unified operating system for your social presence.
-                    <br />Connect an account to begin.
-                </p>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Let's Get Started</h2>
+                    <p className="text-slate-500 dark:text-gray-400 mb-10 max-w-lg mx-auto text-lg leading-relaxed">
+                        Connect your first social media account to start managing your presence with HighShift Cloud.
+                    </p>
 
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-2xl">
-                    {PLATFORMS.slice(0, 6).map(p => (
-                        <button
-                            key={p.id}
-                            onClick={() => handleConnect(p.id)}
-                            className="group glass-card hover:bg-surfaceHighlight p-6 rounded-2xl flex flex-col items-center justify-center gap-4 transition-all hover:-translate-y-1"
-                        >
-                            <p.icon className={`w-8 h-8 text-gray-400 transition-colors ${p.color} group-hover:scale-110`} />
-                            <span className="font-medium">{p.name}</span>
-                        </button>
-                    ))}
+                    <h4 className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider mb-6">Select Platform to Connect</h4>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {PLATFORMS.slice(0, 8).map(p => (
+                            <button
+                                key={p.id}
+                                onClick={() => handleConnect(p.id)}
+                                className="group flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-50 dark:bg-black/20 hover:bg-white dark:hover:bg-white/10 transition-all border border-slate-100 dark:border-white/5 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1"
+                            >
+                                <p.icon className={`w-8 h-8 mb-3 text-slate-400 dark:text-gray-400 transition-colors ${p.color} group-hover:scale-110`} />
+                                <span className="font-bold text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white">{p.name}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 text-sm text-slate-400 dark:text-gray-500">
+                        Need help? <a href="/docs" className="text-primary hover:underline">Read the documentation</a>
+                    </div>
                 </div>
             </div>
         )
+    }
+
+    if (!isAuthenticated) {
+        // Redirect to Login if not authenticated
+        // In a real app, use a Navigate component, but for now we render a "Please Login" state or null
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
+                <p className="text-slate-500">Please log in to continue.</p>
+            </div>
+        );
     }
 
     return (
