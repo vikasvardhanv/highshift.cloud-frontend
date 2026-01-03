@@ -1,4 +1,4 @@
-import { Upload, Image as ImageIcon, Film, MoreVertical } from 'lucide-react';
+import { Upload, Image as ImageIcon, Film, MoreVertical, Plus } from 'lucide-react';
 
 const MOCK_ASSETS = [
     { id: 1, type: 'image', name: 'Product_Launch_Banner.jpg', size: '2.4 MB', date: '2 mins ago', url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' },

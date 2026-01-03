@@ -5,7 +5,7 @@ import {
     Twitter, Facebook, Instagram, Linkedin, Layers,
     ArrowRight, BarChart2, TrendingUp, Zap, Sparkles,
     Mail, FileText, ExternalLink, Activity, PieChart,
-    MousePointerClick, Share2, Eye
+    MousePointerClick, Share2, Eye, Inbox, Smile, Filter
 } from 'lucide-react';
 
 // Visual Calendar: Drag-and-drop animation

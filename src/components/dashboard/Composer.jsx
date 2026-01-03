@@ -5,6 +5,7 @@ import {
     Loader2, AlertCircle, CheckCircle, Upload, Link2,
     FileText, Image as ImageIcon, Smile
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { postContent, uploadAndPost, generateContent } from '../../services/api';
 
 const UPLOAD_METHODS = [
