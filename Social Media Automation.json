@@ -1,0 +1,1998 @@
+{
+  "name": "Social Media Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=LinkedIn Post Content:\n{{ $json.output }}\n\nTask:\n1. Extract the Hook and shorten it to 4-5 words (Must be \"Punchy\").\n2. Create a 3-word Subheading that summarizes the solution.\n3. Identify 2-3,4 \"Core Impact\" points (max around 4 words each).\n4. Integrate the mandatory 2-line CTA:\n   - Line 1: \"For more information\"\n   - Line 2: \"Visit our website\"\n5. Generate the final Nano Banana prompt using these elements.\n\nOutput Rules:\n- Output ONLY the final image prompt.\n- Ensure the prompt explicitly tells the model to render a generic professional footer.",
+        "options": {
+          "systemMessage": "=# Role\nYou are a Lead Visual Architect specializing in \"Conversion-First\" graphic design, creating high-fidelity image prompts where typography and business trust are the core focus.\n\n# Objective\nTransform a LinkedIn post into a professional marketing asset. The final image must be a cohesive design that includes a sharp Hook, Subheading, 2-3/4 Value Points, and a 2-line CTA at the bottom.\n\n# Brand Identity (Descriptive Only)\n- Background: Deep Navy Blue (Primary corporate tone).\n- Accent Colors: Electric Cyan and Bright Sky Blue (Used for 3D elements and text highlights).\n- Structure: Polished Silver (Used for borders, dividers, or subtle grid overlays).\n- Logo: A professional geometric abstract logo in the top right corner.\n\n# Strict Spatial Layout\n1. TOP RIGHT: Branding block with a professional abstract logo.\n2. TOP CENTER: [Shortened Hook] - Large, bold, white sans-serif font.\n3. MIDDLE: [Subheading] - Smaller, high-contrast Electric Cyan font.\n4. LOWER MIDDLE: [2-3 Key Points] - Concise white bullet points.\n5. FOOTER (Bottom Center/Left): A dedicated \"Call to Action\" area. \n   - Line 1: \"For more information\" (Small, clean silver font).\n   - Line 2: \"Visit our website\" (Bold, Electric Cyan or White font).\n\n# Visual Style\n- Theme: Modern B2B Tech Illustration.\n- Composition: \"Clean Layout Design\" with high negative space to ensure text is 100% legible.\n- Texture: Soft 3D gradients, cinematic lighting, and sharp edges."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -1920,
+        800
+      ],
+      "id": "f1c3b9dc-b127-4661-ac67-99e3e4cd42c6",
+      "name": "Image Prompt Agent"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e9bb78dd-0b5d-447f-91db-b99578761e7f",
+              "leftValue": "={{ $json.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "bcd69ef8-82be-46e2-bdd8-1ed227c92a18",
+              "leftValue": "={{ $json.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -896,
+        656
+      ],
+      "id": "2a8fa548-a9e2-4af8-911c-9581844dba68",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "true",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "36244d46-7d7f-4fd2-9023-bfac55d6fc13"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Approved"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7b03acd8-46d3-44a6-a7e2-479b392a3b63",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "false",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Regenerate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e7b40816-5693-470f-a579-c353869fead6",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "No Action"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -448,
+        720
+      ],
+      "id": "ab96c60b-80f7-44c6-9c99-1dd6c45197b7",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o",
+          "mode": "list",
+          "cachedResultName": "Social Media Psoting Using Ai Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1029750301,
+          "mode": "list",
+          "cachedResultName": "linkedin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit#gid=1029750301"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Image": "={{ $('If').item.json.url }}",
+            "Post": "={{ $('Fianl Linkedin Post Content').item.json.output }}",
+            "Date": "={{ $('Content Research Request').item.json.Date }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image",
+              "displayName": "Image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        1280
+      ],
+      "id": "2227880a-107c-4029-bc44-5a6450c85183",
+      "name": "Linkedin",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lVwavQZq7571mCxl",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o",
+          "mode": "list",
+          "cachedResultName": "Social Media Psoting Using Ai Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732296479,
+          "mode": "list",
+          "cachedResultName": "facebook",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit#gid=1732296479"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Image": "={{ $('If').item.json.url }}",
+            "Post": "={{ $('Facebook Content').item.json.output }}",
+            "Date": "={{ $('Content Research Request').item.json.Date }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image",
+              "displayName": "Image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        880
+      ],
+      "id": "a1cc395a-2f05-4ffe-9dca-3e29a91c444b",
+      "name": "Facebook",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lVwavQZq7571mCxl",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o",
+          "mode": "list",
+          "cachedResultName": "Social Media Psoting Using Ai Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "instagram",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Image": "={{ $('If').item.json.url }}",
+            "Post": "={{ $('Instagram Content').item.json.output }}",
+            "Date": "={{ $('Content Research Request').item.json.Date }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image",
+              "displayName": "Image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        64
+      ],
+      "id": "01882348-f1a8-49f5-85d0-a577c6def3ba",
+      "name": "Instagram",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lVwavQZq7571mCxl",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o",
+          "mode": "list",
+          "cachedResultName": "Social Media Psoting Using Ai Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1209392018,
+          "mode": "list",
+          "cachedResultName": "x",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LP2jzbGyJ8wEpncdsLM_3mFaD4H57vre5kLOs3em75o/edit#gid=1209392018"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Image": "={{ $('If').item.json.url }}",
+            "Post": "={{ $('X Content').item.json.output }}",
+            "Date": "={{ $('Content Research Request').item.json.Date }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image",
+              "displayName": "Image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        480
+      ],
+      "id": "db5a0f28-0a3b-46d2-ba67-d8d2a6378ca2",
+      "name": "X",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lVwavQZq7571mCxl",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $json['Post Topic'] }}\nAudience: {{ $json['Target Audience'] }}\n\nResearch Intelligence:\n{{ $('Sum-content').item.json.sumcontent }}\n\nStrategic Summary:\n{{ $('Summary').item.json.output }}\n\nTask:\nDraft a native Facebook post focusing on the insurance agency systems problem. Most agencies (IUL, Key Person, Buy-Sell, Executive Bonus) are trapped in spreadsheets and reactive quoting. Position Autonomous AI Agents as the solution.\n\nEnd with this exact CTA: \"Type 'waitlist' in the comments to see how we automate this.\"",
+        "options": {
+          "systemMessage": "=# Role\nYou are a Lead Facebook Content Strategist. You specialize in \"Native Engagement\" copywriting that builds trust within the insurance professional community.\n\n# Objective\nCreate a high-performing Facebook post that turns technical AI concepts into relatable business stories for insurance agents. The goal is to maximize comments by sounding like a helpful industry peer.\n\n# Facebook Algorithm Rules\n- Use the first 2-3 lines to state the relatable problem: spreadsheets, inbox follow-ups, and reactive quoting.\n- persona: Approachable, experienced, and practical agent partner.\n\n# Content Layout\n1. THE HOOK: \"Most agencies selling IUL or advanced plans are still running on spreadsheets. That's a systems problem, not a product problem.\"\n2. THE SHIFT: Explain how AI-native competitors are using agents to pre-qualify prospects and analyze cash flow.\n3. THE PROOF: 1-2 stats on efficiency gains.\n4. THE CTA: \"Type 'waitlist' in the comments to see how we automate this.\"\n\n# Tone & Style\n- Warm, professional, and confident.\n- Spacing: 1-2 sentences per paragraph.\n- Emojis: Max 1 per paragraph (📈, ⏳, 🛡️)."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        272,
+        768
+      ],
+      "id": "1e62b682-77f1-4135-a5bb-9a1a0ceb6520",
+      "name": "Facebook Content"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $('Content Research Request').item.json['Post Topic'] }}\nAudience: {{ $('Content Research Request').item.json['Target Audience'] }}\n\nResearch Intel:\n{{ $('Sum-content').item.json.sumcontent }}\n\nStrategic Summary:\n{{ $('Summary').item.json.output }}\n\nTask:\nDraft an Instagram caption focusing on insurance agency automation. Emphasize the shift from spreadsheets to Autonomous AI Agents for IUL and advanced life plans.\n\nEnd with this exact CTA: \"Type 'waitlist' in the comments to see how we automate this.\"",
+        "options": {
+          "systemMessage": "=# Role\nYou are a Lead Instagram Growth Strategist. You specialize in \"High-Retention\" copywriting for professional services.\n\n# Objective\nEstablish authority in AI Automation for insurance. Focus on the \"Systems Problem\" (manual follow-ups and spreadsheets).\n\n# Content Hierarchy\n1. THE HOOK: Curiosity gap about IUL/advanced plan scaling.\n2. THE BRIDGE: Agitate the pain of reactive quoting and manual paperwork.\n3. THE SOLUTION: Present Autonomous AI Agents (pre-qualifying, risk scoring, LTV tracking).\n4. THE CTA: \"Type 'waitlist' in the comments to see how we automate this.\"\n\n# Style & Tone\n- Persona: Industry expert partner. Mobile-first formatting.\n- Emojis: Strictly 0 to 1 total."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        272,
+        -32
+      ],
+      "id": "88c0741d-6b05-4656-ad83-0a260f249a57",
+      "name": "Instagram Content"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $('Content Research Request').item.json['Post Topic'] }}\nAudience: {{ $('Content Research Request').item.json['Target Audience'] }}\n\nMarket Intelligence:\n{{ $('Sum-content').item.json.sumcontent }}\n\nStrategic Summary:\n{{ $('Summary').item.json.output }}\n\nTask:\nWrite a high-signal X post about insurance agency systems transformation. Challenge the spreadsheet/manual follow-up status quo.\n\nEnd with: \"Type 'waitlist' under this post for the automation blueprint.\"",
+        "options": {
+          "systemMessage": "=# Role\nYou are an AI Transformation Practitioner for the insurance industry. You translate complex automation into high-signal insights for agency owners on X.\n\n# X Algorithm & Writing Rules\n- The Hook: \"Spreadsheets are killing your agency's scale. It's a systems problem, not a product problem.\"\n- Tone: Calm, experienced, slightly contrarian. Focus on operational utility (IUL pre-qualifying, risk scoring).\n- Structure: High white space. No emojis.\n- CTA: \"Type 'waitlist' for the automation blueprint.\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        272,
+        368
+      ],
+      "id": "3557780a-dc28-40ee-821d-fec0f3b75396",
+      "name": "X Content"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.Query }}"
+            },
+            {
+              "name": "search_depth",
+              "value": "advanced"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3280,
+        800
+      ],
+      "id": "ffec0dc9-5899-470d-a20b-396371bb625f",
+      "name": "Tavily Research"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c4143754-ed4f-4b71-8cb4-b79abdc9a247",
+              "name": "Query",
+              "value": "={{ $json['Post Topic'] }} for {{ $json['Target Audience'] }} 2026: current pain points, ROI statistics, lead conversion impact, and specific AI automation use cases for {{ $json['Target Audience'] }}.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3504,
+        800
+      ],
+      "id": "cc8a607b-0402-4a07-bb80-be068433d6fa",
+      "name": "Qurey"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d0f546c-d34f-48bd-997b-c15011904c77",
+              "name": "sumcontent",
+              "value": "={{ $json.results[0].content }}{{ $json.results[1].content }}{{ $json.results[2].content }}{{ $json.results[3].content }}{{ $json.results[4].content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3056,
+        800
+      ],
+      "id": "9176310c-1a2d-4c24-9421-49869de53951",
+      "name": "Sum-content"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dba0ea91-0c6e-468f-a226-25bb5c997b8d",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        1280
+      ],
+      "id": "c96939f5-df29-4000-89f1-e6eb06c40b1a",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dba0ea91-0c6e-468f-a226-25bb5c997b8d",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        880
+      ],
+      "id": "0e0c1e43-4ed0-4006-ad94-e045ca2294d2",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dba0ea91-0c6e-468f-a226-25bb5c997b8d",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        64
+      ],
+      "id": "ef5521fc-3555-4b0e-b868-9cf1719c3f45",
+      "name": "If7"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dba0ea91-0c6e-468f-a226-25bb5c997b8d",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        480
+      ],
+      "id": "3a9a65c7-b706-428b-8860-da629be3b910",
+      "name": "If8"
+    },
+    {
+      "parameters": {
+        "formTitle": "AI Content Research Request - Post Generator",
+        "formDescription": "Submit your details and content idea below.\nThis information will be used to research accurate insights and generate high-quality content for insurance automation.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "Email for Approval",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Post Topic",
+              "placeholder": "Ai Chatbot",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Audience",
+              "placeholder": "Real Estate",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Date",
+              "placeholder": "01-01-26",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Instagram",
+              "placeholder": "@handle",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "Facebook",
+              "placeholder": "@handle",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "Linkedin",
+              "placeholder": "@handle",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "X",
+              "placeholder": "@handle",
+              "requiredField": false
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -3664,
+        496
+      ],
+      "id": "afd325f9-cd05-4009-8a7e-aa8954d606e7",
+      "name": "Content Research Request",
+      "webhookId": "1e3df4e4-a0fd-453e-9942-63ee710aeded"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $('Content Research Request').item.json['Post Topic'] }}\nTarget Audience: {{ $('Content Research Request').item.json['Target Audience'] }}\n\nMarket Intelligence (Research):\n{{ $('Sum-content').item.json.sumcontent }}\n\nStrategic Synthesis (Summary):\n{{ $('Summary').item.json.output }}\n\nTask:\nDraft a LinkedIn post addressing the insurance systems problem. How spreadsheets and manual follow-ups are being replaced by Autonomous AI Agents for IUL, Key Person, and advanced strategies.\n\nEnd with this exact CTA: \"Type 'waitlist' in the comments to see how we automate this.\"",
+        "options": {
+          "systemMessage": "=# Role\nYou are an authority in Insurance AI Automation and autonomous systems.\n\n# Objective\nTransform research into a LinkedIn post that stops the scroll for insurance agency decision-makers.\n\n# Content Guidelines\n1. THE HOOK: \"Most insurance agencies selling IUL or Buy-Sell plans are chasing paperwork while their competitors deploy AI.\"\n2. THE BRIDGE: The gap between spreadsheet-based workflows and AI-optimized ones.\n3. THE SOLUTION: Autonomous AI Agents (pre-qualify IUL, cash flow analysis, risk scoring).\n4. THE CTA: \"Type 'waitlist' in the comments to see how we automate this.\"\n\n# Tone & Formatting\n- Voice: Authoritative, futuristic, grounded in ROI.\n- Spacing: Mobile-First.\n- Emojis: Minimal (⚡, 📈, 🤖).\n- Output ONLY the post."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -2272,
+        800
+      ],
+      "id": "304ec719-2286-4a0a-98a1-ba0d0cf5d4a1",
+      "name": "Linkedin Post Content"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $('Content Research Request').item.json.Email }}",
+        "subject": "=Social Media Post Approval",
+        "message": "=image : {{ $json.url }} ",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Regenerate"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 5,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -672,
+        656
+      ],
+      "id": "3ed01891-a99c-4721-baf4-a5e32af329a2",
+      "name": "Image Approval",
+      "webhookId": "13a46b5f-da02-475e-959e-eedc913bc083",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MvrQuSmix6vxmv2B",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $('Content Research Request').item.json['Post Topic'] }}\nAudience: {{ $('Content Research Request').item.json['Target Audience'] }}\n\nFactual Foundation (Research):\n{{ $('Sum-content').item.json.sumcontent }}\n\nCore Insight (Summary):\n{{ $('Summary').item.json.output }}\n\nTask:\nWrite a 1000-1500 character LinkedIn post positioning AI Agents as the definitive solution for insurance agencies (IUL, advanced life plans). Focus on moving away from spreadsheets and reactive quoting.\n\nEnd with this exact CTA: \"Type 'waitlist' in the comments to see the reveal.\"",
+        "options": {
+          "systemMessage": "=# Role\nYou are an authority in Insurance AI operations, writing to agency owners and decision-makers on LinkedIn.\n\n# Objective\nBuild authority by addressing the \"Systems Problem\" in insurance. Demonstate how AI Agents change the math of the business (IUL pre-qualifying, risk scoring, LTV expansion).\n\n# Brand Voice\n- Perspective: Confident, educational, and calm. Logic and ROI.\n- Style: Zero fluff.\n\n# Content Structure\n1. THE HOOK: Bold insight about insurance scale bottlenecks.\n2. THE REALITY: Manual workflow drag and spreadsheet reliance.\n3. THE STRATEGIC SHIFT: Autonomous AI Agents.\n4. THE PROOF: Quantifiable efficiency gain mention.\n5. CALL TO ACTION: \"Type 'waitlist' in the comments.\"\n\n# Formatting\n- Mobile-First formatting.\n- Output ONLY the final LinkedIn post text."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        272,
+        1280
+      ],
+      "id": "11b27076-e66d-400e-9e45-d49fdf1c8473",
+      "name": "Fianl Linkedin Post Content"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $('Content Research Request').item.json.Email }}",
+        "subject": "=Linkedin Content Post Approval",
+        "message": "=Linkedin Post Content : {{ $json.output }}  image : {{ $('If').item.json.data[0].url }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Regenerate"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 2,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        1200
+      ],
+      "id": "e42aa108-ab20-468b-baa5-e8732a145ddd",
+      "name": "Linkedin Content Approval",
+      "webhookId": "13a46b5f-da02-475e-959e-eedc913bc083",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MvrQuSmix6vxmv2B",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $('Content Research Request').item.json.Email }}",
+        "subject": "=Facebook Content Post Approval",
+        "message": "=Facebook Post Content :{{ $json.output }} Image :{{ $('If').item.json.url }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Regenerate"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 2,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        800
+      ],
+      "id": "c0c8e334-6099-40fc-bc3b-baa6346f3e4d",
+      "name": "Facebook Content Post Approval",
+      "webhookId": "13a46b5f-da02-475e-959e-eedc913bc083",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MvrQuSmix6vxmv2B",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $('Content Research Request').item.json.Email }}",
+        "subject": "=Instagram Content Post Approval",
+        "message": "=Instagram Post Content : {{ $json.output }} Image :{{ $('If').item.json.data[0].url }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Regenerate"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 2,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        48
+      ],
+      "id": "8a520586-73ed-4cd9-8616-f385a09c0de7",
+      "name": "Instagram Content Post Approval",
+      "webhookId": "13a46b5f-da02-475e-959e-eedc913bc083",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MvrQuSmix6vxmv2B",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $('Content Research Request').item.json.Email }}",
+        "subject": "=Social Media Post Approval",
+        "message": "=X Post Content : {{ $json.output }} Image :{{ $('If').item.json.data[0].url }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Regenerate"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 2,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        400
+      ],
+      "id": "73063788-f9d7-4c35-affc-ab3e99aff785",
+      "name": "X Post Content",
+      "webhookId": "13a46b5f-da02-475e-959e-eedc913bc083",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "MvrQuSmix6vxmv2B",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst url = items.map(\n  (item) => JSON.parse(item.json.body.data.resultJson).resultUrls[0],\n);\nreturn { url: url[0] };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        656
+      ],
+      "id": "39067a3c-75b6-4968-9556-e99a527d7d11",
+      "name": "URL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer b84422cfbc89decf52c91d35df6b2aca"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n\"model\": \"google/nano-banana\",\n\"callBackUrl\": $execution.resumeUrl,\n\"input\": {\n\"prompt\": $json.output,\n\"output_format\": \"png\"\n}\n}\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1584,
+        800
+      ],
+      "id": "c63a181b-f38f-409a-b0e9-cf2a08c230ca",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "httpMethod": "POST",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        656
+      ],
+      "id": "771e4d48-c52a-4987-98fa-27d021aacc65",
+      "name": "Wait",
+      "webhookId": "5fa074e4-4730-40e9-a0a7-ade43888db27",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "url": "={{ $('If').item.json.data[0].url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1296,
+        1280
+      ],
+      "id": "8c4d93ed-734d-4e09-a860-1a67761cb28c",
+      "name": "Linkedin Img"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('If').item.json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1296,
+        880
+      ],
+      "id": "a87700c3-6c48-4cdc-85a6-3f2be4dbf96f",
+      "name": "Facebook Img"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('If').item.json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1296,
+        480
+      ],
+      "id": "1d0c313a-90cd-4164-a013-b0fd33697b0c",
+      "name": "X Download Image"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('If').item.json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1296,
+        64
+      ],
+      "id": "f1379162-c6c4-4cae-ba75-f0fea71caf6c",
+      "name": "Instagram Download Image"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -2864,
+        1056
+      ],
+      "id": "be7fe53e-f27e-409a-bff0-6ebda0958231",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -2192,
+        1024
+      ],
+      "id": "6cf20fe5-a754-4f88-82ca-06b905ca8b90",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1840,
+        1024
+      ],
+      "id": "69a2f5e3-5542-4298-999d-ffb55cb22099",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        128
+      ],
+      "id": "34b90eed-f791-48ee-8ac2-abdc9959915e",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        544
+      ],
+      "id": "50024e9b-7896-462f-a0d9-a0139c1c32a5",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        944
+      ],
+      "id": "058b01e6-d112-4100-acd9-fbee7c119739",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        1504
+      ],
+      "id": "a19d7a10-e65f-4a10-bc04-08d6b5a6e671",
+      "name": "OpenAI Chat Model6",
+      "credentials": {
+        "openAiApi": {
+          "id": "tvxWIt6hDbl0MU0n",
+          "name": "OpenAi account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $('Content Research Request').item.json['Post Topic'] }}\nAudience: {{ $('Content Research Request').item.json['Target Audience'] }}\n\nSource Data: \n{{ $json.sumcontent }}\n\nTask:\nExtract the most critical insurance industry pain points (manual workflows, spreadsheet reliance, reactive quoting) and ROI metrics for IUL and advanced life insurance agents. Synthesize these into a high-signal strategic brief for AI automation.\n\nOutput Requirements:\n* Single cohesive executive brief.\n* Technical, authoritative tone.\n* Focus on Autonomous AI Agents as the solution.\n* Length: 40–60 words.\n",
+        "options": {
+          "systemMessage": "# ROLE\n\nYou are a Lead Intelligence Strategist specializing in Insurance AI Automation.\n\n# OBJECTIVE\n\nAnalyze data to extract insights on the necessity of AI for insurance agencies. Focus on shifting from spreadsheets to Autonomous AI Agents for IUL, risk scoring, and cash flow analysis.\n\n# OUTPUT RULES\n\n* Output ONLY the final summary.\n* No branding language.\n* Tone: Technical, precise.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -2848,
+        800
+      ],
+      "id": "6baaf898-a333-4a24-ad77-bcea97b172b9",
+      "name": "Summary"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.upload-post.com/api/upload_photos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user",
+              "value": "Insurance"
+            },
+            {
+              "name": "platform[]",
+              "value": "instagram"
+            },
+            {
+              "name": "title",
+              "value": "={{ $('Instagram Content').item.json.output }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "photos[]",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1568,
+        32
+      ],
+      "id": "a96a2d72-cade-406b-ae94-292911405749",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.upload-post.com/api/upload_photos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user",
+              "value": "Insurance"
+            },
+            {
+              "name": "platform[]",
+              "value": "x"
+            },
+            {
+              "name": "title",
+              "value": "={{ $('X Content').item.json.output }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "photos[]",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1600,
+        448
+      ],
+      "id": "d21586a8-e027-4273-a2ab-c13db365fbb3",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.upload-post.com/api/upload_photos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user",
+              "value": "Insurance"
+            },
+            {
+              "name": "platform[]",
+              "value": "facebook"
+            },
+            {
+              "name": "title",
+              "value": "={{ $('Facebook Content').item.json.output }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "photos[]",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1632,
+        864
+      ],
+      "id": "1317f604-9822-41c4-bf08-e25c03c7c734",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.upload-post.com/api/upload_photos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user",
+              "value": "Insurance"
+            },
+            {
+              "name": "platform[]",
+              "value": "linkedin"
+            },
+            {
+              "name": "title",
+              "value": "={{ $('Instagram Content').item.json.output }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "photos[]",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1616,
+        1280
+      ],
+      "id": "0710123a-a5f0-420e-bed8-3e5cb59551af",
+      "name": "HTTP Request4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Image Prompt Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Image Approval",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "X Content",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Facebook Content",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Instagram Content",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fianl Linkedin Post Content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook": {
+      "main": [
+        [
+          {
+            "node": "Facebook Img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X": {
+      "main": [
+        [
+          {
+            "node": "X Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Content": {
+      "main": [
+        [
+          {
+            "node": "Facebook Content Post Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Content": {
+      "main": [
+        [
+          {
+            "node": "Instagram Content Post Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X Content": {
+      "main": [
+        [
+          {
+            "node": "X Post Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tavily Research": {
+      "main": [
+        [
+          {
+            "node": "Sum-content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qurey": {
+      "main": [
+        [
+          {
+            "node": "Tavily Research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sum-content": {
+      "main": [
+        [
+          {
+            "node": "Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Linkedin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fianl Linkedin Post Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Facebook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Facebook Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Instagram Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "X",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "X Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Content Research Request": {
+      "main": [
+        [
+          {
+            "node": "Qurey",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Post Content": {
+      "main": [
+        [
+          {
+            "node": "Image Prompt Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Approval": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fianl Linkedin Post Content": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Content Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Content Approval": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Content Post Approval": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Content Post Approval": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X Post Content": {
+      "main": [
+        [
+          {
+            "node": "If8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "URL": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin Img": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Img": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X Download Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Download Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram": {
+      "main": [
+        [
+          {
+            "node": "Instagram Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Fianl Linkedin Post Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Facebook Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "X Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Instagram Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Image Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Linkedin Post Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summary",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summary": {
+      "main": [
+        [
+          {
+            "node": "Linkedin Post Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d7cbbea8-826b-4ae1-86de-4e4831bce4eb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4547808366d01533a162cd737d85585571637f7f12a70dd60e892ee4ea49c787"
+  },
+  "id": "tLfHy5lLKdCtNoMX",
+  "tags": [
+    {
+      "updatedAt": "2026-03-14T21:11:41.264Z",
+      "createdAt": "2026-03-14T21:11:41.264Z",
+      "id": "6101m2EWqkeOdnjz",
+      "name": "Vikash Project"
+    }
+  ]
+}

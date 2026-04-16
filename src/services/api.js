@@ -238,3 +238,143 @@ export const connectBluesky = async (data) => {
     const res = await api.post('/auth/connect/bluesky', data);
     return res.data;
 };
+
+// ============ Organizations ============
+export const getOrganizations = async () => {
+    const res = await api.get('/organizations');
+    return res.data.organizations || [];
+};
+
+export const createOrganization = async (name, slug = null) => {
+    const res = await api.post('/organizations', { name, slug });
+    return res.data.organization;
+};
+
+export const getOrganization = async (orgId) => {
+    const res = await api.get(`/organizations/${orgId}`);
+    return res.data.organization;
+};
+
+export const updateOrganization = async (orgId, data) => {
+    const res = await api.put(`/organizations/${orgId}`, data);
+    return res.data.organization;
+};
+
+export const deleteOrganization = async (orgId) => {
+    await api.delete(`/organizations/${orgId}`);
+};
+
+export const getOrganizationMembers = async (orgId) => {
+    const res = await api.get(`/organizations/${orgId}/members`);
+    return res.data.members || [];
+};
+
+export const inviteOrganizationMember = async (orgId, email, role = 'user') => {
+    const res = await api.post(`/organizations/${orgId}/members`, { email, role });
+    return res.data;
+};
+
+export const removeOrganizationMember = async (orgId, memberId) => {
+    await api.delete(`/organizations/${orgId}/members/${memberId}`);
+};
+
+export const updateMemberRole = async (orgId, memberId, role) => {
+    await api.put(`/organizations/${orgId}/members/${memberId}`, { role });
+};
+
+// ============ Notifications ============
+export const getNotifications = async (limit = 20, offset = 0, unreadOnly = false) => {
+    const res = await api.get('/notifications', { params: { limit, offset, unread_only: unreadOnly } });
+    return res.data;
+};
+
+export const getUnreadNotificationCount = async () => {
+    const res = await api.get('/notifications/unread-count');
+    return res.data.unread_count;
+};
+
+export const markNotificationRead = async (notificationId) => {
+    await api.put(`/notifications/${notificationId}/read`);
+};
+
+export const markAllNotificationsRead = async () => {
+    await api.put('/notifications/read-all');
+};
+
+export const deleteNotification = async (notificationId) => {
+    await api.delete(`/notifications/${notificationId}`);
+};
+
+export const deleteAllNotifications = async () => {
+    await api.delete('/notifications');
+};
+
+// ============ Webhooks ============
+export const getWebhooks = async () => {
+    const res = await api.get('/webhooks');
+    return res.data.webhooks || [];
+};
+
+export const createWebhook = async (name, url, events) => {
+    const res = await api.post('/webhooks', { name, url, events });
+    return res.data; // { webhook, secret }
+};
+
+export const getWebhook = async (webhookId) => {
+    const res = await api.get(`/webhooks/${webhookId}`);
+    return res.data.webhook;
+};
+
+export const updateWebhook = async (webhookId, data) => {
+    const res = await api.put(`/webhooks/${webhookId}`, data);
+    return res.data.webhook;
+};
+
+export const deleteWebhook = async (webhookId) => {
+    await api.delete(`/webhooks/${webhookId}`);
+};
+
+export const testWebhook = async (webhookId) => {
+    const res = await api.post(`/webhooks/${webhookId}/test`);
+    return res.data;
+};
+
+// ============ Autopost ============
+export const getAutopostConfigs = async () => {
+    const res = await api.get('/autopost');
+    return res.data.configs || [];
+};
+
+export const createAutopostConfig = async (name, feedUrl, platforms, postTemplate) => {
+    const res = await api.post('/autopost', {
+        name,
+        feed_url: feedUrl,
+        platforms,
+        post_template: postTemplate
+    });
+    return res.data.config;
+};
+
+export const getAutopostConfig = async (configId) => {
+    const res = await api.get(`/autopost/${configId}`);
+    return res.data.config;
+};
+
+export const updateAutopostConfig = async (configId, data) => {
+    const res = await api.put(`/autopost/${configId}`, data);
+    return res.data.config;
+};
+
+export const deleteAutopostConfig = async (configId) => {
+    await api.delete(`/autopost/${configId}`);
+};
+
+export const fetchRssPreview = async (configId) => {
+    const res = await api.post(`/autopost/${configId}/fetch`);
+    return res.data;
+};
+
+export const triggerAutopost = async (configId) => {
+    const res = await api.post(`/autopost/${configId}/trigger`);
+    return res.data;
+};
