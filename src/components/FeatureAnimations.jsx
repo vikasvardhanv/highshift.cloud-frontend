@@ -103,9 +103,9 @@ export function BestTimeAnimation() {
         <div className="relative w-full h-48 flex items-center justify-center">
             {/* Time bars */}
             <div className="absolute inset-0 flex items-end justify-center gap-3 px-6 pb-8">
-                {hours.map((hour, index) => {
+                {hours.map((hour) => {
                     const isOptimal = suggestedTime && hour === suggestedTime.hour;
-                    const height = 30 + Math.random() * 50;
+                    const height = 30 + ((hour * 13) % 50);
 
                     return (
                         <div key={hour} className="flex flex-col items-center gap-1">
@@ -180,7 +180,7 @@ export function MultiPlatformAnimation() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setActiveIndex(prev => (prev + 1) % platforms.length);
+            setActiveIndex(prev => (prev + 1) % 4);
         }, 1500);
         return () => clearInterval(interval);
     }, []);
@@ -326,7 +326,7 @@ export function ApprovalWorkflowAnimation() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentStep(prev => (prev + 1) % (steps.length + 1));
+            setCurrentStep(prev => (prev + 1) % 4);
         }, 2000);
         return () => clearInterval(interval);
     }, []);
@@ -582,7 +582,7 @@ export function CustomDashboardAnimation() {
     return (
         <div className="relative w-full h-48 p-4">
             <div className="grid grid-cols-2 grid-rows-2 gap-3 h-full">
-                {layout.map((id, index) => {
+                {layout.map((id) => {
                     const W = widgets[id];
                     return (
                         <motion.div

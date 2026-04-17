@@ -6,7 +6,6 @@ import {
     Facebook, Twitter, Instagram, Linkedin, Youtube, Globe
 } from 'lucide-react';
 import { getAccounts } from '../../services/api';
-import { motion } from 'framer-motion';
 
 export default function MediaFeed() {
     const [accounts, setAccounts] = useState([]);
@@ -50,10 +49,6 @@ export default function MediaFeed() {
         }
     ];
 
-    useEffect(() => {
-        loadData();
-    }, []);
-
     const loadData = async () => {
         try {
             const data = await getAccounts();
@@ -64,6 +59,10 @@ export default function MediaFeed() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        loadData();
+    }, []);
 
     if (loading) {
         return (

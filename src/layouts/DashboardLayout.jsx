@@ -11,14 +11,6 @@ export default function DashboardLayout({ children }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const location = useLocation();
 
-    useEffect(() => {
-        loadUserInfo();
-        // Set initial sidebar state based on screen size
-        if (window.innerWidth >= 1024) {
-            setSidebarOpen(true);
-        }
-    }, []);
-
     const loadUserInfo = async () => {
         try {
             const data = await getCurrentUser();
@@ -39,6 +31,13 @@ export default function DashboardLayout({ children }) {
             setUser({ name: 'User', initials: 'U', email: '' });
         }
     };
+
+    useEffect(() => {
+        loadUserInfo();
+        if (window.innerWidth >= 1024) {
+            setSidebarOpen(true);
+        }
+    }, []);
 
     const handleLogout = () => {
         if (confirm('Are you sure you want to logout?')) {

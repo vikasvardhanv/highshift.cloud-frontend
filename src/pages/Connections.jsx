@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getAccounts, getAuthUrl, disconnectAccount, getProfiles, createProfile } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube, Music,
@@ -22,11 +22,7 @@ export default function Connections() {
     const [newProfileName, setNewProfileName] = useState('');
     const [showPlatformSelect, setShowPlatformSelect] = useState(false);
 
-    useEffect(() => {
-        loadData();
-    }, []);
-
-    const loadData = async () => {
+    const loadData = useCallback(async () => {
         try {
             const data = await getProfiles();
             setProfiles(data || []);
@@ -38,7 +34,11 @@ export default function Connections() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [selectedProfile]);
+
+    useEffect(() => {
+        loadData();
+    }, [loadData]);
 
     const handleCreateProfile = async () => {
         if (!newProfileName.trim()) return;
