@@ -48,13 +48,13 @@ export default function Settings() {
 
                 {/* Content Area */}
                 <div className="lg:col-span-9">
-                    <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/5 shadow-2xl relative overflow-hidden group min-h-[500px]">
+                    <div className="glass-card p-10 rounded-[2.5rem] bg-white dark:bg-surface border-slate-200 dark:border-white/5 shadow-2xl relative overflow-hidden group min-h-[500px]">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 opacity-50 group-hover:opacity-100 transition-opacity"></div>
 
                         {activeTab === 'profile' && (
                             <div className="space-y-10 animate-fade-in">
                                 <div>
-                                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Identity Matrix</h3>
+                                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight text-slate-900 dark:text-white">Identity Matrix</h3>
                                     <p className="text-xs text-slate-500 font-medium">Update your public signature across the network.</p>
                                 </div>
 
@@ -65,7 +65,7 @@ export default function Settings() {
                                             type="text"
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-slate-200"
+                                            className="w-full"
                                         />
                                     </div>
                                     <div className="space-y-4">
@@ -74,7 +74,7 @@ export default function Settings() {
                                             type="email"
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-slate-200"
+                                            className="w-full"
                                         />
                                     </div>
                                 </div>
@@ -110,11 +110,11 @@ export default function Settings() {
 
                         {activeTab !== 'profile' && activeTab !== 'billing' && (
                             <div className="flex flex-col items-center justify-center h-full py-20 text-center">
-                                <div className="w-16 h-16 bg-slate-900 border border-white/5 rounded-2xl flex items-center justify-center mb-6">
-                                    <Zap className="w-8 h-8 text-slate-700" />
+                                <div className="w-16 h-16 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-2xl flex items-center justify-center mb-6">
+                                    <Zap className="w-8 h-8 text-slate-400 dark:text-slate-700" />
                                 </div>
-                                <h3 className="text-lg font-black uppercase tracking-tight mb-2">Protocol Under Development</h3>
-                                <p className="text-xs text-slate-600 font-bold uppercase tracking-widest">Neural link for {activeTab} coming soon</p>
+                                <h3 className="text-lg font-black uppercase tracking-tight mb-2 text-slate-900 dark:text-white">Protocol Under Development</h3>
+                                <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">Neural link for {activeTab} coming soon</p>
                             </div>
                         )}
                     </div>
