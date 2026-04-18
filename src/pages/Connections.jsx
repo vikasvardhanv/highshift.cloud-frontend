@@ -270,13 +270,13 @@ export default function Connections() {
                                 <Plus className="w-10 h-10 text-white" />
                             </div>
                             
-                            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4">Create Profile</h2>
+                            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4 text-white">Create Profile</h2>
                             <p className="text-slate-500 font-medium mb-10">Profiles group your social accounts for seamless brand management.</p>
                             
                             <input 
                                 autoFocus type="text" value={newProfileName} onChange={(e) => setNewProfileName(e.target.value)}
                                 placeholder="e.g. Acme Tech or Client A"
-                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black italic uppercase italic tracking-tighter focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
+                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black text-white italic uppercase tracking-tighter focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
                                 onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
                             />
                             

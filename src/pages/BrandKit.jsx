@@ -111,7 +111,7 @@ export default function BrandKit() {
                         <textarea
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full h-40 bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-[15px] focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-800 leading-relaxed shadow-inner"
+                            className="w-full h-40 rounded-[1.5rem] p-8 text-[15px]"
                             placeholder="Describe your brand's unique character, mission, and linguistic quirks..."
                         ></textarea>
                     </div>
@@ -136,7 +136,7 @@ export default function BrandKit() {
                                 value={formData.company_name}
                                 onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
                                 type="text"
-                                className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                className="w-full rounded-2xl px-6 py-4 text-sm font-medium"
                                 placeholder="e.g. Social Raven"
                             />
                         </div>
@@ -146,7 +146,7 @@ export default function BrandKit() {
                                 value={formData.industry}
                                 onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
                                 type="text"
-                                className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                className="w-full rounded-2xl px-6 py-4 text-sm font-medium"
                                 placeholder="e.g. AI-Powered SaaS"
                             />
                         </div>
@@ -158,7 +158,7 @@ export default function BrandKit() {
                                     value={formData.website}
                                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                                     type="text"
-                                    className="w-full bg-black/40 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                    className="w-full rounded-2xl pl-14 pr-6 py-4 text-sm font-medium"
                                     placeholder="https://yourbrand.com"
                                 />
                             </div>
@@ -185,7 +185,7 @@ export default function BrandKit() {
                         <textarea
                             value={formData.keywords}
                             onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
-                            className="w-full h-[180px] bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-800 leading-relaxed shadow-inner"
+                            className="w-full h-[180px] rounded-[1.5rem] p-8 text-sm"
                             placeholder="Comma-separated tokens for AI grounding (e.g. Growth, Efficiency, Innovation)"
                         ></textarea>
                     </div>
