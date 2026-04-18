@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }) {
                 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
 
                 {/* Top Bar - Clean Professional */}
-                <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16">
+                <header className="sticky top-0 z-40 bg-white/80 dark:bg-surface/80 backdrop-blur-md border-b border-slate-200 dark:border-white/5 h-16">
                     <div className="px-4 lg:px-6 h-full flex items-center justify-between">
                         {/* Title Breadcrumb & Mobile Menu Toggle */}
                         <div className="flex items-center gap-3 lg:gap-4">
@@ -79,7 +79,7 @@ export default function DashboardLayout({ children }) {
                             >
                                 <Menu className="w-6 h-6" />
                             </button>
-                            <h1 className="text-base lg:text-lg font-bold text-slate-900 truncate max-w-[150px] md:max-w-none">
+                            <h1 className="text-base lg:text-lg font-bold text-slate-900 dark:text-white truncate max-w-[150px] md:max-w-none">
                                 {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
                             </h1>
                         </div>
@@ -108,9 +108,9 @@ export default function DashboardLayout({ children }) {
                                 </button>
 
                                 {showDropdown && (
-                                    <div className="absolute right-0 top-full mt-2 w-56 bg-white border border-slate-200 rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-surface border border-slate-200 dark:border-white/10 rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                                         <div className="px-4 py-3 border-b border-slate-100">
-                                            <p className="text-sm font-bold text-slate-900">{user?.name}</p>
+                                            <p className="text-sm font-bold text-slate-900 dark:text-white">{user?.name}</p>
                                             <p className="text-xs text-slate-500 truncate">{user?.email || ''}</p>
                                         </div>
 
