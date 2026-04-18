@@ -79,7 +79,7 @@ export default function InstantPublish() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
+        <div className="w-full text-slate-900 dark:text-slate-100 p-8">
             <div className="max-w-4xl mx-auto">
                 
                 {/* Header */}
@@ -100,7 +100,7 @@ export default function InstantPublish() {
                                     value={topic}
                                     onChange={(e) => setTopic(e.target.value)}
                                     placeholder="What's the story today?"
-                                    className="w-full h-40 bg-slate-50 border border-slate-100 rounded-3xl p-6 text-xl font-black italic uppercase italic tracking-tighter focus:outline-none focus:border-indigo-500 transition-all resize-none text-slate-800"
+                                    className="w-full h-40 bg-white dark:bg-surface border border-slate-100 dark:border-white/10 rounded-3xl p-6 text-xl font-black italic uppercase tracking-tighter focus:outline-none focus:border-indigo-500 transition-all resize-none text-slate-800 dark:text-slate-100"
                                 />
                             </div>
                             <div className="space-y-8">
@@ -112,7 +112,7 @@ export default function InstantPublish() {
                                         value={audience}
                                         onChange={(e) => setAudience(e.target.value)}
                                         placeholder="e.g. Tech Founders"
-                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-6 font-black italic uppercase italic tracking-tighter focus:outline-none focus:border-indigo-500 transition-all text-slate-800"
+                                        className="w-full bg-white dark:bg-surface border border-slate-100 dark:border-white/10 rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-indigo-500 transition-all text-slate-800 dark:text-slate-100"
                                     />
                                 </div>
                                 <div className="space-y-4">
@@ -122,7 +122,7 @@ export default function InstantPublish() {
                                         required
                                         value={date}
                                         onChange={(e) => setDate(e.target.value)}
-                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-6 font-black italic uppercase italic tracking-tighter focus:outline-none focus:border-indigo-500 transition-all text-slate-800"
+                                        className="w-full bg-white dark:bg-surface border border-slate-100 dark:border-white/10 rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-indigo-500 transition-all text-slate-800 dark:text-slate-100"
                                     />
                                 </div>
                             </div>
@@ -157,7 +157,7 @@ export default function InstantPublish() {
                                                 value={handles[p]}
                                                 onChange={(e) => setHandles({...handles, [p]: e.target.value})}
                                                 placeholder="@handle"
-                                                className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm font-bold text-slate-800 focus:outline-none focus:border-indigo-500 transition-all placeholder:text-slate-300"
+                                                className="w-full bg-white dark:bg-surface border border-slate-100 dark:border-white/10 rounded-2xl px-5 py-4 text-sm font-bold text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-500 transition-all placeholder:text-slate-400"
                                             />
                                         </div>
                                     </div>
