@@ -276,7 +276,7 @@ export default function Connections() {
                             <input 
                                 autoFocus type="text" value={newProfileName} onChange={(e) => setNewProfileName(e.target.value)}
                                 placeholder="e.g. Acme Tech or Client A"
-                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black italic uppercase italic tracking-tighter focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
+                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black italic uppercase tracking-tighter text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
                                 onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
                             />
                             
