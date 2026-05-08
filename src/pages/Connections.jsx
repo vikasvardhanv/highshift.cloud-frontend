@@ -75,7 +75,7 @@ export default function Connections() {
         try {
             localStorage.setItem(PENDING_PROFILE_KEY, selectedProfile.id);
             localStorage.setItem(PENDING_PLATFORM_KEY, platformId);
-            const data = await getAuthUrl(platformId, null, selectedProfile.id);
+            const data = await getAuthUrl(platformId, window.location.origin + '/auth/callback', selectedProfile.id);
             if (data.authUrl) {
                 window.location.href = data.authUrl;
             }
