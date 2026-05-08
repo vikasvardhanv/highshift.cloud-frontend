@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { getAccounts, getAuthUrl, disconnectAccount, getProfiles, createProfile } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube, Music,
@@ -22,7 +22,11 @@ export default function Connections() {
     const [newProfileName, setNewProfileName] = useState('');
     const [showPlatformSelect, setShowPlatformSelect] = useState(false);
 
-    const loadData = useCallback(async () => {
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
         try {
             const data = await getProfiles();
             setProfiles(data || []);
@@ -34,11 +38,7 @@ export default function Connections() {
         } finally {
             setLoading(false);
         }
-    }, [selectedProfile]);
-
-    useEffect(() => {
-        loadData();
-    }, [loadData]);
+    };
 
     const handleCreateProfile = async () => {
         if (!newProfileName.trim()) return;
@@ -78,22 +78,22 @@ export default function Connections() {
     };
 
     if (loading && profiles.length === 0) {
-        return <div className="min-h-screen flex items-center justify-center"><Loader2 className="animate-spin text-indigo-600 w-10 h-10" /></div>;
+        return <div className="min-h-screen bg-slate-50 flex items-center justify-center"><Loader2 className="animate-spin text-indigo-600 w-10 h-10" /></div>;
     }
 
     return (
-        <div className="w-full text-slate-900 dark:text-slate-100 p-8">
+        <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
             <div className="max-w-6xl mx-auto space-y-12">
-                
+
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div>
-                        <h1 className="text-4xl font-black italic uppercase tracking-tighter mb-2 text-slate-900 dark:text-white">Social Connections</h1>
+                        <h1 className="text-4xl font-black italic uppercase tracking-tighter mb-2 text-slate-900">Social Connections</h1>
                         <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Profile-Based Account Orchestration</p>
                     </div>
-                    <button 
+                    <button
                         onClick={() => setIsCreatingProfile(true)}
-                        className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-surface border border-slate-200 dark:border-white/10 text-black dark:text-white font-black uppercase italic tracking-tighter rounded-xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl shadow-white/5"
+                        className="flex items-center gap-2 px-6 py-3 bg-white text-black font-black uppercase italic tracking-tighter rounded-xl hover:bg-slate-200 transition-all active:scale-95 shadow-xl shadow-white/5"
                     >
                         <Plus className="w-5 h-5" /> New Profile
                     </button>
@@ -101,7 +101,7 @@ export default function Connections() {
 
                 {/* Main View: Profile Selection or Account Management */}
                 <div className="grid lg:grid-cols-[350px,1fr] gap-12">
-                    
+
                     {/* Left: Profiles List */}
                     <div className="space-y-4">
                         <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-6">Select Profile</h3>
@@ -116,7 +116,7 @@ export default function Connections() {
                                         {p.name.charAt(0).toUpperCase()}
                                     </div>
                                     <div className="text-left">
-                                        <div className="font-black italic uppercase tracking-tighter text-lg dark:text-white">{p.name}</div>
+                                        <div className="font-black italic uppercase tracking-tighter text-lg">{p.name}</div>
                                         <div className={`text-[10px] font-bold uppercase tracking-widest ${selectedProfile?.id === p.id ? 'text-indigo-200' : 'text-slate-500'}`}>
                                             {p.accounts?.length || 0} Accounts
                                         </div>
@@ -141,23 +141,23 @@ export default function Connections() {
                     <div className="min-h-[500px]">
                         <AnimatePresence mode="wait">
                             {selectedProfile ? (
-                                <motion.div 
+                                <motion.div
                                     key={selectedProfile.id}
                                     initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                                     className="space-y-8"
                                 >
                                     {/* Selected Profile Header */}
-                                    <div className="bg-white dark:bg-surface rounded-[2.5rem] p-10 border border-slate-200 dark:border-white/10 relative overflow-hidden shadow-sm">
+                                    <div className="bg-white rounded-[2.5rem] p-10 border border-slate-200 relative overflow-hidden shadow-sm">
                                         <div className="absolute top-0 right-0 p-10 opacity-5">
                                             <Zap className="w-48 h-48 text-indigo-600 fill-indigo-600" />
                                         </div>
-                                        
+
                                         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                                             <div className="space-y-2">
-                                                <h2 className="text-5xl font-black italic uppercase tracking-tighter text-slate-900 dark:text-white">{selectedProfile.name}</h2>
+                                                <h2 className="text-5xl font-black italic uppercase tracking-tighter text-slate-900">{selectedProfile.name}</h2>
                                                 <p className="text-slate-500 font-medium">Orchestrate social flows for this profile</p>
                                             </div>
-                                            <button 
+                                            <button
                                                 onClick={() => setShowPlatformSelect(!showPlatformSelect)}
                                                 className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black uppercase italic tracking-tighter rounded-2xl shadow-2xl shadow-indigo-600/30 transition-all active:scale-95 flex items-center gap-3"
                                             >
@@ -169,7 +169,7 @@ export default function Connections() {
 
                                     {/* Action: Platform Select Grid */}
                                     {showPlatformSelect && (
-                                        <motion.div 
+                                        <motion.div
                                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                                             className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4"
                                         >
@@ -203,16 +203,16 @@ export default function Connections() {
                                                     const platformCfg = PLATFORMS.find(p => p.id === acc.platform);
                                                     const Icon = platformCfg?.icon || Globe;
                                                     return (
-                                                        <div 
+                                                        <div
                                                             key={acc.accountId}
-                                                            className="flex items-center justify-between p-6 bg-white dark:bg-surface rounded-2xl border border-slate-100 dark:border-white/10 group hover:border-indigo-200 transition-all shadow-sm"
+                                                            className="flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 group hover:border-indigo-200 transition-all shadow-sm"
                                                         >
                                                             <div className="flex items-center gap-4">
                                                                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${platformCfg?.bg || 'bg-white/10'} ${platformCfg?.color || 'text-white'}`}>
                                                                     <Icon className="w-6 h-6" />
                                                                 </div>
                                                                 <div>
-                                                                    <div className="font-black italic uppercase tracking-tighter text-lg dark:text-white">@{acc.username}</div>
+                                                                    <div className="font-black italic uppercase tracking-tighter text-lg">@{acc.username}</div>
                                                                     <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{acc.platform}</div>
                                                                 </div>
                                                             </div>
@@ -220,7 +220,7 @@ export default function Connections() {
                                                                 <span className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black uppercase tracking-widest">
                                                                     <CheckCircle2 className="w-3 h-3" /> Live
                                                                 </span>
-                                                                <button 
+                                                                <button
                                                                     onClick={() => handleDisconnect(acc.platform, acc.accountId)}
                                                                     className="p-3 hover:bg-red-500/10 hover:text-red-500 rounded-xl transition-all text-slate-500"
                                                                 >
@@ -235,13 +235,13 @@ export default function Connections() {
                                     </div>
                                 </motion.div>
                             ) : (
-                                <div className="h-full flex items-center justify-center p-20 text-center bg-white dark:bg-surface rounded-[3rem] border border-dashed border-slate-200 dark:border-white/10 shadow-sm">
+                                <div className="h-full flex items-center justify-center p-20 text-center bg-white rounded-[3rem] border border-dashed border-slate-200 shadow-sm">
                                     <div className="space-y-6">
                                         <div className="w-24 h-24 bg-slate-50 border border-slate-100 rounded-[2rem] flex items-center justify-center mx-auto scale-110">
                                             <User className="w-10 h-10 text-slate-400" />
                                         </div>
                                         <div>
-                                            <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-2 text-slate-800 dark:text-white">Select a Profile</h3>
+                                            <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-2 text-slate-800">Select a Profile</h3>
                                             <p className="text-slate-500 font-medium max-w-xs mx-auto">Click a profile on the left to manage its social accounts or create a new one.</p>
                                         </div>
                                     </div>
@@ -256,31 +256,31 @@ export default function Connections() {
             {/* Create Profile Modal */}
             <AnimatePresence>
                 {isCreatingProfile && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                         className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl"
                     >
-                        <motion.div 
+                        <motion.div
                             initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }}
                             className="bg-black border border-white/10 p-12 rounded-[3.5rem] max-w-xl w-full text-center relative shadow-2xl shadow-indigo-600/10"
                         >
                             <button onClick={() => setIsCreatingProfile(false)} className="absolute top-8 right-8 text-slate-500 hover:text-white"><X className="w-8 h-8" /></button>
-                            
+
                             <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-indigo-600/20">
                                 <Plus className="w-10 h-10 text-white" />
                             </div>
-                            
-                            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4 text-white">Create Profile</h2>
+
+                            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4 !text-white">Create Profile</h2>
                             <p className="text-slate-500 font-medium mb-10">Profiles group your social accounts for seamless brand management.</p>
-                            
-                            <input 
+
+                            <input
                                 autoFocus type="text" value={newProfileName} onChange={(e) => setNewProfileName(e.target.value)}
-                                placeholder="e.g. Acme Tech or Client A"
-                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black text-white italic uppercase tracking-tighter focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
+                                placeholder="Profile Name"
+                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black italic uppercase tracking-tighter text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 transition-all mb-8 text-center"
                                 onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
                             />
-                            
-                            <button 
+
+                            <button
                                 onClick={handleCreateProfile}
                                 disabled={!newProfileName.trim() || loading}
                                 className="w-full bg-white text-black py-6 rounded-2xl font-black italic uppercase italic tracking-tighter text-xl shadow-2xl shadow-white/10 hover:bg-slate-200 transition-all active:scale-95 disabled:opacity-50"

@@ -42,7 +42,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
             setScheduledDate(tmr.toISOString().split('T')[0]);
             setScheduledTime("10:00");
         }
-    }, [isScheduling, scheduledDate]);
+    }, [isScheduling]);
 
     // Sync solo mode with account selection
     useEffect(() => {

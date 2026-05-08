@@ -21,9 +21,7 @@ export default function VideoHero() {
                 if (video.currentTime >= 1.2) {
                     video.currentTime = 0;
                 }
-            } catch {
-                return;
-            }
+            } catch (err) {}
         };
         
         video.addEventListener('timeupdate', handleTimeUpdate);

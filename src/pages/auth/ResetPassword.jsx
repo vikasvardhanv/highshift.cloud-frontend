@@ -16,6 +16,14 @@ export default function ResetPassword() {
 
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
     const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        if (!token) {
+            setStatus('error');
+            setErrorMessage('Invalid or missing reset token.');
+        }
+    }, [token]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
