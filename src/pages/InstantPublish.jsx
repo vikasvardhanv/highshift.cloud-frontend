@@ -84,7 +84,7 @@ export default function InstantPublish() {
 
                 {/* Header */}
                 <div className="mb-12">
-                    <h1 className="text-6xl font-black italic uppercase tracking-tighter mb-4 !text-slate-900 dark:!text-white">
+                    <h1 style={{ color: '#0f172a' }} className="text-6xl font-black italic uppercase tracking-tighter mb-4 dark:!text-white">
                         Instant Publish
                     </h1>
                     <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-[0.2em] text-xs">
@@ -136,7 +136,7 @@ export default function InstantPublish() {
                         <div className="pt-12 border-t border-slate-100 dark:border-slate-800">
                             <div className="flex items-center gap-4 mb-8">
                                 <Network className="w-5 h-5 text-indigo-600" />
-                                <h3 className="text-xl font-black italic uppercase tracking-tighter !text-slate-900 dark:!text-white">
+                                <h3 style={{ color: '#0f172a' }} className="text-xl font-black italic uppercase tracking-tighter dark:!text-white">
                                     Distribution Points
                                 </h3>
                             </div>
