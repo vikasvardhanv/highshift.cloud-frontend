@@ -82,7 +82,8 @@ export default function Connections() {
         } catch (err) {
             localStorage.removeItem(PENDING_PROFILE_KEY);
             localStorage.removeItem(PENDING_PLATFORM_KEY);
-            alert('Failed to start authentication');
+            const detail = err.response?.data?.detail || err.response?.data?.error || err.message;
+            alert(`Failed to start authentication${detail ? `: ${detail}` : ''}`);
         }
     };
 
