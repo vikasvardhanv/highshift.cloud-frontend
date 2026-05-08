@@ -183,7 +183,7 @@ export default function Connections() {
                                                         <p.icon className="w-8 h-8" />
                                                     </div>
                                                     <span className="font-black italic uppercase tracking-tighter text-sm text-slate-900 dark:text-white">{p.name}</span>
-                                                    {p.note && <span className="mt-2 text-[10px] leading-tight text-slate-500 dark:text-slate-400">{p.note}</span>}
+
                                                 </button>
                                             ))}
                                         </motion.div>
