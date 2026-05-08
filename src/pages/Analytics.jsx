@@ -35,7 +35,7 @@ const StatCard = ({ title, value, change, isPositive, icon: Icon }) => (
         </div>
 
         <div className="space-y-1">
-            <div className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-slate-600 tracking-tighter">
+            <div className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">
                 {value}
             </div>
             <div className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">

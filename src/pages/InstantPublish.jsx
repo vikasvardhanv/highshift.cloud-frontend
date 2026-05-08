@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { 
-    Zap, Sparkles, Send, Loader2, Info, ChevronRight, Globe, 
+import {
+    Zap, Sparkles, Send, Loader2, Info, ChevronRight, Globe,
     Instagram, Facebook, Twitter, Linkedin, Cloud, Key, Settings, User, Network
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,7 +13,7 @@ export default function InstantPublish() {
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null);
     const [apiKey, setApiKey] = useState(localStorage.getItem('social_api_key') || '');
-    
+
     const [userEmail, setUserEmail] = useState('');
     const [handles, setHandles] = useState({
         instagram: '',
@@ -21,21 +21,21 @@ export default function InstantPublish() {
         linkedin: '',
         twitter: ''
     });
-    
+
     useEffect(() => {
         const fetchUserAndKeys = async () => {
-             const user = JSON.parse(localStorage.getItem('user_data') || '{}');
-             if (user.email) setUserEmail(user.email);
-             
-             try {
+            const user = JSON.parse(localStorage.getItem('user_data') || '{}');
+            if (user.email) setUserEmail(user.email);
+
+            try {
                 const keys = await getDeveloperKeys();
                 if (keys && keys.upload_post) {
                     setApiKey(keys.upload_post);
                     localStorage.setItem('social_api_key', keys.upload_post);
                 }
-             } catch (err) {
+            } catch (err) {
                 console.error("Failed to fetch developer keys", err);
-             }
+            }
         };
         fetchUserAndKeys();
     }, []);
@@ -81,15 +81,15 @@ export default function InstantPublish() {
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
             <div className="max-w-4xl mx-auto">
-                
+
                 {/* Header */}
                 <div className="mb-12">
-                    <h1 className="text-6xl font-black italic uppercase tracking-tighter mb-4 text-slate-900">Instant Publish</h1>
+                    <h1 className="text-6xl font-black italic uppercase tracking-tighter mb-4 text-slate-900 dark:text-white">Instant Publish</h1>
                     <p className="text-slate-500 font-bold uppercase tracking-[0.2em] text-xs">Autonomous Content Distribution Engine</p>
                 </div>
 
                 <div className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-2xl space-y-12">
-                    
+
                     {/* Main Form */}
                     <form onSubmit={handleSubmit} className="space-y-8">
                         <div className="grid md:grid-cols-2 gap-8">
@@ -138,12 +138,11 @@ export default function InstantPublish() {
                                 {['instagram', 'facebook', 'linkedin', 'twitter'].map((p) => (
                                     <div key={p} className="space-y-3">
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                                                p === 'instagram' ? 'bg-pink-50 text-pink-500' :
-                                                p === 'facebook' ? 'bg-blue-50 text-blue-600' :
-                                                p === 'linkedin' ? 'bg-sky-50 text-sky-600' :
-                                                'bg-slate-900 text-white'
-                                            }`}>
+                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${p === 'instagram' ? 'bg-pink-50 text-pink-500' :
+                                                    p === 'facebook' ? 'bg-blue-50 text-blue-600' :
+                                                        p === 'linkedin' ? 'bg-sky-50 text-sky-600' :
+                                                            'bg-slate-900 text-white'
+                                                }`}>
                                                 {p === 'instagram' && <Instagram className="w-4 h-4" />}
                                                 {p === 'facebook' && <Facebook className="w-4 h-4" />}
                                                 {p === 'linkedin' && <Linkedin className="w-4 h-4" />}
@@ -155,7 +154,7 @@ export default function InstantPublish() {
                                             <input
                                                 type="text"
                                                 value={handles[p]}
-                                                onChange={(e) => setHandles({...handles, [p]: e.target.value})}
+                                                onChange={(e) => setHandles({ ...handles, [p]: e.target.value })}
                                                 placeholder="@handle"
                                                 className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm font-bold text-slate-800 focus:outline-none focus:border-indigo-500 transition-all placeholder:text-slate-300"
                                             />
@@ -175,11 +174,11 @@ export default function InstantPublish() {
                                     </div>
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-9">Distribution Strategy & Authentication</p>
                                 </div>
-                                
+
                                 <div className="flex-1 flex flex-col sm:flex-row items-center gap-6">
                                     {/* System Choice Icons */}
                                     <div className="flex items-center gap-3 p-2 bg-slate-100 rounded-[2rem] border border-slate-200">
-                                        <button 
+                                        <button
                                             type="button"
                                             onClick={() => {
                                                 if (confirm("Go to Connections/Instances management?")) {
@@ -192,7 +191,7 @@ export default function InstantPublish() {
                                             <img src="/images/image.png" alt="R" className={`w-6 h-6 group-hover:scale-110 transition-transform ${apiKey ? 'grayscale opacity-30' : ''}`} />
                                             <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-800 px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-white z-[100]">Social Raven</div>
                                         </button>
-                                        <button 
+                                        <button
                                             type="button"
                                             className={`p-4 rounded-full transition-all group relative ${apiKey ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-600/40' : 'hover:bg-white'}`}
                                             title="Upload Post System"
@@ -216,7 +215,7 @@ export default function InstantPublish() {
                                                 className="w-full bg-white border border-slate-200 rounded-3xl pl-16 pr-6 py-5 font-bold text-xs tracking-widest focus:outline-none focus:border-indigo-500 transition-all text-slate-800 shadow-sm"
                                             />
                                         </div>
-                                        <button 
+                                        <button
                                             type="button"
                                             onClick={handleSaveApiKey}
                                             disabled={loading || !apiKey}

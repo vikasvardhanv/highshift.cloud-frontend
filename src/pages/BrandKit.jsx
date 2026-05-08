@@ -70,7 +70,6 @@ export default function BrandKit() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                {/* Brand Voice Matrix */}
                 <div className="lg:col-span-12 glass-card p-10 rounded-[2.5rem] relative overflow-hidden group border-white/5 bg-white/[0.02]">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-1000 group-hover:scale-110"></div>
 
@@ -108,16 +107,16 @@ export default function BrandKit() {
                             <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-2">Personality Blueprint</label>
                             <span className="text-[10px] text-slate-600 font-bold tracking-widest">{formData.description.length} / 1000</span>
                         </div>
+
                         <textarea
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full h-40 bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-[15px] focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-800 leading-relaxed shadow-inner"
+                            className="w-full h-40 bg-slate-100 dark:bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-[15px] text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400 leading-relaxed shadow-inner"
                             placeholder="Describe your brand's unique character, mission, and linguistic quirks..."
                         ></textarea>
                     </div>
                 </div>
 
-                {/* Identity Information */}
                 <div className="lg:col-span-7 glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/5">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-14 h-14 bg-green-500/20 rounded-2xl flex items-center justify-center border border-green-500/20 shadow-lg">
@@ -132,33 +131,39 @@ export default function BrandKit() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
                             <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-2">Brand Name</label>
+
                             <input
                                 value={formData.company_name}
                                 onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
                                 type="text"
-                                className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                className="w-full bg-slate-100 dark:bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium"
                                 placeholder="e.g. Social Raven"
                             />
                         </div>
+
                         <div className="space-y-3">
                             <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-2">Market Sector</label>
+
                             <input
                                 value={formData.industry}
                                 onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
                                 type="text"
-                                className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                className="w-full bg-slate-100 dark:bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium"
                                 placeholder="e.g. AI-Powered SaaS"
                             />
                         </div>
+
                         <div className="col-span-full space-y-3">
                             <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-2">Digital Core (URL)</label>
+
                             <div className="relative">
                                 <Link2 className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
+
                                 <input
                                     value={formData.website}
                                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                                     type="text"
-                                    className="w-full bg-black/40 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-sm focus:outline-none focus:border-primary/50 placeholder:text-slate-800 font-medium"
+                                    className="w-full bg-slate-100 dark:bg-black/40 border border-white/10 rounded-2xl pl-14 pr-6 py-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium"
                                     placeholder="https://yourbrand.com"
                                 />
                             </div>
@@ -166,7 +171,6 @@ export default function BrandKit() {
                     </div>
                 </div>
 
-                {/* Keywords Cloud */}
                 <div className="lg:col-span-5 glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/5 relative overflow-hidden group">
                     <div className="absolute bottom-0 right-0 w-40 h-40 bg-pink-500/5 rounded-full blur-3xl -mb-20 -mr-20"></div>
 
@@ -182,10 +186,11 @@ export default function BrandKit() {
 
                     <div className="space-y-4">
                         <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-2">Keywords Matrix</label>
+
                         <textarea
                             value={formData.keywords}
                             onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
-                            className="w-full h-[180px] bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-800 leading-relaxed shadow-inner"
+                            className="w-full h-[180px] bg-slate-100 dark:bg-black/40 border border-white/10 rounded-[1.5rem] p-8 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400 leading-relaxed shadow-inner"
                             placeholder="Comma-separated tokens for AI grounding (e.g. Growth, Efficiency, Innovation)"
                         ></textarea>
                     </div>
