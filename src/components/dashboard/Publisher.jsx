@@ -58,21 +58,27 @@ export default function Publisher() {
     }, [selectedProfileId, allAccounts]);
 
     const loadData = async () => {
-        try {
-            const [profilesData, accountsData] = await Promise.all([
-                getProfiles(),
-                getAccounts()
-            ]);
+        let profilesData = [];
+        let accountsData = { accounts: [] };
 
+        try {
+            profilesData = await getProfiles();
             setProfiles(profilesData || []);
-            setAllAccounts(accountsData.accounts || []);
 
             // Auto-select first profile
             if (profilesData && profilesData.length > 0) {
                 setSelectedProfileId(profilesData[0].id);
             }
         } catch (err) {
-            console.error(err);
+            console.error('Failed to load profiles', err);
+        }
+
+        try {
+            accountsData = await getAccounts();
+            setAllAccounts(accountsData.accounts || []);
+        } catch (err) {
+            console.error('Failed to load accounts', err);
+            setAllAccounts([]);
         }
     };
 
@@ -308,7 +314,7 @@ export default function Publisher() {
                             <div className="relative">
                                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                                 <select
-                                    className="w-full pl-10 pr-10 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none text-slate-700 dark:text-slate-200"
+                                    className="w-full pl-10 pr-10 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none text-slate-700 dark:text-slate-100"
                                     value={selectedProfileId || ''}
                                     onChange={(e) => setSelectedProfileId(e.target.value)}
                                 >

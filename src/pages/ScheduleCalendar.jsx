@@ -189,7 +189,7 @@ export default function ScheduleCalendar() {
             <div className="flex-1 flex flex-col space-y-6 overflow-hidden">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-1">
                     <div>
-                        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Temporal Command</h1>
+                        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Temporal Command</h1>
                         <p className="text-slate-500 text-sm font-medium mt-1">Orchestrate your global transmission capability.</p>
                     </div>
 
@@ -198,7 +198,7 @@ export default function ScheduleCalendar() {
                             <button onClick={() => navigateMonth(-1)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 transition-colors">
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
-                            <span className="text-sm font-bold text-slate-900 min-w-[120px] text-center uppercase tracking-wider">
+                            <span className="text-sm font-bold text-slate-900 dark:text-white min-w-[120px] text-center uppercase tracking-wider">
                                 {MONTHS[currentDate.getMonth()]} {currentDate.getFullYear()}
                             </span>
                             <button onClick={() => navigateMonth(1)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 transition-colors">
