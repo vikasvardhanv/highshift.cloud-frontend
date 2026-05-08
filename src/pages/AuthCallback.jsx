@@ -14,6 +14,7 @@ export default function AuthCallback() {
         const apiKey = searchParams.get('apiKey');
         const platform = searchParams.get('platform');
         const accountId = searchParams.get('accountId');
+        const profileId = searchParams.get('profileId');
         const error = searchParams.get('error');
 
         // 1. Store JWT token if present
@@ -32,8 +33,15 @@ export default function AuthCallback() {
         } else if (token || platform || accountId || apiKey) {
             setStatus('success');
             setTimeout(() => {
-                navigate('/publishing');
-            }, 1800);
+                const params = new URLSearchParams();
+                if (platform) params.set('connected', platform);
+                if (accountId) params.set('accountId', accountId);
+                if (profileId) {
+                    params.set('profileId', profileId);
+                    localStorage.setItem('pending_connection_profile_id', profileId);
+                }
+                navigate(`/connections${params.toString() ? `?${params.toString()}` : ''}`, { replace: true });
+            }, 1200);
         } else {
             setStatus('error');
         }
@@ -92,10 +100,10 @@ export default function AuthCallback() {
                         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Access Restricted</h2>
                         <p className="text-slate-500 mb-8">{searchParams.get('error') || "We couldn't verify your credentials with the platform."}</p>
                         <button
-                            onClick={() => navigate('/publishing')}
+                            onClick={() => navigate('/connections')}
                             className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold transition-all flex items-center gap-2"
                         >
-                            Return to Publishing
+                            Return to Connections
                         </button>
                     </motion.div>
                 )}

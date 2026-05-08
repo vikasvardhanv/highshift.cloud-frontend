@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getAccounts, getAuthUrl, disconnectAccount, getProfiles, createProfile } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube, Music,
@@ -14,7 +15,11 @@ const PLATFORMS = [
     { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-600/10' },
 ];
 
+const PENDING_PROFILE_KEY = 'pending_connection_profile_id';
+const PENDING_PLATFORM_KEY = 'pending_connection_platform';
+
 export default function Connections() {
+    const [searchParams] = useSearchParams();
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedProfile, setSelectedProfile] = useState(null);
@@ -29,10 +34,20 @@ export default function Connections() {
     const loadData = async () => {
         try {
             const data = await getProfiles();
-            setProfiles(data || []);
-            if (data && data.length > 0 && !selectedProfile) {
-                // Keep current selection if refreshing
-            }
+            const nextProfiles = data || [];
+            setProfiles(nextProfiles);
+            setSelectedProfile((current) => {
+                const pendingProfileId = searchParams.get('profileId') || localStorage.getItem(PENDING_PROFILE_KEY);
+                const targetId = pendingProfileId || current?.id || nextProfiles[0]?.id;
+                const nextSelection = nextProfiles.find((profile) => profile.id === targetId) || nextProfiles[0] || null;
+
+                if (pendingProfileId && nextSelection?.id === pendingProfileId) {
+                    localStorage.removeItem(PENDING_PROFILE_KEY);
+                    localStorage.removeItem(PENDING_PLATFORM_KEY);
+                }
+
+                return nextSelection;
+            });
         } catch (err) {
             console.error(err);
         } finally {
@@ -58,11 +73,15 @@ export default function Connections() {
     const startAuth = async (platformId) => {
         if (!selectedProfile) return;
         try {
-            const data = await getAuthUrl(platformId, window.location.origin + '/auth/callback', selectedProfile.id);
+            localStorage.setItem(PENDING_PROFILE_KEY, selectedProfile.id);
+            localStorage.setItem(PENDING_PLATFORM_KEY, platformId);
+            const data = await getAuthUrl(platformId, null, selectedProfile.id);
             if (data.authUrl) {
                 window.location.href = data.authUrl;
             }
         } catch (err) {
+            localStorage.removeItem(PENDING_PROFILE_KEY);
+            localStorage.removeItem(PENDING_PLATFORM_KEY);
             alert('Failed to start authentication');
         }
     };

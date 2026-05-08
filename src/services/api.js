@@ -225,12 +225,16 @@ export const deleteProfile = async (id) => {
 };
 
 export const getAuthUrl = async (platform, redirectUrl, profileId = null, extraParams = {}) => {
+    const params = {
+        profile_id: profileId,
+        ...extraParams
+    };
+    if (redirectUrl) {
+        params.redirect_uri = redirectUrl;
+    }
+
     const res = await api.get(`/auth/connect/${platform}`, {
-        params: {
-            redirect_uri: redirectUrl,
-            profile_id: profileId,
-            ...extraParams
-        }
+        params
     });
     return res.data; // Return full object to handle { authUrl, action, fields }
 };
