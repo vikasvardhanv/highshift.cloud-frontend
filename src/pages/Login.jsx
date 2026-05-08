@@ -4,7 +4,7 @@ import { Mail, ArrowRight, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
 // Get API URL from env or default
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3000' : '');
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.highshift.cloud';
 
 export default function Login() {
     const navigate = useNavigate();
