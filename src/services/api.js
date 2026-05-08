@@ -210,6 +210,7 @@ export const getProfiles = async () => {
     const res = await api.get('/profiles');
     return (res.data?.profiles || []).map((p) => ({
         ...p,
+        id: p.id || p._id,
         accounts: (p.accounts || []).map(normalizeAccount),
     }));
 };
