@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { postContent, uploadAndPost, generateContent, schedulePost, uploadMedia } from '../../services/api';
+import { buildScheduledIso, formatDateInputValue } from '../../utils/scheduleTime';
 
 const UPLOAD_METHODS = [
     { id: 'text', label: 'Text', icon: FileText },
@@ -39,10 +40,10 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
         if (isScheduling && !scheduledDate) {
             const tmr = new Date();
             tmr.setDate(tmr.getDate() + 1);
-            setScheduledDate(tmr.toISOString().split('T')[0]);
+            setScheduledDate(formatDateInputValue(tmr));
             setScheduledTime("10:00");
         }
-    }, [isScheduling]);
+    }, [isScheduling, scheduledDate]);
 
     // Sync solo mode with account selection
     useEffect(() => {
@@ -103,7 +104,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
 
             // Handle Scheduling
             if (isScheduling) {
-                const finalDate = new Date(`${scheduledDate}T${scheduledTime}:00`);
+                const scheduledFor = buildScheduledIso(scheduledDate, scheduledTime);
                 let finalMediaUrls = [];
 
                 // Upload files first if needed
@@ -113,7 +114,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                     finalMediaUrls = mediaUrls.split(',').map(u => u.trim()).filter(u => u);
                 }
 
-                res = await schedulePost(targetAccounts, postText, finalDate.toISOString(), finalMediaUrls);
+                res = await schedulePost(targetAccounts, postText, scheduledFor, finalMediaUrls);
 
             } else {
                 // Immediate Posting
@@ -128,7 +129,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                 }
             }
 
-            setPostResult({ success: true, data: res });
+            setPostResult({ success: true, data: res, scheduled: isScheduling });
             setPostText('');
             setMediaUrls('');
             setSelectedFiles([]);
@@ -138,7 +139,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
 
             setTimeout(() => setPostResult(null), 5000);
         } catch (err) {
-            setPostResult({ success: false, error: err.response?.data?.message || err.message });
+            setPostResult({ success: false, error: err.response?.data?.detail || err.response?.data?.message || err.message });
         } finally {
             setPosting(false);
         }
@@ -318,6 +319,14 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                     </AnimatePresence>
                 </div>
             )}
+            {accounts.length === 0 && (
+                <div className="px-4 py-3 bg-amber-50 border-b border-amber-100 text-amber-800 text-xs font-medium flex items-center justify-between gap-3">
+                    <span>Connect at least one social account before scheduling.</span>
+                    <Link to="/connections" className="shrink-0 px-2.5 py-1 rounded-md bg-amber-100 hover:bg-amber-200 text-amber-900">
+                        Connect Social
+                    </Link>
+                </div>
+            )}
 
             {/* Content Area */}
             <div className="p-4 space-y-4">
@@ -437,7 +446,8 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                             <span className="text-xs text-slate-400 hidden sm:inline">{postText.length} chars</span>
                             <button
                                 onClick={handlePost}
-                                disabled={posting || selectedAccounts.length === 0 || (isScheduling && (!scheduledDate || !scheduledTime))}
+                                disabled={posting || (isScheduling && (!scheduledDate || !scheduledTime))}
+                                title={selectedAccounts.length === 0 ? 'Select or connect at least one account first' : undefined}
                                 className={`px-4 py-2 text-white text-sm font-medium rounded-lg shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors
                                     ${(isScheduling && scheduledDate && scheduledTime) ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-900'}`}
                             >
@@ -466,7 +476,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                                 : 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/50 dark:border-red-800 dark:text-red-300'}`}
                     >
                         {postResult.success ? <CheckCircle className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
-                        {postResult.success ? (isScheduling ? 'Scheduled successfully!' : 'Posted successfully!') : postResult.error}
+                        {postResult.success ? (postResult.scheduled ? 'Scheduled successfully!' : 'Posted successfully!') : postResult.error}
                     </motion.div>
                 )}
             </AnimatePresence>
