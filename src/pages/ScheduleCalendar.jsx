@@ -6,6 +6,7 @@ import {
 import { getScheduleCalendar, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { formatLocalTime, getLocalDateKey } from '../utils/scheduleTime';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -69,16 +70,12 @@ export default function ScheduleCalendar() {
 
     const loadSchedule = async () => {
         try {
-            const data = await getScheduleCalendar();
-            // Backend now returns { calendar: [arrayOfPosts] }
-            // We must group by LOCAL date here.
-
-            const rawPosts = Array.isArray(data) ? data : (data.calendar || []);
+            const rawPosts = await getScheduleCalendar();
             const grouped = {};
 
             if (Array.isArray(rawPosts)) {
                 rawPosts.forEach(post => {
-                    const postTime = post.time || post.scheduled_time || post.scheduledFor || post.scheduled_for;
+                    const postTime = post.scheduledFor || post.scheduled_for || post.scheduled_time || post.time;
                     if (!postTime) return;
 
                     const d = new Date(postTime); 
@@ -87,17 +84,12 @@ export default function ScheduleCalendar() {
                         return;
                     }
 
-                    // Create local YYYY-MM-DD key
-                    const dateKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-
+                    const dateKey = getLocalDateKey(d);
                     if (!grouped[dateKey]) grouped[dateKey] = [];
-
-                    // Format time for display (HH:MM)
-                    const timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
                     grouped[dateKey].push({
                         ...post,
-                        time: timeStr, 
+                        time: formatLocalTime(d), 
                         rawTime: postTime
                     });
                 });
@@ -319,7 +311,7 @@ export default function ScheduleCalendar() {
                             </div>
                             <div className="p-6">
                                 <Composer
-                                    onSuccess={() => { setShowComposer(false); loadSchedule(); }}
+                                    onSuccess={async () => { setShowComposer(false); await loadSchedule(); }}
                                     selectedAccounts={selectedAccounts}
                                     accounts={accounts}
                                     profiles={profiles}

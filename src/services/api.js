@@ -17,13 +17,14 @@ const normalizeAccount = (acc = {}) => ({
 
 const normalizeScheduledPost = (post = {}) => {
     const accounts = (post.accounts || post.target_accounts || []).map(normalizeAccount);
+    const scheduledFor = post.scheduledFor || post.scheduled_for || post.scheduled_time || post.time;
     return {
         ...post,
         id: post.id || post._id,
         accounts,
         target_accounts: accounts,
-        scheduledFor: post.scheduledFor || post.scheduled_for || post.scheduled_time,
-        scheduled_for: post.scheduledFor || post.scheduled_for || post.scheduled_time,
+        scheduledFor,
+        scheduled_for: scheduledFor,
     };
 };
 
@@ -194,7 +195,7 @@ export const deleteMedia = async (mediaId) => {
 // ============ NEW: Calendar View ============
 export const getScheduleCalendar = async () => {
     const res = await api.get('/schedule/calendar');
-    return res.data.calendar;
+    return (res.data?.calendar || []).map(normalizeScheduledPost);
 };
 
 export const getActivityLog = async () => {

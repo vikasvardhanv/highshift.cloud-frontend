@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getAccounts, uploadMedia, postContent, schedulePost, getProfiles, getMediaLibrary, deleteMedia } from '../../services/api';
+import { buildScheduledIso, formatSchedulePreview } from '../../utils/scheduleTime';
 
 export default function Publisher() {
     const navigate = useNavigate();
@@ -266,7 +267,7 @@ export default function Publisher() {
 
             // Basic logic: If date/time set, schedule it. Otherwise post now.
             if (scheduleDate && scheduleTime) {
-                const isoDateTime = new Date(`${scheduleDate}T${scheduleTime}`).toISOString();
+                const isoDateTime = buildScheduledIso(scheduleDate, scheduleTime);
                 await schedulePost(accountsPayload, finalContent, isoDateTime, mediaToUpload);
                 setToast({ type: 'success', message: 'Post scheduled successfully!' });
             } else {
@@ -527,7 +528,7 @@ export default function Publisher() {
                                     {scheduleDate && scheduleTime && (
                                         <div className="flex items-center gap-2 mt-3 text-xs text-indigo-500 font-medium bg-indigo-50 dark:bg-indigo-500/10 p-2 rounded-lg border border-indigo-100 dark:border-indigo-500/20">
                                             <Clock className="w-3 h-3" />
-                                            Will be posted on {new Date(`${scheduleDate}T${scheduleTime}`).toLocaleString()}
+                                            Will be posted on {formatSchedulePreview(scheduleDate, scheduleTime)}
                                         </div>
                                     )}
                                 </motion.div>
