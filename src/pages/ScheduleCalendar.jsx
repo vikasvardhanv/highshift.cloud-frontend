@@ -3,7 +3,7 @@ import {
     ChevronLeft, ChevronRight, Calendar as CalendarIcon, Clock, MoreVertical,
     Edit2, Trash2, X, Plus, TrendingUp, Users, MessageSquare, Activity
 } from 'lucide-react';
-import { getScheduleCalendar, getAccounts, getActivityLog, getProfiles } from '../services/api';
+import { getScheduleCalendar, getScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatLocalTime, getLocalDateKey } from '../utils/scheduleTime';
@@ -70,7 +70,17 @@ export default function ScheduleCalendar() {
 
     const loadSchedule = async () => {
         try {
-            const rawPosts = await getScheduleCalendar();
+            const [calendarPosts, scheduledPosts] = await Promise.all([
+                getScheduleCalendar().catch(() => []),
+                getScheduledPosts().catch(() => []),
+            ]);
+            const seen = new Set();
+            const rawPosts = [...calendarPosts, ...scheduledPosts].filter((post) => {
+                const key = post.id || `${post.scheduledFor || post.scheduled_for}-${post.content}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
             const grouped = {};
 
             if (Array.isArray(rawPosts)) {
@@ -162,13 +172,26 @@ export default function ScheduleCalendar() {
                             <div
                                 key={post.id || idx}
                                 onClick={(e) => { e.stopPropagation(); setSelectedPost(post); }}
-                                className="group/post relative p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 transition-all cursor-pointer shadow-sm hover:shadow-md"
+                                className={`group/post relative p-2 rounded-lg bg-white dark:bg-slate-800 border transition-all cursor-pointer shadow-sm hover:shadow-md ${
+                                    post.status === 'failed'
+                                        ? 'border-red-200 hover:border-red-400'
+                                        : post.status === 'published'
+                                            ? 'border-emerald-200 hover:border-emerald-400'
+                                            : 'border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500'
+                                }`}
                             >
                                 <div className="flex items-center gap-1.5 mb-1">
                                     <Clock className="w-3 h-3 text-slate-400" />
                                     <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300">{post.time}</span>
                                 </div>
                                 <div className="text-xs text-slate-600 dark:text-slate-400 truncate font-medium">{post.content}</div>
+                                {post.status && (
+                                    <div className={`mt-1 text-[9px] font-bold uppercase tracking-wide ${
+                                        post.status === 'failed' ? 'text-red-500' : post.status === 'published' ? 'text-emerald-500' : 'text-indigo-500'
+                                    }`}>
+                                        {post.status}
+                                    </div>
+                                )}
                                 <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover/post:opacity-100 transition-opacity">
                                     {post.platforms?.slice(0, 3).map((p, i) => (
                                         <div key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
