@@ -72,6 +72,10 @@ export default function Connections() {
 
     const startAuth = async (platformId) => {
         if (!selectedProfile) return;
+        if (platformId === 'instagram') {
+            window.location.href = 'https://www.instagram.com/accounts/login/?hl=en';
+            return;
+        }
         try {
             localStorage.setItem(PENDING_PROFILE_KEY, selectedProfile.id);
             localStorage.setItem(PENDING_PLATFORM_KEY, platformId);
