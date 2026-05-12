@@ -151,6 +151,18 @@ export const updateBrandKit = async (data) => {
     return res.data.brand;
 };
 
+export const getBrandAssetFormats = async () => {
+    const res = await api.get('/brand/assets/formats');
+    return res.data;
+};
+
+export const generateBrandAssets = async (formData) => {
+    const res = await api.post('/brand/assets/generate', formData, {
+        responseType: 'blob'
+    });
+    return res;
+};
+
 // AI Ghostwriter
 export const generateContent = async (topic, platform, tone) => {
     const res = await api.post('/ai/generate', { topic, platform, tone });
