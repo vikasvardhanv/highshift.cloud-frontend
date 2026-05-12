@@ -3,7 +3,7 @@ import {
     ChevronLeft, ChevronRight, Calendar as CalendarIcon, Clock, MoreVertical,
     Edit2, Trash2, X, Plus, TrendingUp, Users, MessageSquare, Activity
 } from 'lucide-react';
-import { getScheduleCalendar, getScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
+import { getScheduleCalendar, getScheduledPosts, processDueScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatLocalTime, getLocalDateKey } from '../utils/scheduleTime';
@@ -31,8 +31,15 @@ export default function ScheduleCalendar() {
 
         // Real-time polling for activity
         const interval = setInterval(() => {
+            processDueScheduledPosts()
+                .then((res) => {
+                    if (res?.stats?.processed) {
+                        loadSchedule();
+                    }
+                })
+                .catch((err) => console.error("Failed to process due scheduled posts", err));
             loadActivity();
-        }, 30000); // 30 seconds
+        }, 60000); // 60 seconds
 
         return () => clearInterval(interval);
     }, []);

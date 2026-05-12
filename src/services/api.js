@@ -131,6 +131,11 @@ export const getScheduledPosts = async () => {
     return (res.data?.posts || []).map(normalizeScheduledPost);
 };
 
+export const processDueScheduledPosts = async () => {
+    const res = await api.post('/schedule/process-due');
+    return res.data;
+};
+
 export const cancelScheduledPost = async (id) => {
     await api.delete(`/schedule/${id}`);
 };
