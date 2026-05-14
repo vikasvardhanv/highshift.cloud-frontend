@@ -25,7 +25,7 @@ const StatCard = ({ title, value, change, isPositive, icon: Icon }) => (
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity opacity-0 group-hover:opacity-100"></div>
 
         <div className="flex items-center justify-between mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
+            <div className="w-12 h-12 rounded-2xl bg-obsidian-950 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
                 <Icon className="w-6 h-6 text-primary group-hover:animate-pulse" />
             </div>
             <div className={`flex items-center text-[10px] font-extrabold px-3 py-1.5 rounded-full border ${isPositive ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-rose-500/10 text-rose-500 border-rose-500/20'}`}>
@@ -35,10 +35,10 @@ const StatCard = ({ title, value, change, isPositive, icon: Icon }) => (
         </div>
 
         <div className="space-y-1">
-            <div className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">
+            <div className="text-3xl font-black text-white tracking-tighter">
                 {value}
             </div>
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+            <div className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
                 {title}
             </div>
         </div>
@@ -78,7 +78,7 @@ export default function Analytics() {
     if (loading) return (
         <div className="flex flex-col items-center justify-center p-24 gap-4">
             <Loader2 className="animate-spin text-primary w-12 h-12" />
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Aggregating Global Metrics...</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Aggregating Global Metrics...</p>
         </div>
     );
 
@@ -105,7 +105,7 @@ export default function Analytics() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h1 className="text-4xl font-extrabold tracking-tight mb-2">Neural Insights</h1>
-                    <p className="text-slate-500 font-medium leading-relaxed max-w-xl">
+                    <p className="text-gray-500 font-medium leading-relaxed max-w-xl">
                         Real-time synthesis of cross-platform performance and audience resonance protocols.
                     </p>
                 </div>
@@ -149,7 +149,7 @@ export default function Analytics() {
                         </h3>
                         <div className="flex gap-2">
                             {['7D', '30D', '90D'].map(period => (
-                                <button key={period} className={`px-4 py-1.5 rounded-xl text-[10px] font-bold uppercase transition-all ${period === '7D' ? 'bg-primary/20 text-primary border border-primary/20' : 'text-slate-500 hover:text-slate-300'}`}>
+                                <button key={period} className={`px-4 py-1.5 rounded-xl text-[10px] font-bold uppercase transition-all ${period === '7D' ? 'bg-primary/20 text-primary border border-primary/20' : 'text-gray-500 hover:text-gray-300'}`}>
                                     {period}
                                 </button>
                             ))}

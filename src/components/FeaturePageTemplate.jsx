@@ -6,7 +6,7 @@ export default function FeaturePageTemplate({
     title,
     subtitle,
     heroImage,
-    heroGradient = "from-slate-900 via-indigo-950 to-slate-900",
+    heroGradient = "from-obsidian-950 via-indigo-950 to-obsidian-950",
     features = [],
     ctaTitle = "Ready to get started?",
     ctaText = "Join thousands of brands using Social Raven to grow.",
@@ -61,7 +61,7 @@ export default function FeaturePageTemplate({
     return (
         <div className="bg-white dark:bg-black font-sans overflow-hidden">
             {/* HERO */}
-            <div className="relative pt-32 pb-20 overflow-hidden bg-slate-950">
+            <div className="relative pt-32 pb-20 overflow-hidden bg-obsidian-950">
                 {/* Animated Gradient */}
                 <motion.div
                     className={`absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-br ${heroGradient} opacity-20 blur-[100px] pointer-events-none`}
@@ -116,7 +116,7 @@ export default function FeaturePageTemplate({
                             {title}
                         </motion.h1>
                         <motion.p
-                            className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+                            className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.8 }}
@@ -168,7 +168,7 @@ export default function FeaturePageTemplate({
                                     scale: 1.03,
                                     transition: { type: "spring", stiffness: 300 }
                                 }}
-                                className="group relative p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 hover:border-primary/30 transition-all hover:shadow-2xl hover:bg-white dark:hover:bg-slate-900 overflow-hidden"
+                                className="group relative p-8 rounded-3xl bg-obsidian-950 border border-white/5 dark:border-white/10 hover:border-primary/30 transition-all hover:shadow-2xl hover:bg-white dark:hover:bg-obsidian-950 overflow-hidden"
                             >
                                 {/* Animated background gradient on hover */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -179,7 +179,7 @@ export default function FeaturePageTemplate({
                                 <div className="relative z-10">
                                     {/* Animation Container - NEW! */}
                                     {feature.animation && (
-                                        <div className="h-48 bg-slate-100 dark:bg-black/20 rounded-t-2xl -m-8 mb-6 overflow-hidden relative">
+                                        <div className="h-48 bg-white/5 dark:bg-black/20 rounded-t-2xl -m-8 mb-6 overflow-hidden relative">
                                             <div className="absolute inset-0 flex items-center justify-center">
                                                 {feature.animation}
                                             </div>
@@ -194,11 +194,11 @@ export default function FeaturePageTemplate({
                                         >
                                             {feature.icon && <feature.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />}
                                         </motion.div>
-                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
+                                        <h3 className="text-xl font-bold text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
                                             {feature.title}
                                         </h3>
                                     </div>
-                                    <p className="text-slate-500 dark:text-gray-400 leading-relaxed text-sm">
+                                    <p className="text-gray-500 text-gray-400 leading-relaxed text-sm">
                                         {feature.description}
                                     </p>
                                 </div>
@@ -212,7 +212,7 @@ export default function FeaturePageTemplate({
             </div>
 
             {/* CTA */}
-            <div className="py-24 bg-slate-50 dark:bg-white/5 border-t border-slate-200 dark:border-white/5 relative overflow-hidden">
+            <div className="py-24 bg-obsidian-950 border-t border-white/10 dark:border-white/5 relative overflow-hidden">
                 {/* Animated background circles */}
                 <motion.div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary/10"
@@ -239,7 +239,7 @@ export default function FeaturePageTemplate({
                         viewport={{ once: true }}
                     >
                         <motion.h2
-                            className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6"
+                            className="text-3xl md:text-4xl font-bold text-white mb-6"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
@@ -248,7 +248,7 @@ export default function FeaturePageTemplate({
                             {ctaTitle}
                         </motion.h2>
                         <motion.p
-                            className="text-slate-500 text-lg mb-8 max-w-xl mx-auto"
+                            className="text-gray-500 text-lg mb-8 max-w-xl mx-auto"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.3 }}
@@ -264,7 +264,7 @@ export default function FeaturePageTemplate({
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <Link to={loginUrl} className="inline-flex items-center gap-2 px-10 py-4 bg-slate-900 dark:bg-white text-white dark:text-black font-bold rounded-xl hover:opacity-90 transition-all shadow-xl hover:shadow-2xl relative overflow-hidden group">
+                            <Link to={loginUrl} className="inline-flex items-center gap-2 px-10 py-4 bg-obsidian-950 dark:bg-white text-white dark:text-black font-bold rounded-xl hover:opacity-90 transition-all shadow-xl hover:shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                                 <span className="relative z-10">Get Started Now</span>
                                 <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />

@@ -47,7 +47,7 @@ import ResourceBlog from './pages/resources/Blog';
 // Layout for full-width marketing pages (Home, Features)
 function LandingLayout({ children }) {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-primary/30 font-sans flex flex-col">
+    <div className="min-h-screen bg-obsidian-950 text-white selection:bg-raven-500/30 font-sans flex flex-col">
       <Navbar />
       <main className="flex-1 w-full">
         {children}
@@ -60,7 +60,7 @@ function LandingLayout({ children }) {
 // Layout for generic public pages (Legal, etc) - Contained
 function PublicLayout({ children }) {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-primary/30 font-sans flex flex-col">
+    <div className="min-h-screen bg-obsidian-950 text-white selection:bg-raven-500/30 font-sans flex flex-col">
       <Navbar />
       <main className="container mx-auto px-4 py-8 flex-1">
         {children}

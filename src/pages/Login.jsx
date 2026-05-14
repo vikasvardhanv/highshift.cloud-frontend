@@ -63,35 +63,35 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-obsidian-950">
             {/* Background */}
-            <div className="absolute inset-0 bg-background">
-                <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-primary/10 blur-[150px] rounded-full"></div>
-                <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-secondary/10 blur-[150px] rounded-full"></div>
+            <div className="absolute inset-0">
+                <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-raven-600/10 blur-[150px] rounded-full"></div>
+                <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-raven-400/10 blur-[150px] rounded-full"></div>
             </div>
 
-            <div className="glass-card w-full max-w-md p-8 rounded-2xl relative z-10 animate-fade-in bg-white dark:bg-surface/60 border border-slate-100 dark:border-white/5 shadow-2xl">
+            <div className="glass-card w-full max-w-md p-8 rounded-2xl relative z-10 animate-fade-in bg-obsidian-950/80 border border-white/10 shadow-2xl">
                 <div className="text-center mb-8">
-                    <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4 shadow-lg shadow-primary/20">
-                        <span className="font-bold text-xl text-white">H</span>
+                    <div className="w-12 h-12 rounded-xl bg-raven-600 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-raven-500/20">
+                        <span className="font-bold text-xl text-white">R</span>
                     </div>
-                    <h1 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
-                    <p className="text-slate-500 dark:text-gray-400 text-sm">
+                    <h1 className="text-2xl font-bold mb-2 text-white">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+                    <p className="text-gray-400 text-sm">
                         {isLogin ? 'Sign in to continue to Social Raven' : 'Get started with Social Raven today'}
                     </p>
                 </div>
 
                 {/* Tabs */}
-                <div className="flex p-1 bg-slate-100 dark:bg-white/5 rounded-xl mb-6">
+                <div className="flex p-1 bg-white/5 rounded-xl mb-6">
                     <button
                         onClick={() => { setIsLogin(true); setError(''); }}
-                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${isLogin ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white'}`}
+                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${isLogin ? 'bg-white/10 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
                     >
                         Login
                     </button>
                     <button
                         onClick={() => { setIsLogin(false); setError(''); }}
-                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${!isLogin ? 'bg-white dark:bg-white/10 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white'}`}
+                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${!isLogin ? 'bg-white/10 text-white shadow-sm' : 'text-gray-400 hover:text-white'}`}
                     >
                         Sign Up
                     </button>
@@ -101,7 +101,7 @@ export default function Login() {
                     {/* Google Button */}
                     <button
                         onClick={handleGoogleLogin}
-                        className="w-full py-3 px-4 bg-white dark:bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 rounded-xl font-bold transition-all flex items-center justify-center gap-3 shadow-sm"
+                        className="w-full py-3 px-4 bg-white text-white border border-white/10 hover:bg-obsidian-950 rounded-xl font-bold transition-all flex items-center justify-center gap-3 shadow-sm"
                     >
                         <svg className="w-5 h-5" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -114,10 +114,10 @@ export default function Login() {
 
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-slate-200 dark:border-white/10"></div>
+                            <div className="w-full border-t border-white/10"></div>
                         </div>
                         <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-white dark:bg-[#0a0a0a] px-2 text-slate-500 dark:text-gray-500">Or continue with email</span>
+                            <span className="bg-obsidian-950 px-2 text-gray-500">Or continue with email</span>
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@ export default function Login() {
                                 required
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-primary/40 transition-all"
+                                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
                             />
                             <input
                                 type="password"
@@ -144,7 +144,7 @@ export default function Login() {
                                 required
                                 value={formData.password}
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-primary/40 transition-all"
+                                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
                             />
                         </div>
 
@@ -153,7 +153,7 @@ export default function Login() {
                             <div className="flex justify-end">
                                 <a
                                     href="/forgot-password"
-                                    className="text-xs font-medium text-slate-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors"
+                                    className="text-xs font-medium text-gray-400 hover:text-raven-400 transition-colors"
                                 >
                                     Forgot Password?
                                 </a>
@@ -163,7 +163,7 @@ export default function Login() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full py-3 px-4 bg-primary hover:bg-primaryHover text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/30"
+                            className="w-full py-3 px-4 bg-raven-600 hover:bg-raven-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-raven-500/30"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -177,10 +177,10 @@ export default function Login() {
                     </form>
                 </div>
 
-                <div className="mt-8 text-center text-xs text-slate-500 dark:text-gray-500">
+                <div className="mt-8 text-center text-xs text-gray-500">
                     By clicking continue, you agree to our{' '}
-                    <a href="/terms" className="text-slate-700 dark:text-gray-400 hover:text-primary dark:hover:text-white underline font-medium">Terms of Service</a> and{' '}
-                    <a href="/privacy" className="text-slate-700 dark:text-gray-400 hover:text-primary dark:hover:text-white underline font-medium">Privacy Policy</a>.
+                    <a href="/terms" className="text-gray-400 hover:text-raven-400 underline font-medium">Terms of Service</a> and{' '}
+                    <a href="/privacy" className="text-gray-400 hover:text-raven-400 underline font-medium">Privacy Policy</a>.
                 </div>
             </div>
         </div>

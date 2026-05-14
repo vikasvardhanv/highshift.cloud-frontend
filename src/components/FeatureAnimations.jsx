@@ -34,10 +34,9 @@ export function VisualCalendarAnimation() {
             <div className="absolute inset-0 grid grid-cols-6 gap-2 p-4">
                 {days.map((day, index) => (
                     <div key={day} className="flex flex-col items-center">
-                        <span className="text-[10px] font-bold text-slate-500 mb-1">{day}</span>
+                        <span className="text-[10px] font-bold text-gray-500 mb-1">{day}</span>
                         <motion.div
-                            className={`w-full h-20 rounded-lg border-2 border-dashed transition-all
-                                ${draggedPost !== null && index === targetDay ? 'border-primary bg-primary/10' : 'border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-white/5'}`}
+                            className={`w-full h-20 rounded-lg border-2 border-dashed transition-all ${draggedPost !== null && index === targetDay ? 'border-primary bg-primary/10' : 'border-white/10 dark:border-white/10 bg-obsidian-950'}`}
                             animate={draggedPost !== null && index === targetDay ? { scale: [1, 1.05, 1] } : {}}
                             transition={{ duration: 0.5 }}
                         >
@@ -110,7 +109,7 @@ export function BestTimeAnimation() {
                     return (
                         <div key={hour} className="flex flex-col items-center gap-1">
                             <motion.div
-                                className={`w-8 rounded-t-lg ${isOptimal ? 'bg-gradient-to-t from-emerald-500 to-emerald-400' : 'bg-gradient-to-t from-slate-400 to-slate-300 dark:from-slate-600 dark:to-slate-500'}`}
+                                className={`w-8 rounded-t-lg ${isOptimal ? 'bg-gradient-to-t from-emerald-500 to-emerald-400' : from-white/20 to-white/10 dark:from-white/10 dark:to-white/10'}`}
                                 initial={{ height: 0 }}
                                 animate={{
                                     height: `${height}px`,
@@ -118,7 +117,7 @@ export function BestTimeAnimation() {
                                 }}
                                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
                             />
-                            <span className="text-[9px] font-bold text-slate-500">{hour}:00</span>
+                            <span className="text-[9px] font-bold text-gray-500">{hour}:00</span>
                         </div>
                     );
                 })}
@@ -273,7 +272,7 @@ export function AssetLibraryAnimation() {
             {/* Folder grid (organized state) */}
             <div className="absolute inset-0 grid grid-cols-2 gap-4 p-8 opacity-20">
                 {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="border-2 border-dashed border-slate-300 dark:border-white/10 rounded-lg" />
+                    <div key={i} className="border-2 border-dashed border-white/10 dark:border-white/10 rounded-lg" />
                 ))}
             </div>
 
@@ -342,8 +341,7 @@ export function ApprovalWorkflowAnimation() {
                         <div key={step} className="flex items-center">
                             {/* Step circle */}
                             <motion.div
-                                className={`relative w-16 h-16 rounded-full flex flex-col items-center justify-center shadow-lg
-                                    ${isComplete ? 'bg-emerald-500' : isActive ? 'bg-amber-500' : 'bg-slate-300 dark:bg-slate-700'}`}
+                                className={`relative w-16 h-16 rounded-full flex flex-col items-center justify-center shadow-lg ${isComplete ? 'bg-emerald-500' : isActive 'bg-amber-500' 'bg-white/10 bg-white/5'}`}
                                 animate={{
                                     scale: isActive ? [1, 1.15, 1] : 1,
                                     boxShadow: isActive
@@ -363,13 +361,13 @@ export function ApprovalWorkflowAnimation() {
                             {/* Arrow connector */}
                             {index < steps.length - 1 && (
                                 <motion.div
-                                    className={`w-12 h-1 mx-2 ${isComplete ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-700'}`}
+                                    className={`w-12 h-1 mx-2 ${isComplete ? 'bg-emerald-500' : 'bg-white/10 bg-white/5'}`}
                                     animate={{
                                         scaleX: isComplete ? [1, 1.1, 1] : 1
                                     }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <ArrowRight className={`w-4 h-4 -mt-2 ml-8 ${isComplete ? 'text-emerald-500' : 'text-slate-400'}`} />
+                                    <ArrowRight className={`w-4 h-4 -mt-2 ml-8 ${isComplete ? 'text-emerald-500' : 'text-gray-400'}`} />
                                 </motion.div>
                             )}
                         </div>
@@ -411,8 +409,7 @@ export function EvergreenRecyclingAnimation() {
                 return (
                     <motion.div
                         key={index}
-                        className={`absolute w-12 h-12 rounded-lg shadow-lg flex items-center justify-center
-                            ${index === 0 ? 'bg-blue-500' : index === 1 ? 'bg-purple-500' : 'bg-pink-500'}`}
+                        className={`absolute w-12 h-12 rounded-lg shadow-lg flex items-center justify-center ${index === 0 ? 'bg-blue-500' : index 1 'bg-purple-500' 'bg-pink-500'}`}
                         animate={{
                             x: pos.x,
                             y: pos.y,
@@ -520,8 +517,8 @@ export function CrossChannelAnimation() {
 export function CompetitorAnimation() {
     const competitors = [
         { label: 'You', color: 'bg-primary' },
-        { label: 'Brand A', color: 'bg-slate-400 dark:bg-slate-600' },
-        { label: 'Brand B', color: 'bg-slate-400 dark:bg-slate-700' }
+        { label: 'Brand A', color: 'bg-white/20 bg-white/10' },
+        { label: 'Brand B', color: 'bg-white/20 bg-white/5' }
     ];
 
     return (
@@ -529,18 +526,18 @@ export function CompetitorAnimation() {
             {competitors.map((comp, i) => (
                 <div key={comp.label} className="w-full">
                     <div className="flex justify-between items-center mb-1">
-                        <span className={`text-[10px] font-bold uppercase tracking-widest ${i === 0 ? 'text-primary' : 'text-slate-500'}`}>
+                        <span className={`text-[10px] font-bold uppercase tracking-widest ${i === 0 ? 'text-primary' : 'text-gray-500'}`}>
                             {comp.label}
                         </span>
                         <motion.span
-                            className="text-[10px] font-bold text-slate-500"
+                            className="text-[10px] font-bold text-gray-500"
                             animate={i === 0 ? { opacity: [0.5, 1, 0.5] } : {}}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
                             {i === 0 ? '+42%' : '+12%'}
                         </motion.span>
                     </div>
-                    <div className="h-2.5 w-full bg-slate-200 dark:bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-2.5 w-full bg-white/10 bg-white/5 rounded-full overflow-hidden">
                         <motion.div
                             className={`h-full rounded-full ${comp.color}`}
                             initial={{ width: '10%' }}
@@ -595,7 +592,7 @@ export function CustomDashboardAnimation() {
                                 <MousePointerClick className="w-3 h-3 text-primary/50" />
                             </div>
                             <W.icon className="w-6 h-6 text-primary/70 mb-1" />
-                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{W.title}</span>
+                            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-tighter">{W.title}</span>
 
                             {/* Accent line */}
                             <motion.div
@@ -618,8 +615,8 @@ export function AutomatedReportsAnimation() {
         <div className="relative w-full h-48 flex items-center justify-center">
             {/* Clock context */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/5 rounded-full">
-                <Clock className="w-3 h-3 text-slate-500" />
-                <span className="text-[9px] font-bold text-slate-500 uppercase">Every Monday @ 9AM</span>
+                <Clock className="w-3 h-3 text-gray-500" />
+                <span className="text-[9px] font-bold text-gray-500 uppercase">Every Monday @ 9AM</span>
             </div>
 
             {/* Path */}
@@ -633,7 +630,7 @@ export function AutomatedReportsAnimation() {
                 </div>
 
                 <div className="bg-white/5 p-3 rounded-2xl border border-white/5">
-                    <Mail className="w-8 h-8 text-slate-500" />
+                    <Mail className="w-8 h-8 text-gray-500" />
                 </div>
 
                 {/* Flying PDF icon */}
@@ -680,7 +677,7 @@ export function PostLevelInsightsAnimation() {
     return (
         <div className="relative w-full h-48 flex items-center justify-center">
             <motion.div
-                className="relative z-10 w-32 bg-white dark:bg-surface border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl"
+                className="relative z-10 w-32 bg-white dark:bg-surface border border-white/10 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl"
                 animate={{
                     scale: zoomed ? 0.8 : 1,
                     x: zoomed ? -30 : 0
@@ -688,12 +685,12 @@ export function PostLevelInsightsAnimation() {
                 transition={{ type: "spring", stiffness: 100 }}
             >
                 {/* Visual "Image" area */}
-                <div className="h-20 bg-gradient-to-br from-indigo-500 to-primary flex items-center justify-center">
+                <div className="h-20 bg-gradient-to-br from-raven-500 to-primary flex items-center justify-center">
                     <Image className="w-8 h-8 text-white/50" />
                 </div>
                 <div className="p-2.5 space-y-1.5">
-                    <div className="h-1.5 w-full bg-slate-100 dark:bg-white/5 rounded-full" />
-                    <div className="h-1.5 w-3/4 bg-slate-100 dark:bg-white/5 rounded-full" />
+                    <div className="h-1.5 w-full bg-white/5 rounded-full" />
+                    <div className="h-1.5 w-3/4 bg-white/5 rounded-full" />
                 </div>
             </motion.div>
 
@@ -754,11 +751,11 @@ export function SharableLinksAnimation() {
     return (
         <div className="relative w-full h-48 flex items-center justify-center border-t border-white/5 pt-4">
             {/* Generating visual */}
-            <div className="relative w-56 h-12 bg-white dark:bg-black/40 border border-slate-200 dark:border-white/10 rounded-xl flex items-center px-4 overflow-hidden shadow-xl">
-                <ExternalLink className="w-4 h-4 text-slate-400 mr-3" />
+            <div className="relative w-56 h-12 bg-white dark:bg-black/40 border border-white/10 dark:border-white/10 rounded-xl flex items-center px-4 overflow-hidden shadow-xl">
+                <ExternalLink className="w-4 h-4 text-gray-400 mr-3" />
                 <div className="flex-1 overflow-hidden">
                     <motion.div
-                        className="text-[10px] text-slate-500 font-mono whitespace-nowrap"
+                        className="text-[10px] text-gray-500 font-mono whitespace-nowrap"
                         animate={status === 'generating' ? { x: [0, -10, 0] } : {}}
                     >
                         socialraven.io/live/analytics/v3_491...
@@ -766,8 +763,7 @@ export function SharableLinksAnimation() {
                 </div>
 
                 <motion.div
-                    className={`ml-2 px-3 py-1 rounded-lg text-[10px] font-bold transition-all
-                        ${status === 'copied' ? 'bg-emerald-500 text-white' : 'bg-primary/20 text-primary'}`}
+                    className={`ml-2 px-3 py-1 rounded-lg text-[10px] font-bold transition-all ${status === 'copied' ? 'bg-emerald-500 text-white' : 'bg-primary/20 text-primary'}`}
                     animate={status === 'generating' ? { scale: [1, 0.95, 1] } : {}}
                 >
                     {status === 'copied' ? 'Copied!' : 'Share Live'}
@@ -853,7 +849,7 @@ export function AutomatedRulesAnimation() {
                     {[0, 1, 2].map(i => (
                         <motion.div
                             key={i}
-                            className="absolute -left-12 top-6 w-3 h-3 bg-slate-400 rounded-full"
+                            className="absolute -left-12 top-6 w-3 h-3 bg-white/20 rounded-full"
                             animate={{ x: [0, 60], opacity: [0, 1, 0] }}
                             transition={{ duration: 1.5, delay: i * 0.5, repeat: Infinity, ease: "linear" }}
                         />
@@ -864,8 +860,7 @@ export function AutomatedRulesAnimation() {
                     {['Urgent', 'Spam'].map((tag, i) => (
                         <motion.div
                             key={tag}
-                            className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border
-                                ${i === 0 ? 'bg-red-500/10 border-red-500/30 text-red-500' : 'bg-slate-500/10 border-slate-500/30 text-slate-500'}`}
+                            className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border ${i === 0 ? 'bg-red-500/10 border-red-500/30 text-red-500' : 'bg-obsidian-950/10 border-slate-500/30 text-gray-500'}`}
                             animate={{ x: [0, 10, 0] }}
                             transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
                         >
@@ -932,7 +927,7 @@ export function SavedRepliesAnimation() {
                 {['Hi there!', 'Thanks!', 'Refund...'].map((txt, i) => (
                     <motion.div
                         key={i}
-                        className="p-1 px-2 bg-white/5 hover:bg-primary/20 rounded-md text-[8px] text-slate-400 cursor-pointer overflow-hidden border border-transparent hover:border-primary/30 transition-all font-bold uppercase"
+                        className="p-1 px-2 bg-white/5 hover:bg-primary/20 rounded-md text-[8px] text-gray-400 cursor-pointer overflow-hidden border border-transparent hover:border-primary/30 transition-all font-bold uppercase"
                         animate={i === 1 ? { background: ['rgba(255,255,255,0.05)', 'rgba(16,185,129,0.2)', 'rgba(255,255,255,0.05)'] } : {}}
                         transition={{ duration: 3, repeat: Infinity }}
                     >
@@ -992,13 +987,13 @@ export function SentimentAnalysisAnimation() {
                     </motion.div>
                 </div>
                 <div className="space-y-2">
-                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 ? 'bg-red-500' : 'bg-amber-500'}`} style={{ width: '90%' }} />
-                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 ? 'bg-red-500' : 'bg-amber-500'}`} style={{ width: '60%' }} />
+                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 'bg-red-500' 'bg-amber-500'}`} style={{ width: '90%' }} />
+                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 'bg-red-500' 'bg-amber-500'}`} style={{ width: '60%' }} />
                 </div>
             </motion.div>
 
             <div className="mt-4 flex items-center gap-2">
-                <span className="text-[10px] font-bold text-slate-500 uppercase">Analysis:</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">Analysis:</span>
                 <span className={`text-[10px] font-bold uppercase tracking-tighter ${getColor().split(' ')[0]}`}>
                     {score > 0.6 ? 'Positive' : score < 0.3 ? 'Negative' : 'Neutral'}
                 </span>
@@ -1012,14 +1007,13 @@ export function SmartFilteringAnimation() {
     return (
         <div className="relative w-full h-48 flex items-center justify-center gap-8">
             <div className="relative w-24 h-24 flex items-center justify-center">
-                <Filter className="w-16 h-16 text-slate-500/20" />
+                <Filter className="w-16 h-16 text-gray-500/20" />
 
                 {/* Flowing items */}
                 {[0, 1, 2, 3].map(i => (
                     <motion.div
                         key={i}
-                        className={`absolute w-3 h-3 rounded-full 
-                            ${i % 2 === 0 ? 'bg-primary' : 'bg-slate-500'}`}
+                        className={`absolute w-3 h-3 rounded-full ${i % 2 === 0 ? 'bg-primary' : 'bg-obsidian-950'}`}
                         animate={{
                             x: [-60, 0, 60],
                             y: [0, 0, i % 2 === 0 ? -40 : 40],
@@ -1032,7 +1026,7 @@ export function SmartFilteringAnimation() {
 
             <div className="space-y-4">
                 <div className="text-center">
-                    <div className="text-[8px] font-bold text-slate-500 uppercase mb-1">Priority View</div>
+                    <div className="text-[8px] font-bold text-gray-500 uppercase mb-1">Priority View</div>
                     <motion.div
                         className="w-16 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center"
                         animate={{ scale: [1, 1.05, 1] }}

@@ -300,21 +300,21 @@ export default function Publisher() {
 
     // --- RENDER ---
     return (
-        <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] gap-0 bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
+        <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] gap-0 bg-white dark:bg-obsidian-950 rounded-2xl overflow-hidden shadow-xl border border-white/10 dark:border-white/10">
 
             {/* --- LEFT COLUMN: COMPOSER --- */}
-            <div className="flex-1 flex flex-col min-w-0 bg-white dark:bg-slate-900">
+            <div className="flex-1 flex flex-col min-w-0 bg-white dark:bg-obsidian-950">
                 {/* 1. Account Selector */}
                 {/* 1. Account Setup */}
-                <div className="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                <div className="p-4 border-b border-white/10 dark:border-white/10 bg-obsidian-950 dark:bg-obsidian-950">
                     <div className="flex flex-col gap-4">
                         {/* Profile Selector */}
                         <div>
-                            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Post As (Profile)</label>
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Post As (Profile)</label>
                             <div className="relative">
-                                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                                 <select
-                                    className="w-full pl-10 pr-10 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none text-slate-700 dark:text-slate-100"
+                                    className="w-full pl-10 pr-10 py-2 bg-white/5 border border-white/10 dark:border-white/10 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-raven-500 appearance-none text-gray-300 text-white"
                                     value={selectedProfileId || ''}
                                     onChange={(e) => setSelectedProfileId(e.target.value)}
                                 >
@@ -323,17 +323,17 @@ export default function Publisher() {
                                     ))}
                                     {profiles.length === 0 && <option value="">No profiles found</option>}
                                 </select>
-                                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
                             </div>
                         </div>
 
                         {/* Accounts List (Horizontal Scroll) */}
                         <div>
-                            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Select Accounts</label>
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 block">Select Accounts</label>
                             <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
                                 {accounts.map(acc => {
                                     const isSelected = selectedAccounts.includes(acc.accountId);
-                                    let platformColor = 'bg-slate-500';
+                                    let platformColor = 'bg-obsidian-950';
                                     if (acc.platform === 'twitter') platformColor = 'text-[#1DA1F2]';
                                     if (acc.platform === 'facebook') platformColor = 'text-[#1877F2]';
                                     if (acc.platform === 'linkedin') platformColor = 'text-[#0A66C2]';
@@ -344,12 +344,7 @@ export default function Publisher() {
                                         <button
                                             key={acc.accountId}
                                             onClick={() => toggleAccount(acc.accountId)}
-                                            className={`
-                                                flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left
-                                                ${isSelected
-                                                    ? 'bg-sky-50 border-sky-400 dark:bg-sky-900/30 dark:border-sky-500/50 shadow-sm'
-                                                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-750'}
-                                            `}
+                                            className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-sky-50 border-sky-400 dark:bg-sky-900/30 dark:border-sky-500/50 shadow-sm' : 'bg-white border-white/10 text-gray-400 hover:bg-obsidian-950 dark:border-white/10 hover:bg-white/5'}`}
                                         >
                                             <div className="flex items-center gap-3">
                                                 {/* Icon */}
@@ -359,10 +354,10 @@ export default function Publisher() {
 
                                                 {/* Text Info */}
                                                 <div className="flex flex-col overflow-hidden">
-                                                    <span className={`text-sm font-bold truncate ${isSelected ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
+                                                    <span className={`text-sm font-bold truncate ${isSelected ? 'text-white' : 'text-gray-300'}`}>
                                                         {acc.username.startsWith('@') ? acc.username : `@${acc.username}`}
                                                     </span>
-                                                    <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                                                    <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                                                         {acc.platform}
                                                     </span>
                                                 </div>
@@ -379,10 +374,10 @@ export default function Publisher() {
                                 })}
                                 {accounts.length === 0 && (
                                     <div className="flex items-center gap-3">
-                                        <span className="text-sm text-slate-400 italic">No accounts connected.</span>
+                                        <span className="text-sm text-gray-400 italic">No accounts connected.</span>
                                         <button
                                             onClick={() => navigate('/profiles')}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 bg-raven-600 hover:bg-raven-700 text-white text-sm font-medium rounded-lg transition-colors"
                                         >
                                             <Plus className="w-4 h-4" />
                                             Add Account
@@ -400,14 +395,14 @@ export default function Publisher() {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="Start writing your post..."
-                        className="flex-1 w-full p-6 bg-transparent resize-none focus:outline-none text-slate-800 dark:text-slate-200 text-lg placeholder:text-slate-400"
+                        className="flex-1 w-full p-6 bg-transparent resize-none focus:outline-none text-gray-200 dark:text-gray-200 text-lg placeholder:text-gray-400"
                     />
 
                     {/* Media Preview Grid */}
                     {mediaFiles.length > 0 && (
                         <div className="px-6 pb-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
                             {mediaFiles.map(media => (
-                                <div key={media.id} className="relative aspect-square rounded-xl overflow-hidden group border border-slate-200 dark:border-slate-700">
+                                <div key={media.id} className="relative aspect-square rounded-xl overflow-hidden group border border-white/10 dark:border-white/10">
                                     {media.uploading && (
                                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
                                             <Loader2 className="w-6 h-6 text-white animate-spin" />
@@ -443,7 +438,7 @@ export default function Publisher() {
                     )}
 
                     {/* Toolbar */}
-                    <div className="p-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <div className="p-4 border-t border-white/10 dark:border-white/10 flex items-center justify-between">
                         <div className="flex items-center gap-1">
                             <input
                                 type="file"
@@ -460,35 +455,35 @@ export default function Publisher() {
 
                             {/* Video Guidelines Info */}
                             <div className="relative group ml-1">
-                                <Info className="w-4 h-4 text-slate-400 cursor-help" />
-                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-slate-800 text-white text-xs p-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
+                                <Info className="w-4 h-4 text-gray-400 cursor-help" />
+                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white/5 text-white text-xs p-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
                                     <p className="font-bold mb-1">Video Guidelines:</p>
-                                    <ul className="list-disc pl-3 space-y-1 text-slate-300">
+                                    <ul className="list-disc pl-3 space-y-1 text-gray-300">
                                         <li>Max size: 4.5MB (Direct) or use URL</li>
                                         <li>Ratio: 16:9, 1:1, or 9:16</li>
                                         <li>Twitter: Max 140s</li>
                                         <li>Instagram: Max 60s (Feed), 15m (Reels)</li>
                                     </ul>
-                                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+                                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white/10"></div>
                                 </div>
                             </div>
 
-                            <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-2" />
+                            <div className="w-px h-6 bg-white/10 bg-white/5 mx-2" />
                             <ToolbarBtn icon={Smile} label="Emoji" />
                             <ToolbarBtn icon={MapPin} label="Location" />
                         </div>
-                        <span className="text-xs text-slate-400 font-medium">{content.length} / 2200</span>
+                        <span className="text-xs text-gray-400 font-medium">{content.length} / 2200</span>
                     </div>
                 </div>
 
                 {/* 3. Footer Options */}
-                <div className="p-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
-                    <div className="border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 p-4 mb-4">
+                <div className="p-4 bg-obsidian-950 dark:bg-obsidian-950 border-t border-white/10 dark:border-white/10">
+                    <div className="border border-white/10 dark:border-white/10 rounded-xl bg-white/5 p-4 mb-4">
                         <button
                             onClick={() => setShowSchedule(!showSchedule)}
-                            className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 w-full justify-between"
+                            className="flex items-center gap-2 text-sm font-semibold text-gray-300 w-full justify-between"
                         >
-                            <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-indigo-500" /> Scheduling Options</span>
+                            <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-raven-500" /> Scheduling Options</span>
                             <ChevronDown className={`w-4 h-4 transition-transform ${showSchedule ? 'rotate-180' : ''}`} />
                         </button>
 
@@ -502,21 +497,21 @@ export default function Publisher() {
                                 >
                                     <div className="pt-4 flex flex-col sm:flex-row gap-4 items-end">
                                         <div className="flex-1">
-                                            <label className="text-xs font-bold text-slate-500 mb-1 block">Date</label>
+                                            <label className="text-xs font-bold text-gray-500 mb-1 block">Date</label>
                                             <input
                                                 type="date"
                                                 value={scheduleDate}
                                                 onChange={(e) => setScheduleDate(e.target.value)}
-                                                className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                                                className="w-full bg-white/5 dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
                                             />
                                         </div>
                                         <div className="flex-1">
-                                            <label className="text-xs font-bold text-slate-500 mb-1 block">Time</label>
+                                            <label className="text-xs font-bold text-gray-500 mb-1 block">Time</label>
                                             <input
                                                 type="time"
                                                 value={scheduleTime}
                                                 onChange={(e) => setScheduleTime(e.target.value)}
-                                                className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                                                className="w-full bg-white/5 dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
                                             />
                                         </div>
                                         <button
@@ -525,14 +520,14 @@ export default function Publisher() {
                                                 setScheduleTime('');
                                                 setShowSchedule(false);
                                             }}
-                                            className="px-3 py-2.5 bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 dark:bg-slate-800 dark:hover:bg-red-900/20 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-lg transition-colors flex items-center justify-center"
+                                            className="px-3 py-2.5 bg-white/5 hover:bg-red-50 text-gray-500 hover:text-red-600 dark:hover:bg-red-900/20 text-gray-400 border border-white/10 dark:border-white/10 rounded-lg transition-colors flex items-center justify-center"
                                             title="Clear & Cancel Schedule"
                                         >
                                             <X className="w-4 h-4" />
                                         </button>
                                     </div>
                                     {scheduleDate && scheduleTime && (
-                                        <div className="flex items-center gap-2 mt-3 text-xs text-indigo-500 font-medium bg-indigo-50 dark:bg-indigo-500/10 p-2 rounded-lg border border-indigo-100 dark:border-indigo-500/20">
+                                        <div className="flex items-center gap-2 mt-3 text-xs text-raven-500 font-medium bg-raven-500/10 dark:bg-raven-500/10 p-2 rounded-lg border border-raven-500/20 dark:border-raven-500/20">
                                             <Clock className="w-3 h-3" />
                                             Will be posted on {formatSchedulePreview(scheduleDate, scheduleTime)}
                                         </div>
@@ -543,17 +538,13 @@ export default function Publisher() {
                     </div>
 
                     <div className="flex items-center justify-end gap-3">
-                        <button className="px-5 py-2.5 text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors">
+                        <button className="px-5 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-200 text-gray-400 dark:hover:text-white transition-colors">
                             Save Draft
                         </button>
                         <button
                             onClick={() => handleSubmit()}
                             disabled={isSubmitting || mediaFiles.some(m => m.uploading) || (showSchedule && (!scheduleDate || !scheduleTime))} // Disable if uploading or partially filled schedule
-                            className={`px-6 py-2.5 text-white text-sm font-bold rounded-xl shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]
-                                ${(showSchedule && scheduleDate && scheduleTime)
-                                    ? 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/20'
-                                    : 'bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 shadow-slate-900/10'}
-                            `}
+                            className={`px-6 py-2.5 text-white text-sm font-bold rounded-xl shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98] ${(showSchedule && scheduleDate scheduleTime) ? 'bg-raven-600 hover:bg-raven-700 shadow-raven-600/20' : 'bg-obsidian-950 hover:bg-white/5 dark:bg-white dark:hover:bg-white/10 shadow-obsidian-950/10'}`}
                         >
                             {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : ((showSchedule && scheduleDate && scheduleTime) ? <Clock className="w-4 h-4" /> : <Send className="w-4 h-4" />)}
                             {isSubmitting
@@ -566,19 +557,19 @@ export default function Publisher() {
             </div>
 
             {/* --- RIGHT COLUMN: PREVIEW --- */}
-            <div className="w-[400px] xl:w-[480px] bg-slate-100 dark:bg-black p-6 border-l border-slate-200 dark:border-slate-800 hidden lg:flex flex-col">
+            <div className="w-[400px] xl:w-[480px] bg-white/5 dark:bg-black p-6 border-l border-white/10 dark:border-white/10 hidden lg:flex flex-col">
                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-bold text-slate-700 dark:text-slate-300 text-sm uppercase tracking-wider">Network Preview</h3>
+                    <h3 className="font-bold text-gray-300 text-sm uppercase tracking-wider">Network Preview</h3>
                     <div className="flex gap-2">
                         <button
                             onClick={() => setPreviewMode('mobile')}
-                            className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'mobile' ? 'text-indigo-600 bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400' : 'text-slate-500 hover:text-slate-800 dark:text-slate-500 dark:hover:text-slate-300'}`}
+                            className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'mobile' ? 'text-raven-400 bg-raven-900/30 dark:text-raven-400' : 'text-gray-500 hover:text-gray-200 text-gray-500 hover:text-gray-300'}`}
                         >
                             Mobile
                         </button>
                         <button
                             onClick={() => setPreviewMode('desktop')}
-                            className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'desktop' ? 'text-indigo-600 bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400' : 'text-slate-500 hover:text-slate-800 dark:text-slate-500 dark:hover:text-slate-300'}`}
+                            className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'desktop' ? 'text-raven-400 bg-raven-900/30 dark:text-raven-400' : 'text-gray-500 hover:text-gray-200 text-gray-500 hover:text-gray-300'}`}
                         >
                             Desktop
                         </button>
@@ -587,26 +578,22 @@ export default function Publisher() {
 
                 <div className="flex-1 flex items-center justify-center">
                     {/* Mock Phone/Desktop Preview */}
-                    <div className={`transition-all duration-300 flex flex-col bg-white dark:bg-slate-900 shadow-2xl overflow-hidden
-                        ${previewMode === 'mobile'
-                            ? 'w-[320px] rounded-[2rem] border-[6px] border-slate-200 dark:border-slate-800'
-                            : 'w-full max-w-[440px] rounded-lg border border-slate-200 dark:border-slate-800'
-                        }`}
+                    <div className={`transition-all duration-300 flex flex-col bg-white dark:bg-obsidian-950 shadow-2xl overflow-hidden ${previewMode === 'mobile' ? 'w-[320px] rounded-[2rem] border-[6px] border-white/10 dark:border-white/10' : 'w-full max-w-[440px] rounded-lg border }`}
                     >
                         {/* Header */}
-                        <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+                        <div className="px-5 py-4 border-b border-white/5 dark:border-white/10 flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-white/10 bg-white/5"></div>
                             <div className="flex-1">
-                                <div className="h-2 w-24 bg-slate-200 dark:bg-slate-700 rounded mb-1.5"></div>
-                                <div className="h-1.5 w-12 bg-slate-100 dark:bg-slate-800 rounded"></div>
+                                <div className="h-2 w-24 bg-white/10 bg-white/5 rounded mb-1.5"></div>
+                                <div className="h-1.5 w-12 bg-white/5 rounded"></div>
                             </div>
-                            <MoreHorizontal className="w-4 h-4 text-slate-300" />
+                            <MoreHorizontal className="w-4 h-4 text-gray-300" />
                         </div>
 
                         {/* Content */}
                         <div className="p-0">
                             {mediaFiles.length > 0 ? (
-                                <div className="aspect-square bg-slate-100 dark:bg-slate-950 relative">
+                                <div className="aspect-square bg-white/5 dark:bg-obsidian-950 relative">
                                     {mediaFiles[0].type === 'video' ? (
                                         mediaFiles[0].isEmbed ? (
                                             <iframe
@@ -627,7 +614,7 @@ export default function Publisher() {
                                     )}
                                 </div>
                             ) : (
-                                <div className="aspect-square bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-slate-300">
+                                <div className="aspect-square bg-obsidian-950 dark:bg-obsidian-950 flex items-center justify-center text-gray-300">
                                     <ImageIcon className="w-12 h-12" />
                                 </div>
                             )}
@@ -636,21 +623,21 @@ export default function Publisher() {
                         {/* Caption */}
                         <div className="p-4">
                             <div className="flex gap-3 mb-3">
-                                <div className="w-5 h-5 rounded-full border border-slate-200 dark:border-slate-700"></div>
-                                <div className="w-5 h-5 rounded-full border border-slate-200 dark:border-slate-700"></div>
-                                <div className="w-5 h-5 rounded-full border border-slate-200 dark:border-slate-700"></div>
+                                <div className="w-5 h-5 rounded-full border border-white/10 dark:border-white/10"></div>
+                                <div className="w-5 h-5 rounded-full border border-white/10 dark:border-white/10"></div>
+                                <div className="w-5 h-5 rounded-full border border-white/10 dark:border-white/10"></div>
                             </div>
-                            <div className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">username</div>
-                            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-wrap">
-                                {content || <span className="text-slate-300 italic">Your caption here...</span>}
+                            <div className="text-sm font-bold text-gray-200 dark:text-gray-200 mb-1">username</div>
+                            <p className="text-xs text-gray-400 leading-relaxed whitespace-pre-wrap">
+                                {content || <span className="text-gray-300 italic">Your caption here...</span>}
                             </p>
-                            <div className="mt-3 text-[10px] text-slate-400 uppercase">2 hours ago</div>
+                            <div className="mt-3 text-[10px] text-gray-400 uppercase">2 hours ago</div>
                         </div>
                     </div>
                 </div>
 
                 <div className="mt-6 text-center">
-                    <p className="text-xs text-slate-400 max-w-xs mx-auto">
+                    <p className="text-xs text-gray-400 max-w-xs mx-auto">
                         <AlertCircle className="w-3 h-3 inline mr-1" />
                         Preview approximates how your content will display. Social networks may update their UI at any time.
                     </p>
@@ -671,22 +658,22 @@ export default function Publisher() {
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden"
+                            className="bg-white dark:bg-obsidian-950 rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Select from Library</h3>
-                                <button onClick={() => setShowLibrary(false)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
-                                    <X className="w-5 h-5 text-slate-500" />
+                            <div className="p-4 border-b border-white/10 dark:border-white/10 flex items-center justify-between">
+                                <h3 className="text-lg font-bold text-white">Select from Library</h3>
+                                <button onClick={() => setShowLibrary(false)} className="p-2 hover:bg-white/5 dark:hover:bg-white/5 rounded-lg">
+                                    <X className="w-5 h-5 text-gray-500" />
                                 </button>
                             </div>
                             <div className="p-4 overflow-y-auto max-h-[60vh]">
                                 {libraryLoading ? (
                                     <div className="flex justify-center py-12">
-                                        <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+                                        <Loader2 className="w-8 h-8 animate-spin text-raven-400" />
                                     </div>
                                 ) : libraryMedia.length === 0 ? (
-                                    <div className="text-center py-12 text-slate-500">
+                                    <div className="text-center py-12 text-gray-500">
                                         <FolderOpen className="w-12 h-12 mx-auto mb-3 opacity-50" />
                                         <p>No media in library yet.</p>
                                     </div>
@@ -696,7 +683,7 @@ export default function Publisher() {
                                             <button
                                                 key={item.id}
                                                 onClick={() => selectFromLibrary(item)}
-                                                className="relative pt-[100%] rounded-xl overflow-hidden border-2 border-transparent hover:border-indigo-500 transition-all group"
+                                                className="relative pt-[100%] rounded-xl overflow-hidden border-2 border-transparent hover:border-raven-500 transition-all group"
                                             >
                                                 <div className="absolute inset-0">
                                                     {item.type === 'video' ? (
@@ -704,7 +691,7 @@ export default function Publisher() {
                                                     ) : (
                                                         <img src={item.url} alt={item.filename} className="w-full h-full object-cover" />
                                                     )}
-                                                    <div className="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/20 transition-colors flex items-center justify-center">
+                                                    <div className="absolute inset-0 bg-raven-500/0 group-hover:bg-raven-500/20 transition-colors flex items-center justify-center">
                                                         <Plus className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                                                     </div>
                                                 </div>
@@ -742,28 +729,28 @@ export default function Publisher() {
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-md w-full p-6"
+                            className="bg-white dark:bg-obsidian-950 rounded-2xl shadow-2xl max-w-md w-full p-6"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Add Media from URL</h3>
+                            <h3 className="text-lg font-bold text-white mb-4">Add Media from URL</h3>
                             <input
                                 type="text"
                                 value={urlInputValue}
                                 onChange={(e) => setUrlInputValue(e.target.value)}
                                 placeholder="https://example.com/image.jpg"
-                                className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-indigo-500 outline-none"
+                                className="w-full bg-white/5 border border-white/10 dark:border-white/10 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-raven-500 outline-none"
                                 autoFocus
                             />
                             <div className="flex justify-end gap-3">
                                 <button
                                     onClick={() => setShowUrlInput(false)}
-                                    className="px-4 py-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg font-medium"
+                                    className="px-4 py-2 text-gray-500 hover:bg-white/5 dark:hover:bg-white/5 rounded-lg font-medium"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleAddUrl}
-                                    className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold"
+                                    className="px-6 py-2 bg-raven-600 hover:bg-raven-700 text-white rounded-lg font-bold"
                                 >
                                     Add Media
                                 </button>
@@ -780,8 +767,7 @@ export default function Publisher() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 50 }}
-                        className={`fixed bottom-8 right-8 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 z-50
-                            ${toast.type === 'error' ? 'bg-red-50 dark:bg-red-900/90 border-red-200 text-red-700 dark:text-red-100' : 'bg-emerald-50 dark:bg-emerald-900/90 border-emerald-200 text-emerald-700 dark:text-emerald-100'}`}
+                        className={`fixed bottom-8 right-8 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 z-50 ${toast.type === 'error' ? 'bg-red-50 dark:bg-red-900/90 border-red-200 text-red-700 dark:text-red-100' : 'bg-emerald-50 dark:bg-emerald-900/90 border-emerald-200 text-emerald-700 dark:text-emerald-100'}`}
                     >
                         {toast.type === 'error' ? <AlertCircle className="w-5 h-5" /> : <Check className="w-5 h-5" />}
                         <span className="font-bold">{toast.message}</span>
@@ -796,7 +782,7 @@ function ToolbarBtn({ icon: Icon, label, onClick }) {
     return (
         <button
             onClick={onClick}
-            className="p-2 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-lg transition-colors flex items-center justify-center"
+            className="p-2 text-gray-500 hover:text-raven-400 hover:bg-raven-500/10 hover:bg-raven-900/20 rounded-lg transition-colors flex items-center justify-center"
             title={label}
         >
             <Icon className="w-5 h-5" />

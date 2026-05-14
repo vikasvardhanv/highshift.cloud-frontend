@@ -20,7 +20,7 @@ export default function Settings() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h1 className="text-4xl font-extrabold tracking-tight mb-2">System Config</h1>
-                    <p className="text-slate-500 font-medium leading-relaxed max-w-xl">
+                    <p className="text-gray-500 font-medium leading-relaxed max-w-xl">
                         Calibrate your neural interface and manage authentication protocols for the socialraven network.
                     </p>
                 </div>
@@ -33,14 +33,9 @@ export default function Settings() {
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`
-                                w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300
-                                ${activeTab === tab.id
-                                    ? 'bg-primary/20 text-primary border border-primary/20 shadow-lg shadow-primary/5'
-                                    : 'text-slate-500 hover:text-slate-300 hover:bg-white/5 border border-transparent'}
-                            `}
+                            className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${activeTab === tab.id ? 'bg-primary/20 text-primary border border-primary/20 shadow-lg shadow-primary/5' : 'text-gray-500 hover:text-gray-300 hover:bg-white/5 border-transparent'}`}
                         >
-                            <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : 'text-slate-600'}`} />
+                            <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : 'text-gray-400'}`} />
                             {tab.label}
                         </button>
                     ))}
@@ -55,26 +50,26 @@ export default function Settings() {
                             <div className="space-y-10 animate-fade-in">
                                 <div>
                                     <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Identity Matrix</h3>
-                                    <p className="text-xs text-slate-500 font-medium">Update your public signature across the network.</p>
+                                    <p className="text-xs text-gray-500 font-medium">Update your public signature across the network.</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-4">
-                                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Display Label</label>
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Display Label</label>
                                         <input
                                             type="text"
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-slate-200"
+                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-gray-200"
                                         />
                                     </div>
                                     <div className="space-y-4">
-                                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Neural Address</label>
+                                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Neural Address</label>
                                         <input
                                             type="email"
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-slate-200"
+                                            className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-gray-200"
                                         />
                                     </div>
                                 </div>
@@ -95,12 +90,12 @@ export default function Settings() {
                                 </div>
                                 <div>
                                     <h3 className="text-2xl font-black mb-3 uppercase tracking-tighter">Premium Access Active</h3>
-                                    <p className="text-sm text-slate-500 font-medium max-w-sm mx-auto leading-relaxed">
+                                    <p className="text-sm text-gray-500 font-medium max-w-sm mx-auto leading-relaxed">
                                         Your subscription is managed through our secure stripe portal. Review invoices and plan details below.
                                     </p>
                                 </div>
                                 <div className="pt-4">
-                                    <button className="px-10 py-5 bg-white text-black hover:bg-slate-200 rounded-3xl text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
+                                    <button className="px-10 py-5 bg-white text-black hover:bg-white/10 rounded-3xl text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
                                         Access Stripe Portal
                                         <ExternalLink className="w-4 h-4" />
                                     </button>
@@ -110,11 +105,11 @@ export default function Settings() {
 
                         {activeTab !== 'profile' && activeTab !== 'billing' && (
                             <div className="flex flex-col items-center justify-center h-full py-20 text-center">
-                                <div className="w-16 h-16 bg-slate-900 border border-white/5 rounded-2xl flex items-center justify-center mb-6">
-                                    <Zap className="w-8 h-8 text-slate-700" />
+                                <div className="w-16 h-16 bg-obsidian-950 border border-white/5 rounded-2xl flex items-center justify-center mb-6">
+                                    <Zap className="w-8 h-8 text-gray-300" />
                                 </div>
                                 <h3 className="text-lg font-black uppercase tracking-tight mb-2">Protocol Under Development</h3>
-                                <p className="text-xs text-slate-600 font-bold uppercase tracking-widest">Neural link for {activeTab} coming soon</p>
+                                <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Neural link for {activeTab} coming soon</p>
                             </div>
                         )}
                     </div>

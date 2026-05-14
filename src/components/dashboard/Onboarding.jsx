@@ -16,19 +16,19 @@ export default function Onboarding({ onComplete }) {
     return (
         <div className="max-w-3xl mx-auto py-20 px-4 animate-in fade-in duration-700">
             <div className="text-center mb-12">
-                <div className="w-16 h-16 bg-indigo-600 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-indigo-600/20 mb-6">
+                <div className="w-16 h-16 bg-raven-600 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-raven-600/20 mb-6">
                     <span className="text-white font-bold text-3xl">H</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Welcome to Social Raven
                 </h1>
-                <p className="text-lg text-slate-500 dark:text-slate-400 max-w-lg mx-auto">
+                <p className="text-lg text-gray-500 text-gray-400 max-w-lg mx-auto">
                     Connect your social accounts to start publishing, scheduling, and analyzing your content from one place.
                 </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm">
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-6">
+            <div className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl p-8 shadow-sm">
+                <h2 className="text-sm font-semibold text-white uppercase tracking-wider mb-6">
                     Select a platform to connect
                 </h2>
 
@@ -59,14 +59,14 @@ export default function Onboarding({ onComplete }) {
                     />
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs text-slate-400">
+                <div className="mt-8 pt-6 border-t border-white/5 dark:border-white/10 flex items-center justify-center text-xs text-gray-400">
                     <CheckCircle className="w-3 h-3 mr-1.5 text-emerald-500" />
                     Secure OAuth 2.0 Connection
                 </div>
             </div>
 
             <div className="mt-8 text-center">
-                <button onClick={onComplete} className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <button onClick={onComplete} className="text-sm text-gray-500 hover:text-white dark:hover:text-white transition-colors">
                     Skip for now (Demo Mode)
                 </button>
             </div>
@@ -78,16 +78,16 @@ function ConnectButton({ platform, icon: Icon, description, onClick }) {
     return (
         <button
             onClick={onClick}
-            className="flex items-start gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all text-left group bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-900"
+            className="flex items-start gap-4 p-4 rounded-xl border border-white/10 dark:border-white/10 hover:border-raven-500 dark:hover:border-raven-500 hover:shadow-md transition-all text-left group bg-obsidian-950 hover:bg-white dark:hover:bg-obsidian-950"
         >
-            <div className="p-2.5 bg-white dark:bg-slate-800 rounded-lg shadow-sm group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <div className="p-2.5 bg-white/5 rounded-lg shadow-sm group-hover:bg-raven-500/10 group-hover:bg-raven-900/20 group-hover:text-raven-400 transition-colors">
                 <Icon className="w-6 h-6" />
             </div>
             <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                <h3 className="font-semibold text-white group-hover:text-raven-400 transition-colors">
                     {platform}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">{description}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{description}</p>
             </div>
         </button>
     );

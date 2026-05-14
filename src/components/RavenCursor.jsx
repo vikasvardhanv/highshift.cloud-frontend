@@ -80,7 +80,7 @@ export default function RavenCursor() {
                 viewBox="0 0 100 100" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-indigo-400 drop-shadow-[0_0_15px_rgba(99,102,241,0.6)]"
+                className="text-raven-400 drop-shadow-[0_0_15px_rgba(99,102,241,0.6)]"
             >
                 {/* Body */}
                 <path 
@@ -114,7 +114,7 @@ export default function RavenCursor() {
             
             {/* Performance Glide Aura */}
             <motion.div 
-                className="absolute inset-x-0 top-1/2 h-4 bg-indigo-500/10 blur-xl -z-10 rounded-full"
+                className="absolute inset-x-0 top-1/2 h-4 bg-raven-500/10 blur-xl -z-10 rounded-full"
                 animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }}
                 transition={{ repeat: Infinity, duration: 2 }}
             />

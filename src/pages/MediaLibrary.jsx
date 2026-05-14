@@ -21,15 +21,15 @@ export default function MediaLibrary() {
         }
     };
 
-    if (loading) return <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-indigo-600 w-8 h-8" /></div>;
+    if (loading) return <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-raven-400 w-8 h-8" /></div>;
 
     return (
         <div className="max-w-7xl mx-auto space-y-8 pb-20 animate-in fade-in duration-500">
             {/* Header */}
             <div className="flex items-end justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Media Library</h1>
-                    <p className="text-slate-500 dark:text-slate-400 mt-1">
+                    <h1 className="text-3xl font-bold text-white">Media Library</h1>
+                    <p className="text-gray-500 text-gray-400 mt-1">
                         Your uploaded images and videos.
                     </p>
                 </div>
@@ -37,22 +37,22 @@ export default function MediaLibrary() {
 
             {/* Gallery */}
             {media.length === 0 ? (
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-12 text-center">
-                    <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-4">
-                        <ImageIcon className="w-8 h-8 text-slate-400" />
+                <div className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl p-12 text-center">
+                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
+                        <ImageIcon className="w-8 h-8 text-gray-400" />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 mb-2">No media yet</h3>
-                    <p className="text-slate-500 text-sm max-w-md mx-auto">
+                    <h3 className="text-lg font-bold text-gray-300 mb-2">No media yet</h3>
+                    <p className="text-gray-500 text-sm max-w-md mx-auto">
                         Upload images or videos when composing posts to see them here.
                     </p>
                 </div>
             ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {media.map(item => (
-                        <div key={item.id} className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all pt-[100%]">
+                        <div key={item.id} className="group relative bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all pt-[100%]">
                             <div className="absolute inset-0">
                                 {item.type === 'video' ? (
-                                    <div className="w-full h-full relative bg-slate-900">
+                                    <div className="w-full h-full relative bg-obsidian-950">
                                         <video src={item.url} className="w-full h-full object-cover" />
                                         <div className="absolute top-2 right-2 p-1 bg-black/50 rounded-lg">
                                             <Film className="w-4 h-4 text-white" />

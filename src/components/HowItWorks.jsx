@@ -105,7 +105,7 @@ function ScheduleAnimation() {
                         className="absolute top-2 right-0 bg-white dark:bg-surface rounded-lg px-2 py-1 shadow-lg flex items-center gap-1"
                     >
                         <Clock className="w-3 h-3 text-secondary" />
-                        <span className="text-xs font-bold text-slate-700 dark:text-gray-300">10:00 AM</span>
+                        <span className="text-xs font-bold text-gray-300">10:00 AM</span>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -187,13 +187,13 @@ function AnalyticsAnimation() {
 
             {/* Analytics label */}
             <motion.div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-slate-100 dark:bg-white/10 rounded-full px-3 py-1"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white/5 bg-white/10 rounded-full px-3 py-1"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
             >
                 <div className="flex items-center gap-1">
                     <BarChart2 className="w-3 h-3 text-primary" />
-                    <span className="text-xs font-bold text-slate-700 dark:text-gray-300">+27%</span>
+                    <span className="text-xs font-bold text-gray-300">+27%</span>
                 </div>
             </motion.div>
         </div>
@@ -223,7 +223,7 @@ export default function HowItWorks() {
     ];
 
     return (
-        <section className="py-24 bg-slate-50 dark:bg-surface/30 relative overflow-hidden">
+        <section className="py-24 bg-obsidian-950 dark:bg-surface/30 relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
@@ -236,8 +236,8 @@ export default function HowItWorks() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">How It Works</h2>
-                    <p className="text-lg text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>
+                    <p className="text-lg text-gray-500 text-gray-400 max-w-2xl mx-auto">
                         Get started in 3 simple steps
                     </p>
                 </motion.div>
@@ -259,17 +259,17 @@ export default function HowItWorks() {
                             </div>
 
                             {/* Card */}
-                            <div className="bg-white dark:bg-surface/50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-slate-100 dark:border-white/5 h-full">
+                            <div className="bg-white dark:bg-surface/50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-white/5 dark:border-white/5 h-full">
                                 {/* Animation Container */}
                                 <div className="mb-6 h-44 flex items-center justify-center">
                                     {step.animation}
                                 </div>
 
                                 {/* Text */}
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 text-center">
+                                <h3 className="text-xl font-bold text-white mb-3 text-center">
                                     {step.title}
                                 </h3>
-                                <p className="text-slate-500 dark:text-gray-400 text-center text-sm leading-relaxed">
+                                <p className="text-gray-500 text-gray-400 text-center text-sm leading-relaxed">
                                     {step.description}
                                 </p>
                             </div>

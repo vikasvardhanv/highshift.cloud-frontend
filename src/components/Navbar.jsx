@@ -54,7 +54,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 backdrop-blur-md bg-black/80 border-b border-white/5 text-white`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 backdrop-blur-md bg-obsidian-950/80 border-b border-white/5 text-white`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
 
@@ -76,13 +76,9 @@ export default function Navbar() {
                                 <Link
                                     key={link.path}
                                     to={link.path}
-                                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-2 group relative overflow-hidden
-                                    ${location.pathname === link.path
-                                            ? 'text-primary bg-primary/10 border border-primary/20 shadow-sm font-bold'
-                                            : 'text-slate-400 hover:text-white hover:bg-white/5'
-                                        }`}
+                                    className={`px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-2 group relative overflow-hidden ${location.pathname === link.path ? 'text-raven-400 bg-raven-500/10 border border-raven-500/20 shadow-sm font-bold' : 'text-gray-400 hover:text-white hover:bg-white/5' }`}
                                 >
-                                    <link.icon className={`w-4 h-4 ${location.pathname === link.path ? 'text-primary' : 'text-gray-500 group-hover:text-primary transition-colors'}`} />
+                                    <link.icon className={`w-4 h-4 ${location.pathname === link.path ? 'text-raven-400' : 'text-gray-500 group-hover:text-raven-400 transition-colors'}`} />
                                     {link.name}
                                 </Link>
                             ))
@@ -92,12 +88,12 @@ export default function Navbar() {
                                 {publicNavItems.map((item) => (
                                     <div key={item.name} className="group relative">
                                         {item.path ? (
-                                            <Link to={item.path} className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors block">
+                                            <Link to={item.path} className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors block">
                                                 {item.name}
                                             </Link>
                                         ) : (
                                             <>
-                                                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">
                                                     {item.name} <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
                                                 </button>
                                                 {/* Mega Menu Dropdown */}
@@ -109,12 +105,12 @@ export default function Navbar() {
                                                                 to={child.path}
                                                                 className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group/item"
                                                             >
-                                                                <div className="mt-1 p-2 rounded-lg bg-white/5 group-hover/item:bg-primary/20 group-hover/item:text-primary transition-colors">
+                                                                <div className="mt-1 p-2 rounded-lg bg-white/5 group-hover/item:bg-raven-500/20 group-hover/item:text-raven-400 transition-colors">
                                                                     <child.icon className="w-4 h-4" />
                                                                 </div>
                                                                 <div>
                                                                     <div className="text-sm font-bold text-white">{child.name}</div>
-                                                                    <div className="text-[10px] text-slate-500">{child.desc}</div>
+                                                                    <div className="text-[10px] text-gray-500">{child.desc}</div>
                                                                 </div>
                                                             </Link>
                                                         ))}
@@ -132,10 +128,10 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center gap-4">
                         {apiKey ? (
                             <div className="flex items-center gap-3">
-                                <Link to="/api-keys" className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="API Management">
+                                <Link to="/api-keys" className="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors" title="API Management">
                                     <Key className="w-5 h-5" />
                                 </Link>
-                                <Link to="/settings" className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                                <Link to="/settings" className="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                                     <Palette className="w-5 h-5" />
                                 </Link>
                                 <button
@@ -148,8 +144,8 @@ export default function Navbar() {
                             </div>
                         ) : (
                             <div className="flex items-center gap-4">
-                                <Link to="/login" className="text-sm font-bold text-slate-300 hover:text-white transition-colors">Log In</Link>
-                                <Link to="/login" className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition-all hover:scale-105">
+                                <Link to="/login" className="text-sm font-bold text-gray-300 hover:text-white transition-colors">Log In</Link>
+                                <Link to="/login" className="px-6 py-2.5 bg-raven-600 hover:bg-raven-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-raven-500/20 transition-all hover:scale-105">
                                     Start Free Trial
                                 </Link>
                             </div>
@@ -160,7 +156,7 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 text-slate-400 hover:text-white transition-colors"
+                            className="p-2 text-gray-400 hover:text-white transition-colors"
                         >
                             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -175,7 +171,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-slate-950 border-t border-slate-800"
+                        className="md:hidden bg-obsidian-950 border-t border-white/10"
                     >
                         <div className="px-4 py-6 space-y-4">
                             {apiKey ? (
@@ -184,7 +180,7 @@ export default function Navbar() {
                                         key={link.path}
                                         to={link.path}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="flex items-center gap-3 p-3 rounded-xl text-slate-300 hover:bg-white/5"
+                                        className="flex items-center gap-3 p-3 rounded-xl text-gray-300 hover:bg-white/5"
                                     >
                                         <link.icon className="w-5 h-5" />
                                         <span className="font-medium">{link.name}</span>
@@ -197,20 +193,20 @@ export default function Navbar() {
                                             <Link
                                                 to={item.path}
                                                 onClick={() => setIsMenuOpen(false)}
-                                                className="block p-3 text-slate-300 font-medium"
+                                                className="block p-3 text-gray-300 font-medium"
                                             >
                                                 {item.name}
                                             </Link>
                                         ) : (
                                             <div className="p-3">
-                                                <div className="text-slate-500 text-xs font-bold uppercase mb-2">{item.name}</div>
+                                                <div className="text-gray-500 text-xs font-bold uppercase mb-2">{item.name}</div>
                                                 <div className="space-y-1 pl-2">
                                                     {item.children.map(child => (
                                                         <Link
                                                             key={child.name}
                                                             to={child.path}
                                                             onClick={() => setIsMenuOpen(false)}
-                                                            className="block py-2 text-slate-300 text-sm"
+                                                            className="block py-2 text-gray-300 text-sm"
                                                         >
                                                             {child.name}
                                                         </Link>
@@ -221,7 +217,7 @@ export default function Navbar() {
                                     </div>
                                 ))
                             )}
-                            <div className="pt-4 border-t border-slate-800">
+                            <div className="pt-4 border-t border-white/10">
                                 {apiKey ? (
                                     <button
                                         onClick={handleLogout}
@@ -233,7 +229,7 @@ export default function Navbar() {
                                 ) : (
                                     <div className="grid grid-cols-2 gap-3">
                                         <Link to="/login" className="p-3 text-center text-white font-bold border border-white/10 rounded-xl">Log In</Link>
-                                        <Link to="/login" className="p-3 text-center bg-indigo-600 text-white font-bold rounded-xl">Sign Up</Link>
+                                        <Link to="/login" className="p-3 text-center bg-raven-600 text-white font-bold rounded-xl">Sign Up</Link>
                                     </div>
                                 )}
                             </div>

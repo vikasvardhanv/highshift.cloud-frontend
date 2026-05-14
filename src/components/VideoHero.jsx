@@ -66,7 +66,7 @@ export default function VideoHero() {
                     <h1 className="text-4xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-4 leading-none">
                         The Evolution<br/>Is Here
                     </h1>
-                    <p className="text-indigo-500 font-bold tracking-[0.5em] uppercase text-sm md:text-xl opacity-80">
+                    <p className="text-raven-500 font-bold tracking-[0.5em] uppercase text-sm md:text-xl opacity-80">
                         Social Raven
                     </p>
                 </motion.div>
@@ -89,8 +89,8 @@ export default function VideoHero() {
                         <h2 className="text-6xl md:text-[10rem] font-black text-white uppercase tracking-tighter italic leading-[0.85] shadow-2xl">
                             The Social<br/>Robot
                         </h2>
-                        <div className="h-2 w-32 bg-indigo-600 mx-auto" />
-                        <p className="text-2xl md:text-5xl text-slate-400 font-light italic leading-tight">
+                        <div className="h-2 w-32 bg-raven-600 mx-auto" />
+                        <p className="text-2xl md:text-5xl text-gray-400 font-light italic leading-tight">
                             Synthesizing attention into outcome.
                         </p>
                     </motion.div>
@@ -118,7 +118,7 @@ export default function VideoHero() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                          <h2 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter uppercase mb-6 leading-none">Chaos<br/>Removed</h2>
-                         <div className="w-24 h-2 bg-indigo-600 rounded-full" />
+                         <div className="w-24 h-2 bg-raven-600 rounded-full" />
                     </div>
                 </motion.div>
 
@@ -131,7 +131,7 @@ export default function VideoHero() {
                         <motion.div 
                             animate={{ y: [0, 12, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5 }}
-                            className="w-1.5 h-1.5 bg-indigo-500 rounded-full shadow-[0_0_10px_indigo]" 
+                            className="w-1.5 h-1.5 bg-raven-500 rounded-full shadow-[0_0_10px_indigo]" 
                         />
                     </div>
                 </motion.div>

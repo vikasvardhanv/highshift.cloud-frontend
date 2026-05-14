@@ -12,17 +12,17 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Home() {
     return (
-        <div className="bg-black font-sans selection:bg-indigo-500/30">
+        <div className="bg-obsidian-950 font-sans selection:bg-raven-500/30">
 
             {/* THE EVOLUTION SEQUENCE (Taste-Skill) */}
             <VideoHero />
 
             {/* STRATEGIC VALUE SECTION */}
-            <div className="py-24 bg-black relative z-10">
+            <div className="py-24 bg-obsidian-950 relative z-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="mb-20 text-center">
                         <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic mb-4">Strategic Value</h2>
-                        <div className="w-16 h-1.5 bg-indigo-500 mx-auto" />
+                        <div className="w-16 h-1.5 bg-raven-500 mx-auto" />
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
@@ -55,17 +55,17 @@ export default function Home() {
             </div>
 
             {/* PLATFORM CAPABILITIES */}
-            <div className="py-32 bg-black border-y border-white/5">
+            <div className="py-32 bg-obsidian-950 border-y border-white/5">
                 <div className="container mx-auto px-4 max-w-7xl">
                     <div className="mb-24 text-center">
                         <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-4 tracking-[-0.05em]">Autonomous Intelligence</h2>
-                        <p className="text-slate-500 font-bold uppercase tracking-widest text-sm">Engineered for absolute distribution</p>
+                        <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">Engineered for absolute distribution</p>
                     </div>
                     <div className="grid lg:grid-cols-4 gap-12">
 
                         {/* Column 1: Core Automation */}
                         <div className="lg:col-span-1">
-                            <h3 className="text-lg font-bold text-slate-500 uppercase tracking-wide mb-8">Core Automation</h3>
+                            <h3 className="text-lg font-bold text-gray-500 uppercase tracking-wide mb-8">Core Automation</h3>
                             <div className="space-y-10">
                                 <FeatureItem
                                     icon={MessageSquare}
@@ -87,7 +87,7 @@ export default function Home() {
 
                         {/* Column 2: Growth Intelligence */}
                         <div className="lg:col-span-1">
-                            <h3 className="text-lg font-bold text-slate-500 uppercase tracking-wide mb-8">Growth Intelligence</h3>
+                            <h3 className="text-lg font-bold text-gray-500 uppercase tracking-wide mb-8">Growth Intelligence</h3>
                             <div className="space-y-10">
                                 <FeatureItem
                                     icon={TrendingUp}
@@ -114,7 +114,7 @@ export default function Home() {
 
                         {/* Column 3: Ecosystem (Sidebar) */}
                         <div className="lg:col-span-1 lg:col-start-4 bg-white/5 p-10 rounded-[2.5rem] h-fit border border-white/5 backdrop-blur-3xl">
-                            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-8">Ecosystem</h3>
+                            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-8">Ecosystem</h3>
                             <div className="space-y-8">
                                 <PlatformLink title="Product Tour" />
                                 <PlatformLink title="AI Ghostwriter" />
@@ -122,7 +122,7 @@ export default function Home() {
                                 <PlatformLink title="Enterprise Nodes" />
                             </div>
 
-                            <div className="mt-8 pt-8 border-t border-slate-200 dark:border-white/10">
+                            <div className="mt-8 pt-8 border-t border-white/10 dark:border-white/10">
                                 <Link to="/login" className="block w-full py-3 bg-primary hover:bg-primaryHover text-white text-center font-bold rounded-xl transition-colors shadow-lg">
                                     Request Custom Demo
                                 </Link>
@@ -134,10 +134,10 @@ export default function Home() {
             </div>
 
             {/* CTA Bottom */}
-            <div className="py-32 bg-black border-t border-white/5">
+            <div className="py-32 bg-obsidian-950 border-t border-white/5">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-4xl md:text-7xl font-black text-white mb-12 uppercase italic tracking-tighter">Ready to scale?</h2>
-                    <Link to="/login" className="inline-flex items-center gap-4 px-12 py-6 bg-white text-black font-black text-2xl rounded-2xl hover:bg-slate-200 transition-all shadow-2xl hover:scale-105">
+                    <Link to="/login" className="inline-flex items-center gap-4 px-12 py-6 bg-white text-black font-black text-2xl rounded-2xl hover:bg-white/10 transition-all shadow-2xl hover:scale-105">
                         Start Free Trial
                         <ArrowRight className="w-8 h-8" />
                     </Link>
@@ -150,9 +150,9 @@ export default function Home() {
 // Helpers
 function UserCaseItem({ title, desc }) {
     return (
-        <div className="group border-l-2 border-white/5 pl-8 hover:border-indigo-500 transition-colors duration-500">
+        <div className="group border-l-2 border-white/5 pl-8 hover:border-raven-500 transition-colors duration-500">
             <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{title}</h3>
-            <p className="text-lg text-slate-400 leading-relaxed font-medium">{desc}</p>
+            <p className="text-lg text-gray-400 leading-relaxed font-medium">{desc}</p>
         </div>
     )
 }
@@ -161,12 +161,12 @@ function FeatureItem({ icon: Icon, title, desc }) {
     return (
         <div className="group">
             <div className="flex items-center gap-4 mb-3">
-                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-indigo-500 transition-colors">
+                <div className="p-2 bg-white/5 rounded-lg group-hover:bg-raven-500 transition-colors">
                     <Icon className="w-5 h-5 text-white" />
                 </div>
                 <h4 className="text-xl font-bold text-white tracking-tight">{title}</h4>
             </div>
-            <p className="text-slate-500 leading-relaxed text-sm font-medium">{desc}</p>
+            <p className="text-gray-500 leading-relaxed text-sm font-medium">{desc}</p>
         </div>
     )
 }
@@ -174,8 +174,8 @@ function FeatureItem({ icon: Icon, title, desc }) {
 function PlatformLink({ title }) {
     return (
         <a href="#" className="flex items-center justify-between group cursor-pointer hover:bg-white/5 p-3 -mx-3 rounded-2xl transition-all duration-300">
-            <span className="text-lg font-bold text-white group-hover:text-indigo-400 tracking-tight">{title}</span>
-            <ChevronRight className="w-5 h-5 text-indigo-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
+            <span className="text-lg font-bold text-white group-hover:text-raven-400 tracking-tight">{title}</span>
+            <ChevronRight className="w-5 h-5 text-raven-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
         </a>
     )
 }

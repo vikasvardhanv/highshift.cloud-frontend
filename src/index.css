@@ -3,58 +3,52 @@
 @tailwind utilities;
 
 @layer base {
-
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-sans font-semibold tracking-tight text-slate-900 dark:text-white;
+    @apply font-heading font-semibold tracking-tight text-white;
   }
 }
 
 :root {
-  /* Clean Light Mode */
-  --background: 243 244 246;
-  /* Gray 100 */
-  --surface: 255 255 255;
-  /* White */
-  --primary: 99 102 241;
-  /* Indigo 500 */
-  --primary-hover: 79 70 229;
-  /* Indigo 600 */
-  --secondary: 107 114 128;
-  /* Gray 500 */
-  --success: 16 185 129;
+  /* SOCIAL RAVEN — Dark Mode Default */
+  --background: 10 10 10;
+  --surface: 17 17 17;
+  --surface-highlight: 28 28 28;
+  --primary: 124 58 237;
+  --primary-hover: 109 40 217;
+  --secondary: 139 92 246;
+  --accent: 167 139 250;
+  --success: 34 197 94;
   --error: 239 68 68;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 .dark {
-  /* Clean Dark Mode */
-  --background: 17 24 39;
-  /* Gray 900 */
-  --surface: 31 41 55;
-  /* Gray 800 */
-  --primary: 129 140 248;
-  /* Indigo 400 */
-  --primary-hover: 99 102 241;
-  --secondary: 156 163 175;
-  /* Gray 400 */
-  --success: 52 211 153;
-  --error: 248 113 113;
+  /* SOCIAL RAVEN — Dark Mode */
+  --background: 10 10 10;
+  --surface: 17 17 17;
+  --surface-highlight: 28 28 28;
+  --primary: 124 58 237;
+  --primary-hover: 109 40 217;
+  --secondary: 139 92 246;
+  --accent: 167 139 250;
+  --success: 34 197 94;
+  --error: 239 68 68;
   color-scheme: dark;
 }
 
 body {
-  @apply bg-black text-gray-100 antialiased font-sans text-sm min-h-screen selection:bg-indigo-900;
-  background-color: #000;
+  @apply bg-obsidian-950 text-gray-100 antialiased font-sans text-sm min-h-screen selection:bg-raven-900/60;
+  background-color: #0a0a0a;
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm;
+    @apply bg-obsidian-950/80 border border-white/5 rounded-xl shadow-sm backdrop-blur-sm;
   }
 
   .glass-button {
@@ -62,30 +56,30 @@ body {
   }
 
   .nav-link {
-    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-white text-sm font-medium;
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-white/5 hover:text-white text-sm font-medium;
   }
 
   .nav-link.active {
-    @apply bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-gray-200 dark:border-gray-700;
+    @apply bg-raven-600/10 text-raven-400 shadow-sm border border-raven-500/20;
   }
 
   .btn-primary {
-    @apply bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm shadow-indigo-600/20 active:scale-95;
+    @apply bg-raven-600 hover:bg-raven-700 text-white shadow-sm shadow-raven-600/20 active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-95;
+    @apply bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 active:scale-95;
   }
 
   .brand-label {
-    @apply block text-[10px] font-extrabold text-slate-500 uppercase tracking-[0.2em] ml-1;
+    @apply block text-[10px] font-extrabold text-gray-500 uppercase tracking-[0.2em] ml-1;
   }
 
   .brand-input {
-    @apply w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-sm font-semibold text-white outline-none transition-all placeholder:text-slate-600 focus:border-primary/60 focus:bg-black/40;
+    @apply w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-semibold text-white outline-none transition-all placeholder:text-gray-600 focus:border-raven-500/60 focus:bg-white/[0.07];
   }
 
   .brand-textarea {
-    @apply w-full rounded-3xl border border-white/10 bg-black/30 p-6 text-sm font-medium leading-6 text-white outline-none transition-all placeholder:text-slate-600 focus:border-primary/60 focus:bg-black/40;
+    @apply w-full rounded-3xl border border-white/10 bg-white/5 p-6 text-sm font-medium leading-6 text-white outline-none transition-all placeholder:text-gray-600 focus:border-raven-500/60 focus:bg-white/[0.07];
   }
 }

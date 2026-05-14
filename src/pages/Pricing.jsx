@@ -86,10 +86,7 @@ export default function Pricing() {
                     {TIERS.map((tier, idx) => (
                         <div
                             key={idx}
-                            className={`relative rounded-3xl p-8 border backdrop-blur-xl transition-all duration-300 hover:translate-y-[-5px] flex flex-col
-                            ${tier.highlight
-                                    ? 'bg-white/10 border-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
-                                    : 'bg-black/40 border-white/10 hover:bg-white/5'}`}
+                            className={`relative rounded-3xl p-8 border backdrop-blur-xl transition-all duration-300 hover:translate-y-[-5px] flex flex-col ${tier.highlight ? 'bg-white/10 border-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]' : 'bg-black/40 border-white/10 hover:bg-white/5'}`}
                         >
                             {tier.highlight && (
                                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary px-4 py-1 rounded-full text-xs font-bold text-white shadow-lg uppercase tracking-wider">
@@ -108,10 +105,7 @@ export default function Pricing() {
 
                             <button
                                 onClick={() => navigate('/login')}
-                                className={`w-full py-4 rounded-xl font-bold mb-8 transition-all flex items-center justify-center gap-2
-                                ${tier.highlight
-                                        ? 'bg-primary hover:bg-primaryHover text-white shadow-lg'
-                                        : 'bg-white/10 hover:bg-white/20 text-white'}`}
+                                className={`w-full py-4 rounded-xl font-bold mb-8 transition-all flex items-center justify-center gap-2 ${tier.highlight ? 'bg-primary hover:bg-primaryHover text-white shadow-lg' : 'bg-white/10 hover:bg-white/20 text-white'}`}
                             >
                                 {tier.cta} <Zap className="w-4 h-4" />
                             </button>

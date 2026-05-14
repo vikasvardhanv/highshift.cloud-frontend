@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const PLATFORM_COLORS = {
     twitter: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    facebook: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+    facebook: 'bg-raven-500/20 text-raven-400 border-raven-500/30',
     instagram: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
     linkedin: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
     youtube: 'bg-red-500/20 text-red-300 border-red-500/30',
@@ -110,10 +110,7 @@ export default function Schedule() {
 
                 days.push(
                     <div
-                        className={`min-h-[120px] p-2 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group
-                        ${!isSameMonth(day, monthStart) ? "text-gray-600 bg-transparent" : "text-gray-300"}
-                        ${isSameDay(day, selectedDate) ? "ring-1 ring-primary inset-0" : ""}
-                        `}
+                        className={`min-h-[120px] p-2 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group ${!isSameMonth(day, monthStart) ? "text-gray-600 bg-transparent" : "text-gray-300"} ${isSameDay(day, selectedDate) "ring-1 ring-primary inset-0" ""}`}
                         key={day.toString()}
                         onClick={() => onDateClick(cloneDay)}
                     >

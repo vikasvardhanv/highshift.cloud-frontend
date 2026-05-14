@@ -226,13 +226,13 @@ export default function BrandKit() {
         <div className="max-w-6xl mx-auto space-y-8 pb-20">
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
                 <div className="space-y-3">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
                         <Sparkles className="w-3.5 h-3.5 text-primary" />
                         HighShift brand workspace
                     </div>
                     <div>
                         <h1 className="text-4xl font-extrabold tracking-tight">Identity Hub</h1>
-                        <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-slate-500">
+                        <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-gray-500">
                             Keep your voice, visual defaults, and ready-to-use asset exports in one place.
                         </p>
                     </div>
@@ -240,13 +240,13 @@ export default function BrandKit() {
                 <div className="flex flex-wrap items-center gap-3">
                     <button
                         onClick={() => setActiveTab('voice')}
-                        className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'voice' ? 'bg-white text-slate-950' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                        className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'voice' ? 'bg-white text-white' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
                     >
                         Voice
                     </button>
                     <button
                         onClick={() => setActiveTab('assets')}
-                        className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'assets' ? 'bg-white text-slate-950' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                        className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'assets' ? 'bg-white text-white' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
                     >
                         Assets
                     </button>
@@ -279,7 +279,7 @@ export default function BrandKit() {
                             </div>
                             <div>
                                 <h2 className="text-xl font-extrabold">Brand Voice</h2>
-                                <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Used by HighShift content generation</p>
+                                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Used by HighShift content generation</p>
                             </div>
                         </div>
 
@@ -302,7 +302,7 @@ export default function BrandKit() {
                                     <button
                                         key={tone}
                                         onClick={() => setFormData({ ...formData, tone })}
-                                        className={`rounded-2xl border px-4 py-4 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${formData.tone === tone ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-slate-500 hover:border-white/20 hover:text-slate-300'}`}
+                                        className={`rounded-2xl border px-4 py-4 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${formData.tone === tone ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-gray-500 hover:border-white/20 hover:text-gray-300'}`}
                                     >
                                         {tone}
                                     </button>
@@ -313,7 +313,7 @@ export default function BrandKit() {
                         <div className="mt-8">
                             <div className="flex items-center justify-between">
                                 <label className="brand-label">Personality blueprint</label>
-                                <span className="text-[10px] font-bold tracking-widest text-slate-600">{formData.description.length} / 1000</span>
+                                <span className="text-[10px] font-bold tracking-widest text-gray-400">{formData.description.length} / 1000</span>
                             </div>
                             <textarea
                                 value={formData.description}
@@ -332,7 +332,7 @@ export default function BrandKit() {
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-extrabold">Context</h2>
-                                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Keywords and phrases</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Keywords and phrases</p>
                                 </div>
                             </div>
                             <textarea value={formData.keywords} onChange={(e) => setFormData({ ...formData, keywords: e.target.value })} className="brand-textarea h-36" placeholder="AI agents, scheduling, analytics" />
@@ -345,7 +345,7 @@ export default function BrandKit() {
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-extrabold">Colors</h2>
-                                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Shared with asset exports</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Shared with asset exports</p>
                                 </div>
                             </div>
                             <input value={formData.colors} onChange={(e) => setFormData({ ...formData, colors: e.target.value })} className="brand-input" placeholder="#4f46e5, #111827" />
@@ -366,20 +366,20 @@ export default function BrandKit() {
                             </div>
                             <div>
                                 <h2 className="text-xl font-extrabold">Source Image</h2>
-                                <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Logo, mark, or campaign visual</p>
+                                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Logo, mark, or campaign visual</p>
                             </div>
                         </div>
 
                         <label className="flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-3xl border border-dashed border-white/15 bg-black/20 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5">
-                            <FileImage className="w-10 h-10 text-slate-500" />
+                            <FileImage className="w-10 h-10 text-gray-500" />
                             <span className="mt-4 text-sm font-extrabold text-white">{assetFile ? assetFile.name : 'Upload image'}</span>
-                            <span className="mt-2 max-w-xs text-xs font-medium leading-5 text-slate-500">PNG, JPG, WEBP, or GIF. The backend exports a ready-to-use zip.</span>
+                            <span className="mt-2 max-w-xs text-xs font-medium leading-5 text-gray-500">PNG, JPG, WEBP, or GIF. The backend exports a ready-to-use zip.</span>
                             <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={(e) => setAssetFile(e.target.files?.[0] || null)} />
                         </label>
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
                             {Object.keys(formatInfo.presets || defaultPresets).map((preset) => (
-                                <button key={preset} onClick={() => applyPreset(preset)} className={`rounded-2xl border px-4 py-3 text-left text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${assetOptions.preset === preset ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-slate-500 hover:text-slate-300'}`}>
+                                <button key={preset} onClick={() => applyPreset(preset)} className={`rounded-2xl border px-4 py-3 text-left text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${assetOptions.preset === preset ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-gray-500 hover:text-gray-300'}`}>
                                     {formatLabel(preset.replace('_pack', ''))}
                                 </button>
                             ))}
@@ -393,7 +393,7 @@ export default function BrandKit() {
                             </div>
                             <div>
                                 <h2 className="text-xl font-extrabold">Export Sizes</h2>
-                                <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">{selectedFormats.length} sizes selected</p>
+                                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">{selectedFormats.length} sizes selected</p>
                             </div>
                         </div>
 
@@ -401,7 +401,7 @@ export default function BrandKit() {
                             {sortedCategories.map(([category, formats]) => (
                                 <div key={category}>
                                     <div className="mb-3 flex items-center justify-between">
-                                        <h3 className="text-xs font-extrabold uppercase tracking-[0.2em] text-slate-500">{category}</h3>
+                                        <h3 className="text-xs font-extrabold uppercase tracking-[0.2em] text-gray-500">{category}</h3>
                                         <button onClick={() => setSelectedFormats((current) => Array.from(new Set([...current, ...formats])))} className="text-[11px] font-bold text-primary hover:text-white">Select all</button>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -413,11 +413,11 @@ export default function BrandKit() {
                                                     <div className="flex items-start justify-between gap-3">
                                                         <div>
                                                             <p className="text-sm font-extrabold text-white">{formatLabel(format)}</p>
-                                                            <p className="mt-1 text-xs text-slate-500">{details?.width} x {details?.height}</p>
+                                                            <p className="mt-1 text-xs text-gray-500">{details?.width} x {details?.height}</p>
                                                         </div>
                                                         {selected && <Check className="w-4 h-4 text-primary" />}
                                                     </div>
-                                                    <p className="mt-3 text-xs leading-5 text-slate-500">{details?.description}</p>
+                                                    <p className="mt-3 text-xs leading-5 text-gray-500">{details?.description}</p>
                                                 </button>
                                             );
                                         })}
@@ -435,7 +435,7 @@ export default function BrandKit() {
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-extrabold">Processing</h2>
-                                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Resize behavior</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">Resize behavior</p>
                                 </div>
                             </div>
 
@@ -466,24 +466,24 @@ export default function BrandKit() {
 
                         <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center">
-                                    <Archive className="w-6 h-6 text-indigo-300" />
+                                <div className="w-12 h-12 rounded-2xl bg-raven-500/15 border border-raven-500/20 flex items-center justify-center">
+                                    <Archive className="w-6 h-6 text-raven-400" />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-extrabold">Package</h2>
-                                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">{formatCount} files estimated</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mt-1">{formatCount} files estimated</p>
                                 </div>
                             </div>
 
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {(formatInfo.output_formats || ['png', 'jpg', 'webp', 'ico']).map((format) => (
-                                    <button key={format} onClick={() => toggleOutput(format)} className={`rounded-xl border px-3 py-2 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${outputFormats.includes(format) ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-slate-500'}`}>
+                                    <button key={format} onClick={() => toggleOutput(format)} className={`rounded-xl border px-3 py-2 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${outputFormats.includes(format) ? 'border-primary bg-primary/20 text-white' : 'border-white/10 bg-white/5 text-gray-500'}`}>
                                         {format}
                                     </button>
                                 ))}
                             </div>
 
-                            <button onClick={handleGenerate} disabled={generating || !selectedFormats.length} className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-4 text-xs font-extrabold uppercase tracking-widest text-slate-950 transition-all hover:bg-slate-200 active:scale-95 disabled:opacity-50">
+                            <button onClick={handleGenerate} disabled={generating || !selectedFormats.length} className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-4 text-xs font-extrabold uppercase tracking-widest text-white transition-all hover:bg-white/10 active:scale-95 disabled:opacity-50">
                                 {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                                 Generate zip
                             </button>
@@ -506,9 +506,9 @@ function Field({ label, className = '', children }) {
 
 function Toggle({ label, checked, onChange }) {
     return (
-        <button onClick={onChange} className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-slate-300 transition-all hover:bg-white/10 active:scale-[0.98]">
+        <button onClick={onChange} className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-gray-300 transition-all hover:bg-white/10 active:scale-[0.98]">
             <span>{label}</span>
-            <span className={`h-6 w-10 rounded-full p-1 transition-colors ${checked ? 'bg-primary' : 'bg-slate-700'}`}>
+            <span className={`h-6 w-10 rounded-full p-1 transition-colors ${checked ? 'bg-primary' : 'bg-white/10'}`}>
                 <span className={`block h-4 w-4 rounded-full bg-white transition-transform ${checked ? 'translate-x-4' : 'translate-x-0'}`} />
             </span>
         </button>

@@ -49,7 +49,7 @@ export default function DashboardLayout({ children }) {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans flex overflow-x-hidden text-slate-900 dark:text-slate-100">
+        <div className="min-h-screen bg-obsidian-950 font-sans flex overflow-x-hidden text-gray-100">
             {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
             <Sidebar 
                 isOpen={sidebarOpen} 
@@ -66,21 +66,20 @@ export default function DashboardLayout({ children }) {
             )}
 
             {/* Main Content Area */}
-            <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 relative z-10 w-full
-                ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
+            <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 relative z-10 w-full ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
 
                 {/* Top Bar - Clean Professional */}
-                <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 h-16">
+                <header className="sticky top-0 z-40 bg-obsidian-950/80 backdrop-blur-md border-b border-white/10 h-16">
                     <div className="px-4 lg:px-6 h-full flex items-center justify-between">
                         {/* Title Breadcrumb & Mobile Menu Toggle */}
                         <div className="flex items-center gap-3 lg:gap-4">
-                            <button 
+                            <button
                                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="p-2 -ml-2 rounded-lg hover:bg-white/5 lg:hidden text-slate-400"
+                                className="p-2 -ml-2 rounded-lg hover:bg-white/5 lg:hidden text-gray-400"
                             >
                                 <Menu className="w-6 h-6" />
                             </button>
-                            <h1 className="text-base lg:text-lg font-bold text-slate-900 dark:text-white truncate max-w-[150px] md:max-w-none">
+                            <h1 className="text-base lg:text-lg font-bold text-white truncate max-w-[150px] md:max-w-none">
                                 {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
                             </h1>
                         </div>
@@ -88,43 +87,43 @@ export default function DashboardLayout({ children }) {
                         {/* Right Actions */}
                         <div className="flex items-center gap-2 lg:gap-4">
                             <ThemeToggle />
-                            <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 hidden md:block" />
+                            <div className="h-6 w-px bg-white/10 hidden md:block" />
 
                             <div className="relative">
                                 <button
                                     onClick={() => setShowDropdown(!showDropdown)}
-                                    className="flex items-center gap-2 lg:gap-3 hover:bg-slate-100 dark:hover:bg-slate-800 px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
+                                    className="flex items-center gap-2 lg:gap-3 hover:bg-white/5 dark:hover:bg-white/5 px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
                                 >
-                                    <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-full bg-raven-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                                         {user?.avatar ? (
                                             <img src={user.avatar} className="w-full h-full rounded-full object-cover" />
                                         ) : (
                                             user?.initials || 'A'
                                         )}
                                     </div>
-                                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 hidden sm:block truncate max-w-[100px]">
+                                    <span className="text-sm font-semibold text-gray-200 hidden sm:block truncate max-w-[100px]">
                                         {user?.name || 'Admin'}
                                     </span>
-                                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
+                                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
                                 </button>
 
                                 {showDropdown && (
-                                    <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                                        <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800">
-                                            <p className="text-sm font-bold text-slate-900 dark:text-white">{user?.name}</p>
-                                            <p className="text-xs text-slate-500 truncate">{user?.email || ''}</p>
+                                    <div className="absolute right-0 top-full mt-2 w-56 bg-obsidian-950 border border-white/10 rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                        <div className="px-4 py-3 border-b border-white/10">
+                                            <p className="text-sm font-bold text-white">{user?.name}</p>
+                                            <p className="text-xs text-gray-500 truncate">{user?.email || ''}</p>
                                         </div>
 
                                         <div className="py-1">
-                                            <Link to="/settings" onClick={() => setShowDropdown(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+                                            <Link to="/settings" onClick={() => setShowDropdown(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-white/5">
                                                 <Settings className="w-4 h-4" /> Settings
                                             </Link>
                                         </div>
 
-                                        <div className="border-t border-slate-200 dark:border-slate-800 py-1">
+                                        <div className="border-t border-white/10 py-1">
                                             <button
                                                 onClick={handleLogout}
-                                                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10"
+                                                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10"
                                             >
                                                 <LogOut className="w-4 h-4" /> Sign out
                                             </button>

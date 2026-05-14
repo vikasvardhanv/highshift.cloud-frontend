@@ -81,7 +81,7 @@ export default function ApiKeys() {
             className="space-y-10 pb-20 max-w-5xl mx-auto"
         >
             {/* Header Section */}
-            <motion.div variants={item} className="relative p-8 rounded-[2rem] bg-slate-900 border border-white/5 overflow-hidden shadow-2xl">
+            <motion.div variants={item} className="relative p-8 rounded-[2rem] bg-obsidian-950 border border-white/5 overflow-hidden shadow-2xl">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -mr-48 -mt-48 pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] -ml-32 -mb-32 pointer-events-none"></div>
 
@@ -96,7 +96,7 @@ export default function ApiKeys() {
                             </span>
                         </div>
                         <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">API Management</h1>
-                        <p className="text-slate-400 max-w-lg leading-relaxed">
+                        <p className="text-gray-400 max-w-lg leading-relaxed">
                             Integrate Social Raven directly into your workflow. Create unique keys for specialized automation and solo upload capabilities.
                         </p>
                     </div>
@@ -118,13 +118,13 @@ export default function ApiKeys() {
                         </h3>
                         <form onSubmit={handleCreate} className="space-y-4 relative z-10">
                             <div>
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 block">Key Alias</label>
+                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Key Alias</label>
                                 <input
                                     type="text"
                                     value={newKeyName}
                                     onChange={(e) => setNewKeyName(e.target.value)}
                                     placeholder="e.g. My Custom Script"
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-slate-700"
+                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-gray-300"
                                 />
                             </div>
                             <button
@@ -142,7 +142,7 @@ export default function ApiKeys() {
                         <ShieldCheck className="w-6 h-6 text-emerald-500 shrink-0" />
                         <div>
                             <h4 className="text-sm font-bold text-emerald-500">Security First</h4>
-                            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                            <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                                 Keys provide full access to your publishing nodes. Never share them or commit them to public repositories.
                             </p>
                         </div>
@@ -177,13 +177,13 @@ export default function ApiKeys() {
                                             <div className="flex items-center gap-1">
                                                 <button
                                                     onClick={() => setIsKeyVisible(!isKeyVisible)}
-                                                    className="p-2.5 hover:bg-white/10 rounded-lg transition-colors text-slate-400 hover:text-white"
+                                                    className="p-2.5 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
                                                 >
                                                     {isKeyVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                                 </button>
                                                 <button
                                                     onClick={() => copyToClipboard(showNewKey.rawApiKey)}
-                                                    className="p-2.5 hover:bg-white/10 rounded-lg transition-colors text-slate-400 hover:text-white"
+                                                    className="p-2.5 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
                                                 >
                                                     {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                                                 </button>
@@ -195,14 +195,14 @@ export default function ApiKeys() {
                         )}
                     </AnimatePresence>
 
-                    <div className="glass-card rounded-[2rem] border border-white/5 shadow-2xl overflow-hidden bg-slate-900/50 backdrop-blur-md">
+                    <div className="glass-card rounded-[2rem] border border-white/5 shadow-2xl overflow-hidden bg-obsidian-950 backdrop-blur-md">
                         <div className="px-8 py-6 border-b border-white/5 flex items-center justify-between">
                             <h3 className="font-bold text-lg">Active Identities</h3>
-                            <span className="text-xs font-bold text-slate-500 bg-white/5 py-1 px-3 rounded-full">{keys.length} Total</span>
+                            <span className="text-xs font-bold text-gray-500 bg-white/5 py-1 px-3 rounded-full">{keys.length} Total</span>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full text-left">
-                                <thead className="bg-white/5 text-[10px] uppercase font-bold text-slate-500 tracking-widest">
+                                <thead className="bg-white/5 text-[10px] uppercase font-bold text-gray-500 tracking-widest">
                                     <tr>
                                         <th className="px-8 py-4">Identity Name</th>
                                         <th className="px-8 py-4">Created</th>
@@ -215,16 +215,16 @@ export default function ApiKeys() {
                                         <tr>
                                             <td colSpan="4" className="px-8 py-16 text-center">
                                                 <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-primary" />
-                                                <p className="text-slate-500 font-medium">Scanning network for keys...</p>
+                                                <p className="text-gray-500 font-medium">Scanning network for keys...</p>
                                             </td>
                                         </tr>
                                     ) : keys.length === 0 ? (
                                         <tr>
                                             <td colSpan="4" className="px-8 py-16 text-center">
                                                 <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
-                                                    <Key className="w-8 h-8 text-slate-700" />
+                                                    <Key className="w-8 h-8 text-gray-300" />
                                                 </div>
-                                                <p className="text-slate-500 font-medium italic">No developer keys forged yet.</p>
+                                                <p className="text-gray-500 font-medium italic">No developer keys forged yet.</p>
                                             </td>
                                         </tr>
                                     ) : (
@@ -233,19 +233,19 @@ export default function ApiKeys() {
                                                 <td className="px-8 py-5">
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                                                        <span className="font-bold text-slate-200">{key.name}</span>
+                                                        <span className="font-bold text-gray-200">{key.name}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-8 py-5 text-sm text-slate-500">
+                                                <td className="px-8 py-5 text-sm text-gray-500">
                                                     {new Date(key.created_at).toLocaleDateString()}
                                                 </td>
-                                                <td className="px-8 py-5 text-sm text-slate-500">
+                                                <td className="px-8 py-5 text-sm text-gray-500">
                                                     {key.last_used ? new Date(key.last_used).toLocaleDateString() : 'Inactive'}
                                                 </td>
                                                 <td className="px-8 py-5 text-right">
                                                     <button
                                                         onClick={() => handleDelete(key.id)}
-                                                        className="p-2.5 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all opacity-0 group-hover:opacity-100"
+                                                        className="p-2.5 text-gray-500 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all opacity-0 group-hover:opacity-100"
                                                         title="Revoke Identity"
                                                     >
                                                         <Trash2 className="w-4 h-4" />

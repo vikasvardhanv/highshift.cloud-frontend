@@ -48,7 +48,7 @@ export default function AuthCallback() {
     }, [searchParams, navigate]);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[80vh] relative overflow-hidden bg-slate-950">
+        <div className="flex flex-col items-center justify-center min-h-[80vh] relative overflow-hidden bg-obsidian-950">
             {/* Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full opacity-50 pointer-events-none"></div>
 
@@ -66,7 +66,7 @@ export default function AuthCallback() {
                             </div>
                         </div>
                         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Securing Connection</h2>
-                        <p className="text-slate-500">Handshaking with your social identity...</p>
+                        <p className="text-gray-500">Handshaking with your social identity...</p>
                     </motion.div>
                 )}
 
@@ -82,7 +82,7 @@ export default function AuthCallback() {
                         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Identity Verified</h2>
                         <p className="text-emerald-400/80 font-medium mb-8">Connection successful! Syncing nodes...</p>
 
-                        <div className="flex items-center gap-2 text-slate-500 text-xs font-bold uppercase tracking-widest animate-pulse">
+                        <div className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest animate-pulse">
                             Redirecting <ArrowRight className="w-3 h-3" />
                         </div>
                     </motion.div>
@@ -98,7 +98,7 @@ export default function AuthCallback() {
                             <XCircle className="w-10 h-10 text-red-500" />
                         </div>
                         <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Access Restricted</h2>
-                        <p className="text-slate-500 mb-8">{searchParams.get('error') || "We couldn't verify your credentials with the platform."}</p>
+                        <p className="text-gray-500 mb-8">{searchParams.get('error') || "We couldn't verify your credentials with the platform."}</p>
                         <button
                             onClick={() => navigate('/connections')}
                             className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-bold transition-all flex items-center gap-2"
