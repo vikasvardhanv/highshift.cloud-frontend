@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
-    ChevronLeft, ChevronRight, Calendar as CalendarIcon, Clock, MoreVertical,
-    Edit2, Trash2, X, Plus, TrendingUp, Users, MessageSquare, Activity
+    ChevronLeft, ChevronRight, Clock, MoreVertical,
+    X, Plus, TrendingUp, Activity
 } from 'lucide-react';
 import { getScheduleCalendar, getScheduledPosts, processDueScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
@@ -14,10 +14,7 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 export default function ScheduleCalendar() {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [posts, setPosts] = useState({});
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedPost, setSelectedPost] = useState(null);
     const [showComposer, setShowComposer] = useState(false);
-    const [loading, setLoading] = useState(true);
     const [accounts, setAccounts] = useState([]);
     const [profiles, setProfiles] = useState([]);
     const [selectedAccounts, setSelectedAccounts] = useState([]);
@@ -120,7 +117,7 @@ export default function ScheduleCalendar() {
         } catch (err) {
             console.error("Failed to load schedule", err);
         } finally {
-            setLoading(false);
+            // loaded
         }
     };
 
@@ -136,10 +133,7 @@ export default function ScheduleCalendar() {
     const getFirstDayOfMonth = (date) => new Date(date.getFullYear(), date.getMonth(), 1).getDay();
     const navigateMonth = (direction) => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + direction, 1));
 
-    const handleDateClick = (day) => {
-        const dateKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        // Set up composer with this date? 
-    };
+    // Date click handler
 
     const renderCalendar = () => {
         const daysInMonth = getDaysInMonth(currentDate);
@@ -178,8 +172,8 @@ export default function ScheduleCalendar() {
                         {dayPosts.map((post, idx) => (
                             <div
                                 key={post.id || idx}
-                                onClick={(e) => { e.stopPropagation(); setSelectedPost(post); }}
-                                className={`group/post relative p-2 rounded-lg bg-white/5 border transition-all cursor-pointer shadow-sm hover:shadow-md ${ post.status === 'failed' ? 'border-red-200 hover:border-red-400' : 'published' 'border-emerald-200 hover:border-emerald-400' 'border-white/10 dark:border-white/10 hover:border-raven-400 dark:hover:border-raven-500' }`}
+                                onClick={(e) => { e.stopPropagation(); }}
+                                className={`group/post relative p-2 rounded-lg bg-white/5 border transition-all cursor-pointer shadow-sm hover:shadow-md ${ post.status === 'failed' ? 'border-red-200 hover:border-red-400' : post.status === 'published' ? 'border-emerald-200 hover:border-emerald-400' : 'border-white/10 dark:border-white/10 hover:border-raven-400 dark:hover:border-raven-500' }`}
                             >
                                 <div className="flex items-center gap-1.5 mb-1">
                                     <Clock className="w-3 h-3 text-gray-400" />
@@ -187,7 +181,7 @@ export default function ScheduleCalendar() {
                                 </div>
                                 <div className="text-xs text-gray-400 truncate font-medium">{post.content}</div>
                                 {post.status && (
-                                    <div className={`mt-1 text-[9px] font-bold uppercase tracking-wide ${ post.status === 'failed' ? 'text-red-500' : 'published' 'text-emerald-500' 'text-raven-500' }`}>
+                                    <div className={`mt-1 text-[9px] font-bold uppercase tracking-wide ${ post.status === 'failed' ? 'text-red-500' : post.status === 'published' ? 'text-emerald-500' : 'text-raven-500' }`}>
                                         {post.status}
                                     </div>
                                 )}
