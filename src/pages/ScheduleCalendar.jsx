@@ -290,6 +290,7 @@ export default function ScheduleCalendar() {
                                     platform={log.platform || 'System'}
                                     time={formatTimeAgo(log.time)}
                                     accent={accent}
+                                    error={log.meta?.error}
                                 />
                             )
                         })
@@ -348,7 +349,7 @@ export default function ScheduleCalendar() {
     );
 }
 
-function ActivityCard({ icon, title, platform, time, accent }) {
+function ActivityCard({ icon, title, platform, time, accent, error }) {
     const colors = {
         emerald: 'bg-emerald-500/10 border-emerald-500/20',
         blue: 'bg-blue-500/10 border-blue-500/20',
@@ -357,18 +358,25 @@ function ActivityCard({ icon, title, platform, time, accent }) {
     };
 
     return (
-        <div className="group flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 hover:border-raven-500/30 transition-all hover:shadow-lg hover:shadow-raven-500/5 cursor-pointer">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${colors[accent]} group-hover:scale-110 transition-transform duration-300`}>
-                {icon}
-            </div>
-            <div>
-                <h4 className="text-sm font-bold text-white">{title}</h4>
-                <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-xs font-medium text-gray-500">{platform}</span>
-                    <span className="w-1 h-1 rounded-full bg-white/10 bg-white/5"></span>
-                    <span className="text-xs text-gray-400">{time}</span>
+        <div className="group flex flex-col gap-2 p-4 rounded-2xl bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 hover:border-raven-500/30 transition-all hover:shadow-lg hover:shadow-raven-500/5 cursor-pointer">
+            <div className="flex items-center gap-4 w-full">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${colors[accent]} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                    {icon}
+                </div>
+                <div className="min-w-0 flex-1">
+                    <h4 className="text-sm font-bold text-white truncate">{title}</h4>
+                    <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-xs font-medium text-gray-500">{platform}</span>
+                        <span className="w-1 h-1 rounded-full bg-white/10 bg-white/5"></span>
+                        <span className="text-xs text-gray-400">{time}</span>
+                    </div>
                 </div>
             </div>
+            {error && (
+                <div className="text-[11px] text-red-500 font-medium bg-red-500/5 p-2 rounded-xl border border-red-500/10 w-full break-words">
+                    {error}
+                </div>
+            )}
         </div>
     );
 }
