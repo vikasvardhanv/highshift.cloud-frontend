@@ -229,7 +229,7 @@ export default function Connections() {
                                                             className="flex items-center justify-between p-6 bg-white dark:bg-obsidian-950 rounded-2xl border border-white/5 dark:border-white/10 group hover:border-raven-500/20 dark:hover:border-raven-500 transition-all shadow-sm"
                                                         >
                                                             <div className="flex items-center gap-4">
-                                                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${platformCfg?.bg || 'bg-white/10'} ${platformCfg?.color 'text-white'}`}>
+                                                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${platformCfg?.bg || 'bg-white/10'} ${platformCfg?.color || 'text-white'}`}>
                                                                     <Icon className="w-6 h-6" />
                                                                 </div>
                                                                 <div>

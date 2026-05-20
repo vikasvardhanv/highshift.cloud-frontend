@@ -544,7 +544,7 @@ export default function Publisher() {
                         <button
                             onClick={() => handleSubmit()}
                             disabled={isSubmitting || mediaFiles.some(m => m.uploading) || (showSchedule && (!scheduleDate || !scheduleTime))} // Disable if uploading or partially filled schedule
-                            className={`px-6 py-2.5 text-white text-sm font-bold rounded-xl shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98] ${(showSchedule && scheduleDate scheduleTime) ? 'bg-raven-600 hover:bg-raven-700 shadow-raven-600/20' : 'bg-obsidian-950 hover:bg-white/5 dark:bg-white dark:hover:bg-white/10 shadow-obsidian-950/10'}`}
+                            className={`px-6 py-2.5 text-white text-sm font-bold rounded-xl shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98] ${(showSchedule && scheduleDate && scheduleTime) ? 'bg-raven-600 hover:bg-raven-700 shadow-raven-600/20' : 'bg-obsidian-950 hover:bg-white/5 dark:bg-white dark:hover:bg-white/10 shadow-obsidian-950/10'}`}
                         >
                             {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : ((showSchedule && scheduleDate && scheduleTime) ? <Clock className="w-4 h-4" /> : <Send className="w-4 h-4" />)}
                             {isSubmitting
@@ -578,7 +578,7 @@ export default function Publisher() {
 
                 <div className="flex-1 flex items-center justify-center">
                     {/* Mock Phone/Desktop Preview */}
-                    <div className={`transition-all duration-300 flex flex-col bg-white dark:bg-obsidian-950 shadow-2xl overflow-hidden ${previewMode === 'mobile' ? 'w-[320px] rounded-[2rem] border-[6px] border-white/10 dark:border-white/10' : 'w-full max-w-[440px] rounded-lg border }`}
+                    <div className={`transition-all duration-300 flex flex-col bg-white dark:bg-obsidian-950 shadow-2xl overflow-hidden ${previewMode === 'mobile' ? 'w-[320px] rounded-[2rem] border-[6px] border-white/10 dark:border-white/10' : 'w-full max-w-[440px] rounded-lg border'}`}
                     >
                         {/* Header */}
                         <div className="px-5 py-4 border-b border-white/5 dark:border-white/10 flex items-center gap-3">

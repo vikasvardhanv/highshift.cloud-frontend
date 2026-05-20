@@ -197,7 +197,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                     <button
                         onClick={() => !soloMode && setShowAccountSelector(!showAccountSelector)}
                         disabled={soloMode}
-                        className={`w-full flex items-center justify-between px-3 py-2 bg-white/5 border ${showAccountSelector ? 'border-raven-500 ring-1 ring-raven-500' : 'border-white/10 dark:border-white/10'} rounded-lg text-sm transition-all ${soloMode 'opacity-75 cursor-default' 'hover:border-raven-500/30 hover:border-raven-700/30'}`}
+                        className={`w-full flex items-center justify-between px-3 py-2 bg-white/5 border ${showAccountSelector ? 'border-raven-500 ring-1 ring-raven-500' : 'border-white/10 dark:border-white/10'} rounded-lg text-sm transition-all ${soloMode ? 'opacity-75 cursor-default' : 'hover:border-raven-500/30 hover:border-raven-700/30'}`}
                     >
                         <div className="flex items-center gap-2 overflow-hidden">
                             <span className="font-medium text-gray-300">
@@ -436,7 +436,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
                                 onClick={handlePost}
                                 disabled={posting || (isScheduling && (!scheduledDate || !scheduledTime))}
                                 title={selectedAccounts.length === 0 ? 'Select or connect at least one account first' : undefined}
-                                className={`px-4 py-2 text-white text-sm font-medium rounded-lg shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors ${(isScheduling && scheduledDate scheduledTime) ? 'bg-raven-600 hover:bg-raven-700' : 'bg-obsidian-950 hover:bg-white/5 dark:bg-white text-white'}`}
+                                className={`px-4 py-2 text-white text-sm font-medium rounded-lg shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors ${(isScheduling && scheduledDate && scheduledTime) ? 'bg-raven-600 hover:bg-raven-700' : 'bg-obsidian-950 hover:bg-white/5 dark:bg-white text-white'}`}
                             >
                                 {posting ? (
                                     <Loader2 className="w-4 h-4 animate-spin" />

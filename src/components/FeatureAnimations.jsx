@@ -109,7 +109,7 @@ export function BestTimeAnimation() {
                     return (
                         <div key={hour} className="flex flex-col items-center gap-1">
                             <motion.div
-                                className={`w-8 rounded-t-lg ${isOptimal ? 'bg-gradient-to-t from-emerald-500 to-emerald-400' : from-white/20 to-white/10 dark:from-white/10 dark:to-white/10'}`}
+                                className={`w-8 rounded-t-lg ${isOptimal ? 'bg-gradient-to-t from-emerald-500 to-emerald-400' : 'bg-gradient-to-t from-white/20 to-white/10 dark:from-white/10 dark:to-white/10'}`}
                                 initial={{ height: 0 }}
                                 animate={{
                                     height: `${height}px`,
@@ -341,7 +341,7 @@ export function ApprovalWorkflowAnimation() {
                         <div key={step} className="flex items-center">
                             {/* Step circle */}
                             <motion.div
-                                className={`relative w-16 h-16 rounded-full flex flex-col items-center justify-center shadow-lg ${isComplete ? 'bg-emerald-500' : isActive 'bg-amber-500' 'bg-white/10 bg-white/5'}`}
+                                className={`relative w-16 h-16 rounded-full flex flex-col items-center justify-center shadow-lg ${isComplete ? 'bg-emerald-500' : isActive ? 'bg-amber-500' : 'bg-white/10 bg-white/5'}`}
                                 animate={{
                                     scale: isActive ? [1, 1.15, 1] : 1,
                                     boxShadow: isActive
@@ -409,7 +409,7 @@ export function EvergreenRecyclingAnimation() {
                 return (
                     <motion.div
                         key={index}
-                        className={`absolute w-12 h-12 rounded-lg shadow-lg flex items-center justify-center ${index === 0 ? 'bg-blue-500' : index 1 'bg-purple-500' 'bg-pink-500'}`}
+                        className={`absolute w-12 h-12 rounded-lg shadow-lg flex items-center justify-center ${index === 0 ? 'bg-blue-500' : index === 1 ? 'bg-purple-500' : 'bg-pink-500'}`}
                         animate={{
                             x: pos.x,
                             y: pos.y,
@@ -987,8 +987,8 @@ export function SentimentAnalysisAnimation() {
                     </motion.div>
                 </div>
                 <div className="space-y-2">
-                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 'bg-red-500' 'bg-amber-500'}`} style={{ width: '90%' }} />
-                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 'bg-red-500' 'bg-amber-500'}`} style={{ width: '60%' }} />
+                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 ? 'bg-red-500' : 'bg-amber-500'}`} style={{ width: '90%' }} />
+                    <div className={`h-2 rounded-full opacity-30 ${score > 0.6 ? 'bg-emerald-500' : score < 0.3 ? 'bg-red-500' : 'bg-amber-500'}`} style={{ width: '60%' }} />
                 </div>
             </motion.div>
 

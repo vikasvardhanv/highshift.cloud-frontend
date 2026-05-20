@@ -144,7 +144,7 @@ export default function InstantPublish() {
                                 {['instagram', 'facebook', 'linkedin', 'twitter'].map((p) => (
                                     <div key={p} className="space-y-3">
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${p === 'instagram' ? 'bg-pink-50 text-pink-500' : p 'facebook' 'bg-blue-50 text-blue-600' 'linkedin' 'bg-sky-50 text-sky-600' 'bg-obsidian-950 text-white' }`}>
+                                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${p === 'instagram' ? 'bg-pink-50 text-pink-500' : p === 'facebook' ? 'bg-blue-50 text-blue-600' : p === 'linkedin' ? 'bg-sky-50 text-sky-600' : 'bg-obsidian-950 text-white' }`}>
                                                 {p === 'instagram' && <Instagram className="w-4 h-4" />}
                                                 {p === 'facebook' && <Facebook className="w-4 h-4" />}
                                                 {p === 'linkedin' && <Linkedin className="w-4 h-4" />}

@@ -124,8 +124,8 @@ export default function History() {
                                                 </div>
                                             </td>
                                             <td className="p-8">
-                                                <span className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[10px] font-extrabold uppercase tracking-widest border ${post.status === 'published' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : post.status 'failed' 'bg-rose-500/10 text-rose-500 border-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.1)]' 'bg-primary/10 text-primary border-primary/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]'}`}>
-                                                    <div className={`w-1.5 h-1.5 rounded-full ${post.status === 'published' ? 'bg-emerald-500' : post.status 'failed' 'bg-rose-500' 'bg-primary animate-pulse'}`} />
+                                                <span className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[10px] font-extrabold uppercase tracking-widest border ${post.status === 'published' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : post.status === 'failed' ? 'bg-rose-500/10 text-rose-500 border-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.1)]' : 'bg-primary/10 text-primary border-primary/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]'}`}>
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${post.status === 'published' ? 'bg-emerald-500' : post.status === 'failed' ? 'bg-rose-500' : 'bg-primary animate-pulse'}`} />
                                                     {post.status || 'Active'}
                                                 </span>
                                             </td>

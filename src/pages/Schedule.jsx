@@ -110,7 +110,7 @@ export default function Schedule() {
 
                 days.push(
                     <div
-                        className={`min-h-[120px] p-2 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group ${!isSameMonth(day, monthStart) ? "text-gray-600 bg-transparent" : "text-gray-300"} ${isSameDay(day, selectedDate) "ring-1 ring-primary inset-0" ""}`}
+                        className={`min-h-[120px] p-2 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group ${!isSameMonth(day, monthStart) ? "text-gray-600 bg-transparent" : "text-gray-300"} ${isSameDay(day, selectedDate) ? "ring-1 ring-primary inset-0" : ""}`}
                         key={day.toString()}
                         onClick={() => onDateClick(cloneDay)}
                     >
