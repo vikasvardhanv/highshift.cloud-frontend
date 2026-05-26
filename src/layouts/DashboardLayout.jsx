@@ -49,7 +49,7 @@ export default function DashboardLayout({ children }) {
     };
 
     return (
-        <div className="min-h-screen bg-obsidian-950 font-sans flex overflow-x-hidden text-gray-100">
+        <div className="dashboard-shell min-h-screen bg-background dark:bg-obsidian-950 font-sans flex overflow-x-hidden text-slate-900 dark:text-gray-100">
             {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
             <Sidebar 
                 isOpen={sidebarOpen} 

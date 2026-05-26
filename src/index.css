@@ -9,26 +9,26 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-semibold tracking-tight text-white;
+    @apply font-heading font-semibold tracking-tight text-slate-900 dark:text-white;
   }
 }
 
 :root {
-  /* SOCIAL RAVEN — Dark Mode Default */
-  --background: 10 10 10;
-  --surface: 17 17 17;
-  --surface-highlight: 28 28 28;
+  /* SOCIAL RAVEN - Light Mode */
+  --background: 248 250 252;
+  --surface: 255 255 255;
+  --surface-highlight: 241 245 249;
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
   --secondary: 139 92 246;
   --accent: 167 139 250;
   --success: 34 197 94;
   --error: 239 68 68;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .dark {
-  /* SOCIAL RAVEN — Dark Mode */
+  /* SOCIAL RAVEN - Dark Mode */
   --background: 10 10 10;
   --surface: 17 17 17;
   --surface-highlight: 28 28 28;
@@ -42,13 +42,13 @@
 }
 
 body {
-  @apply bg-obsidian-950 text-gray-100 antialiased font-sans text-sm min-h-screen selection:bg-raven-900/60;
-  background-color: #0a0a0a;
+  @apply bg-background text-slate-900 antialiased font-sans text-sm min-h-screen selection:bg-raven-900/20 dark:text-gray-100 dark:selection:bg-raven-900/60;
+  background-color: rgb(var(--background));
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-obsidian-950/80 border border-white/5 rounded-xl shadow-sm backdrop-blur-sm;
+    @apply bg-white/90 dark:bg-obsidian-950/80 border border-slate-200/80 dark:border-white/5 rounded-xl shadow-sm backdrop-blur-sm;
   }
 
   .glass-button {
@@ -82,4 +82,53 @@ body {
   .brand-textarea {
     @apply w-full rounded-3xl border border-white/10 bg-white/5 p-6 text-sm font-medium leading-6 text-white outline-none transition-all placeholder:text-gray-600 focus:border-raven-500/60 focus:bg-white/[0.07];
   }
+}
+
+html:not(.dark) .dashboard-shell .bg-obsidian-950 {
+  background-color: rgb(var(--background)) !important;
+}
+
+html:not(.dark) .dashboard-shell .bg-obsidian-950\/80 {
+  background-color: rgb(var(--surface) / 0.86) !important;
+}
+
+html:not(.dark) .dashboard-shell .bg-black,
+html:not(.dark) .dashboard-shell .bg-black\/95 {
+  background-color: rgb(var(--surface)) !important;
+}
+
+html:not(.dark) .dashboard-shell .bg-black\/40,
+html:not(.dark) .dashboard-shell .bg-black\/20 {
+  background-color: rgb(var(--surface-highlight) / 0.8) !important;
+}
+
+html:not(.dark) .dashboard-shell .bg-white\/5,
+html:not(.dark) .dashboard-shell .bg-white\/10,
+html:not(.dark) .dashboard-shell .bg-white\/20,
+html:not(.dark) .dashboard-shell .bg-white\/30,
+html:not(.dark) .dashboard-shell .bg-white\/\[0\.01\],
+html:not(.dark) .dashboard-shell .bg-white\/\[0\.02\],
+html:not(.dark) .dashboard-shell .bg-white\/\[0\.03\],
+html:not(.dark) .dashboard-shell .bg-white\/\[0\.04\],
+html:not(.dark) .dashboard-shell .bg-white\/\[0\.07\] {
+  background-color: rgb(15 23 42 / 0.04) !important;
+}
+
+html:not(.dark) .dashboard-shell .border-white\/5,
+html:not(.dark) .dashboard-shell .border-white\/10,
+html:not(.dark) .dashboard-shell .border-white\/20,
+html:not(.dark) .dashboard-shell .border-white\/30 {
+  border-color: rgb(15 23 42 / 0.1) !important;
+}
+
+html:not(.dark) .dashboard-shell .text-white,
+html:not(.dark) .dashboard-shell .text-gray-100,
+html:not(.dark) .dashboard-shell .text-gray-200,
+html:not(.dark) .dashboard-shell .text-gray-300 {
+  color: rgb(15 23 42) !important;
+}
+
+html:not(.dark) .dashboard-shell :is(.bg-raven-600, .bg-raven-500, .bg-primary, .bg-red-500, .bg-emerald-500, .bg-indigo-600, .bg-amber-500, .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-t).text-white,
+html:not(.dark) .dashboard-shell :is(.bg-raven-600, .bg-raven-500, .bg-primary, .bg-red-500, .bg-emerald-500, .bg-indigo-600, .bg-amber-500, .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-t) .text-white {
+  color: white !important;
 }

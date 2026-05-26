@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Connections from './pages/Connections';
@@ -71,6 +72,11 @@ function PublicLayout({ children }) {
 }
 
 function App() {
+  useEffect(() => {
+    const theme = localStorage.getItem('theme') || 'light';
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, []);
+
   return (
     <Router>
       <RavenCursor />
