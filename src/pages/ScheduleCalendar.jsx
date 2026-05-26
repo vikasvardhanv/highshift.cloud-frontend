@@ -141,7 +141,7 @@ export default function ScheduleCalendar() {
         const days = [];
 
         for (let i = 0; i < firstDay; i++) {
-            days.push(<div key={`empty-${i}`} className="h-32 bg-obsidian-950/30 dark:bg-obsidian-950/30 border border-white/5 dark:border-white/10"></div>);
+            days.push(<div key={`empty-${i}`} className="h-32 bg-slate-50/30 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800/50"></div>);
         }
 
         for (let day = 1; day <= daysInMonth; day++) {
@@ -150,9 +150,9 @@ export default function ScheduleCalendar() {
             const isToday = new Date().toDateString() === new Date(currentDate.getFullYear(), currentDate.getMonth(), day).toDateString();
 
             days.push(
-                <div key={day} className={`h-32 border border-white/5 p-2 transition-all hover:bg-obsidian-950 relative group ${isToday ? 'bg-raven-500/10/30' : 'bg-white'}`}>
+                <div key={day} className={`h-32 border border-slate-100 dark:border-slate-800 p-2 transition-all hover:bg-slate-50 dark:hover:bg-slate-800 relative group ${isToday ? 'bg-indigo-50/30 dark:bg-indigo-900/20' : 'bg-white dark:bg-slate-900'}`}>
                     <div className="flex justify-between items-start mb-2">
-                        <span className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-lg ${isToday ? 'bg-raven-600 text-white shadow-lg shadow-indigo-500/30' : 'text-gray-500'}`}>
+                        <span className={`text-sm font-semibold w-7 h-7 flex items-center justify-center rounded-lg ${isToday ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30' : 'text-slate-500 dark:text-slate-400'}`}>
                             {day}
                         </span>
                         {dayPosts.length > 0 && (
@@ -162,7 +162,7 @@ export default function ScheduleCalendar() {
                         )}
                         <button
                             onClick={() => setShowComposer(true)}
-                            className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-raven-500 transition-all transform hover:scale-110"
+                            className="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-indigo-500 transition-all transform hover:scale-110"
                         >
                             <Plus className="w-4 h-4" />
                         </button>
@@ -173,13 +173,13 @@ export default function ScheduleCalendar() {
                             <div
                                 key={post.id || idx}
                                 onClick={(e) => { e.stopPropagation(); }}
-                                className={`group/post relative p-2 rounded-lg bg-white/5 border transition-all cursor-pointer shadow-sm hover:shadow-md ${ post.status === 'failed' ? 'border-red-200 hover:border-red-400' : post.status === 'published' ? 'border-emerald-200 hover:border-emerald-400' : 'border-white/10 dark:border-white/10 hover:border-raven-400 dark:hover:border-raven-500' }`}
+                                className={`group/post relative p-2 rounded-lg bg-white dark:bg-slate-800 border transition-all cursor-pointer shadow-sm hover:shadow-md ${ post.status === 'failed' ? 'border-red-200 hover:border-red-400' : post.status === 'published' ? 'border-emerald-200 hover:border-emerald-400' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500' }`}
                             >
                                 <div className="flex items-center gap-1.5 mb-1">
-                                    <Clock className="w-3 h-3 text-gray-400" />
-                                    <span className="text-[10px] font-bold text-gray-300">{post.time}</span>
+                                    <Clock className="w-3 h-3 text-slate-400" />
+                                    <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300">{post.time}</span>
                                 </div>
-                                <div className="text-xs text-gray-400 truncate font-medium">{post.content}</div>
+                                <div className="text-xs text-slate-600 dark:text-slate-400 truncate font-medium">{post.content}</div>
                                 {post.status && (
                                     <div className={`mt-1 text-[9px] font-bold uppercase tracking-wide ${ post.status === 'failed' ? 'text-red-500' : post.status === 'published' ? 'text-emerald-500' : 'text-raven-500' }`}>
                                         {post.status}
@@ -187,7 +187,7 @@ export default function ScheduleCalendar() {
                                 )}
                                 <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover/post:opacity-100 transition-opacity">
                                     {post.platforms?.slice(0, 3).map((p, i) => (
-                                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-raven-500"></div>
+                                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
                                     ))}
                                 </div>
                             </div>
@@ -205,25 +205,25 @@ export default function ScheduleCalendar() {
             <div className="flex-1 flex flex-col space-y-6 overflow-hidden">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-1">
                     <div>
-                        <h1 className="text-3xl font-extrabold tracking-tight text-white">Temporal Command</h1>
-                        <p className="text-gray-500 text-sm font-medium mt-1">Orchestrate your global transmission capability.</p>
+                        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Temporal Command</h1>
+                        <p className="text-slate-500 text-sm font-medium mt-1">Orchestrate your global transmission capability.</p>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2 bg-white p-1.5 rounded-xl border border-white/10 shadow-sm">
-                            <button onClick={() => navigateMonth(-1)} className="p-2 hover:bg-white/5 rounded-lg text-gray-400 transition-colors">
+                        <div className="schedule-month-control flex items-center gap-2 bg-white text-slate-900 dark:bg-slate-900 dark:text-white p-1.5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <button onClick={() => navigateMonth(-1)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-400 dark:text-slate-300 transition-colors" aria-label="Previous month">
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
-                            <span className="text-sm font-bold text-white min-w-[120px] text-center uppercase tracking-wider">
+                            <span className="text-sm font-bold min-w-[120px] text-center uppercase tracking-wider">
                                 {MONTHS[currentDate.getMonth()]} {currentDate.getFullYear()}
                             </span>
-                            <button onClick={() => navigateMonth(1)} className="p-2 hover:bg-white/5 rounded-lg text-gray-400 transition-colors">
+                            <button onClick={() => navigateMonth(1)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-400 dark:text-slate-300 transition-colors" aria-label="Next month">
                                 <ChevronRight className="w-5 h-5" />
                             </button>
                         </div>
                         <button
                             onClick={() => setShowComposer(true)}
-                            className="bg-raven-600 hover:bg-raven-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-raven-500/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
                         >
                             <Plus className="w-4 h-4" />
                             <span>Schedule Post</span>
@@ -231,10 +231,10 @@ export default function ScheduleCalendar() {
                     </div>
                 </div>
 
-                <div className="flex-1 bg-white rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden flex flex-col">
-                    <div className="grid grid-cols-7 border-b border-white/10 bg-obsidian-950 backdrop-blur-sm z-10">
+                <div className="flex-1 bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col">
+                    <div className="grid grid-cols-7 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900 backdrop-blur-sm z-10">
                         {DAYS.map(day => (
-                            <div key={day} className="py-4 text-center text-xs font-bold text-gray-400 uppercase tracking-widest">
+                            <div key={day} className="py-4 text-center text-xs font-bold text-slate-400 uppercase tracking-widest">
                                 {day}
                             </div>
                         ))}
@@ -248,16 +248,16 @@ export default function ScheduleCalendar() {
             {/* Recent Activity Sidebar */}
             <div className="w-80 shrink-0 hidden xl:flex flex-col gap-6 p-1">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-bold text-white">Recent Activity</h2>
-                    <button onClick={loadActivity} className="p-2 rounded-lg hover:bg-white/5 dark:hover:bg-white/5 transition-colors" title="Refresh">
-                        <MoreVertical className="w-4 h-4 text-gray-400" />
+                    <h2 className="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h2>
+                    <button onClick={loadActivity} className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Refresh">
+                        <MoreVertical className="w-4 h-4 text-slate-400" />
                     </button>
                 </div>
 
                 <div className="space-y-4 max-h-[calc(100vh-250px)] overflow-y-auto scrollbar-hide">
                     {recentActivity.length > 0 ? (
                         recentActivity.map((log) => {
-                            let icon = <Activity className="w-4 h-4 text-gray-500" />;
+                            let icon = <Activity className="w-4 h-4 text-slate-500" />;
                             let accent = 'blue';
 
                             if (log.type === 'success') {
@@ -284,22 +284,22 @@ export default function ScheduleCalendar() {
                                     platform={log.platform || 'System'}
                                     time={formatTimeAgo(log.time)}
                                     accent={accent}
-                                    error={log.meta?.error}
+                                    error={getActivityError(log)}
                                 />
                             )
                         })
                     ) : (
-                        <div className="text-center py-10 text-gray-500">
+                        <div className="text-center py-10 text-slate-500">
                             <Activity className="w-8 h-8 mx-auto mb-2 opacity-50" />
                             <p className="text-sm">No recent activity</p>
                         </div>
                     )}
                 </div>
 
-                <div className="mt-auto p-6 rounded-2xl bg-raven-600 text-white shadow-xl shadow-raven-500/20 relative overflow-hidden group cursor-pointer">
+                <div className="mt-auto p-6 rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-500/20 relative overflow-hidden group cursor-pointer">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-700 group-hover:scale-110"></div>
                     <h3 className="text-lg font-bold relative z-10">View Full History</h3>
-                    <p className="text-raven-100 text-xs font-medium mt-1 relative z-10">Analyze your transmission logs.</p>
+                    <p className="text-indigo-100 text-xs font-medium mt-1 relative z-10">Analyze your transmission logs.</p>
                 </div>
             </div>
 
@@ -310,7 +310,7 @@ export default function ScheduleCalendar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian-950/60 backdrop-blur-md"
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
                         onClick={() => setShowComposer(false)}
                     >
                         <motion.div
@@ -318,12 +318,12 @@ export default function ScheduleCalendar() {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
                             onClick={e => e.stopPropagation()}
-                            className="w-full max-w-2xl bg-white dark:bg-obsidian-950 rounded-3xl shadow-2xl shadow-raven-500/10 border border-white/10 dark:border-white/10 overflow-hidden"
+                            className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-indigo-500/10 border border-slate-200 dark:border-slate-800 overflow-hidden"
                         >
-                            <div className="p-4 border-b border-white/5 dark:border-white/10 flex justify-between items-center bg-obsidian-950 dark:bg-obsidian-950">
-                                <h3 className="font-bold text-gray-200 text-white">New Transmission</h3>
-                                <button onClick={() => setShowComposer(false)} className="p-2 hover:bg-white/10 dark:hover:bg-white/5 rounded-full transition-colors">
-                                    <X className="w-5 h-5 text-gray-500" />
+                            <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
+                                <h3 className="font-bold text-slate-800 dark:text-white">New Transmission</h3>
+                                <button onClick={() => setShowComposer(false)} className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+                                    <X className="w-5 h-5 text-slate-500" />
                                 </button>
                             </div>
                             <div className="p-6">
@@ -352,17 +352,17 @@ function ActivityCard({ icon, title, platform, time, accent, error }) {
     };
 
     return (
-        <div className="group flex flex-col gap-2 p-4 rounded-2xl bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 hover:border-raven-500/30 transition-all hover:shadow-lg hover:shadow-raven-500/5 cursor-pointer">
+        <div className="group flex flex-col gap-2 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all hover:shadow-lg hover:shadow-indigo-500/5 cursor-pointer">
             <div className="flex items-center gap-4 w-full">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${colors[accent]} group-hover:scale-110 transition-transform duration-300 shrink-0`}>
                     {icon}
                 </div>
                 <div className="min-w-0 flex-1">
-                    <h4 className="text-sm font-bold text-white truncate">{title}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate">{title}</h4>
                     <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-xs font-medium text-gray-500">{platform}</span>
-                        <span className="w-1 h-1 rounded-full bg-white/10 bg-white/5"></span>
-                        <span className="text-xs text-gray-400">{time}</span>
+                        <span className="text-xs font-medium text-slate-500">{platform}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+                        <span className="text-xs text-slate-400">{time}</span>
                     </div>
                 </div>
             </div>
@@ -373,6 +373,19 @@ function ActivityCard({ icon, title, platform, time, accent, error }) {
             )}
         </div>
     );
+}
+
+function getActivityError(log) {
+    const meta = typeof log.meta === 'string' ? parseJson(log.meta) : log.meta;
+    return meta?.error || meta?.detail || log.error || '';
+}
+
+function parseJson(value) {
+    try {
+        return JSON.parse(value);
+    } catch {
+        return {};
+    }
 }
 
 function formatTimeAgo(dateString) {
