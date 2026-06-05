@@ -22,7 +22,7 @@ export default function ProductPage() {
                         <div className="w-24 h-24 rounded-[2rem] bg-raven-600 flex items-center justify-center shadow-2xl shadow-raven-600/30">
                             <Zap className="w-12 h-12 text-white fill-white" />
                         </div>
-                        <h1 className="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-[0.8] mb-4">
+                        <h1 className="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-[0.8] mb-4 text-white">
                             Engineered<br/>For Impact
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-400 font-bold uppercase tracking-[0.2em] mb-12">
@@ -79,7 +79,7 @@ export default function ProductPage() {
             <section className="py-32 bg-white/5 border-y border-white/5 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="mb-20 text-center">
-                        <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4">Advanced Architecture</h2>
+                        <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 text-white">Advanced Architecture</h2>
                         <p className="text-gray-500 font-bold tracking-widest uppercase text-xs">A Technical Masterpiece Built for Scale</p>
                     </div>
 
@@ -95,7 +95,7 @@ export default function ProductPage() {
             {/* Bottom CTA */}
             <section className="py-40 px-6 text-center">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-12">Take Flight Today</h2>
+                    <h2 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-12 text-white">Take Flight Today</h2>
                     <button className="group relative px-16 py-8 bg-raven-600 text-white font-black uppercase italic tracking-tighter text-3xl rounded-[2.5rem] shadow-2xl shadow-raven-600/40 hover:scale-110 active:scale-95 transition-all overflow-hidden">
                         <span className="relative z-10 flex items-center gap-4">Start Your Evolution <ArrowRight className="w-10 h-10 group-hover:translate-x-3 transition-transform" /></span>
                         <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-raven-500 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -114,7 +114,7 @@ function Module({ icon: Icon, title, headline, desc, reverse, color }) {
                 <div className={`flex items-center gap-3 font-black italic uppercase tracking-[0.2em] text-sm ${color}`}>
                     <Icon className="w-5 h-5" /> {title}
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-tight">{headline}</h2>
+                <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-tight text-white">{headline}</h2>
                 <p className="text-xl text-gray-400 font-medium max-w-xl leading-relaxed">{desc}</p>
                 <button className="flex items-center gap-2 text-white font-black italic uppercase tracking-widest text-xs group">
                     Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
