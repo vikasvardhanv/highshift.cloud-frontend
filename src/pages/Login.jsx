@@ -23,6 +23,20 @@ export default function Login() {
         }
     }, [navigate]);
 
+    // Handle incoming URL errors (e.g. from Google auth redirect)
+    useEffect(() => {
+        const errParam = searchParams.get('error');
+        if (errParam) {
+            if (errParam === 'google_auth_timeout') {
+                setError('Google authentication request timed out. Please try again.');
+            } else if (errParam === 'google_auth_failed') {
+                setError('Google authentication failed. Please try again.');
+            } else {
+                setError(decodeURIComponent(errParam));
+            }
+        }
+    }, [searchParams]);
+
     const handleGoogleLogin = () => {
         // Redirect to backend endpoint for Google Auth
         const googleAuthUrl = `${API_URL}/auth/google`;

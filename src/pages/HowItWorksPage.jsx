@@ -26,14 +26,14 @@ export default function HowItWorksPage() {
                             <p className="text-lg text-gray-400 mb-8">
                                 Connect any social account via OAuth in seconds. We handle the technical complexities of each platform's API so you don't have to.
                             </p>
-                            <img src="/static/images/connections-preview.png" alt="Connections" className="rounded-2xl shadow-2xl border border-white/5 dark:border-white/10" />
+                            <img src="/images/connections-preview.png" alt="Connections" className="rounded-2xl shadow-2xl border border-white/5 dark:border-white/10" />
                         </div>
                         <div>
                             <h2 className="text-3xl font-bold mb-6 text-white">Visual Scheduling</h2>
                             <p className="text-lg text-gray-400 mb-8">
                                 Use our drag-and-drop calendar to plan your week, month, or quarter. We'll find the peak engagement hours for your specific audience.
                             </p>
-                            <img src="/static/images/calendar-preview.png" alt="Calendar" className="rounded-2xl shadow-2xl border border-white/5 dark:border-white/10" />
+                            <img src="/images/calendar-preview.png" alt="Calendar" className="rounded-2xl shadow-2xl border border-white/5 dark:border-white/10" />
                         </div>
                     </div>
                 </div>
