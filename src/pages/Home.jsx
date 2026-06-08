@@ -116,10 +116,10 @@ export default function Home() {
                         <div className="lg:col-span-1 lg:col-start-4 bg-white/5 p-10 rounded-[2.5rem] h-fit border border-white/5 backdrop-blur-3xl">
                             <h3 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-8">Ecosystem</h3>
                             <div className="space-y-8">
-                                <PlatformLink title="Product Tour" />
-                                <PlatformLink title="AI Ghostwriter" />
-                                <PlatformLink title="Market Intelligence" />
-                                <PlatformLink title="Enterprise Nodes" />
+                                <PlatformLink title="Product Tour" to="/product" />
+                                <PlatformLink title="AI Ghostwriter" to="/features/ghostwriter" />
+                                <PlatformLink title="Market Intelligence" to="/features/listening" />
+                                <PlatformLink title="Enterprise Nodes" to="/solutions/enterprise" />
                             </div>
 
                             <div className="mt-8 pt-8 border-t border-white/10 dark:border-white/10">
@@ -171,11 +171,11 @@ function FeatureItem({ icon: Icon, title, desc }) {
     )
 }
 
-function PlatformLink({ title }) {
+function PlatformLink({ title, to }) {
     return (
-        <a href="#" className="flex items-center justify-between group cursor-pointer hover:bg-white/5 p-3 -mx-3 rounded-2xl transition-all duration-300">
+        <Link to={to} className="flex items-center justify-between group cursor-pointer hover:bg-white/5 p-3 -mx-3 rounded-2xl transition-all duration-300">
             <span className="text-lg font-bold text-white group-hover:text-raven-400 tracking-tight">{title}</span>
             <ChevronRight className="w-5 h-5 text-raven-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
-        </a>
+        </Link>
     )
 }
