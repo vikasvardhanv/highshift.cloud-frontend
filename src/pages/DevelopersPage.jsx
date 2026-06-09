@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { Code, Boxes, Zap, ArrowRight, BookOpen, Key } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function DevelopersPage() {
     return (
-        <div className="bg-obsidian-950 min-h-screen text-white pt-16 font-sans">
-            <Navbar />
-            <div className="container mx-auto px-4 py-32 max-w-7xl">
+        <div className="container mx-auto px-4 py-32 max-w-7xl">
                 {/* Header Section */}
                 <div className="text-center mb-16 relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-raven-500/10 blur-[100px] pointer-events-none" />
@@ -103,8 +99,6 @@ print(f"Scheduled Post ID: {response.id}")`}
                     </div>
                 </div>
             </div>
-            <Footer />
-        </div>
     );
 }
 
