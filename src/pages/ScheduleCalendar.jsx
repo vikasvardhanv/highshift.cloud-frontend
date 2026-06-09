@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
     ChevronLeft, ChevronRight, Clock, MoreVertical,
     X, Plus, TrendingUp, Activity
@@ -12,9 +13,12 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export default function ScheduleCalendar() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [currentDate, setCurrentDate] = useState(new Date());
     const [posts, setPosts] = useState({});
     const [showComposer, setShowComposer] = useState(false);
+    const [composerInitialContent, setComposerInitialContent] = useState('');
     const [accounts, setAccounts] = useState([]);
     const [profiles, setProfiles] = useState([]);
     const [selectedAccounts, setSelectedAccounts] = useState([]);
@@ -40,6 +44,19 @@ export default function ScheduleCalendar() {
 
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+        if (location.state?.openComposer || location.state?.draftContent) {
+            setComposerInitialContent(location.state?.draftContent || '');
+            setShowComposer(true);
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [location.pathname, location.state, navigate]);
+
+    const openComposer = (initialContent = '') => {
+        setComposerInitialContent(initialContent);
+        setShowComposer(true);
+    };
 
     const loadProfiles = async () => {
         try {
@@ -161,7 +178,7 @@ export default function ScheduleCalendar() {
                             </span>
                         )}
                         <button
-                            onClick={() => setShowComposer(true)}
+                            onClick={() => openComposer()}
                             className="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-indigo-500 transition-all transform hover:scale-110"
                         >
                             <Plus className="w-4 h-4" />
@@ -169,29 +186,47 @@ export default function ScheduleCalendar() {
                     </div>
 
                     <div className="space-y-1.5 overflow-y-auto max-h-[calc(100%-2rem)] custom-scrollbar">
-                        {dayPosts.map((post, idx) => (
-                            <div
-                                key={post.id || idx}
-                                onClick={(e) => { e.stopPropagation(); }}
-                                className={`group/post relative p-2 rounded-lg bg-white dark:bg-slate-800 border transition-all cursor-pointer shadow-sm hover:shadow-md ${ post.status === 'failed' ? 'border-red-200 hover:border-red-400' : post.status === 'published' ? 'border-emerald-200 hover:border-emerald-400' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500' }`}
-                            >
-                                <div className="flex items-center gap-1.5 mb-1">
-                                    <Clock className="w-3 h-3 text-slate-400" />
-                                    <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300">{post.time}</span>
-                                </div>
-                                <div className="text-xs text-slate-600 dark:text-slate-400 truncate font-medium">{post.content}</div>
-                                {post.status && (
-                                    <div className={`mt-1 text-[9px] font-bold uppercase tracking-wide ${ post.status === 'failed' ? 'text-red-500' : post.status === 'published' ? 'text-emerald-500' : 'text-raven-500' }`}>
-                                        {post.status}
+                        {dayPosts.map((post, idx) => {
+                            const platforms = getPostPlatforms(post);
+                            return (
+                                <div
+                                    key={post.id || idx}
+                                    onClick={(e) => { e.stopPropagation(); }}
+                                    className={`group/post relative p-2 rounded-lg bg-white dark:bg-slate-800 border transition-all cursor-pointer shadow-sm hover:shadow-md ${post.status === 'failed' ? 'border-red-200 hover:border-red-400' : post.status === 'published' ? 'border-emerald-200 hover:border-emerald-400' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500'}`}
+                                    title={post.error || post.content}
+                                >
+                                    <div className="flex items-center justify-between gap-2 mb-1">
+                                        <div className="flex items-center gap-1.5 min-w-0">
+                                            <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                                            <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 truncate">{post.time}</span>
+                                        </div>
+                                        {post.status && (
+                                            <span className={`text-[9px] font-bold uppercase tracking-wide shrink-0 ${post.status === 'failed' ? 'text-red-500' : post.status === 'published' ? 'text-emerald-500' : 'text-raven-500'}`}>
+                                                {post.status}
+                                            </span>
+                                        )}
                                     </div>
-                                )}
-                                <div className="absolute top-1 right-1 flex gap-0.5 opacity-0 group-hover/post:opacity-100 transition-opacity">
-                                    {post.platforms?.slice(0, 3).map((p, i) => (
-                                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
-                                    ))}
+                                    <div className="text-xs text-slate-600 dark:text-slate-400 truncate font-medium">{post.content}</div>
+                                    {platforms.length > 0 && (
+                                        <div className="mt-1.5 flex flex-wrap gap-1">
+                                            {platforms.slice(0, 3).map((platform) => (
+                                                <span
+                                                    key={platform}
+                                                    className="px-1.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-500 text-[9px] font-bold uppercase tracking-wide border border-indigo-500/20"
+                                                >
+                                                    {platform}
+                                                </span>
+                                            ))}
+                                            {platforms.length > 3 && (
+                                                <span className="px-1.5 py-0.5 rounded-md bg-slate-500/10 text-slate-500 text-[9px] font-bold">
+                                                    +{platforms.length - 3}
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             );
@@ -222,7 +257,7 @@ export default function ScheduleCalendar() {
                             </button>
                         </div>
                         <button
-                            onClick={() => setShowComposer(true)}
+                            onClick={() => openComposer()}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
                         >
                             <Plus className="w-4 h-4" />
@@ -311,7 +346,7 @@ export default function ScheduleCalendar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
-                        onClick={() => setShowComposer(false)}
+                        onClick={() => { setShowComposer(false); setComposerInitialContent(''); }}
                     >
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -322,17 +357,19 @@ export default function ScheduleCalendar() {
                         >
                             <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
                                 <h3 className="font-bold text-slate-800 dark:text-white">New Transmission</h3>
-                                <button onClick={() => setShowComposer(false)} className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+                                <button onClick={() => { setShowComposer(false); setComposerInitialContent(''); }} className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
                                     <X className="w-5 h-5 text-slate-500" />
                                 </button>
                             </div>
                             <div className="p-6">
                                 <Composer
-                                    onSuccess={async () => { setShowComposer(false); await loadSchedule(); }}
+                                    onSuccess={async () => { setShowComposer(false); setComposerInitialContent(''); await loadSchedule(); }}
                                     selectedAccounts={selectedAccounts}
                                     accounts={accounts}
                                     profiles={profiles}
                                     onAccountToggle={handleAccountToggle}
+                                    initialContent={composerInitialContent}
+                                    defaultScheduling
                                 />
                             </div>
                         </motion.div>
@@ -373,6 +410,11 @@ function ActivityCard({ icon, title, platform, time, accent, error }) {
             )}
         </div>
     );
+}
+
+function getPostPlatforms(post) {
+    const platforms = post.platforms || (post.accounts || post.target_accounts || []).map((account) => account.platform);
+    return [...new Set((platforms || []).filter(Boolean).map((platform) => String(platform).toLowerCase()))];
 }
 
 function getActivityError(log) {

@@ -15,7 +15,15 @@ const UPLOAD_METHODS = [
     { id: 'file', label: 'Media', icon: ImageIcon },
 ];
 
-export default function Composer({ accounts = [], selectedAccounts = [], profiles = [], onAccountToggle, onSuccess }) {
+export default function Composer({
+    accounts = [],
+    selectedAccounts = [],
+    profiles = [],
+    onAccountToggle,
+    onSuccess,
+    initialContent = '',
+    defaultScheduling = false,
+}) {
     const [postText, setPostText] = useState('');
     const [posting, setPosting] = useState(false);
     const [uploadMethod, setUploadMethod] = useState('text');
@@ -34,6 +42,18 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
     const [scheduledTime, setScheduledTime] = useState('');
 
     const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        if (initialContent) {
+            setPostText(initialContent);
+        }
+    }, [initialContent]);
+
+    useEffect(() => {
+        if (defaultScheduling) {
+            setIsScheduling(true);
+        }
+    }, [defaultScheduling]);
 
     // Set default schedule time to tomorrow 10am if not set
     useEffect(() => {
@@ -74,7 +94,7 @@ export default function Composer({ accounts = [], selectedAccounts = [], profile
         setGenerating(true);
         try {
             const result = await generateContent(aiPrompt, 'twitter', 'Professional');
-            setPostText(result);
+            setPostText(result?.content || '');
             setShowAiModal(false);
             setAiPrompt('');
         } catch (err) {

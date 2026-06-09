@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, Bot, User, Copy, RefreshCw, Loader2, Zap, Command, Image as ImageIcon, Film } from 'lucide-react';
+import { Send, Sparkles, Bot, User, Copy, RefreshCw, Loader2, Zap, Command, Film, Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { generateContent } from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AiStudio() {
+    const navigate = useNavigate();
     const [messages, setMessages] = useState([
         {
             role: 'assistant',
@@ -53,6 +55,16 @@ export default function AiStudio() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const scheduleMessage = (content) => {
+        if (!content) return;
+        navigate('/schedule', {
+            state: {
+                openComposer: true,
+                draftContent: content,
+            },
+        });
     };
 
     return (
@@ -148,6 +160,14 @@ export default function AiStudio() {
                                                 className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-raven-400 transition-colors"
                                             >
                                                 <Copy className="w-3 h-3" /> Copy
+                                            </button>
+                                        )}
+                                        {msg.type === 'text' && msg.content && (
+                                            <button
+                                                onClick={() => scheduleMessage(msg.content)}
+                                                className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-raven-400 transition-colors"
+                                            >
+                                                <Calendar className="w-3 h-3" /> Schedule
                                             </button>
                                         )}
                                         <button className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-raven-400 transition-colors">
