@@ -19,7 +19,7 @@ export default function DevelopersPage() {
                     >
                         <Code className="w-3 h-3" /> API Documentation & Developer Tools
                     </motion.div>
-                    <h1 className="text-5xl md:text-8xl font-black mb-8 italic tracking-tighter">
+                    <h1 className="text-5xl md:text-8xl font-black mb-8 italic tracking-tighter text-white">
                         Extensible <br/> Infrastructure
                     </h1>
                     <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -65,7 +65,7 @@ export default function DevelopersPage() {
                     </div>
                     <div className="grid lg:grid-cols-2 gap-16 relative z-10">
                         <div>
-                            <h2 className="text-4xl font-bold mb-8">Performance Optimized SDKs</h2>
+                            <h2 className="text-4xl font-bold mb-8 text-white">Performance Optimized SDKs</h2>
                             <p className="text-lg text-gray-400 mb-12">
                                 We provide official SDK libraries for Python, JavaScript, and Ruby. Scale your social automation without worrying about rate limits or authentication flow.
                             </p>
@@ -114,7 +114,7 @@ function DevCard({ icon: Icon, iconColor, title, description, code, link, linkTe
             <div className={`w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 overflow-hidden`}>
                 <Icon className={`w-6 h-6 ${iconColor}`} />
             </div>
-            <h3 className="text-xl font-bold mb-3">{title}</h3>
+            <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
             <p className="text-gray-500 mb-8 text-sm leading-relaxed">
                 {description}
             </p>
