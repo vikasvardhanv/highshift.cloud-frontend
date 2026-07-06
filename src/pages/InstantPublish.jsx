@@ -3,7 +3,6 @@ import {
     Zap, Sparkles, Send, Loader2, Info, ChevronRight, Globe,
     Instagram, Facebook, Twitter, Linkedin, Cloud, Key, Settings, User, Network
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { triggerInstantPublish, getDeveloperKeys, updateDeveloperKeys } from '../services/api';
 
 export default function InstantPublish() {

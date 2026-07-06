@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Code, Boxes, Zap, ArrowRight, BookOpen, Key } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

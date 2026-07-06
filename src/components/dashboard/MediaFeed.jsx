@@ -50,10 +50,6 @@ export default function MediaFeed() {
         }
     ];
 
-    useEffect(() => {
-        loadData();
-    }, []);
-
     const loadData = async () => {
         try {
             const data = await getAccounts();
@@ -64,6 +60,10 @@ export default function MediaFeed() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        loadData();
+    }, []);
 
     if (loading) {
         return (

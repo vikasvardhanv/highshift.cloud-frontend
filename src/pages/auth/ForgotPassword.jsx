@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Check, AlertCircle, ArrowLeft, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { api } from '../../services/api';
 
 export default function ForgotPassword() {

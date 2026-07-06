@@ -6,17 +6,18 @@ import { motion } from 'framer-motion';
 export default function AuthCallback() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-    const [status, setStatus] = useState('processing');
+
+    const token = searchParams.get('token');
+    const apiKey = searchParams.get('apiKey');
+    const platform = searchParams.get('platform');
+    const accountId = searchParams.get('accountId');
+    const profileId = searchParams.get('profileId');
+    const error = searchParams.get('error');
+
+    const initialStatus = error ? 'error' : (token || platform || accountId || apiKey) ? 'success' : 'error';
+    const [status] = useState(initialStatus);
 
     useEffect(() => {
-        // Extract all parameters
-        const token = searchParams.get('token');
-        const apiKey = searchParams.get('apiKey');
-        const platform = searchParams.get('platform');
-        const accountId = searchParams.get('accountId');
-        const profileId = searchParams.get('profileId');
-        const error = searchParams.get('error');
-
         // 1. Store JWT token if present
         if (token) {
             localStorage.setItem('token', token);
@@ -27,12 +28,9 @@ export default function AuthCallback() {
             localStorage.setItem('social_api_key', apiKey);
         }
 
-        // 3. Determine success/error status
-        if (error) {
-            setStatus('error');
-        } else if (token || platform || accountId || apiKey) {
-            setStatus('success');
-            setTimeout(() => {
+        // 3. Handle success redirect
+        if (status === 'success') {
+            const timer = setTimeout(() => {
                 const params = new URLSearchParams();
                 if (platform) params.set('connected', platform);
                 if (accountId) params.set('accountId', accountId);
@@ -42,10 +40,9 @@ export default function AuthCallback() {
                 }
                 navigate(`/connections${params.toString() ? `?${params.toString()}` : ''}`, { replace: true });
             }, 1200);
-        } else {
-            setStatus('error');
+            return () => clearTimeout(timer);
         }
-    }, [searchParams, navigate]);
+    }, [navigate, token, apiKey, platform, accountId, profileId, status]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[80vh] relative overflow-hidden bg-obsidian-950">

@@ -3,7 +3,6 @@ import { format, startOfWeek, addDays, startOfMonth, endOfMonth, endOfWeek, isSa
 import { ChevronLeft, ChevronRight, Plus, Loader2, Twitter, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { getScheduledPosts } from '../services/api';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const PLATFORM_COLORS = {
     twitter: 'bg-blue-500/20 text-blue-300 border-blue-500/30',

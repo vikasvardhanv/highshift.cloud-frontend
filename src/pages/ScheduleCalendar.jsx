@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 import { getScheduleCalendar, getScheduledPosts, processDueScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
-import { motion, AnimatePresence } from 'framer-motion';
 import { formatLocalTime, getLocalDateKey } from '../utils/scheduleTime';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

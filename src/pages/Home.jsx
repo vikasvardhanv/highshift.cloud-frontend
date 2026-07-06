@@ -8,7 +8,6 @@ import HowItWorks from '../components/HowItWorks';
 import { SentimentCard, SocialPostCard, AiAssistCard, StatsCard } from '../components/FloatingWidgets';
 import VideoHero from '../components/VideoHero';
 import heroImage from '../assets/hero-person-wide.png';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Home() {
     return (

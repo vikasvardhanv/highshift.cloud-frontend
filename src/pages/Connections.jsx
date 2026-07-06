@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getAccounts, getAuthUrl, disconnectAccount, getProfiles, createProfile } from '../services/api';
+import { getAuthUrl, disconnectAccount, getProfiles, createProfile } from '../services/api';
 import {
     Facebook, Twitter, Instagram, Linkedin, Youtube, Music,
     Trash2, Plus, Loader2, Globe, CheckCircle2, AlertCircle, ArrowRight, X, User, ChevronRight, Zap
@@ -29,6 +29,7 @@ export default function Connections() {
 
     useEffect(() => {
         loadData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadData = async () => {
@@ -64,6 +65,7 @@ export default function Connections() {
             setIsCreatingProfile(false);
             await loadData();
         } catch (err) {
+            console.error(err);
             alert('Failed to create profile');
         } finally {
             setLoading(false);
@@ -93,6 +95,7 @@ export default function Connections() {
             await disconnectAccount(platform, accountId);
             await loadData();
         } catch (err) {
+            console.error(err);
             alert('Failed to disconnect');
         }
     };

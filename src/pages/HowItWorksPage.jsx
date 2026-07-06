@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import HowItWorks from '../components/HowItWorks';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
