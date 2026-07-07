@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from 'react';
 import {
     Zap, Sparkles, Send, Loader2, Info, ChevronRight, Globe,

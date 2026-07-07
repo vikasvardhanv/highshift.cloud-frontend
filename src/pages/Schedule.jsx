@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from 'react';
 import { format, startOfWeek, addDays, startOfMonth, endOfMonth, endOfWeek, isSameMonth, isSameDay, addMonths, subMonths, parseISO } from 'date-fns';
 import { ChevronLeft, ChevronRight, Plus, Loader2, Twitter, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';

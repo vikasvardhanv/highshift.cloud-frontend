@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion";
 
 // Tab Components
 import Publisher from '../components/dashboard/Publisher';

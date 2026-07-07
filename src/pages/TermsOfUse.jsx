@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function TermsOfUse() {
     return (
