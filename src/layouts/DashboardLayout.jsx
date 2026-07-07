@@ -23,7 +23,9 @@ export default function DashboardLayout({ children }) {
         } catch (err) {
             console.error('Failed to load user info:', err);
             // If auth fails (401), redirect to login
-            if (err.response?.status === 401 || !localStorage.getItem('token')) {
+            const token = localStorage.getItem('token');
+            const apiKey = localStorage.getItem('social_api_key');
+            if (err.response?.status === 401 || (!token && !apiKey)) {
                 window.location.href = '/login';
                 return;
             }
