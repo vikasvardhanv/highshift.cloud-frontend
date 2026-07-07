@@ -26,6 +26,8 @@ export default function DashboardLayout({ children }) {
             const token = localStorage.getItem('token');
             const apiKey = localStorage.getItem('social_api_key');
             if (err.response?.status === 401 || (!token && !apiKey)) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('social_api_key');
                 window.location.href = '/login';
                 return;
             }
