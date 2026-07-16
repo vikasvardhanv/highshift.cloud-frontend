@@ -300,13 +300,13 @@ export default function Publisher() {
 
     // --- RENDER ---
     return (
-        <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] gap-0 bg-white dark:bg-obsidian-950 rounded-2xl overflow-hidden shadow-xl border border-white/10 dark:border-white/10">
+        <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] gap-0 bg-bgSurface rounded-2xl overflow-hidden shadow-xl border border-borderColor">
 
             {/* --- LEFT COLUMN: COMPOSER --- */}
-            <div className="flex-1 flex flex-col min-w-0 bg-white dark:bg-obsidian-950">
+            <div className="flex-1 flex flex-col min-w-0 bg-bgSurface">
                 {/* 1. Account Selector */}
                 {/* 1. Account Setup */}
-                <div className="p-4 border-b border-white/10 dark:border-white/10 bg-obsidian-950 dark:bg-obsidian-950">
+                <div className="p-4 border-b border-borderColor bg-bgSurfaceHighlight">
                     <div className="flex flex-col gap-4">
                         {/* Profile Selector */}
                         <div>
@@ -344,7 +344,7 @@ export default function Publisher() {
                                         <button
                                             key={acc.accountId}
                                             onClick={() => toggleAccount(acc.accountId)}
-                                            className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-sky-50 border-sky-400 dark:bg-sky-900/30 dark:border-sky-500/50 shadow-sm' : 'bg-white border-white/10 text-gray-400 hover:bg-obsidian-950 dark:border-white/10 hover:bg-white/5'}`}
+                                            className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-primary/10 border-primary shadow-sm' : 'bg-bgSurface border-borderColor text-textMuted hover:bg-bgSurfaceHighlight'}`}
                                         >
                                             <div className="flex items-center gap-3">
                                                 {/* Icon */}
@@ -395,7 +395,7 @@ export default function Publisher() {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         placeholder="Start writing your post..."
-                        className="flex-1 w-full p-6 bg-transparent resize-none focus:outline-none text-gray-200 dark:text-gray-200 text-lg placeholder:text-gray-400"
+                        className="flex-1 w-full p-6 bg-transparent resize-none focus:outline-none text-textMain text-lg placeholder:text-textMuted"
                     />
 
                     {/* Media Preview Grid */}
@@ -477,7 +477,7 @@ export default function Publisher() {
                 </div>
 
                 {/* 3. Footer Options */}
-                <div className="p-4 bg-obsidian-950 dark:bg-obsidian-950 border-t border-white/10 dark:border-white/10">
+                <div className="p-4 bg-bgSurfaceHighlight border-t border-borderColor">
                     <div className="border border-white/10 dark:border-white/10 rounded-xl bg-white/5 p-4 mb-4">
                         <button
                             onClick={() => setShowSchedule(!showSchedule)}
@@ -557,7 +557,7 @@ export default function Publisher() {
             </div>
 
             {/* --- RIGHT COLUMN: PREVIEW --- */}
-            <div className="w-[400px] xl:w-[480px] bg-white/5 dark:bg-black p-6 border-l border-white/10 dark:border-white/10 hidden lg:flex flex-col">
+            <div className="w-[400px] xl:w-[480px] bg-bgSurfaceHighlight p-6 border-l border-borderColor hidden lg:flex flex-col">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="font-bold text-gray-300 text-sm uppercase tracking-wider">Network Preview</h3>
                     <div className="flex gap-2">

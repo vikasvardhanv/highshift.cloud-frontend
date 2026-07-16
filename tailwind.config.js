@@ -8,9 +8,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgb(var(--background) / <alpha-value>)",
-        surface: "rgb(var(--surface) / <alpha-value>)",
-        surfaceHighlight: "rgb(var(--surface-highlight) / <alpha-value>)",
+        bgColor: "rgb(var(--bgColor) / <alpha-value>)",
+        bgSurface: "rgb(var(--bgSurface) / <alpha-value>)",
+        bgSurfaceHighlight: "rgb(var(--bgSurfaceHighlight) / <alpha-value>)",
+        textMain: "rgb(var(--textMain) / <alpha-value>)",
+        textMuted: "rgb(var(--textMuted) / <alpha-value>)",
+        borderColor: "rgb(var(--borderColor) / <alpha-value>)",
         primary: "rgb(var(--primary) / <alpha-value>)",
         primaryHover: "rgb(var(--primary-hover) / <alpha-value>)",
         secondary: "rgb(var(--secondary) / <alpha-value>)",

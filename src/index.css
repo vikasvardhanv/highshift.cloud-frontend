@@ -14,10 +14,14 @@
 }
 
 :root {
-  /* SOCIAL RAVEN - Light Mode */
-  --background: 248 250 252;
-  --surface: 255 255 255;
-  --surface-highlight: 241 245 249;
+  /* SOCIAL RAVEN - Light Mode Semantic Colors */
+  --bgColor: 248 250 252;
+  --bgSurface: 255 255 255;
+  --bgSurfaceHighlight: 241 245 249;
+  --textMain: 15 23 42;
+  --textMuted: 100 116 139;
+  --borderColor: 226 232 240;
+  
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
   --secondary: 139 92 246;
@@ -28,10 +32,14 @@
 }
 
 .dark {
-  /* SOCIAL RAVEN - Dark Mode */
-  --background: 10 10 10;
-  --surface: 17 17 17;
-  --surface-highlight: 28 28 28;
+  /* SOCIAL RAVEN - Dark Mode Semantic Colors */
+  --bgColor: 10 10 10;
+  --bgSurface: 17 17 17;
+  --bgSurfaceHighlight: 28 28 28;
+  --textMain: 248 250 252;
+  --textMuted: 148 163 184;
+  --borderColor: 38 38 38;
+
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
   --secondary: 139 92 246;
@@ -42,13 +50,12 @@
 }
 
 body {
-  @apply bg-background text-slate-900 antialiased font-sans text-sm min-h-screen selection:bg-raven-900/20 dark:text-gray-100 dark:selection:bg-raven-900/60;
-  background-color: rgb(var(--background));
+  @apply bg-bgColor text-textMain antialiased font-sans text-sm min-h-screen selection:bg-primary/20;
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-white/90 dark:bg-obsidian-950/80 border border-slate-200/80 dark:border-white/5 rounded-xl shadow-sm backdrop-blur-sm;
+    @apply bg-bgSurface border border-borderColor rounded-xl shadow-sm backdrop-blur-sm;
   }
 
   .glass-button {
@@ -56,79 +63,30 @@ body {
   }
 
   .nav-link {
-    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 text-gray-400 hover:bg-white/5 hover:text-white text-sm font-medium;
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 text-textMuted hover:bg-bgSurfaceHighlight hover:text-textMain text-sm font-medium;
   }
 
   .nav-link.active {
-    @apply bg-raven-600/10 text-raven-400 shadow-sm border border-raven-500/20;
+    @apply bg-primary/10 text-primary shadow-sm border border-primary/20;
   }
 
   .btn-primary {
-    @apply bg-raven-600 hover:bg-raven-700 text-white shadow-sm shadow-raven-600/20 active:scale-95;
+    @apply bg-primary hover:bg-primaryHover text-white shadow-sm shadow-primary/20 active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 active:scale-95;
+    @apply bg-bgSurfaceHighlight border border-borderColor text-textMain hover:bg-bgSurface active:scale-95;
   }
 
   .brand-label {
-    @apply block text-[10px] font-extrabold text-gray-500 uppercase tracking-[0.2em] ml-1;
+    @apply block text-[10px] font-extrabold text-textMuted uppercase tracking-[0.2em] ml-1;
   }
 
   .brand-input {
-    @apply w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-semibold text-white outline-none transition-all placeholder:text-gray-600 focus:border-raven-500/60 focus:bg-white/[0.07];
+    @apply w-full rounded-2xl border border-borderColor bg-bgSurface px-5 py-4 text-sm font-semibold text-textMain outline-none transition-all placeholder:text-textMuted focus:border-primary/60 focus:bg-bgSurfaceHighlight;
   }
 
   .brand-textarea {
-    @apply w-full rounded-3xl border border-white/10 bg-white/5 p-6 text-sm font-medium leading-6 text-white outline-none transition-all placeholder:text-gray-600 focus:border-raven-500/60 focus:bg-white/[0.07];
+    @apply w-full rounded-3xl border border-borderColor bg-bgSurface p-6 text-sm font-medium leading-6 text-textMain outline-none transition-all placeholder:text-textMuted focus:border-primary/60 focus:bg-bgSurfaceHighlight;
   }
-}
-
-html:not(.dark) .dashboard-shell .bg-obsidian-950 {
-  background-color: rgb(var(--background)) !important;
-}
-
-html:not(.dark) .dashboard-shell .bg-obsidian-950\/80 {
-  background-color: rgb(var(--surface) / 0.86) !important;
-}
-
-html:not(.dark) .dashboard-shell .bg-black,
-html:not(.dark) .dashboard-shell .bg-black\/95 {
-  background-color: rgb(var(--surface)) !important;
-}
-
-html:not(.dark) .dashboard-shell .bg-black\/40,
-html:not(.dark) .dashboard-shell .bg-black\/20 {
-  background-color: rgb(var(--surface-highlight) / 0.8) !important;
-}
-
-html:not(.dark) .dashboard-shell .bg-white\/5,
-html:not(.dark) .dashboard-shell .bg-white\/10,
-html:not(.dark) .dashboard-shell .bg-white\/20,
-html:not(.dark) .dashboard-shell .bg-white\/30,
-html:not(.dark) .dashboard-shell .bg-white\/\[0\.01\],
-html:not(.dark) .dashboard-shell .bg-white\/\[0\.02\],
-html:not(.dark) .dashboard-shell .bg-white\/\[0\.03\],
-html:not(.dark) .dashboard-shell .bg-white\/\[0\.04\],
-html:not(.dark) .dashboard-shell .bg-white\/\[0\.07\] {
-  background-color: rgb(15 23 42 / 0.04) !important;
-}
-
-html:not(.dark) .dashboard-shell .border-white\/5,
-html:not(.dark) .dashboard-shell .border-white\/10,
-html:not(.dark) .dashboard-shell .border-white\/20,
-html:not(.dark) .dashboard-shell .border-white\/30 {
-  border-color: rgb(15 23 42 / 0.1) !important;
-}
-
-html:not(.dark) .dashboard-shell .text-white,
-html:not(.dark) .dashboard-shell .text-gray-100,
-html:not(.dark) .dashboard-shell .text-gray-200,
-html:not(.dark) .dashboard-shell .text-gray-300 {
-  color: rgb(15 23 42) !important;
-}
-
-html:not(.dark) .dashboard-shell :is(.bg-raven-600, .bg-raven-500, .bg-primary, .bg-red-500, .bg-emerald-500, .bg-indigo-600, .bg-amber-500, .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-t).text-white,
-html:not(.dark) .dashboard-shell :is(.bg-raven-600, .bg-raven-500, .bg-primary, .bg-red-500, .bg-emerald-500, .bg-indigo-600, .bg-amber-500, .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-t) .text-white {
-  color: white !important;
 }

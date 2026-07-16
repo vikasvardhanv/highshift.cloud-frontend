@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }) {
     };
 
     return (
-        <div className="dashboard-shell min-h-screen bg-background dark:bg-obsidian-950 font-sans flex overflow-x-hidden text-slate-900 dark:text-gray-100">
+        <div className="dashboard-shell min-h-screen bg-bgColor font-sans flex overflow-x-hidden text-textMain">
             {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
             <Sidebar 
                 isOpen={sidebarOpen} 
@@ -73,17 +73,17 @@ export default function DashboardLayout({ children }) {
             <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 relative z-10 w-full ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
 
                 {/* Top Bar - Clean Professional */}
-                <header className="sticky top-0 z-40 bg-obsidian-950/80 backdrop-blur-md border-b border-white/10 h-16">
+                <header className="sticky top-0 z-40 bg-bgSurface/80 backdrop-blur-md border-b border-borderColor h-16">
                     <div className="px-4 lg:px-6 h-full flex items-center justify-between">
                         {/* Title Breadcrumb & Mobile Menu Toggle */}
                         <div className="flex items-center gap-3 lg:gap-4">
                             <button
                                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="p-2 -ml-2 rounded-lg hover:bg-white/5 lg:hidden text-gray-400"
+                                className="p-2 -ml-2 rounded-lg hover:bg-bgSurfaceHighlight lg:hidden text-textMuted"
                             >
                                 <Menu className="w-6 h-6" />
                             </button>
-                            <h1 className="text-base lg:text-lg font-bold text-white truncate max-w-[150px] md:max-w-none">
+                            <h1 className="text-base lg:text-lg font-bold text-textMain truncate max-w-[150px] md:max-w-none">
                                 {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
                             </h1>
                         </div>
@@ -91,12 +91,12 @@ export default function DashboardLayout({ children }) {
                         {/* Right Actions */}
                         <div className="flex items-center gap-2 lg:gap-4">
                             <ThemeToggle />
-                            <div className="h-6 w-px bg-white/10 hidden md:block" />
+                            <div className="h-6 w-px bg-borderColor hidden md:block" />
 
                             <div className="relative">
                                 <button
                                     onClick={() => setShowDropdown(!showDropdown)}
-                                    className="flex items-center gap-2 lg:gap-3 hover:bg-white/5 dark:hover:bg-white/5 px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
+                                    className="flex items-center gap-2 lg:gap-3 hover:bg-bgSurfaceHighlight px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-raven-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                                         {user?.avatar ? (

@@ -62,6 +62,22 @@ export const getDashboardAnalytics = async () => {
     return res.data;
 };
 
+// Smart Inbox API
+export const getInboxThreads = async () => {
+    const res = await api.get('/inbox/threads');
+    return res.data;
+};
+
+export const getThreadMessages = async (threadId) => {
+    const res = await api.get(`/inbox/threads/${threadId}/messages`);
+    return res.data;
+};
+
+export const sendReply = async (threadId, text) => {
+    const res = await api.post(`/inbox/threads/${threadId}/messages`, { text });
+    return res.data;
+};
+
 export const disconnectAccount = async (platform, accountId) => {
     await api.delete(`/linked-accounts/disconnect/${platform}/${accountId}`);
 };
