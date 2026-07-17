@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { getCurrentUser } from '../services/api';
-import { User, ChevronDown, LogOut, Menu, Settings } from 'lucide-react';
+import { User, ChevronDown, LogOut, Menu, Settings, Search } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
 
 export default function DashboardLayout({ children }) {
@@ -52,9 +52,9 @@ export default function DashboardLayout({ children }) {
  }
  };
 
- return (
- <div className="dashboard-shell min-h-screen bg-bgColor font-sans flex overflow-x-hidden text-textMain">
- {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
+  return (
+    <div className="dashboard-shell min-h-screen bg-[#000000] font-sans flex overflow-x-hidden text-textMain">
+      {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
  <Sidebar 
  isOpen={sidebarOpen} 
  onToggle={() => setSidebarOpen(!sidebarOpen)} 
@@ -72,9 +72,9 @@ export default function DashboardLayout({ children }) {
  {/* Main Content Area */}
  <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 relative z-10 w-full ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-20'}`}>
 
- {/* Top Bar - Clean Professional */}
- <header className="sticky top-0 z-40 bg-bgSurface/80 backdrop-blur-md border-b border-borderColor h-16">
- <div className="px-4 lg:px-6 h-full flex items-center justify-between">
+      {/* Top Bar - Clean Professional */}
+      <header className="sticky top-0 z-40 bg-[#000000]/80 backdrop-blur-md border-b border-white/5 h-16">
+        <div className="px-4 lg:px-6 h-full flex items-center justify-between">
  {/* Title Breadcrumb & Mobile Menu Toggle */}
  <div className="flex items-center gap-3 lg:gap-4">
  <button
@@ -83,12 +83,16 @@ export default function DashboardLayout({ children }) {
  >
  <Menu className="w-6 h-6" />
  </button>
- <h1 className="text-base lg:text-lg font-bold text-textMain truncate max-w-[150px] md:max-w-none">
- {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
- </h1>
- </div>
+            <h1 className="text-base lg:text-lg font-bold text-white truncate max-w-[150px] md:max-w-none">
+              {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
+            </h1>
+            <div className="hidden lg:flex items-center ml-8 bg-white/5 border border-white/5 rounded-full px-4 py-1.5 w-64 focus-within:ring-1 focus-within:ring-raven-500 transition-all">
+               <Search className="w-4 h-4 text-textMuted mr-2" />
+               <input type="text" placeholder="Search..." className="bg-transparent border-none outline-none text-sm text-white placeholder:text-textMuted w-full" />
+            </div>
+          </div>
 
- {/* Right Actions */}
+          {/* Right Actions */}
  <div className="flex items-center gap-2 lg:gap-4">
  <ThemeToggle />
  <div className="h-6 w-px bg-borderColor hidden md:block" />
@@ -135,11 +139,11 @@ export default function DashboardLayout({ children }) {
  </div>
  )}
  </div>
- </div>
- </div>
- </header>
+          </div>
+        </div>
+      </header>
 
- {/* Page Content */}
+      {/* Page Content */}
  <main className="flex-1 p-4 lg:p-8 overflow-y-auto" onClick={() => setShowDropdown(false)}>
  <div className="max-w-6xl mx-auto space-y-6 lg:space-y-8">
  {children}

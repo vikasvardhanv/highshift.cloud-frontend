@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect } from 'react';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Publishing from './pages/Publishing';
 import Connections from './pages/Connections';
 import Settings from './pages/Settings';
 import Analytics from './pages/Analytics';
@@ -114,7 +115,7 @@ function App() {
  <Route path="/auth/callback" element={<PublicLayout><AuthCallback /></PublicLayout>} />
 
  {/* Protected Dashboard Routes - Now Platform Routes */}
- <Route path="/publishing" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+ <Route path="/publishing" element={<DashboardLayout><Publishing /></DashboardLayout>} />
  <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} /> {/* Legacy redirect/alias */}
  <Route path="/profiles" element={<DashboardLayout><Profiles /></DashboardLayout>} />
  <Route path="/connections" element={<DashboardLayout><Connections /></DashboardLayout>} />
