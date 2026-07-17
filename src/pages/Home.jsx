@@ -4,7 +4,7 @@ import {
   Calendar, TrendingUp, Users, ArrowRight,
   MessageSquare, BarChart3, Radio, Share2, Shield, Workflow, Lock, Zap
 } from 'lucide-react';
-import heroImage from '../assets/hero-person-wide.png';
+import heroImage from '../assets/hero-social-raven.png';
 export default function Home() {
   return (
     <div className="bg-bgColor font-sans min-h-screen text-textMain selection:bg-primary/30 relative overflow-hidden">
