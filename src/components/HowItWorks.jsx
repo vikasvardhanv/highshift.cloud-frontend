@@ -259,7 +259,7 @@ export default function HowItWorks() {
  </div>
 
  {/* Card */}
- <div className="bg-white dark:bg-surface/50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-borderColor h-full">
+ <div className="bg-bgSurface rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-borderColor h-full">
  {/* Animation Container */}
  <div className="mb-6 h-44 flex items-center justify-center">
  {step.animation}
