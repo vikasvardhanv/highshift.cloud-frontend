@@ -298,15 +298,15 @@ export default function Publisher() {
  }
  };
 
- // --- RENDER ---
- return (
- <div className="flex flex-col lg:flex-row h-[calc(100vh-140px)] gap-0 bg-[#0a0a0a]/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(139,92,246,0.2)] border border-white/10">
+  // --- RENDER ---
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-140px)]">
 
- {/* --- LEFT COLUMN: COMPOSER --- */}
- <div className="flex-1 flex flex-col min-w-0 bg-[#0a0a0a]/80 backdrop-blur-md">
- {/* 1. Account Selector */}
- {/* 1. Account Setup */}
- <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-sm border border-white/10">
+      {/* --- LEFT SIDE: COMPOSER WIDGETS --- */}
+      <div className="lg:col-span-2 flex flex-col gap-6 h-full overflow-y-auto pr-2 scrollbar-hide">
+        
+        {/* Widget 1: Account Setup */}
+        <div className="glass-card p-5">
  <div className="flex flex-col gap-4">
  {/* Profile Selector */}
  <div>
@@ -387,10 +387,10 @@ export default function Publisher() {
  </div>
  </div>
  </div>
- </div>
+        </div>
 
- {/* 2. Editor Area */}
- <div className="flex-1 flex flex-col relative">
+        {/* Widget 2: Editor Area */}
+        <div className="glass-card flex-1 flex flex-col min-h-[300px]">
  <textarea
  value={content}
  onChange={(e) => setContent(e.target.value)}
@@ -474,10 +474,10 @@ export default function Publisher() {
  </div>
  <span className="text-xs text-textMuted font-medium">{content.length} / 2200</span>
  </div>
- </div>
+        </div>
 
- {/* 3. Footer Options */}
- <div className="p-4 bg-white/5 backdrop-blur-sm border border-white/10 border-t border-white/10">
+        {/* Widget 3: Schedule & Publish Options */}
+        <div className="glass-card p-5">
  <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 mb-4">
  <button
  onClick={() => setShowSchedule(!showSchedule)}
@@ -553,11 +553,12 @@ export default function Publisher() {
  }
  </button>
  </div>
- </div>
- </div>
+        </div>
+      </div>
 
- {/* --- RIGHT COLUMN: PREVIEW --- */}
- <div className="w-[400px] xl:w-[480px] bg-white/5 backdrop-blur-sm border border-white/10 p-6 border-l border-white/10 hidden lg:flex flex-col">
+      {/* --- RIGHT COLUMN: PREVIEW WIDGET --- */}
+      <div className="lg:col-span-1 hidden lg:block h-full">
+        <div className="glass-card h-full p-6 flex flex-col">
  <div className="flex items-center justify-between mb-6">
  <h3 className="font-bold text-textMuted text-sm uppercase tracking-wider">Network Preview</h3>
  <div className="flex gap-2">
@@ -641,8 +642,9 @@ export default function Publisher() {
  <AlertCircle className="w-3 h-3 inline mr-1" />
  Preview approximates how your content will display. Social networks may update their UI at any time.
  </p>
- </div>
- </div>
+          </div>
+        </div>
+      </div>
 
  {/* Media Library Modal */}
  <AnimatePresence>

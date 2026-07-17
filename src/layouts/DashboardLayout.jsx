@@ -53,13 +53,18 @@ export default function DashboardLayout({ children }) {
  };
 
   return (
-    <div className="dashboard-shell min-h-screen bg-[#000000] font-sans flex overflow-x-hidden text-textMain">
+    <div className="dashboard-shell min-h-screen bg-[#000000] font-sans flex overflow-x-hidden text-textMain relative z-0">
+      {/* Ambient Background Glows */}
+      <div className="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-raven-900/20 blur-[120px] -z-10 pointer-events-none" />
+      <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-900/10 blur-[120px] -z-10 pointer-events-none" />
+      <div className="fixed top-[40%] left-[30%] w-[30%] h-[30%] rounded-full bg-raven-600/5 blur-[100px] -z-10 pointer-events-none" />
+
       {/* Sidebar Component - Mobile Overlays, Desktop stays fixed */}
- <Sidebar 
- isOpen={sidebarOpen} 
- onToggle={() => setSidebarOpen(!sidebarOpen)} 
- onClose={() => setSidebarOpen(false)}
- />
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onToggle={() => setSidebarOpen(!sidebarOpen)} 
+        onClose={() => setSidebarOpen(false)}
+      />
 
  {/* Mobile Sidebar Overlay */}
  {sidebarOpen && (
