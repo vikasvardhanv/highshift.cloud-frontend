@@ -1,12 +1,9 @@
 import { motion, AnimatePresence } from"framer-motion";
 import HowItWorks from '../components/HowItWorks';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 export default function HowItWorksPage() {
- return (
- <div className="bg-white dark:bg-black font-sans min-h-screen pt-16">
- <Navbar />
+  return (
+    <div className="bg-bgColor font-sans min-h-screen pt-16">
  <motion.div 
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
@@ -37,8 +34,7 @@ export default function HowItWorksPage() {
  </div>
  </div>
  </div>
- </motion.div>
- <Footer />
- </div>
- );
+      </motion.div>
+    </div>
+  );
 }
