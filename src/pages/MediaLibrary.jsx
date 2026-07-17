@@ -37,8 +37,8 @@ export default function MediaLibrary() {
 
  {/* Gallery */}
  {media.length === 0 ? (
- <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-2xl p-12 text-center">
- <div className="w-16 h-16 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center mx-auto mb-4">
+ <div className="bg-bgSurface border border-borderColor rounded-2xl p-12 text-center">
+ <div className="w-16 h-16 rounded-full bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-4">
  <ImageIcon className="w-8 h-8 text-textMuted" />
  </div>
  <h3 className="text-lg font-bold text-textMuted mb-2">No media yet</h3>
@@ -49,7 +49,7 @@ export default function MediaLibrary() {
  ) : (
  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
  {media.map(item => (
- <div key={item.id} className="group relative bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(139,92,246,0.1)] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all pt-[100%]">
+ <div key={item.id} className="group relative bg-bgSurface border border-borderColor rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all pt-[100%]">
  <div className="absolute inset-0">
  {item.type === 'video' ? (
  <div className="w-full h-full relative bg-bgColor">

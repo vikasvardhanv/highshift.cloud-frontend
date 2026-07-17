@@ -203,9 +203,9 @@ export default function SmartInbox() {
 
  return (
  <div className="mx-auto flex max-w-[1680px] flex-col gap-6 pb-10">
- <header className="flex flex-col gap-5 border-b border-white/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
+ <header className="flex flex-col gap-5 border-b border-borderColor pb-6 lg:flex-row lg:items-end lg:justify-between">
  <div>
- <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
+ <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-borderColor bg-bgSurfaceHighlight px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
  <Inbox className="h-3.5 w-3.5 text-primary" />
  Unified social inbox
  </div>
@@ -224,8 +224,8 @@ export default function SmartInbox() {
 
  <div className="grid min-h-[720px] h-[calc(100vh-220px)] grid-cols-1 gap-6 xl:grid-cols-[320px_minmax(0,1fr)_380px]">
  {/* Left Pane - Accounts Filter */}
- <aside className="hidden xl:flex min-h-0 flex-col rounded-3xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md p-5 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
- <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+ <aside className="hidden xl:flex min-h-0 flex-col rounded-3xl border border-borderColor bg-bgSurface p-5 shadow-sm">
+ <div className="flex items-center gap-3 border-b border-borderColor pb-4">
  <UsersRound className="h-5 w-5 text-textMuted" />
  <div>
  <h2 className="text-sm font-extrabold text-textMain">Connected inboxes</h2>
@@ -239,7 +239,7 @@ export default function SmartInbox() {
  key={item}
  type="button"
  onClick={() => setNetwork(item)}
- className={`rounded-2xl border px-3 py-3 text-xs font-extrabold uppercase tracking-widest transition-all ${network === item ? 'border-primary bg-primary/20 text-primary' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted hover:border-textMuted hover:text-textMain'}`}
+ className={`rounded-2xl border px-3 py-3 text-xs font-extrabold uppercase tracking-widest transition-all ${network === item ? 'border-primary bg-primary/20 text-primary' : 'border-borderColor bg-bgSurfaceHighlight text-textMuted hover:border-textMuted hover:text-textMain'}`}
  >
  {item === 'all' ? 'All' : platformMeta[item].label}
  </button>
@@ -252,11 +252,11 @@ export default function SmartInbox() {
  value={query}
  onChange={(event) => setQuery(event.target.value)}
  placeholder="Search accounts"
- className="w-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 py-3 pl-11 pr-4 text-sm font-semibold text-textMain outline-none placeholder:text-textMuted focus:border-primary/60"
+ className="w-full rounded-2xl border border-borderColor bg-bgSurfaceHighlight py-3 pl-11 pr-4 text-sm font-semibold text-textMain outline-none placeholder:text-textMuted focus:border-primary/60"
  />
  </label>
 
- <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+ <div className="mt-4 flex items-center justify-between rounded-2xl border border-borderColor bg-black/20 px-4 py-3">
  <span className="text-xs font-bold text-textMuted">{selectedVisibleCount} visible selected</span>
  <div className="flex items-center gap-3">
  <button type="button" onClick={selectVisibleAccounts} className="text-xs font-bold text-primary hover:text-textMain">All</button>
@@ -282,15 +282,15 @@ export default function SmartInbox() {
  </aside>
 
  {/* Middle Pane - Threads List */}
- <main className={`flex min-h-0 flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md shadow-[0_0_15px_rgba(139,92,246,0.1)] ${selectedThreadId ? 'hidden md:flex' : 'flex'}`}>
- <div className="flex flex-col gap-4 border-b border-white/10 px-6 py-5 md:flex-row md:items-center md:justify-between shrink-0">
+ <main className={`flex min-h-0 flex-col overflow-hidden rounded-3xl border border-borderColor bg-bgSurface shadow-sm ${selectedThreadId ? 'hidden md:flex' : 'flex'}`}>
+ <div className="flex flex-col gap-4 border-b border-borderColor px-6 py-5 md:flex-row md:items-center md:justify-between shrink-0">
  <div>
  <h2 className="text-lg font-extrabold text-textMain">All conversations</h2>
  <p className="mt-1 text-xs font-medium text-textMuted">
  {visibleThreads.length} active threads across {selectedPlatforms.size || 0} networks
  </p>
  </div>
- <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-3 text-xs font-bold uppercase tracking-widest text-textMuted">
+ <div className="inline-flex items-center gap-2 rounded-2xl border border-borderColor bg-bgSurfaceHighlight px-4 py-3 text-xs font-bold uppercase tracking-widest text-textMuted">
  <Filter className="h-4 w-4" />
  Unified view
  </div>
@@ -311,7 +311,7 @@ export default function SmartInbox() {
  ? 'bg-primary/20 border-primary/50' 
  : !thread.is_read 
  ? 'bg-white/10 border-white/20 hover:border-white/30' 
- : 'bg-transparent border-transparent hover:bg-white/5 backdrop-blur-sm border border-white/10'
+ : 'bg-transparent border-transparent hover:bg-bgSurfaceHighlight'
  }`}
  >
  <div className="relative shrink-0">
@@ -341,10 +341,10 @@ export default function SmartInbox() {
  </main>
 
  {/* Right Pane - Chat Window */}
- <aside className={`flex min-h-0 flex-col rounded-3xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md shadow-[0_0_15px_rgba(139,92,246,0.1)] ${!selectedThreadId ? 'hidden xl:flex' : 'flex'}`}>
+ <aside className={`flex min-h-0 flex-col rounded-3xl border border-borderColor bg-bgSurface shadow-sm ${!selectedThreadId ? 'hidden xl:flex' : 'flex'}`}>
  {!selectedThreadId ? (
  <div className="p-6">
- <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+ <div className="flex items-center gap-3 border-b border-borderColor pb-4">
  <MessageSquareMore className="h-5 w-5 text-textMuted" />
  <div>
  <h2 className="text-sm font-extrabold text-textMain">Thread details</h2>
@@ -356,7 +356,7 @@ export default function SmartInbox() {
  title="Select a conversation"
  text="Thread detail, channel, and reply context will appear in this pane."
  />
- <div className="rounded-3xl border border-white/10 bg-black/20 p-5">
+ <div className="rounded-3xl border border-borderColor bg-black/20 p-5">
  <p className="text-xs font-bold uppercase tracking-[0.2em] text-textMuted">Channels included</p>
  <div className="mt-4 flex flex-wrap gap-2">
  <PlatformBadge platform="facebook" />
@@ -368,11 +368,11 @@ export default function SmartInbox() {
  ) : (
  <>
  {/* Chat Header */}
- <div className="flex items-center gap-4 border-b border-white/10 p-5 shrink-0 bg-black/10 rounded-t-3xl">
+ <div className="flex items-center gap-4 border-b border-borderColor p-5 shrink-0 bg-black/10 rounded-t-3xl">
  <button onClick={() => setSelectedThreadId(null)} className="xl:hidden p-2 -ml-2 text-textMuted hover:text-textMain transition-colors">
  <ArrowLeft className="w-5 h-5" />
  </button>
- <img src={activeThread?.sender_avatar} className="w-10 h-10 rounded-full object-cover shadow-[0_0_30px_rgba(139,92,246,0.15)]" />
+ <img src={activeThread?.sender_avatar} className="w-10 h-10 rounded-full object-cover shadow-lg" />
  <div className="flex-1">
  <h3 className="font-bold text-textMain text-sm">{activeThread?.sender_name}</h3>
  <p className="text-xs text-textMuted capitalize inline-flex items-center gap-1.5 mt-0.5">
@@ -407,7 +407,7 @@ export default function SmartInbox() {
  <div className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm ${
  msg.is_from_me 
  ? 'bg-primary text-textMain rounded-br-sm' 
- : 'bg-white/10 border border-white/10 text-gray-100 rounded-bl-sm'
+ : 'bg-white/10 border border-borderColor text-gray-100 rounded-bl-sm'
  }`}>
  <p className="leading-relaxed">{msg.text}</p>
  <div className={`text-[10px] mt-1.5 font-medium ${msg.is_from_me ? 'text-white/60 text-right' : 'text-textMuted'}`}>
@@ -422,19 +422,19 @@ export default function SmartInbox() {
  </div>
  
  {/* Chat Input */}
- <div className="p-4 border-t border-white/10 bg-black/20 rounded-b-3xl shrink-0">
+ <div className="p-4 border-t border-borderColor bg-black/20 rounded-b-3xl shrink-0">
  <form onSubmit={handleSendReply} className="relative flex items-center">
  <input 
  type="text" 
  value={replyText}
  onChange={e => setReplyText(e.target.value)}
  placeholder="Type a reply..." 
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-2xl pl-5 pr-14 py-4 text-sm text-textMain focus:outline-none focus:border-primary/50 transition-colors shadow-inner"
+ className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-2xl pl-5 pr-14 py-4 text-sm text-textMain focus:outline-none focus:border-primary/50 transition-colors shadow-inner"
  />
  <button 
  type="submit" 
  disabled={!replyText.trim() || sending}
- className="absolute right-2 bg-primary hover:bg-primary/90 text-textMain rounded-xl w-10 h-10 flex items-center justify-center transition-all disabled:opacity-50 disabled:scale-95 shadow-[0_0_30px_rgba(139,92,246,0.15)] shadow-primary/20"
+ className="absolute right-2 bg-primary hover:bg-primary/90 text-textMain rounded-xl w-10 h-10 flex items-center justify-center transition-all disabled:opacity-50 disabled:scale-95 shadow-lg shadow-primary/20"
  >
  {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 -ml-0.5" />}
  </button>
@@ -450,7 +450,7 @@ export default function SmartInbox() {
 
 function Metric({ label, value }) {
  return (
- <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+ <div className="rounded-2xl border border-borderColor bg-white/[0.03] px-4 py-3">
  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">{label}</p>
  <p className="mt-1 text-2xl font-extrabold text-textMain">{value}</p>
  </div>
@@ -465,9 +465,9 @@ function AccountRow({ account, checked, onToggle }) {
  <button
  type="button"
  onClick={onToggle}
- className={`flex w-full items-center gap-3 rounded-2xl border p-4 text-left transition-all ${checked ? 'border-primary/60 bg-primary/10' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-white/[0.07]'}`}
+ className={`flex w-full items-center gap-3 rounded-2xl border p-4 text-left transition-all ${checked ? 'border-primary/60 bg-primary/10' : 'border-borderColor bg-bgSurfaceHighlight hover:border-white/20 hover:bg-white/[0.07]'}`}
  >
- <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border ${meta?.badge || 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 text-textMain'}`}>
+ <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border ${meta?.badge || 'border-borderColor bg-bgSurfaceHighlight text-textMain'}`}>
  <Icon className={`h-4 w-4 ${meta?.tone || 'text-textMain'}`} />
  </span>
  <span className="min-w-0 flex-1">
@@ -521,7 +521,7 @@ function EmptyInbox({ selectedCount }) {
 
 function EmptyPanel({ title, text }) {
  return (
- <div className="rounded-3xl border border-white/10 bg-black/20 p-5">
+ <div className="rounded-3xl border border-borderColor bg-black/20 p-5">
  <p className="text-sm font-extrabold text-textMain">{title}</p>
  <p className="mt-2 text-xs font-medium leading-5 text-textMuted">{text}</p>
  </div>

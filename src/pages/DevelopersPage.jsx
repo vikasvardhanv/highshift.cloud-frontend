@@ -11,7 +11,7 @@ export default function DevelopersPage() {
  <motion.div 
  initial={{ opacity: 0, scale: 0.9 }}
  animate={{ opacity: 1, scale: 1 }}
- className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest text-raven-400 mb-8"
+ className="inline-flex items-center gap-2 px-3 py-1 bg-bgSurfaceHighlight border border-borderColor rounded-full text-xs font-bold uppercase tracking-widest text-raven-400 mb-8"
  >
  <Code className="w-3 h-3" /> API Documentation & Developer Tools
  </motion.div>
@@ -55,7 +55,7 @@ export default function DevelopersPage() {
  </div>
 
  {/* SDK Section */}
- <div className="bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-[3rem] p-12 md:p-24 relative overflow-hidden group">
+ <div className="bg-bgSurfaceHighlight border border-borderColor rounded-[3rem] p-12 md:p-24 relative overflow-hidden group">
  <div className="absolute top-0 right-0 p-24 opacity-5 group-hover:opacity-10 transition-opacity">
  <Zap className="w-96 h-96" />
  </div>
@@ -66,16 +66,16 @@ export default function DevelopersPage() {
  We provide official SDK libraries for Python, JavaScript, and Ruby. Scale your social automation without worrying about rate limits or authentication flow.
  </p>
  <div className="flex flex-col sm:flex-row gap-6">
- <Link to="/docs" className="px-8 py-4 bg-[#0a0a0a]/80 backdrop-blur-md text-textMain font-bold rounded-2xl text-center hover:bg-white/5 backdrop-blur-sm border border-white/10 transition-all shadow-[0_0_40px_rgba(139,92,246,0.2)]">
+ <Link to="/docs" className="px-8 py-4 bg-bgSurface text-textMain font-bold rounded-2xl text-center hover:bg-bgSurfaceHighlight transition-all shadow-xl">
  Start Building
  </Link>
- <button className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 text-textMain font-bold rounded-2xl hover:bg-white/10 transition-all text-center">
+ <button className="px-8 py-4 bg-bgSurfaceHighlight border border-borderColor text-textMain font-bold rounded-2xl hover:bg-white/10 transition-all text-center">
  Browse SDK Repo
  </button>
  </div>
  </div>
- <div className="bg-black/40 rounded-3xl p-8 border border-white/10 shadow-2xl backdrop-blur-xl">
- <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-4">
+ <div className="bg-black/40 rounded-3xl p-8 border border-borderColor shadow-2xl backdrop-blur-xl">
+ <div className="flex items-center gap-2 mb-6 border-b border-borderColor pb-4">
  <div className="w-3 h-3 rounded-full bg-red-500/50" />
  <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
  <div className="w-3 h-3 rounded-full bg-green-500/50" />
@@ -104,15 +104,15 @@ print(f"Scheduled Post ID: {response.id}")`}
 
 function DevCard({ icon: Icon, iconColor, title, description, code, link, linkText }) {
  return (
- <div className="group bg-bgColor border border-white/10 hover:border-white/10 rounded-3xl p-8 transition-all hover:translate-y-[-4px] backdrop-blur-md">
- <div className={`w-12 h-12 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl flex items-center justify-center mb-6 overflow-hidden`}>
+ <div className="group bg-bgColor border border-borderColor hover:border-borderColor rounded-3xl p-8 transition-all hover:translate-y-[-4px] backdrop-blur-md">
+ <div className={`w-12 h-12 bg-bgSurfaceHighlight rounded-xl flex items-center justify-center mb-6 overflow-hidden`}>
  <Icon className={`w-6 h-6 ${iconColor}`} />
  </div>
  <h3 className="text-xl font-bold mb-3 text-textMain">{title}</h3>
  <p className="text-textMuted mb-8 text-sm leading-relaxed">
  {description}
  </p>
- <div className="bg-black/60 rounded-xl p-4 font-mono text-[11px] text-green-400 mb-8 border border-white/10 select-all truncate">
+ <div className="bg-black/60 rounded-xl p-4 font-mono text-[11px] text-green-400 mb-8 border border-borderColor select-all truncate">
  {code}
  </div>
  <Link to={link} className="inline-flex items-center gap-2 text-sm font-bold text-textMain hover:text-raven-400 transition-all group/link">

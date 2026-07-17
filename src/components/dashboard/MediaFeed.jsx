@@ -79,7 +79,7 @@ export default function MediaFeed() {
  <div className="w-[380px] flex flex-col gap-6 shrink-0">
 
  {/* Add Creator Input */}
- <div className="bg-bgColor border border-white/10 rounded-2xl p-5 shadow-[0_0_30px_rgba(139,92,246,0.15)]">
+ <div className="bg-bgColor border border-borderColor rounded-2xl p-5 shadow-lg">
  <div className="flex items-center gap-2 mb-4 text-textMuted text-sm font-medium">
  <CheckCircle2 className="w-4 h-4 text-raven-500" />
  Add Instagram Creator
@@ -88,7 +88,7 @@ export default function MediaFeed() {
  <input
  type="text"
  placeholder="Enter Instagram username..."
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-xl py-3 px-4 text-textMain text-sm focus:outline-none focus:border-raven-500 focus:ring-1 focus:ring-raven-500/50 transition-all placeholder:text-textMuted"
+ className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-xl py-3 px-4 text-textMain text-sm focus:outline-none focus:border-raven-500 focus:ring-1 focus:ring-raven-500/50 transition-all placeholder:text-textMuted"
  />
  <button className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-white/10 hover:bg-raven-600 rounded-lg text-textMuted hover:text-textMain transition-colors">
  <Plus className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function MediaFeed() {
  </div>
 
  {/* Tracked Creators List */}
- <div className="flex-1 bg-bgColor border border-white/10 rounded-2xl p-5 shadow-[0_0_30px_rgba(139,92,246,0.15)] flex flex-col overflow-hidden">
+ <div className="flex-1 bg-bgColor border border-borderColor rounded-2xl p-5 shadow-lg flex flex-col overflow-hidden">
  <div className="flex items-center justify-between mb-6">
  <h3 className="text-textMain font-semibold flex items-center gap-2">
  <Users className="w-4 h-4 text-textMuted" />
@@ -105,14 +105,14 @@ export default function MediaFeed() {
  </h3>
  </div>
 
- <div className="flex items-center justify-between mb-4 bg-white/5 backdrop-blur-sm border border-white/10/30 p-2 rounded-lg border border-white/10">
+ <div className="flex items-center justify-between mb-4 bg-bgSurfaceHighlight/30 p-2 rounded-lg border border-borderColor">
  <div className="flex items-center gap-3">
- <button className="text-xs font-medium text-textMuted hover:text-textMain bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 px-3 py-1.5 rounded-md border border-white/10 transition-all">
+ <button className="text-xs font-medium text-textMuted hover:text-textMain bg-bgSurfaceHighlight hover:bg-white/10 px-3 py-1.5 rounded-md border border-borderColor transition-all">
  Select All
  </button>
  <span className="text-[10px] text-textMuted">2 of 19 selected</span>
  </div>
- <button className="bg-raven-600 hover:bg-raven-500 text-textMain text-xs font-bold px-3 py-1.5 rounded-md shadow-[0_0_30px_rgba(139,92,246,0.15)] shadow-raven-600/20 transition-all">
+ <button className="bg-raven-600 hover:bg-raven-500 text-textMain text-xs font-bold px-3 py-1.5 rounded-md shadow-lg shadow-raven-600/20 transition-all">
  Get Reels
  </button>
  </div>
@@ -123,7 +123,7 @@ export default function MediaFeed() {
  key={account.accountId}
  whileHover={{ scale: 1.02 }}
  whileTap={{ scale: 0.98 }}
- className={`group p-3 rounded-xl border transition-all cursor-pointer relative overflow-hidden ${selectedCreator === account.accountId ? 'bg-raven-500/10 border-raven-500/50' : 'bg-white/5 backdrop-blur-sm border border-white/10/30 border-white/10 hover:border-white/10' }`}
+ className={`group p-3 rounded-xl border transition-all cursor-pointer relative overflow-hidden ${selectedCreator === account.accountId ? 'bg-raven-500/10 border-raven-500/50' : 'bg-bgSurfaceHighlight/30 border-borderColor hover:border-borderColor' }`}
  onClick={() => setSelectedCreator(account.accountId)}
  >
  <div className="flex items-center gap-3 relative z-10">
@@ -135,7 +135,7 @@ export default function MediaFeed() {
  className="w-full h-full object-cover"
  />
  </div>
- <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-raven-500 rounded-full border-2 border-white/10 flex items-center justify-center">
+ <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-raven-500 rounded-full border-2 border-borderColor flex items-center justify-center">
  <CheckCircle2 className="w-2.5 h-2.5 text-textMain" />
  </div>
  </div>
@@ -169,7 +169,7 @@ export default function MediaFeed() {
  <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 h-full">
  {mediaItems.map((item) => (
- <div key={item.id} className="relative group rounded-2xl overflow-hidden aspect-[9/16] bg-bgColor border border-white/10 shadow-2xl">
+ <div key={item.id} className="relative group rounded-2xl overflow-hidden aspect-[9/16] bg-bgColor border border-borderColor shadow-2xl">
  {/* Media Background */}
  <img
  src={item.thumbnail}
@@ -195,17 +195,17 @@ export default function MediaFeed() {
  <h3 className="text-3xl font-black text-textMain leading-tight drop-shadow-2xl mb-4" style={{ fontFamily: 'Impact, sans-serif', letterSpacing: '1px' }}>
  {item.title}
  </h3>
- <button className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-textMain font-bold hover:bg-[#0a0a0a]/80 backdrop-blur-md hover:text-raven-900 transition-all">
+ <button className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-textMain font-bold hover:bg-bgSurface hover:text-raven-900 transition-all">
  <Zap className="w-4 h-4 fill-current" />
  Harmonize
  </button>
  </div>
 
  {/* Bottom Info */}
- <div className="absolute bottom-0 left-0 w-full p-5 z-20 bg-bgColor/90 backdrop-blur-xl border-t border-white/10 transform translate-y-0 transition-transform">
+ <div className="absolute bottom-0 left-0 w-full p-5 z-20 bg-bgColor/90 backdrop-blur-xl border-t border-borderColor transform translate-y-0 transition-transform">
  <div className="flex items-center justify-between mb-3">
  <div className="flex items-center gap-2">
- <img src={item.creatorAvatar} className="w-8 h-8 rounded-full border border-white/10" alt="Avatar" />
+ <img src={item.creatorAvatar} className="w-8 h-8 rounded-full border border-borderColor" alt="Avatar" />
  <div>
  <p className="text-xs font-bold text-textMain">{item.creator}</p>
  <p className="text-[10px] text-textMuted">09/08/2026</p>
@@ -219,7 +219,7 @@ export default function MediaFeed() {
  How to create AI Videos for your brand or business 💥 #MagnificAI #KlingAI
  </p>
 
- <div className="flex items-center justify-between text-[11px] font-medium text-textMuted border-t border-white/10 pt-3">
+ <div className="flex items-center justify-between text-[11px] font-medium text-textMuted border-t border-borderColor pt-3">
  <div className="flex gap-4">
  <span className="flex items-center gap-1"><Play className="w-3 h-3" /> {item.views}</span>
  <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> {item.likes}</span>

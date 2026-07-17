@@ -314,7 +314,7 @@ export default function Publisher() {
  <div className="relative">
  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textMuted" />
  <select
- className="w-full pl-10 pr-10 py-2 bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-raven-500 appearance-none text-textMuted text-textMain"
+ className="w-full pl-10 pr-10 py-2 bg-bgSurfaceHighlight border border-borderColor rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-raven-500 appearance-none text-textMuted text-textMain"
  value={selectedProfileId || ''}
  onChange={(e) => setSelectedProfileId(e.target.value)}
  >
@@ -344,7 +344,7 @@ export default function Publisher() {
  <button
  key={acc.accountId}
  onClick={() => toggleAccount(acc.accountId)}
- className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-gradient-to-r from-raven-600/40 to-raven-900/40 border-raven-500/30 text-white shadow-[0_0_15px_rgba(139,92,246,0.1)]' : 'bg-[#0a0a0a]/80 backdrop-blur-md/50 backdrop-blur-md border-white/10 text-textMuted hover:bg-white/5 backdrop-blur-sm border border-white/10'}`}
+ className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-gradient-to-r from-raven-600/40 to-raven-900/40 border-raven-500/30 text-white shadow-sm' : 'bg-bgSurface/50 backdrop-blur-md border-borderColor text-textMuted hover:bg-bgSurfaceHighlight'}`}
  >
  <div className="flex items-center gap-3">
  {/* Icon */}
@@ -402,7 +402,7 @@ export default function Publisher() {
  {mediaFiles.length > 0 && (
  <div className="px-6 pb-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
  {mediaFiles.map(media => (
- <div key={media.id} className="relative aspect-square rounded-xl overflow-hidden group border border-white/10">
+ <div key={media.id} className="relative aspect-square rounded-xl overflow-hidden group border border-borderColor">
  {media.uploading && (
  <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
  <Loader2 className="w-6 h-6 text-textMain animate-spin" />
@@ -438,7 +438,7 @@ export default function Publisher() {
  )}
 
  {/* Toolbar */}
- <div className="p-4 border-t border-white/10 flex items-center justify-between">
+ <div className="p-4 border-t border-borderColor flex items-center justify-between">
  <div className="flex items-center gap-1">
  <input
  type="file"
@@ -456,7 +456,7 @@ export default function Publisher() {
  {/* Video Guidelines Info */}
  <div className="relative group ml-1">
  <Info className="w-4 h-4 text-textMuted cursor-help" />
- <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white/5 backdrop-blur-sm border border-white/10 text-textMain text-xs p-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-[0_0_40px_rgba(139,92,246,0.2)]">
+ <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-bgSurfaceHighlight text-textMain text-xs p-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
  <p className="font-bold mb-1">Video Guidelines:</p>
  <ul className="list-disc pl-3 space-y-1 text-textMuted">
  <li>Max size: 4.5MB (Direct) or use URL</li>
@@ -468,7 +468,7 @@ export default function Publisher() {
  </div>
  </div>
 
- <div className="w-px h-6 bg-white/10 bg-white/5 backdrop-blur-sm border border-white/10 mx-2" />
+ <div className="w-px h-6 bg-white/10 bg-bgSurfaceHighlight mx-2" />
  <ToolbarBtn icon={Smile} label="Emoji" />
  <ToolbarBtn icon={MapPin} label="Location" />
  </div>
@@ -478,7 +478,7 @@ export default function Publisher() {
 
         {/* Widget 3: Schedule & Publish Options */}
         <div className="glass-card p-5">
- <div className="border border-white/10 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 p-4 mb-4">
+ <div className="border border-borderColor rounded-xl bg-bgSurfaceHighlight p-4 mb-4">
  <button
  onClick={() => setShowSchedule(!showSchedule)}
  className="flex items-center gap-2 text-sm font-semibold text-textMuted w-full justify-between"
@@ -502,7 +502,7 @@ export default function Publisher() {
  type="date"
  value={scheduleDate}
  onChange={(e) => setScheduleDate(e.target.value)}
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 dark:bg-bgColor border border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
+ className="w-full bg-bgSurfaceHighlight dark:bg-bgColor border border-borderColor rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
  />
  </div>
  <div className="flex-1">
@@ -511,7 +511,7 @@ export default function Publisher() {
  type="time"
  value={scheduleTime}
  onChange={(e) => setScheduleTime(e.target.value)}
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 dark:bg-bgColor border border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
+ className="w-full bg-bgSurfaceHighlight dark:bg-bgColor border border-borderColor rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-raven-500 outline-none transition-all"
  />
  </div>
  <button
@@ -520,7 +520,7 @@ export default function Publisher() {
  setScheduleTime('');
  setShowSchedule(false);
  }}
- className="px-3 py-2.5 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-red-50 text-textMuted hover:text-red-600 dark:hover:bg-red-900/20 text-textMuted border border-white/10 rounded-lg transition-colors flex items-center justify-center"
+ className="px-3 py-2.5 bg-bgSurfaceHighlight hover:bg-red-50 text-textMuted hover:text-red-600 dark:hover:bg-red-900/20 text-textMuted border border-borderColor rounded-lg transition-colors flex items-center justify-center"
  title="Clear & Cancel Schedule"
  >
  <X className="w-4 h-4" />
@@ -579,14 +579,14 @@ export default function Publisher() {
 
  <div className="flex-1 flex items-center justify-center">
  {/* Mock Phone/Desktop Preview */}
- <div className={`transition-all duration-300 flex flex-col bg-[#0a0a0a]/80 backdrop-blur-md shadow-2xl overflow-hidden ${previewMode === 'mobile' ? 'w-[320px] rounded-[2rem] border-[6px] border-white/10' : 'w-full max-w-[440px] rounded-lg border'}`}
+ <div className={`transition-all duration-300 flex flex-col bg-bgSurface shadow-2xl overflow-hidden ${previewMode === 'mobile' ? 'w-[320px] rounded-[2rem] border-[6px] border-borderColor' : 'w-full max-w-[440px] rounded-lg border'}`}
  >
  {/* Header */}
- <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
- <div className="w-8 h-8 rounded-full bg-white/10 bg-white/5 backdrop-blur-sm border border-white/10"></div>
+ <div className="px-5 py-4 border-b border-borderColor flex items-center gap-3">
+ <div className="w-8 h-8 rounded-full bg-white/10 bg-bgSurfaceHighlight"></div>
  <div className="flex-1">
- <div className="h-2 w-24 bg-white/10 bg-white/5 backdrop-blur-sm border border-white/10 rounded mb-1.5"></div>
- <div className="h-1.5 w-12 bg-white/5 backdrop-blur-sm border border-white/10 rounded"></div>
+ <div className="h-2 w-24 bg-white/10 bg-bgSurfaceHighlight rounded mb-1.5"></div>
+ <div className="h-1.5 w-12 bg-bgSurfaceHighlight rounded"></div>
  </div>
  <MoreHorizontal className="w-4 h-4 text-textMuted" />
  </div>
@@ -594,7 +594,7 @@ export default function Publisher() {
  {/* Content */}
  <div className="p-0">
  {mediaFiles.length > 0 ? (
- <div className="aspect-square bg-white/5 backdrop-blur-sm border border-white/10 dark:bg-bgColor relative">
+ <div className="aspect-square bg-bgSurfaceHighlight dark:bg-bgColor relative">
  {mediaFiles[0].type === 'video' ? (
  mediaFiles[0].isEmbed ? (
  <iframe
@@ -624,9 +624,9 @@ export default function Publisher() {
  {/* Caption */}
  <div className="p-4">
  <div className="flex gap-3 mb-3">
- <div className="w-5 h-5 rounded-full border border-white/10"></div>
- <div className="w-5 h-5 rounded-full border border-white/10"></div>
- <div className="w-5 h-5 rounded-full border border-white/10"></div>
+ <div className="w-5 h-5 rounded-full border border-borderColor"></div>
+ <div className="w-5 h-5 rounded-full border border-borderColor"></div>
+ <div className="w-5 h-5 rounded-full border border-borderColor"></div>
  </div>
  <div className="text-sm font-bold text-textMain dark:text-textMain mb-1">username</div>
  <p className="text-xs text-textMuted leading-relaxed whitespace-pre-wrap">
@@ -660,12 +660,12 @@ export default function Publisher() {
  initial={{ scale: 0.95, opacity: 0 }}
  animate={{ scale: 1, opacity: 1 }}
  exit={{ scale: 0.95, opacity: 0 }}
- className="bg-[#0a0a0a]/80 backdrop-blur-md rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden"
+ className="bg-bgSurface rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden"
  onClick={(e) => e.stopPropagation()}
  >
- <div className="p-4 border-b border-white/10 flex items-center justify-between">
+ <div className="p-4 border-b border-borderColor flex items-center justify-between">
  <h3 className="text-lg font-bold text-textMain">Select from Library</h3>
- <button onClick={() => setShowLibrary(false)} className="p-2 hover:bg-white/5 backdrop-blur-sm border border-white/10 dark:hover:bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg">
+ <button onClick={() => setShowLibrary(false)} className="p-2 hover:bg-bgSurfaceHighlight dark:hover:bg-bgSurfaceHighlight rounded-lg">
  <X className="w-5 h-5 text-textMuted" />
  </button>
  </div>
@@ -731,7 +731,7 @@ export default function Publisher() {
  initial={{ scale: 0.95, opacity: 0 }}
  animate={{ scale: 1, opacity: 1 }}
  exit={{ scale: 0.95, opacity: 0 }}
- className="bg-[#0a0a0a]/80 backdrop-blur-md rounded-2xl shadow-2xl max-w-md w-full p-6"
+ className="bg-bgSurface rounded-2xl shadow-2xl max-w-md w-full p-6"
  onClick={(e) => e.stopPropagation()}
  >
  <h3 className="text-lg font-bold text-textMain mb-4">Add Media from URL</h3>
@@ -740,13 +740,13 @@ export default function Publisher() {
  value={urlInputValue}
  onChange={(e) => setUrlInputValue(e.target.value)}
  placeholder="https://example.com/image.jpg"
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-raven-500 outline-none"
+ className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-lg px-4 py-3 mb-4 focus:ring-2 focus:ring-raven-500 outline-none"
  autoFocus
  />
  <div className="flex justify-end gap-3">
  <button
  onClick={() => setShowUrlInput(false)}
- className="px-4 py-2 text-textMuted hover:bg-white/5 backdrop-blur-sm border border-white/10 dark:hover:bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg font-medium"
+ className="px-4 py-2 text-textMuted hover:bg-bgSurfaceHighlight dark:hover:bg-bgSurfaceHighlight rounded-lg font-medium"
  >
  Cancel
  </button>

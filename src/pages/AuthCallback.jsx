@@ -98,7 +98,7 @@ export default function AuthCallback() {
  <p className="text-textMuted mb-8">{searchParams.get('error') ||"We couldn't verify your credentials with the platform."}</p>
  <button
  onClick={() => navigate('/connections')}
- className="px-8 py-3 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 border border-white/10 rounded-xl text-textMain font-bold transition-all flex items-center gap-2"
+ className="px-8 py-3 bg-bgSurfaceHighlight hover:bg-white/10 border border-borderColor rounded-xl text-textMain font-bold transition-all flex items-center gap-2"
  >
  Return to Connections
  </button>

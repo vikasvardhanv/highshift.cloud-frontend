@@ -13,7 +13,7 @@ export default function DeveloperApi() {
 
  {/* Documentation Section */}
  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
- <div className="p-6 bg-[#0a0a0a]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+ <div className="p-6 bg-bgSurface rounded-xl border border-borderColor shadow-sm">
  <div className="w-10 h-10 bg-raven-500/10 bg-raven-900/20 text-raven-400 dark:text-raven-400 rounded-lg flex items-center justify-center mb-4">
  <Book className="w-5 h-5" />
  </div>
@@ -22,7 +22,7 @@ export default function DeveloperApi() {
  <a href="https://api.highshift.cloud/docs" target="_blank" rel="noreferrer" className="text-raven-400 text-sm font-medium hover:underline">View Docs &rarr;</a>
  </div>
 
- <div className="p-6 bg-[#0a0a0a]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+ <div className="p-6 bg-bgSurface rounded-xl border border-borderColor shadow-sm">
  <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-4">
  <Code className="w-5 h-5" />
  </div>
@@ -31,7 +31,7 @@ export default function DeveloperApi() {
  <button className="text-raven-400 text-sm font-medium hover:underline">Download SDKs &rarr;</button>
  </div>
 
- <div className="p-6 bg-[#0a0a0a]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+ <div className="p-6 bg-bgSurface rounded-xl border border-borderColor shadow-sm">
  <div className="w-10 h-10 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-lg flex items-center justify-center mb-4">
  <Terminal className="w-5 h-5" />
  </div>

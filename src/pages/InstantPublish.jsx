@@ -92,7 +92,7 @@ export default function InstantPublish() {
  </p>
  </div>
 
- <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-[3rem] p-12 shadow-2xl space-y-12">
+ <div className="bg-bgSurface border border-borderColor rounded-[3rem] p-12 shadow-2xl space-y-12">
 
  {/* Main Form */}
  <form onSubmit={handleSubmit} className="space-y-8">
@@ -104,7 +104,7 @@ export default function InstantPublish() {
  value={topic}
  onChange={(e) => setTopic(e.target.value)}
  placeholder="What's the story today?"
- className="w-full h-40 bg-bgColor border border-white/10 rounded-3xl p-6 text-xl font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all resize-none text-textMain text-textMain placeholder:text-textMuted"
+ className="w-full h-40 bg-bgColor border border-borderColor rounded-3xl p-6 text-xl font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all resize-none text-textMain text-textMain placeholder:text-textMuted"
  />
  </div>
  <div className="space-y-8">
@@ -116,7 +116,7 @@ export default function InstantPublish() {
  value={audience}
  onChange={(e) => setAudience(e.target.value)}
  placeholder="e.g. Tech Founders"
- className="w-full bg-bgColor border border-white/10 rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted"
+ className="w-full bg-bgColor border border-borderColor rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted"
  />
  </div>
  <div className="space-y-4">
@@ -126,14 +126,14 @@ export default function InstantPublish() {
  required
  value={date}
  onChange={(e) => setDate(e.target.value)}
- className="w-full bg-bgColor border border-white/10 rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain"
+ className="w-full bg-bgColor border border-borderColor rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain"
  />
  </div>
  </div>
  </div>
 
  {/* Social Handles Section */}
- <div className="pt-12 border-t border-white/10">
+ <div className="pt-12 border-t border-borderColor">
  <div className="flex items-center gap-4 mb-8">
  <Network className="w-5 h-5 text-raven-400" />
  <h3 style={{ color: '#0f172a' }} className="text-xl font-black italic uppercase tracking-tighter dark:!text-textMain">
@@ -158,7 +158,7 @@ export default function InstantPublish() {
  value={handles[p]}
  onChange={(e) => setHandles({ ...handles, [p]: e.target.value })}
  placeholder="@handle"
- className="w-full bg-bgColor border border-white/10 rounded-2xl px-5 py-4 text-sm font-bold text-textMain text-textMain focus:outline-none focus:border-raven-500 transition-all placeholder:text-textMuted"
+ className="w-full bg-bgColor border border-borderColor rounded-2xl px-5 py-4 text-sm font-bold text-textMain text-textMain focus:outline-none focus:border-raven-500 transition-all placeholder:text-textMuted"
  />
  </div>
  </div>
@@ -167,7 +167,7 @@ export default function InstantPublish() {
  </div>
 
  {/* Engine Configuration Section */}
- <div className="pt-12 border-t border-white/10">
+ <div className="pt-12 border-t border-borderColor">
  <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
  <div className="space-y-2">
  <div className="flex items-center gap-4">
@@ -179,7 +179,7 @@ export default function InstantPublish() {
 
  <div className="flex-1 flex flex-col sm:flex-row items-center gap-6">
  {/* System Choice Icons */}
- <div className="flex items-center gap-3 p-2 bg-white/5 backdrop-blur-sm border border-white/10 dark:bg-bgColor rounded-[2rem] border border-white/10">
+ <div className="flex items-center gap-3 p-2 bg-bgSurfaceHighlight dark:bg-bgColor rounded-[2rem] border border-borderColor">
  <button
  type="button"
  onClick={() => {
@@ -187,19 +187,19 @@ export default function InstantPublish() {
  window.location.href = '/connections';
  }
  }}
- className={`p-4 rounded-full transition-all group relative ${apiKey ? 'hover:bg-white dark:hover:bg-white/5 backdrop-blur-sm border border-white/10 bg-bgSurfaceHighlight0 bg-white/5 backdrop-blur-sm border border-white/10' : 'bg-white/5 backdrop-blur-sm border border-white/10 shadow-[0_0_30px_rgba(139,92,246,0.15)]'}`}
+ className={`p-4 rounded-full transition-all group relative ${apiKey ? 'hover:bg-white dark:hover:bg-bgSurfaceHighlight bg-bgSurfaceHighlight0 bg-bgSurfaceHighlight' : 'bg-bgSurfaceHighlight shadow-lg'}`}
  title="Social Raven"
  >
  <img src="/images/image.png" alt="R" className={`w-6 h-6 group-hover:scale-110 transition-transform ${apiKey ? 'grayscale opacity-30' : ''}`} />
- <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-bgColor border border-white/10 px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-textMain z-[100]">Social Raven</div>
+ <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-bgColor border border-borderColor px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-textMain z-[100]">Social Raven</div>
  </button>
  <button
  type="button"
- className={`p-4 rounded-full transition-all group relative ${apiKey ? 'bg-raven-600 text-textMain shadow-[0_0_40px_rgba(139,92,246,0.2)] shadow-raven-600/40' : 'hover:bg-white dark:hover:bg-white/5 backdrop-blur-sm border border-white/10'}`}
+ className={`p-4 rounded-full transition-all group relative ${apiKey ? 'bg-raven-600 text-textMain shadow-xl shadow-raven-600/40' : 'hover:bg-white dark:hover:bg-bgSurfaceHighlight'}`}
  title="Upload Post System"
  >
  <Cloud className="w-6 h-6 group-hover:scale-110 transition-transform" />
- <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-bgColor border border-white/10 px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-textMain z-[100]">Upload Post</div>
+ <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-bgColor border border-borderColor px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-textMain z-[100]">Upload Post</div>
  </button>
  </div>
 
@@ -214,14 +214,14 @@ export default function InstantPublish() {
  value={apiKey}
  onChange={(e) => setApiKey(e.target.value)}
  placeholder="Paste Key to persist..."
- className="w-full bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-3xl pl-16 pr-6 py-5 font-bold text-xs tracking-widest focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted shadow-[0_0_15px_rgba(139,92,246,0.1)]"
+ className="w-full bg-bgSurface border border-borderColor rounded-3xl pl-16 pr-6 py-5 font-bold text-xs tracking-widest focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted shadow-sm"
  />
  </div>
  <button
  type="button"
  onClick={handleSaveApiKey}
  disabled={loading || !apiKey}
- className="px-10 py-5 bg-bgColor text-textMain rounded-3xl font-black italic uppercase tracking-tighter hover:bg-white/5 backdrop-blur-sm border border-white/10 transition-all active:scale-95 disabled:opacity-50 whitespace-nowrap shadow-[0_0_40px_rgba(139,92,246,0.2)] shadow-obsidian-950/10 flex items-center gap-3 text-sm"
+ className="px-10 py-5 bg-bgColor text-textMain rounded-3xl font-black italic uppercase tracking-tighter hover:bg-bgSurfaceHighlight transition-all active:scale-95 disabled:opacity-50 whitespace-nowrap shadow-xl shadow-obsidian-950/10 flex items-center gap-3 text-sm"
  >
  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-amber-400" />}
  Persist

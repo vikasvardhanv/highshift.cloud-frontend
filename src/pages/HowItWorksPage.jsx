@@ -16,21 +16,21 @@ export default function HowItWorksPage() {
  
  <HowItWorks />
  
- <div className="mt-32 border-t border-white/10 pt-20 pb-40">
+ <div className="mt-32 border-t border-borderColor pt-20 pb-40">
  <div className="grid md:grid-cols-2 gap-16">
  <div>
  <h2 className="text-3xl font-bold mb-6 text-textMain">Seamless Integration</h2>
  <p className="text-lg text-textMuted mb-8">
  Connect any social account via OAuth in seconds. We handle the technical complexities of each platform's API so you don't have to.
  </p>
- <img src="/images/connections-preview.png" alt="Connections" className="rounded-2xl shadow-2xl border border-white/10" />
+ <img src="/images/connections-preview.png" alt="Connections" className="rounded-2xl shadow-2xl border border-borderColor" />
  </div>
  <div>
  <h2 className="text-3xl font-bold mb-6 text-textMain">Visual Scheduling</h2>
  <p className="text-lg text-textMuted mb-8">
  Use our drag-and-drop calendar to plan your week, month, or quarter. We'll find the peak engagement hours for your specific audience.
  </p>
- <img src="/images/calendar-preview.png" alt="Calendar" className="rounded-2xl shadow-2xl border border-white/10" />
+ <img src="/images/calendar-preview.png" alt="Calendar" className="rounded-2xl shadow-2xl border border-borderColor" />
  </div>
  </div>
  </div>

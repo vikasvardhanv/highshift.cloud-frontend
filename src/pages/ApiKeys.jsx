@@ -81,7 +81,7 @@ export default function ApiKeys() {
  className="space-y-10 pb-20 max-w-5xl mx-auto"
  >
  {/* Header Section */}
- <motion.div variants={item} className="relative p-8 rounded-[2rem] bg-bgColor border border-white/10 overflow-hidden shadow-2xl">
+ <motion.div variants={item} className="relative p-8 rounded-[2rem] bg-bgColor border border-borderColor overflow-hidden shadow-2xl">
  <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -mr-48 -mt-48 pointer-events-none"></div>
  <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] -ml-32 -mb-32 pointer-events-none"></div>
 
@@ -101,7 +101,7 @@ export default function ApiKeys() {
  </p>
  </div>
 
- <div className="p-4 bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-2xl backdrop-blur-md">
+ <div className="p-4 bg-bgSurfaceHighlight border border-borderColor rounded-2xl backdrop-blur-md">
  <Terminal className="w-10 h-10 text-primary" />
  </div>
  </div>
@@ -110,7 +110,7 @@ export default function ApiKeys() {
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
  {/* Create Key Section */}
  <motion.div variants={item} className="lg:col-span-1 space-y-6">
- <div className="glass-card p-6 rounded-3xl border border-white/10 relative overflow-hidden group">
+ <div className="glass-card p-6 rounded-3xl border border-borderColor relative overflow-hidden group">
  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
  <h3 className="text-xl font-bold mb-4 flex items-center gap-2 relative z-10">
  <Plus className="w-5 h-5 text-primary" />
@@ -124,13 +124,13 @@ export default function ApiKeys() {
  value={newKeyName}
  onChange={(e) => setNewKeyName(e.target.value)}
  placeholder="e.g. My Custom Script"
- className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-textMuted"
+ className="w-full bg-black/20 border border-borderColor rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary/50 transition-all placeholder:text-textMuted"
  />
  </div>
  <button
  type="submit"
  disabled={creating || !newKeyName.trim()}
- className="w-full py-4 bg-primary hover:bg-primaryHover disabled:opacity-50 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(139,92,246,0.15)] shadow-primary/20"
+ className="w-full py-4 bg-primary hover:bg-primaryHover disabled:opacity-50 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
  >
  {creating ? <Loader2 className="animate-spin w-5 h-5" /> : <Zap className="w-5 h-5" />}
  Generate Key
@@ -170,7 +170,7 @@ export default function ApiKeys() {
  <h4 className="text-xl font-bold text-textMain mb-1">Key Forged Successfully</h4>
  <p className="text-sm text-emerald-400/80 mb-6 font-medium">Protect this key. It will not be shown again.</p>
 
- <div className="flex items-center gap-3 bg-black/40 p-4 rounded-xl border border-white/10">
+ <div className="flex items-center gap-3 bg-black/40 p-4 rounded-xl border border-borderColor">
  <code className="flex-1 font-mono text-emerald-400 break-all text-sm tracking-tighter">
  {isKeyVisible ? showNewKey.rawApiKey : '•'.repeat(48)}
  </code>
@@ -195,14 +195,14 @@ export default function ApiKeys() {
  )}
  </AnimatePresence>
 
- <div className="glass-card rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden bg-bgColor backdrop-blur-md">
- <div className="px-8 py-6 border-b border-white/10 flex items-center justify-between">
+ <div className="glass-card rounded-[2rem] border border-borderColor shadow-2xl overflow-hidden bg-bgColor backdrop-blur-md">
+ <div className="px-8 py-6 border-b border-borderColor flex items-center justify-between">
  <h3 className="font-bold text-lg">Active Identities</h3>
- <span className="text-xs font-bold text-textMuted bg-white/5 backdrop-blur-sm border border-white/10 py-1 px-3 rounded-full">{keys.length} Total</span>
+ <span className="text-xs font-bold text-textMuted bg-bgSurfaceHighlight py-1 px-3 rounded-full">{keys.length} Total</span>
  </div>
  <div className="overflow-x-auto">
  <table className="w-full text-left">
- <thead className="bg-white/5 backdrop-blur-sm border border-white/10 text-[10px] uppercase font-bold text-textMuted tracking-widest">
+ <thead className="bg-bgSurfaceHighlight text-[10px] uppercase font-bold text-textMuted tracking-widest">
  <tr>
  <th className="px-8 py-4">Identity Name</th>
  <th className="px-8 py-4">Created</th>
@@ -221,7 +221,7 @@ export default function ApiKeys() {
  ) : keys.length === 0 ? (
  <tr>
  <td colSpan="4" className="px-8 py-16 text-center">
- <div className="w-16 h-16 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+ <div className="w-16 h-16 bg-bgSurfaceHighlight rounded-full flex items-center justify-center mx-auto mb-4">
  <Key className="w-8 h-8 text-textMuted" />
  </div>
  <p className="text-textMuted font-medium italic">No developer keys forged yet.</p>
@@ -229,7 +229,7 @@ export default function ApiKeys() {
  </tr>
  ) : (
  keys.map((key) => (
- <tr key={key.id} className="hover:bg-white/5 backdrop-blur-sm border border-white/10 transition-all group">
+ <tr key={key.id} className="hover:bg-bgSurfaceHighlight transition-all group">
  <td className="px-8 py-5">
  <div className="flex items-center gap-3">
  <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>

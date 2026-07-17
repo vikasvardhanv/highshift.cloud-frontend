@@ -14,13 +14,13 @@
 }
 
 :root {
-  /* SOCIAL RAVEN - Default Semantic Colors (Photorealistic Dark Aesthetic) */
-  --bgColor: 0 0 0; /* #000000 Pitch Black */
-  --bgSurface: 10 10 10; /* #0a0a0a Dark Glassmorphic */
-  --bgSurfaceHighlight: 20 20 20; /* #141414 */
+  /* SOCIAL RAVEN - Default Semantic Colors (Solid Charcoal Aesthetic) */
+  --bgColor: 20 20 20; /* #141414 Dark Charcoal Canvas */
+  --bgSurface: 33 33 33; /* #212121 Lighter Charcoal Cards */
+  --bgSurfaceHighlight: 45 45 45; /* #2d2d2d */
   --textMain: 255 255 255; /* #ffffff */
   --textMuted: 163 163 163; /* #a3a3a3 */
-  --borderColor: 26 26 26; /* #1a1a1a ultra-thin border */
+  --borderColor: 45 45 45; /* #2d2d2d */
   
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
@@ -32,13 +32,13 @@
 }
 
 .dark {
-  /* SOCIAL RAVEN - Dark Mode Semantic Colors (Photorealistic Dark Aesthetic) */
-  --bgColor: 0 0 0; /* #000000 Pitch Black */
-  --bgSurface: 10 10 10; /* #0a0a0a Dark Glassmorphic */
-  --bgSurfaceHighlight: 20 20 20; /* #141414 */
+  /* SOCIAL RAVEN - Dark Mode Semantic Colors (Solid Charcoal Aesthetic) */
+  --bgColor: 20 20 20; /* #141414 Dark Charcoal Canvas */
+  --bgSurface: 33 33 33; /* #212121 Lighter Charcoal Cards */
+  --bgSurfaceHighlight: 45 45 45; /* #2d2d2d */
   --textMain: 255 255 255; /* #ffffff */
   --textMuted: 163 163 163; /* #a3a3a3 */
-  --borderColor: 26 26 26; /* #1a1a1a ultra-thin border */
+  --borderColor: 45 45 45; /* #2d2d2d */
 
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
@@ -55,7 +55,7 @@ body {
 
 @layer utilities {
   .glass-card {
-    @apply bg-bgSurface/80 border border-borderColor rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-md;
+    @apply bg-bgSurface rounded-[20px] shadow-sm;
   }
 
   .glass-button {

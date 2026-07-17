@@ -38,10 +38,10 @@ export default function Sidebar({ isOpen, onToggle, onClose }) {
 
   return (
     <aside
-      className={`fixed left-0 top-0 h-screen bg-[#0a0a0a] border-r border-white/5 transition-all duration-300 z-50 flex flex-col ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0 w-20'}`}
+      className={`fixed left-0 top-0 h-screen bg-bgColor border-r border-borderColor transition-all duration-300 z-50 flex flex-col ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0 w-20'}`}
     >
       {/* Logo Area */}
-      <div className="h-16 flex items-center px-6 border-b border-white/5">
+      <div className="h-16 flex items-center px-6 border-b border-borderColor">
         <div className="w-8 h-8 flex items-center justify-center shrink-0">
           <img src="/images/image.png" alt="R" className="w-full h-full object-contain" />
         </div>
@@ -62,7 +62,7 @@ export default function Sidebar({ isOpen, onToggle, onClose }) {
               onClick={() => {
                 if (window.innerWidth < 1024) onClose();
               }}
-              className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 group ${isActive ? 'bg-gradient-to-r from-raven-600/90 to-raven-900/90 text-white font-bold shadow-lg shadow-raven-500/20 border border-raven-500/30' : 'text-textMuted hover:bg-white/5 hover:text-white border border-transparent' }`}
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 group ${isActive ? 'bg-gradient-to-r from-raven-600 to-raven-900 text-white font-bold shadow-lg shadow-raven-500/30 border border-raven-500/50' : 'text-textMuted hover:bg-bgSurfaceHighlight hover:text-white border border-transparent' }`}
             >
               <item.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-white' : 'text-textMuted group-hover:text-white'}`} strokeWidth={isActive ? 2.5 : 2} />
               <span className={`whitespace-nowrap transition-opacity text-sm ${isOpen ? 'opacity-100' : 'opacity-0 lg:w-0 overflow-hidden'}`}>
@@ -74,7 +74,7 @@ export default function Sidebar({ isOpen, onToggle, onClose }) {
       </nav>
 
       {/* Footer / Toggle / Collapse button for Desktop */}
-      <div className="p-4 border-t border-white/5">
+      <div className="p-4 border-t border-borderColor">
         <button
           onClick={onToggle}
           className="hidden lg:flex w-full items-center justify-center p-2 rounded-lg hover:bg-white/5 text-textMuted hover:text-white transition-colors"

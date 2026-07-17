@@ -116,7 +116,7 @@ export default function Connections() {
  </div>
  <button
  onClick={() => setIsCreatingProfile(true)}
- className="flex items-center gap-2 px-6 py-3 bg-[#0a0a0a]/80 backdrop-blur-md text-textMain font-black uppercase italic tracking-tighter rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 backdrop-blur-sm border border-white/10 transition-all active:scale-95 shadow-[0_0_40px_rgba(139,92,246,0.2)] shadow-white/5"
+ className="flex items-center gap-2 px-6 py-3 bg-bgSurface text-textMain font-black uppercase italic tracking-tighter rounded-xl hover:bg-gray-100 dark:hover:bg-bgSurfaceHighlight transition-all active:scale-95 shadow-xl shadow-white/5"
  >
  <Plus className="w-5 h-5" /> New Profile
  </button>
@@ -132,10 +132,10 @@ export default function Connections() {
  <button
  key={p.id}
  onClick={() => { setSelectedProfile(p); setShowPlatformSelect(false); }}
- className={`w-full group relative flex items-center justify-between p-6 rounded-2xl border transition-all overflow-hidden ${selectedProfile?.id === p.id ? 'bg-raven-600 border-raven-600 text-textMain shadow-2xl shadow-raven-600/20' : 'bg-[#0a0a0a]/80 backdrop-blur-md border-white/10 hover:border-raven-500/30 dark:hover:border-raven-500 text-textMain'}`}
+ className={`w-full group relative flex items-center justify-between p-6 rounded-2xl border transition-all overflow-hidden ${selectedProfile?.id === p.id ? 'bg-raven-600 border-raven-600 text-textMain shadow-2xl shadow-raven-600/20' : 'bg-bgSurface border-borderColor hover:border-raven-500/30 dark:hover:border-raven-500 text-textMain'}`}
  >
  <div className="flex items-center gap-4 relative z-10">
- <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black italic text-xl ${selectedProfile?.id === p.id ? 'bg-[#0a0a0a]/80 backdrop-blur-md text-raven-400' : 'bg-white/5 backdrop-blur-sm border border-white/10 bg-white/10 text-textMuted text-textMain'}`}>
+ <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black italic text-xl ${selectedProfile?.id === p.id ? 'bg-bgSurface text-raven-400' : 'bg-bgSurfaceHighlight bg-white/10 text-textMuted text-textMain'}`}>
  {p.name.charAt(0).toUpperCase()}
  </div>
  <div className="text-left">
@@ -153,7 +153,7 @@ export default function Connections() {
  ))}
 
  {profiles.length === 0 && !isCreatingProfile && (
- <div className="p-12 text-center bg-white/5 backdrop-blur-sm border border-white/10 border border-dashed border-white/10 rounded-2xl">
+ <div className="p-12 text-center bg-bgSurfaceHighlight border border-dashed border-borderColor rounded-2xl">
  <User className="w-12 h-12 text-textMuted mx-auto mb-4" />
  <p className="text-textMuted font-bold uppercase tracking-widest text-xs">No Profiles Found</p>
  </div>
@@ -170,7 +170,7 @@ export default function Connections() {
  className="space-y-8"
  >
  {/* Selected Profile Header */}
- <div className="bg-[#0a0a0a]/80 backdrop-blur-md rounded-[2.5rem] p-10 border border-white/10 relative overflow-hidden shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+ <div className="bg-bgSurface rounded-[2.5rem] p-10 border border-borderColor relative overflow-hidden shadow-sm">
  <div className="absolute top-0 right-0 p-10 opacity-5">
  <Zap className="w-48 h-48 text-raven-400 fill-raven-600" />
  </div>
@@ -200,7 +200,7 @@ export default function Connections() {
  <button
  key={p.id}
  onClick={() => startAuth(p.id)}
- className="group flex flex-col items-center justify-center p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-all"
+ className="group flex flex-col items-center justify-center p-8 rounded-3xl bg-bgSurfaceHighlight border border-borderColor hover:border-white/20 hover:bg-white/[0.07] transition-all"
  >
  <div className={`w-16 h-16 rounded-2xl ${p.bg} flex items-center justify-center mb-6 ${p.color} group-hover:scale-110 transition-transform`}>
  <p.icon className="w-8 h-8" />
@@ -216,7 +216,7 @@ export default function Connections() {
  <div className="space-y-4">
  <h3 className="text-[10px] font-black text-textMuted uppercase tracking-[0.2em] mb-6">Connected Accounts</h3>
  {(!selectedProfile.accounts || selectedProfile.accounts.length === 0) ? (
- <div className="p-20 text-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl border border-white/10">
+ <div className="p-20 text-center bg-bgSurfaceHighlight rounded-3xl border border-borderColor">
  <Globe className="w-12 h-12 text-textMuted mx-auto mb-4" />
  <p className="text-textMuted font-bold uppercase tracking-widest text-xs">No Accounts Linked</p>
  <p className="text-textMuted text-xs mt-2">Link your first account to start publishing</p>
@@ -229,7 +229,7 @@ export default function Connections() {
  return (
  <div
  key={acc.accountId}
- className="flex items-center justify-between p-6 bg-[#0a0a0a]/80 backdrop-blur-md rounded-2xl border border-white/10 group hover:border-raven-500/20 dark:hover:border-raven-500 transition-all shadow-[0_0_15px_rgba(139,92,246,0.1)]"
+ className="flex items-center justify-between p-6 bg-bgSurface rounded-2xl border border-borderColor group hover:border-raven-500/20 dark:hover:border-raven-500 transition-all shadow-sm"
  >
  <div className="flex items-center gap-4">
  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${platformCfg?.bg || 'bg-white/10'} ${platformCfg?.color || 'text-textMain'}`}>
@@ -259,9 +259,9 @@ export default function Connections() {
  </div>
  </motion.div>
  ) : (
- <div className="h-full flex items-center justify-center p-20 text-center bg-[#0a0a0a]/80 backdrop-blur-md rounded-[3rem] border border-dashed border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
+ <div className="h-full flex items-center justify-center p-20 text-center bg-bgSurface rounded-[3rem] border border-dashed border-borderColor shadow-sm">
  <div className="space-y-6">
- <div className="w-24 h-24 bg-bgColor border border-white/10 rounded-[2rem] flex items-center justify-center mx-auto scale-110">
+ <div className="w-24 h-24 bg-bgColor border border-borderColor rounded-[2rem] flex items-center justify-center mx-auto scale-110">
  <User className="w-10 h-10 text-textMuted" />
  </div>
  <div>
@@ -286,7 +286,7 @@ export default function Connections() {
  >
  <motion.div
  initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 20 }}
- className="bg-black border border-white/10 p-12 rounded-[3.5rem] max-w-xl w-full text-center relative shadow-2xl shadow-raven-600/10"
+ className="bg-black border border-borderColor p-12 rounded-[3.5rem] max-w-xl w-full text-center relative shadow-2xl shadow-raven-600/10"
  >
  <button onClick={() => setIsCreatingProfile(false)} className="absolute top-8 right-8 text-textMuted hover:text-textMain"><X className="w-8 h-8" /></button>
 
@@ -300,14 +300,14 @@ export default function Connections() {
  <input
  autoFocus type="text" value={newProfileName} onChange={(e) => setNewProfileName(e.target.value)}
  placeholder="Profile Name"
- className="w-full bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-2xl px-8 py-6 text-2xl font-black italic uppercase tracking-tighter text-textMain placeholder:text-textMuted focus:outline-none focus:border-raven-500 transition-all mb-8 text-center"
+ className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-2xl px-8 py-6 text-2xl font-black italic uppercase tracking-tighter text-textMain placeholder:text-textMuted focus:outline-none focus:border-raven-500 transition-all mb-8 text-center"
  onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
  />
 
  <button
  onClick={handleCreateProfile}
  disabled={!newProfileName.trim() || loading}
- className="w-full bg-[#0a0a0a]/80 backdrop-blur-md text-textMain py-6 rounded-2xl font-black italic uppercase tracking-tighter text-xl shadow-2xl shadow-white/10 hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
+ className="w-full bg-bgSurface text-textMain py-6 rounded-2xl font-black italic uppercase tracking-tighter text-xl shadow-2xl shadow-white/10 hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
  >
  {loading ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : 'Create Profile'}
  </button>
