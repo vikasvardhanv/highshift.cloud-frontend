@@ -1,181 +1,230 @@
-import { motion, AnimatePresence } from"framer-motion";
+import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import {
- Calendar, TrendingUp, Sparkles, Users, ArrowRight,
- Globe, CheckCircle, Clock, BarChart3, MessageSquare, Zap, Shield, Code, ChevronRight, Briefcase,
- Radio, Megaphone, Lock, Layout, Workflow, Target, Boxes, Share2
+  Calendar, TrendingUp, Users, ArrowRight,
+  MessageSquare, BarChart3, Radio, Share2, Shield, Workflow, Lock, Zap
 } from 'lucide-react';
-import HowItWorks from '../components/HowItWorks';
-import { SentimentCard, SocialPostCard, AiAssistCard, StatsCard } from '../components/FloatingWidgets';
-import VideoHero from '../components/VideoHero';
-import heroImage from '../assets/hero-person-wide.png';
-
 export default function Home() {
- return (
- <div className="bg-bgColor font-sans selection:bg-raven-500/30">
+  return (
+    <div className="bg-bgColor font-sans min-h-screen text-textMain selection:bg-primary/30 relative overflow-hidden">
+      
+      {/* Background Glows */}
+      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
 
- {/* THE EVOLUTION SEQUENCE (Taste-Skill) */}
- <VideoHero />
 
- {/* STRATEGIC VALUE SECTION */}
- <div className="py-24 bg-bgColor relative z-10">
- <div className="container mx-auto px-4 max-w-6xl">
- <div className="mb-20 text-center">
- <h2 className="text-4xl md:text-6xl font-black text-textMain uppercase tracking-tighter italic mb-4">Strategic Value</h2>
- <div className="w-16 h-1.5 bg-raven-500 mx-auto" />
- </div>
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 px-4 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-borderColor bg-bgSurface/50 backdrop-blur-md text-sm font-medium text-textMuted shadow-xl">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            New: Autonomous Distribution Engine
+          </div>
+        </motion.div>
 
- <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
- <UserCaseItem
- title="Orchestrate Multi-Channel Campaigns"
- desc="Launch synchronized campaigns across LinkedIn, X, Instagram, and more without the chaos. One calendar, total control."
- />
- <UserCaseItem
- title="Convert Followers into Revenue"
- desc="Stop guessing. Track the direct impact of social posts on your bottom line with advanced conversion attribution."
- />
- <UserCaseItem
- title="Predictive Performance Analytics"
- desc="Go beyond vanity metrics. Our AI analyzes historical data to tell you exactly what to post and when for maximum reach."
- />
- <UserCaseItem
- title="Scale Brand Authority"
- desc="Sustain a 24/7 presence with evergreen content recycling and smart-queue technology that keeps your feed active."
- />
- <UserCaseItem
- title="Unify Team Workflows"
- desc="Eliminate bottlenecks. specialized roles, approval chains, and audit logs keep your team compliant and efficient."
- />
- <UserCaseItem
- title="Delight Customers Instantly"
- desc="Never miss a query. Consolidate every DM and comment into a single priority inbox with AI-suggested replies."
- />
- </div>
- </div>
- </div>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 max-w-5xl leading-[1.1]"
+        >
+          The operating system for <br className="hidden md:block" />
+          <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
+            social distribution.
+          </span>
+        </motion.h1>
 
- {/* PLATFORM CAPABILITIES */}
- <div className="py-32 bg-bgColor border-y border-borderColor">
- <div className="container mx-auto px-4 max-w-7xl">
- <div className="mb-24 text-center">
- <h2 className="text-4xl md:text-7xl font-black text-textMain uppercase tracking-tighter italic mb-4 tracking-[-0.05em]">Autonomous Intelligence</h2>
- <p className="text-textMuted font-bold uppercase tracking-widest text-sm">Engineered for absolute distribution</p>
- </div>
- <div className="grid lg:grid-cols-4 gap-12">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-lg md:text-xl text-textMuted max-w-2xl mb-12"
+        >
+          Social Raven unifies your campaigns, predictive analytics, and creator management into a single, high-performance platform. Stop guessing, start scaling.
+        </motion.p>
 
- {/* Column 1: Core Automation */}
- <div className="lg:col-span-1">
- <h3 className="text-lg font-bold text-textMuted uppercase tracking-wide mb-8">Core Automation</h3>
- <div className="space-y-10">
- <FeatureItem
- icon={MessageSquare}
- title="Unified Inbox"
- desc="Zero-inbox methodology for all your social channels."
- />
- <FeatureItem
- icon={Calendar}
- title="Visual Scheduler"
- desc="Drag-and-drop planning with 'Best Time to Post' AI."
- />
- <FeatureItem
- icon={BarChart3}
- title="Executive Reporting"
- desc="Automated, white-labeled PDF reports delivered to stakeholders."
- />
- </div>
- </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center gap-4"
+        >
+          <Link to="/login" className="px-8 py-4 bg-textMain text-bgColor hover:bg-white/90 font-bold rounded-xl transition-all flex items-center gap-2">
+            Start Free Trial <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link to="/product" className="px-8 py-4 bg-bgSurface border border-borderColor hover:border-white/20 text-textMain font-medium rounded-xl transition-all shadow-xl">
+            View Documentation
+          </Link>
+        </motion.div>
 
- {/* Column 2: Growth Intelligence */}
- <div className="lg:col-span-1">
- <h3 className="text-lg font-bold text-textMuted uppercase tracking-wide mb-8">Growth Intelligence</h3>
- <div className="space-y-10">
- <FeatureItem
- icon={TrendingUp}
- title="ROI Attribution"
- desc="Connect social engagement directly to CRM and web conversions."
- />
- <FeatureItem
- icon={Radio}
- title="Competitor Listening"
- desc="Monitor share of voice and sentiment against your market rivals."
- />
- <FeatureItem
- icon={Users}
- title="Creator Management"
- desc="Discover, vet, and manage influencer partnerships in one CRM."
- />
- <FeatureItem
- icon={Share2}
- title="Employee Amplification"
- desc="Turn your workforce into a distribution engine with curated sharing."
- />
- </div>
- </div>
+        {/* Dashboard Preview Graphic */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-24 w-full relative"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bgColor/50 to-bgColor z-10 pointer-events-none"></div>
+          <div className="rounded-2xl border border-borderColor bg-bgSurface/50 p-2 backdrop-blur-xl shadow-2xl overflow-hidden">
+             <div className="rounded-xl border border-borderColor bg-[#0a0a0a] h-[400px] lg:h-[600px] w-full flex flex-col relative overflow-hidden">
+                {/* Mockup UI Header */}
+                <div className="h-12 border-b border-borderColor flex items-center px-4 gap-2">
+                   <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                   <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
+                   <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                </div>
+                {/* Mockup Body */}
+                <div className="flex-1 p-8 flex gap-6">
+                   <div className="w-64 border-r border-borderColor h-full space-y-4">
+                      <div className="h-8 bg-bgSurfaceHighlight rounded-lg w-full"></div>
+                      <div className="h-8 bg-bgSurfaceHighlight/50 rounded-lg w-3/4"></div>
+                      <div className="h-8 bg-bgSurfaceHighlight/50 rounded-lg w-5/6"></div>
+                   </div>
+                   <div className="flex-1 space-y-6">
+                      <div className="flex gap-6 h-32">
+                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor p-4 relative overflow-hidden">
+                           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+                        </div>
+                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor"></div>
+                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor"></div>
+                      </div>
+                      <div className="h-64 bg-bgSurfaceHighlight/20 rounded-2xl border border-borderColor w-full"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+        </motion.div>
+      </section>
 
- {/* Column 3: Ecosystem (Sidebar) */}
- <div className="lg:col-span-1 lg:col-start-4 bg-bgSurfaceHighlight p-10 rounded-[2.5rem] h-fit border border-borderColor backdrop-blur-3xl">
- <h3 className="text-sm font-bold text-textMuted uppercase tracking-[0.2em] mb-8">Ecosystem</h3>
- <div className="space-y-8">
- <PlatformLink title="Product Tour" to="/product" />
- <PlatformLink title="AI Ghostwriter" to="/features/ghostwriter" />
- <PlatformLink title="Market Intelligence" to="/features/listening" />
- <PlatformLink title="Enterprise Nodes" to="/solutions/enterprise" />
- </div>
+      {/* STRATEGIC VALUE (BENTO BOX) */}
+      <section className="py-32 px-4 max-w-7xl mx-auto relative z-10">
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Everything you need to <br/><span className="text-textMuted">scale distribution.</span></h2>
+        </div>
 
- <div className="mt-8 pt-8 border-t border-borderColor">
- <Link to="/login" className="block w-full py-3 bg-primary hover:bg-primaryHover text-textMain text-center font-bold rounded-xl transition-colors shadow-lg">
- Request Custom Demo
- </Link>
- </div>
- </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+          
+          {/* Bento Card 1 - Large */}
+          <div className="md:col-span-2 bg-bgSurface border border-borderColor rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -mr-20 -mt-20 transition-transform duration-700 group-hover:scale-110"></div>
+            <div>
+              <div className="w-12 h-12 bg-bgSurfaceHighlight rounded-xl flex items-center justify-center mb-6">
+                <Calendar className="w-6 h-6 text-textMain" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Multi-Channel Campaigns</h3>
+              <p className="text-textMuted max-w-md">Launch synchronized campaigns across LinkedIn, X, and Instagram. One visual calendar gives you total control without the chaos.</p>
+            </div>
+          </div>
 
- </div>
- </div>
- </div>
+          {/* Bento Card 2 - Small */}
+          <div className="md:col-span-1 bg-bgSurface border border-borderColor rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-bgSurfaceHighlight rounded-xl flex items-center justify-center mb-6">
+                <TrendingUp className="w-6 h-6 text-textMain" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Revenue Attribution</h3>
+              <p className="text-textMuted text-sm">Track the direct impact of social posts on your bottom line with CRM integration.</p>
+            </div>
+          </div>
 
- {/* CTA Bottom */}
- <div className="py-32 bg-bgColor border-t border-borderColor">
- <div className="container mx-auto px-4 text-center">
- <h2 className="text-4xl md:text-7xl font-black text-textMain mb-12 uppercase italic tracking-tighter">Ready to scale?</h2>
- <Link to="/login" className="inline-flex items-center gap-4 px-12 py-6 bg-bgSurface text-textMain font-black text-2xl rounded-2xl hover:bg-white/10 transition-all shadow-2xl hover:scale-105">
- Start Free Trial
- <ArrowRight className="w-8 h-8" />
- </Link>
- </div>
- </div>
- </div>
- );
+          {/* Bento Card 3 - Small */}
+          <div className="md:col-span-1 bg-bgSurface border border-borderColor rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-bgSurfaceHighlight rounded-xl flex items-center justify-center mb-6">
+                <MessageSquare className="w-6 h-6 text-textMain" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Unified Inbox</h3>
+              <p className="text-textMuted text-sm">Consolidate every DM and comment into a single priority inbox.</p>
+            </div>
+          </div>
+
+          {/* Bento Card 4 - Large */}
+          <div className="md:col-span-2 bg-bgSurface border border-borderColor rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors flex flex-col justify-between">
+             <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -mr-20 -mb-20 transition-transform duration-700 group-hover:scale-110"></div>
+            <div>
+              <div className="w-12 h-12 bg-bgSurfaceHighlight rounded-xl flex items-center justify-center mb-6">
+                <BarChart3 className="w-6 h-6 text-textMain" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Predictive Analytics</h3>
+              <p className="text-textMuted max-w-md">Our AI analyzes historical data to tell you exactly what to post and when for maximum reach. Go beyond vanity metrics.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* AUTONOMOUS INTELLIGENCE */}
+      <section className="py-32 border-t border-borderColor relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-bgSurface/20 to-transparent pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-7xl relative">
+          <div className="mb-20 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Autonomous Intelligence</h2>
+            <p className="text-textMuted">Engineered for absolute distribution and brand authority.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureBox 
+              icon={Users}
+              title="Creator Management"
+              desc="Discover, vet, and manage influencer partnerships in one seamless CRM."
+            />
+            <FeatureBox 
+              icon={Share2}
+              title="Employee Amplification"
+              desc="Turn your workforce into a distribution engine with curated sharing."
+            />
+            <FeatureBox 
+              icon={Radio}
+              title="Competitor Listening"
+              desc="Monitor share of voice and sentiment against your market rivals."
+            />
+            <FeatureBox 
+              icon={Workflow}
+              title="Team Workflows"
+              desc="Specialized roles, approval chains, and audit logs keep your team compliant."
+            />
+            <FeatureBox 
+              icon={Shield}
+              title="Enterprise Grade"
+              desc="SOC2 compliant infrastructure with dedicated IP nodes for massive scale."
+            />
+            <FeatureBox 
+              icon={Zap}
+              title="AI Ghostwriter"
+              desc="Generate high-converting copy specifically tuned to your brand voice."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Bottom */}
+      <section className="py-40 relative overflow-hidden border-t border-borderColor">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 pointer-events-none"></div>
+        <div className="absolute bottom-[-50%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-primary/20 blur-[150px] rounded-full pointer-events-none"></div>
+        
+        <div className="container mx-auto px-4 max-w-3xl text-center relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">Ready to scale?</h2>
+          <p className="text-xl text-textMuted mb-12">Join thousands of brands orchestrating their social presence with Social Raven.</p>
+          <Link to="/login" className="inline-flex items-center gap-3 px-10 py-5 bg-textMain text-bgColor font-bold rounded-2xl hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+            Get Started Now <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+    </div>
+  );
 }
 
-// Helpers
-function UserCaseItem({ title, desc }) {
- return (
- <div className="group border-l-2 border-borderColor pl-8 hover:border-raven-500 transition-colors duration-500">
- <h3 className="text-2xl font-bold text-textMain mb-4 tracking-tight">{title}</h3>
- <p className="text-lg text-textMuted leading-relaxed font-medium">{desc}</p>
- </div>
- )
-}
-
-function FeatureItem({ icon: Icon, title, desc }) {
- return (
- <div className="group">
- <div className="flex items-center gap-4 mb-3">
- <div className="p-2 bg-bgSurfaceHighlight rounded-lg group-hover:bg-raven-500 transition-colors">
- <Icon className="w-5 h-5 text-textMain" />
- </div>
- <h4 className="text-xl font-bold text-textMain tracking-tight">{title}</h4>
- </div>
- <p className="text-textMuted leading-relaxed text-sm font-medium">{desc}</p>
- </div>
- )
-}
-
-function PlatformLink({ title, to }) {
- return (
- <Link to={to} className="flex items-center justify-between group cursor-pointer hover:bg-bgSurfaceHighlight p-3 -mx-3 rounded-2xl transition-all duration-300">
- <span className="text-lg font-bold text-textMain group-hover:text-raven-400 tracking-tight">{title}</span>
- <ChevronRight className="w-5 h-5 text-raven-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
- </Link>
- )
+function FeatureBox({ icon: Icon, title, desc }) {
+  return (
+    <div className="p-8 rounded-2xl border border-borderColor bg-bgSurface/30 backdrop-blur-sm hover:bg-bgSurfaceHighlight/50 transition-colors">
+      <Icon className="w-6 h-6 text-primary mb-6" />
+      <h3 className="text-xl font-bold mb-3">{title}</h3>
+      <p className="text-textMuted text-sm leading-relaxed">{desc}</p>
+    </div>
+  );
 }
