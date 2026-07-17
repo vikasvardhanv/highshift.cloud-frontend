@@ -213,10 +213,10 @@ export default function BrandKit() {
  if (loading) {
  return (
  <div className="max-w-6xl mx-auto space-y-6 pb-20">
- <div className="h-28 rounded-3xl bg-bgSurfaceHighlight animate-pulse" />
+ <div className="h-28 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 animate-pulse" />
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
- <div className="h-80 rounded-3xl bg-bgSurfaceHighlight animate-pulse lg:col-span-2" />
- <div className="h-80 rounded-3xl bg-bgSurfaceHighlight animate-pulse" />
+ <div className="h-80 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 animate-pulse lg:col-span-2" />
+ <div className="h-80 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 animate-pulse" />
  </div>
  </div>
  );
@@ -226,7 +226,7 @@ export default function BrandKit() {
  <div className="max-w-6xl mx-auto space-y-8 pb-20">
  <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
  <div className="space-y-3">
- <div className="inline-flex items-center gap-2 rounded-full border border-borderColor bg-bgSurfaceHighlight px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
+ <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
  <Sparkles className="w-3.5 h-3.5 text-primary" />
  HighShift brand workspace
  </div>
@@ -240,20 +240,20 @@ export default function BrandKit() {
  <div className="flex flex-wrap items-center gap-3">
  <button
  onClick={() => setActiveTab('voice')}
- className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'voice' ? 'bg-bgSurface text-textMain' : 'bg-bgSurfaceHighlight text-textMuted hover:bg-white/10'}`}
+ className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'voice' ? 'bg-[#0a0a0a]/80 backdrop-blur-md text-textMain' : 'bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted hover:bg-white/10'}`}
  >
  Voice
  </button>
  <button
  onClick={() => setActiveTab('assets')}
- className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'assets' ? 'bg-bgSurface text-textMain' : 'bg-bgSurfaceHighlight text-textMuted hover:bg-white/10'}`}
+ className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'assets' ? 'bg-[#0a0a0a]/80 backdrop-blur-md text-textMain' : 'bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted hover:bg-white/10'}`}
  >
  Assets
  </button>
  <button
  onClick={handleSave}
  disabled={saving}
- className="inline-flex items-center gap-3 rounded-2xl bg-primary px-6 py-3 text-xs font-extrabold uppercase tracking-widest text-textMain shadow-lg shadow-primary/20 transition-all hover:bg-primaryHover active:scale-95 disabled:opacity-50"
+ className="inline-flex items-center gap-3 rounded-2xl bg-primary px-6 py-3 text-xs font-extrabold uppercase tracking-widest text-textMain shadow-[0_0_30px_rgba(139,92,246,0.15)] shadow-primary/20 transition-all hover:bg-primaryHover active:scale-95 disabled:opacity-50"
  >
  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
  Save
@@ -272,7 +272,7 @@ export default function BrandKit() {
 
  {activeTab === 'voice' ? (
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
- <section className="lg:col-span-8 glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="lg:col-span-8 glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-8">
  <div className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center">
  <Type className="w-6 h-6 text-primary" />
@@ -302,7 +302,7 @@ export default function BrandKit() {
  <button
  key={tone}
  onClick={() => setFormData({ ...formData, tone })}
- className={`rounded-2xl border px-4 py-4 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${formData.tone === tone ? 'border-primary bg-primary/20 text-textMain' : 'border-borderColor bg-bgSurfaceHighlight text-textMuted hover:border-white/20 hover:text-textMuted'}`}
+ className={`rounded-2xl border px-4 py-4 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${formData.tone === tone ? 'border-primary bg-primary/20 text-textMain' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted hover:border-white/20 hover:text-textMuted'}`}
  >
  {tone}
  </button>
@@ -325,7 +325,7 @@ export default function BrandKit() {
  </section>
 
  <aside className="lg:col-span-4 space-y-6">
- <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center">
  <Hash className="w-6 h-6 text-emerald-300" />
@@ -338,7 +338,7 @@ export default function BrandKit() {
  <textarea value={formData.keywords} onChange={(e) => setFormData({ ...formData, keywords: e.target.value })} className="brand-textarea h-36" placeholder="AI agents, scheduling, analytics" />
  </section>
 
- <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-12 h-12 rounded-2xl bg-sky-500/15 border border-sky-500/20 flex items-center justify-center">
  <Palette className="w-6 h-6 text-sky-300" />
@@ -351,7 +351,7 @@ export default function BrandKit() {
  <input value={formData.colors} onChange={(e) => setFormData({ ...formData, colors: e.target.value })} className="brand-input" placeholder="#4f46e5, #111827" />
  <div className="mt-4 flex gap-2">
  {formData.colors.split(',').map((color) => color.trim()).filter(Boolean).slice(0, 6).map((color) => (
- <span key={color} title={color} className="h-8 w-8 rounded-xl border border-borderColor" style={{ backgroundColor: color }} />
+ <span key={color} title={color} className="h-8 w-8 rounded-xl border border-white/10" style={{ backgroundColor: color }} />
  ))}
  </div>
  </section>
@@ -359,7 +359,7 @@ export default function BrandKit() {
  </div>
  ) : (
  <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
- <section className="xl:col-span-4 glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="xl:col-span-4 glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-8">
  <div className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center">
  <ImageUp className="w-6 h-6 text-primary" />
@@ -379,14 +379,14 @@ export default function BrandKit() {
 
  <div className="mt-6 grid grid-cols-2 gap-3">
  {Object.keys(formatInfo.presets || defaultPresets).map((preset) => (
- <button key={preset} onClick={() => applyPreset(preset)} className={`rounded-2xl border px-4 py-3 text-left text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${assetOptions.preset === preset ? 'border-primary bg-primary/20 text-textMain' : 'border-borderColor bg-bgSurfaceHighlight text-textMuted hover:text-textMuted'}`}>
+ <button key={preset} onClick={() => applyPreset(preset)} className={`rounded-2xl border px-4 py-3 text-left text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${assetOptions.preset === preset ? 'border-primary bg-primary/20 text-textMain' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted hover:text-textMuted'}`}>
  {formatLabel(preset.replace('_pack', ''))}
  </button>
  ))}
  </div>
  </section>
 
- <section className="xl:col-span-5 glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="xl:col-span-5 glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-8">
  <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center">
  <Layers className="w-6 h-6 text-emerald-300" />
@@ -409,7 +409,7 @@ export default function BrandKit() {
  const details = formatInfo.formats?.[format];
  const selected = selectedFormats.includes(format);
  return (
- <button key={format} onClick={() => toggleFormat(format)} className={`rounded-2xl border p-4 text-left transition-all active:scale-[0.98] ${selected ? 'border-primary bg-primary/15' : 'border-borderColor bg-bgSurfaceHighlight hover:border-white/20'}`}>
+ <button key={format} onClick={() => toggleFormat(format)} className={`rounded-2xl border p-4 text-left transition-all active:scale-[0.98] ${selected ? 'border-primary bg-primary/15' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20'}`}>
  <div className="flex items-start justify-between gap-3">
  <div>
  <p className="text-sm font-extrabold text-textMain">{formatLabel(format)}</p>
@@ -428,7 +428,7 @@ export default function BrandKit() {
  </section>
 
  <aside className="xl:col-span-3 space-y-6">
- <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-12 h-12 rounded-2xl bg-sky-500/15 border border-sky-500/20 flex items-center justify-center">
  <SlidersHorizontal className="w-6 h-6 text-sky-300" />
@@ -464,7 +464,7 @@ export default function BrandKit() {
  </div>
  </section>
 
- <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
+ <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-white/10">
  <div className="flex items-center gap-4 mb-6">
  <div className="w-12 h-12 rounded-2xl bg-raven-500/15 border border-raven-500/20 flex items-center justify-center">
  <Archive className="w-6 h-6 text-raven-400" />
@@ -477,13 +477,13 @@ export default function BrandKit() {
 
  <div className="flex flex-wrap gap-2 mb-6">
  {(formatInfo.output_formats || ['png', 'jpg', 'webp', 'ico']).map((format) => (
- <button key={format} onClick={() => toggleOutput(format)} className={`rounded-xl border px-3 py-2 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${outputFormats.includes(format) ? 'border-primary bg-primary/20 text-textMain' : 'border-borderColor bg-bgSurfaceHighlight text-textMuted'}`}>
+ <button key={format} onClick={() => toggleOutput(format)} className={`rounded-xl border px-3 py-2 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${outputFormats.includes(format) ? 'border-primary bg-primary/20 text-textMain' : 'border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 text-textMuted'}`}>
  {format}
  </button>
  ))}
  </div>
 
- <button onClick={handleGenerate} disabled={generating || !selectedFormats.length} className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-bgSurface px-5 py-4 text-xs font-extrabold uppercase tracking-widest text-textMain transition-all hover:bg-gray-200 active:scale-95 disabled:opacity-50">
+ <button onClick={handleGenerate} disabled={generating || !selectedFormats.length} className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0a0a0a]/80 backdrop-blur-md px-5 py-4 text-xs font-extrabold uppercase tracking-widest text-textMain transition-all hover:bg-gray-200 active:scale-95 disabled:opacity-50">
  {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
  Generate zip
  </button>
@@ -506,10 +506,10 @@ function Field({ label, className = '', children }) {
 
 function Toggle({ label, checked, onChange }) {
  return (
- <button onClick={onChange} className="flex w-full items-center justify-between rounded-2xl border border-borderColor bg-bgSurfaceHighlight px-4 py-3 text-sm font-bold text-textMuted transition-all hover:bg-white/10 active:scale-[0.98]">
+ <button onClick={onChange} className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-3 text-sm font-bold text-textMuted transition-all hover:bg-white/10 active:scale-[0.98]">
  <span>{label}</span>
  <span className={`h-6 w-10 rounded-full p-1 transition-colors ${checked ? 'bg-primary' : 'bg-white/10'}`}>
- <span className={`block h-4 w-4 rounded-full bg-bgSurface transition-transform ${checked ? 'translate-x-4' : 'translate-x-0'}`} />
+ <span className={`block h-4 w-4 rounded-full bg-[#0a0a0a]/80 backdrop-blur-md transition-transform ${checked ? 'translate-x-4' : 'translate-x-0'}`} />
  </span>
  </button>
  );

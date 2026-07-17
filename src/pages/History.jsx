@@ -55,20 +55,20 @@ export default function History() {
  placeholder="Filter transmissions..."
  value={searchQuery}
  onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
- className="bg-black/40 border border-borderColor rounded-2xl pl-12 pr-6 py-3.5 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all w-full sm:w-72 placeholder:text-textMuted"
+ className="bg-black/40 border border-white/10 rounded-2xl pl-12 pr-6 py-3.5 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all w-full sm:w-72 placeholder:text-textMuted"
  />
  </div>
- <button className="flex items-center justify-center gap-3 px-6 py-3.5 bg-bgSurfaceHighlight hover:bg-white/10 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all border border-borderColor hover:border-borderColor">
+ <button className="flex items-center justify-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all border border-white/10 hover:border-white/10">
  <Filter className="w-4 h-4" />
  Parameters
  </button>
  </div>
  </div>
 
- <div className="relative glass-card rounded-[2.5rem] overflow-hidden border-borderColor bg-white/[0.02] shadow-2xl">
+ <div className="relative glass-card rounded-[2.5rem] overflow-hidden border-white/10 bg-white/[0.02] shadow-2xl">
  {filteredPosts.length === 0 ? (
  <div className="flex flex-col items-center justify-center py-32 text-center px-6">
- <div className="w-20 h-20 bg-bgColor border border-borderColor rounded-3xl flex items-center justify-center mb-6 shadow-inner">
+ <div className="w-20 h-20 bg-bgColor border border-white/10 rounded-3xl flex items-center justify-center mb-6 shadow-inner">
  <FileX className="w-10 h-10 text-textMuted" />
  </div>
  <h3 className="text-xl font-extrabold mb-2">Null Set Detected</h3>
@@ -79,7 +79,7 @@ export default function History() {
  <div className="overflow-x-auto scrollbar-hide">
  <table className="w-full text-left border-collapse">
  <thead>
- <tr className="bg-white/[0.03] border-b border-borderColor text-[10px] text-textMuted font-black uppercase tracking-[0.2em]">
+ <tr className="bg-white/[0.03] border-b border-white/10 text-[10px] text-textMuted font-black uppercase tracking-[0.2em]">
  <th className="p-8">Transmission Content</th>
  <th className="p-8">Target Nodes</th>
  <th className="p-8">Temporal Vector</th>
@@ -100,14 +100,14 @@ export default function History() {
  {(post.target_accounts || []).slice(0, 4).map(acc => (
  <div
  key={acc.accountId}
- className="w-10 h-10 rounded-xl bg-bgColor border-2 border-obsidian-950 flex items-center justify-center text-[10px] font-black uppercase tracking-tighter text-textMuted group-hover:border-borderColor transition-colors shadow-xl"
+ className="w-10 h-10 rounded-xl bg-bgColor border-2 border-obsidian-950 flex items-center justify-center text-[10px] font-black uppercase tracking-tighter text-textMuted group-hover:border-white/10 transition-colors shadow-[0_0_40px_rgba(139,92,246,0.2)]"
  title={acc.platform}
  >
  {(acc.platform || 'social')[0]}
  </div>
  ))}
  {(post.target_accounts || []).length > 4 && (
- <div className="w-10 h-10 rounded-xl bg-primary/20 border-2 border-obsidian-950 flex items-center justify-center text-[10px] font-black text-primary group-hover:border-borderColor transition-colors">
+ <div className="w-10 h-10 rounded-xl bg-primary/20 border-2 border-obsidian-950 flex items-center justify-center text-[10px] font-black text-primary group-hover:border-white/10 transition-colors">
  +{(post.target_accounts || []).length - 4}
  </div>
  )}
@@ -130,7 +130,7 @@ export default function History() {
  </span>
  </td>
  <td className="p-8 text-right">
- <button className="w-10 h-10 bg-bgColor border border-borderColor rounded-xl flex items-center justify-center text-textMuted hover:text-textMain hover:border-primary/50 transition-all opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0">
+ <button className="w-10 h-10 bg-bgColor border border-white/10 rounded-xl flex items-center justify-center text-textMuted hover:text-textMain hover:border-primary/50 transition-all opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0">
  <MoreHorizontal className="w-5 h-5" />
  </button>
  </td>
@@ -141,7 +141,7 @@ export default function History() {
  </div>
 
  {/* Pagination - Refined */}
- <div className="p-8 border-t border-borderColor flex flex-col sm:flex-row items-center justify-between gap-6 bg-white/[0.01]">
+ <div className="p-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white/[0.01]">
  <div className="text-[10px] font-bold text-textMuted uppercase tracking-[0.2em]">
  Showing record <span className="text-textMuted">{((page - 1) * itemsPerPage) + 1}</span> to <span className="text-textMuted">{Math.min(page * itemsPerPage, filteredPosts.length)}</span> of <span className="text-textMuted">{filteredPosts.length}</span>
  </div>
@@ -149,14 +149,14 @@ export default function History() {
  <button
  onClick={() => setPage(p => Math.max(1, p - 1))}
  disabled={page === 1}
- className="px-6 py-2.5 bg-bgColor border border-borderColor hover:border-borderColor rounded-xl text-[10px] font-bold uppercase tracking-widest text-textMuted hover:text-textMain disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+ className="px-6 py-2.5 bg-bgColor border border-white/10 hover:border-white/10 rounded-xl text-[10px] font-bold uppercase tracking-widest text-textMuted hover:text-textMain disabled:opacity-30 disabled:cursor-not-allowed transition-all"
  >
  Previous
  </button>
  <button
  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
  disabled={page >= totalPages}
- className="px-6 py-2.5 bg-bgColor border border-borderColor hover:border-borderColor rounded-xl text-[10px] font-bold uppercase tracking-widest text-textMuted hover:text-textMain disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+ className="px-6 py-2.5 bg-bgColor border border-white/10 hover:border-white/10 rounded-xl text-[10px] font-bold uppercase tracking-widest text-textMuted hover:text-textMain disabled:opacity-30 disabled:cursor-not-allowed transition-all"
  >
  Next Phase
  </button>

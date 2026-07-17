@@ -87,11 +87,11 @@ export default function Profiles() {
 
  {/* Stats */}
  <div className="flex gap-4">
- <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
+ <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-center min-w-[100px]">
  <div className="text-2xl font-bold text-raven-400">{profiles.length}</div>
  <div className="text-xs text-textMuted font-medium">Profiles</div>
  </div>
- <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
+ <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-center min-w-[100px]">
  <div className="text-2xl font-bold text-emerald-600">{totalAccounts}</div>
  <div className="text-xs text-textMuted font-medium">Accounts</div>
  </div>
@@ -119,7 +119,7 @@ export default function Profiles() {
  <button
  onClick={handleCreateProfile}
  disabled={creating || !newProfileName.trim()}
- className="px-5 py-2.5 bg-bgSurface text-raven-400 font-bold rounded-xl hover:bg-raven-500/10 disabled:opacity-50 transition-all flex items-center gap-2"
+ className="px-5 py-2.5 bg-[#0a0a0a]/80 backdrop-blur-md text-raven-400 font-bold rounded-xl hover:bg-raven-500/10 disabled:opacity-50 transition-all flex items-center gap-2"
  >
  {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
  Create
@@ -130,8 +130,8 @@ export default function Profiles() {
 
  {/* Profiles Grid */}
  {profiles.length === 0 ? (
- <div className="bg-bgSurface border border-borderColor rounded-2xl p-12 text-center">
- <div className="w-16 h-16 rounded-full bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-4">
+ <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-2xl p-12 text-center">
+ <div className="w-16 h-16 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center mx-auto mb-4">
  <Users className="w-8 h-8 text-textMuted" />
  </div>
  <h3 className="text-lg font-bold text-textMuted mb-2">No profiles yet</h3>
@@ -144,10 +144,10 @@ export default function Profiles() {
  {profiles.map(profile => (
  <div
  key={profile.id}
- className="bg-bgSurface border border-borderColor rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
+ className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-shadow"
  >
  {/* Profile Header */}
- <div className="p-5 border-b border-borderColor flex items-center justify-between">
+ <div className="p-5 border-b border-white/10 flex items-center justify-between">
  <div className="flex items-center gap-3">
  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-raven-500 to-purple-600 flex items-center justify-center text-textMain font-bold text-lg">
  {profile.name.charAt(0).toUpperCase()}
@@ -197,7 +197,7 @@ export default function Profiles() {
  return (
  <div
  key={acc.accountId}
- className={`flex items-center gap-3 p-3 rounded-xl border border-borderColor ${platformCfg?.bg || 'bg-bgColor'}`}
+ className={`flex items-center gap-3 p-3 rounded-xl border border-white/10 ${platformCfg?.bg || 'bg-bgColor'}`}
  >
  <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${platformCfg?.color}`}>
  <Icon className="w-5 h-5" />
@@ -227,7 +227,7 @@ export default function Profiles() {
  )}
 
  {/* Help Card */}
- <div className="bg-bgColor border border-borderColor rounded-2xl p-6">
+ <div className="bg-bgColor border border-white/10 rounded-2xl p-6">
  <div className="flex items-start gap-4">
  <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 flex-shrink-0">
  <Zap className="w-5 h-5" />
@@ -235,7 +235,7 @@ export default function Profiles() {
  <div>
  <h4 className="font-bold text-textMain dark:text-textMain mb-1">Pro Tip: API Integration</h4>
  <p className="text-sm text-textMuted">
- Use profiles to let your customers connect their own accounts. Pass the profile name as the <code className="bg-white/10 bg-bgSurfaceHighlight px-1.5 py-0.5 rounded text-xs">user</code> parameter in API requests.
+ Use profiles to let your customers connect their own accounts. Pass the profile name as the <code className="bg-white/10 bg-white/5 backdrop-blur-sm border border-white/10 px-1.5 py-0.5 rounded text-xs">user</code> parameter in API requests.
  </p>
  <button
  onClick={() => navigate('/developer')}

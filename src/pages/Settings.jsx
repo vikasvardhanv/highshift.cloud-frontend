@@ -33,7 +33,7 @@ export default function Settings() {
  <button
  key={tab.id}
  onClick={() => setActiveTab(tab.id)}
- className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${activeTab === tab.id ? 'bg-primary/20 text-primary border border-primary/20 shadow-lg shadow-primary/5' : 'text-textMuted hover:text-textMuted hover:bg-bgSurfaceHighlight border-transparent'}`}
+ className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${activeTab === tab.id ? 'bg-primary/20 text-primary border border-primary/20 shadow-[0_0_30px_rgba(139,92,246,0.15)] shadow-primary/5' : 'text-textMuted hover:text-textMuted hover:bg-white/5 backdrop-blur-sm border border-white/10 border-transparent'}`}
  >
  <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : 'text-textMuted'}`} />
  {tab.label}
@@ -43,7 +43,7 @@ export default function Settings() {
 
  {/* Content Area */}
  <div className="lg:col-span-9">
- <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-borderColor shadow-2xl relative overflow-hidden group min-h-[500px]">
+ <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/10 shadow-2xl relative overflow-hidden group min-h-[500px]">
  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 opacity-50 group-hover:opacity-100 transition-opacity"></div>
 
  {activeTab === 'profile' && (
@@ -60,7 +60,7 @@ export default function Settings() {
  type="text"
  value={formData.name}
  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
- className="w-full bg-black/40 border border-borderColor rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-textMain"
+ className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-textMain"
  />
  </div>
  <div className="space-y-4">
@@ -69,13 +69,13 @@ export default function Settings() {
  type="email"
  value={formData.email}
  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
- className="w-full bg-black/40 border border-borderColor rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-textMain"
+ className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all text-textMain"
  />
  </div>
  </div>
 
  <div className="pt-6">
- <button className="flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primaryHover rounded-2xl text-[10px] font-black text-textMain uppercase tracking-[0.2em] transition-all shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
+ <button className="flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primaryHover rounded-2xl text-[10px] font-black text-textMain uppercase tracking-[0.2em] transition-all shadow-[0_0_40px_rgba(139,92,246,0.2)] shadow-primary/20 hover:scale-105 active:scale-95">
  <Save className="w-4 h-4" />
  Synchronize profile
  </button>
@@ -95,7 +95,7 @@ export default function Settings() {
  </p>
  </div>
  <div className="pt-4">
- <button className="px-10 py-5 bg-bgSurface text-textMain hover:bg-white/10 rounded-3xl text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
+ <button className="px-10 py-5 bg-[#0a0a0a]/80 backdrop-blur-md text-textMain hover:bg-white/10 rounded-3xl text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
  Access Stripe Portal
  <ExternalLink className="w-4 h-4" />
  </button>
@@ -105,7 +105,7 @@ export default function Settings() {
 
  {activeTab !== 'profile' && activeTab !== 'billing' && (
  <div className="flex flex-col items-center justify-center h-full py-20 text-center">
- <div className="w-16 h-16 bg-bgColor border border-borderColor rounded-2xl flex items-center justify-center mb-6">
+ <div className="w-16 h-16 bg-bgColor border border-white/10 rounded-2xl flex items-center justify-center mb-6">
  <Zap className="w-8 h-8 text-textMuted" />
  </div>
  <h3 className="text-lg font-black uppercase tracking-tight mb-2">Protocol Under Development</h3>

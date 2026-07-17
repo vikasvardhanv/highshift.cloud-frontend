@@ -61,7 +61,7 @@ export default function Schedule() {
  <div className="flex items-center justify-between mb-8">
  <div className="flex items-center gap-4">
  <h2 className="text-2xl font-bold">{format(currentMonth, dateFormat)}</h2>
- <div className="flex gap-1 bg-bgSurfaceHighlight rounded-lg p-1">
+ <div className="flex gap-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-1">
  <button onClick={prevMonth} className="p-1 hover:bg-white/10 rounded"><ChevronLeft className="w-5 h-5" /></button>
  <button onClick={nextMonth} className="p-1 hover:bg-white/10 rounded"><ChevronRight className="w-5 h-5" /></button>
  </div>
@@ -110,7 +110,7 @@ export default function Schedule() {
 
  days.push(
  <div
- className={`min-h-[120px] p-2 border border-borderColor bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group ${!isSameMonth(day, monthStart) ?"text-gray-600 bg-transparent" :"text-textMuted"} ${isSameDay(day, selectedDate) ?"ring-1 ring-primary inset-0" :""}`}
+ className={`min-h-[120px] p-2 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative group ${!isSameMonth(day, monthStart) ?"text-gray-600 bg-transparent" :"text-textMuted"} ${isSameDay(day, selectedDate) ?"ring-1 ring-primary inset-0" :""}`}
  key={day.toString()}
  onClick={() => onDateClick(cloneDay)}
  >
@@ -140,7 +140,7 @@ export default function Schedule() {
  day = addDays(day, 1);
  }
  rows.push(
- <div className="grid grid-cols-7 gap-px bg-bgSurfaceHighlight border border-borderColor rounded-lg overflow-hidden" key={day.toString()}>
+ <div className="grid grid-cols-7 gap-px bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 rounded-lg overflow-hidden" key={day.toString()}>
  {days}
  </div>
  );
@@ -174,12 +174,12 @@ export default function Schedule() {
  <motion.div
  initial={{ opacity: 0, y: 10 }}
  animate={{ opacity: 1, y: 0 }}
- className="mt-6 p-4 bg-bgSurfaceHighlight rounded-xl"
+ className="mt-6 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl"
  >
  <h3 className="font-semibold mb-3">Posts on {format(selectedDate, 'MMMM d, yyyy')}</h3>
  <div className="space-y-2">
  {postsByDate[format(selectedDate, 'yyyy-MM-dd')].map((post, idx) => (
- <div key={post.id || post._id || idx} className="p-3 bg-bgSurfaceHighlight rounded-lg">
+ <div key={post.id || post._id || idx} className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg">
  <p className="text-sm">{post.content}</p>
  <p className="text-xs text-textMuted mt-1">
  {format(new Date(post.scheduledFor || post.scheduled_for || post.scheduled_time), 'h:mm a')} •

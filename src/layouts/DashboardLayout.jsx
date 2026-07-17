@@ -79,7 +79,7 @@ export default function DashboardLayout({ children }) {
  <div className="flex items-center gap-3 lg:gap-4">
  <button
  onClick={() => setSidebarOpen(!sidebarOpen)}
- className="p-2 -ml-2 rounded-lg hover:bg-bgSurfaceHighlight lg:hidden text-textMuted"
+ className="p-2 -ml-2 rounded-lg hover:bg-white/5 backdrop-blur-sm border border-white/10 lg:hidden text-textMuted"
  >
  <Menu className="w-6 h-6" />
  </button>
@@ -100,7 +100,7 @@ export default function DashboardLayout({ children }) {
  <div className="relative">
  <button
  onClick={() => setShowDropdown(!showDropdown)}
- className="flex items-center gap-2 lg:gap-3 hover:bg-bgSurfaceHighlight px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
+ className="flex items-center gap-2 lg:gap-3 hover:bg-white/5 backdrop-blur-sm border border-white/10 px-1.5 py-1.5 rounded-lg transition-colors border border-transparent"
  >
  <div className="w-8 h-8 rounded-full bg-raven-600 flex items-center justify-center text-xs font-bold text-textMain flex-shrink-0">
  {user?.avatar ? (
@@ -116,19 +116,19 @@ export default function DashboardLayout({ children }) {
  </button>
 
  {showDropdown && (
- <div className="absolute right-0 top-full mt-2 w-56 bg-bgColor border border-borderColor rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
- <div className="px-4 py-3 border-b border-borderColor">
+ <div className="absolute right-0 top-full mt-2 w-56 bg-bgColor border border-white/10 rounded-xl shadow-2xl py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+ <div className="px-4 py-3 border-b border-white/10">
  <p className="text-sm font-bold text-textMain">{user?.name}</p>
  <p className="text-xs text-textMuted truncate">{user?.email || ''}</p>
  </div>
 
  <div className="py-1">
- <Link to="/settings" onClick={() => setShowDropdown(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-textMuted hover:bg-bgSurfaceHighlight">
+ <Link to="/settings" onClick={() => setShowDropdown(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-textMuted hover:bg-white/5 backdrop-blur-sm border border-white/10">
  <Settings className="w-4 h-4" /> Settings
  </Link>
  </div>
 
- <div className="border-t border-borderColor py-1">
+ <div className="border-t border-white/10 py-1">
  <button
  onClick={handleLogout}
  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-500/10"

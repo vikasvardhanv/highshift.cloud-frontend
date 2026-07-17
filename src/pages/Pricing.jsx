@@ -86,10 +86,10 @@ export default function Pricing() {
  {TIERS.map((tier, idx) => (
  <div
  key={idx}
- className={`relative rounded-3xl p-8 border backdrop-blur-xl transition-all duration-300 hover:translate-y-[-5px] flex flex-col ${tier.highlight ? 'bg-white/10 border-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]' : 'bg-black/40 border-borderColor hover:bg-bgSurfaceHighlight'}`}
+ className={`relative rounded-3xl p-8 border backdrop-blur-xl transition-all duration-300 hover:translate-y-[-5px] flex flex-col ${tier.highlight ? 'bg-white/10 border-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]' : 'bg-black/40 border-white/10 hover:bg-white/5 backdrop-blur-sm border border-white/10'}`}
  >
  {tier.highlight && (
- <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary px-4 py-1 rounded-full text-xs font-bold text-textMain shadow-lg uppercase tracking-wider">
+ <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary px-4 py-1 rounded-full text-xs font-bold text-textMain shadow-[0_0_30px_rgba(139,92,246,0.15)] uppercase tracking-wider">
  {tier.tag}
  </div>
  )}
@@ -105,7 +105,7 @@ export default function Pricing() {
 
  <button
  onClick={() => navigate('/login')}
- className={`w-full py-4 rounded-xl font-bold mb-8 transition-all flex items-center justify-center gap-2 ${tier.highlight ? 'bg-primary hover:bg-primaryHover text-textMain shadow-lg' : 'bg-white/10 hover:bg-white/20 text-textMain'}`}
+ className={`w-full py-4 rounded-xl font-bold mb-8 transition-all flex items-center justify-center gap-2 ${tier.highlight ? 'bg-primary hover:bg-primaryHover text-textMain shadow-[0_0_30px_rgba(139,92,246,0.15)]' : 'bg-white/10 hover:bg-white/20 text-textMain'}`}
  >
  {tier.cta} <Zap className="w-4 h-4" />
  </button>
@@ -121,7 +121,7 @@ export default function Pricing() {
  ))}
  {tier.notIncluded.map((feat, i) => (
  <div key={i} className="flex items-start gap-3 text-sm opacity-50">
- <div className="p-1 rounded-full bg-bgSurfaceHighlight shrink-0">
+ <div className="p-1 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 shrink-0">
  <X className="w-3 h-3 text-textMuted" />
  </div>
  <span className="text-textMuted line-through">{feat}</span>
@@ -133,7 +133,7 @@ export default function Pricing() {
  </div>
 
  {/* Trust/Social Proof */}
- <div className="mt-24 text-center border-t border-borderColor pt-16">
+ <div className="mt-24 text-center border-t border-white/10 pt-16">
  <p className="text-sm font-semibold text-textMuted uppercase tracking-wider mb-8">Trusted by next-gen creators</p>
  <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
  {/* Mock Logos */}

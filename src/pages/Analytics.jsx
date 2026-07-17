@@ -20,12 +20,12 @@ const StatCard = ({ title, value, change, isPositive, icon: Icon }) => (
  hidden: { opacity: 0, y: 20 },
  show: { opacity: 1, y: 0 }
  }}
- className="group relative glass-card p-8 rounded-[2.5rem] bg-white/[0.02] border-borderColor hover:border-borderColor transition-all duration-500 overflow-hidden shadow-2xl"
+ className="group relative glass-card p-8 rounded-[2.5rem] bg-white/[0.02] border-white/10 hover:border-white/10 transition-all duration-500 overflow-hidden shadow-2xl"
  >
  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity opacity-0 group-hover:opacity-100"></div>
 
  <div className="flex items-center justify-between mb-6">
- <div className="w-12 h-12 rounded-2xl bg-bgColor border border-borderColor flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
+ <div className="w-12 h-12 rounded-2xl bg-bgColor border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
  <Icon className="w-6 h-6 text-primary group-hover:animate-pulse" />
  </div>
  <div className={`flex items-center text-[10px] font-extrabold px-3 py-1.5 rounded-full border ${isPositive ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-rose-500/10 text-rose-500 border-rose-500/20'}`}>
@@ -139,7 +139,7 @@ export default function Analytics() {
  {/* Charts Area */}
  <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
  {/* Growth Chart */}
- <div className="lg:col-span-2 glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-borderColor relative overflow-hidden group shadow-2xl">
+ <div className="lg:col-span-2 glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/10 relative overflow-hidden group shadow-2xl">
  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-20"></div>
 
  <div className="flex items-center justify-between mb-10">
@@ -208,7 +208,7 @@ export default function Analytics() {
  </div>
 
  {/* Engagement Chart */}
- <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-borderColor shadow-2xl">
+ <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-white/10 shadow-2xl">
  <h3 className="text-xl font-extrabold mb-10 text-center">Engagement Pulsar</h3>
  <div className="h-[400px]">
  <ResponsiveContainer width="100%" height="100%">

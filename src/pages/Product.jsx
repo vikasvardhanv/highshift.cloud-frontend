@@ -30,10 +30,10 @@ export default function ProductPage() {
  The Silent Engine of Social Success
  </p>
  <div className="flex gap-4">
- <Link to="/login" className="px-10 py-5 bg-bgSurface text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all inline-block">
+ <Link to="/login" className="px-10 py-5 bg-[#0a0a0a]/80 backdrop-blur-md text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all inline-block">
  Deploy Raven
  </Link>
- <Link to="/docs" className="px-10 py-5 bg-bgSurfaceHighlight border border-borderColor text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl backdrop-blur-md hover:bg-white/10 transition-all inline-block">
+ <Link to="/docs" className="px-10 py-5 bg-white/5 backdrop-blur-sm border border-white/10 border border-white/10 text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl backdrop-blur-md hover:bg-white/10 transition-all inline-block">
  Documentation
  </Link>
  </div>
@@ -80,7 +80,7 @@ export default function ProductPage() {
  </section>
 
  {/* Technical Specs */}
- <section className="py-32 bg-bgSurfaceHighlight border-y border-borderColor relative overflow-hidden">
+ <section className="py-32 bg-white/5 backdrop-blur-sm border border-white/10 border-y border-white/10 relative overflow-hidden">
  <div className="max-w-7xl mx-auto px-6">
  <div className="mb-20 text-center">
  <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 text-textMain">Advanced Architecture</h2>
@@ -124,7 +124,7 @@ function Module({ icon: Icon, title, headline, desc, reverse, color, link }) {
  Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
  </Link>
  </div>
- <div className="flex-1 w-full aspect-video rounded-[3.5rem] bg-raven-600/5 border border-borderColor flex items-center justify-center p-12 overflow-hidden relative">
+ <div className="flex-1 w-full aspect-video rounded-[3.5rem] bg-raven-600/5 border border-white/10 flex items-center justify-center p-12 overflow-hidden relative">
  <div className={`w-full h-full rounded-[2.5rem] ${color.replace('text', 'bg').replace('400', '500')}/10 blur-3xl absolute inset-0 opacity-30`} />
  <Icon className={`w-32 h-32 ${color} relative z-10`} strokeWidth={0.5} />
  </div>
@@ -134,8 +134,8 @@ function Module({ icon: Icon, title, headline, desc, reverse, color, link }) {
 
 function StatCard({ icon: Icon, title, value, desc }) {
  return (
- <div className="p-10 bg-black border border-borderColor rounded-[2.5rem] hover:border-white/20 transition-all text-center group">
- <div className="w-12 h-12 rounded-xl bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-8 group-hover:bg-raven-600 group-hover:text-textMain transition-all">
+ <div className="p-10 bg-black border border-white/10 rounded-[2.5rem] hover:border-white/20 transition-all text-center group">
+ <div className="w-12 h-12 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center mx-auto mb-8 group-hover:bg-raven-600 group-hover:text-textMain transition-all">
  <Icon className="w-6 h-6" />
  </div>
  <div className="text-4xl font-black italic uppercase tracking-tighter mb-2">{value}</div>

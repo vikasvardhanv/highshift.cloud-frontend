@@ -18,7 +18,7 @@ export default function DataDeletion() {
 
  <div className="space-y-6">
  <div className="flex gap-4">
- <div className="w-8 h-8 rounded-full bg-bgSurfaceHighlight flex items-center justify-center font-bold text-textMuted shrink-0">1</div>
+ <div className="w-8 h-8 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center font-bold text-textMuted shrink-0">1</div>
  <div>
  <h4 className="font-semibold text-textMain">Disconnect Accounts</h4>
  <p className="text-textMuted mt-1">
@@ -28,7 +28,7 @@ export default function DataDeletion() {
  </div>
 
  <div className="flex gap-4">
- <div className="w-8 h-8 rounded-full bg-bgSurfaceHighlight flex items-center justify-center font-bold text-textMuted shrink-0">2</div>
+ <div className="w-8 h-8 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center font-bold text-textMuted shrink-0">2</div>
  <div>
  <h4 className="font-semibold text-textMain">Deauthorize via Facebook/Instagram</h4>
  <p className="text-textMuted mt-1">
@@ -42,13 +42,13 @@ export default function DataDeletion() {
  </div>
 
  <div className="flex gap-4">
- <div className="w-8 h-8 rounded-full bg-bgSurfaceHighlight flex items-center justify-center font-bold text-textMuted shrink-0">3</div>
+ <div className="w-8 h-8 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center font-bold text-textMuted shrink-0">3</div>
  <div>
  <h4 className="font-semibold text-textMain">Request Full Erasure</h4>
  <p className="text-textMuted mt-1">
  To permanently delete your Social Raven user account and all associated data, please send an email to our Data Protection Officer:
  </p>
- <div className="mt-3 p-4 bg-bgColor rounded-lg border border-borderColor inline-block">
+ <div className="mt-3 p-4 bg-bgColor rounded-lg border border-white/10 inline-block">
  <span className="font-mono text-textMuted">privacy@socialraven.cloud</span>
  </div>
  <p className="text-sm text-textMuted mt-2">

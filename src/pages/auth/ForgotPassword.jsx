@@ -29,7 +29,7 @@ export default function ForgotPassword() {
  <div className="min-h-screen bg-bgColor flex flex-col justify-center py-12 sm:px-6 lg:px-8">
  <div className="sm:mx-auto sm:w-full sm:max-w-md">
  <div className="flex justify-center">
- <div className="w-12 h-12 bg-raven-600 rounded-xl flex items-center justify-center shadow-xl shadow-raven-600/20">
+ <div className="w-12 h-12 bg-raven-600 rounded-xl flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.2)] shadow-raven-600/20">
  <svg className="w-7 h-7 text-textMain" fill="none" viewBox="0 0 24 24" stroke="currentColor">
  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
  </svg>
@@ -44,7 +44,7 @@ export default function ForgotPassword() {
  </div>
 
  <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
- <div className="bg-bgSurfaceHighlight py-8 px-4 shadow sm:rounded-xl sm:px-10 border border-borderColor">
+ <div className="bg-white/5 backdrop-blur-sm border border-white/10 py-8 px-4 shadow sm:rounded-xl sm:px-10 border border-white/10">
  {status === 'success' ? (
  <div className="text-center">
  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
@@ -82,7 +82,7 @@ export default function ForgotPassword() {
  required
  value={email}
  onChange={(e) => setEmail(e.target.value)}
- className="appearance-none block w-full pl-10 px-3 py-2 border border-borderColor dark:border-slate-600 rounded-lg shadow-sm placeholder:text-textMuted focus:outline-none focus:ring-raven-500 focus:border-raven-500 sm:text-sm bg-bgSurfaceHighlight text-textMain"
+ className="appearance-none block w-full pl-10 px-3 py-2 border border-white/10 dark:border-slate-600 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.1)] placeholder:text-textMuted focus:outline-none focus:ring-raven-500 focus:border-raven-500 sm:text-sm bg-white/5 backdrop-blur-sm border border-white/10 text-textMain"
  placeholder="you@example.com"
  />
  </div>
@@ -117,7 +117,7 @@ export default function ForgotPassword() {
  <button
  type="submit"
  disabled={status === 'loading'}
- className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-textMain bg-raven-600 hover:bg-raven-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-raven-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+ className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.1)] text-sm font-bold text-textMain bg-raven-600 hover:bg-raven-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-raven-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
  >
  {status === 'loading' ? (
  <Loader2 className="w-5 h-5 animate-spin" />
