@@ -344,7 +344,7 @@ export default function Publisher() {
  <button
  key={acc.accountId}
  onClick={() => toggleAccount(acc.accountId)}
- className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-primary/10 border-primary shadow-sm' : 'bg-bgSurface border-borderColor text-textMuted hover:bg-bgSurfaceHighlight'}`}
+ className={`flex items-center justify-between p-3 rounded-xl border transition-all min-w-[220px] max-w-[220px] text-left ${isSelected ? 'bg-gradient-to-r from-raven-600/40 to-raven-900/40 border-raven-500/30 text-white shadow-[0_0_15px_rgba(139,92,246,0.1)]' : 'bg-bgSurface/50 backdrop-blur-md border-borderColor text-textMuted hover:bg-bgSurfaceHighlight'}`}
  >
  <div className="flex items-center gap-3">
  {/* Icon */}
@@ -543,8 +543,8 @@ export default function Publisher() {
  </button>
  <button
  onClick={() => handleSubmit()}
- disabled={isSubmitting || mediaFiles.some(m => m.uploading) || (showSchedule && (!scheduleDate || !scheduleTime))} // Disable if uploading or partially filled schedule
- className={`px-6 py-2.5 text-textMain text-sm font-bold rounded-xl shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98] ${(showSchedule && scheduleDate && scheduleTime) ? 'bg-raven-600 hover:bg-raven-700 shadow-raven-600/20' : 'bg-bgColor hover:bg-bgSurfaceHighlight dark:bg-white dark:hover:bg-white/10 shadow-obsidian-950/10'}`}
+ disabled={isSubmitting || mediaFiles.some(m => m.uploading) || (showSchedule && (!scheduleDate || !scheduleTime))}
+ className={`btn-primary px-6 py-2.5 text-sm font-bold rounded-xl flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed`}
  >
  {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : ((showSchedule && scheduleDate && scheduleTime) ? <Clock className="w-4 h-4" /> : <Send className="w-4 h-4" />)}
  {isSubmitting

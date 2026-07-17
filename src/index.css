@@ -14,13 +14,13 @@
 }
 
 :root {
-  /* SOCIAL RAVEN - Default Semantic Colors (Postiz Marketing Aesthetic) */
-  --bgColor: 13 13 13; /* #0d0d0d */
-  --bgSurface: 26 25 25; /* #1A1919 */
-  --bgSurfaceHighlight: 42 41 41; /* Slightly lighter than surface */
+  /* SOCIAL RAVEN - Default Semantic Colors (Photorealistic Dark Aesthetic) */
+  --bgColor: 0 0 0; /* #000000 Pitch Black */
+  --bgSurface: 10 10 10; /* #0a0a0a Dark Glassmorphic */
+  --bgSurfaceHighlight: 20 20 20; /* #141414 */
   --textMain: 255 255 255; /* #ffffff */
-  --textMuted: 209 209 209; /* #d1d1d1 */
-  --borderColor: 44 44 44; /* #2c2c2c (approx 10% white over surface) */
+  --textMuted: 163 163 163; /* #a3a3a3 */
+  --borderColor: 26 26 26; /* #1a1a1a ultra-thin border */
   
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
@@ -28,17 +28,17 @@
   --accent: 167 139 250;
   --success: 34 197 94;
   --error: 239 68 68;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 .dark {
-  /* SOCIAL RAVEN - Dark Mode Semantic Colors (Postiz Marketing Aesthetic) */
-  --bgColor: 13 13 13; /* #0d0d0d */
-  --bgSurface: 26 25 25; /* #1A1919 */
-  --bgSurfaceHighlight: 42 41 41; /* Slightly lighter than surface */
+  /* SOCIAL RAVEN - Dark Mode Semantic Colors (Photorealistic Dark Aesthetic) */
+  --bgColor: 0 0 0; /* #000000 Pitch Black */
+  --bgSurface: 10 10 10; /* #0a0a0a Dark Glassmorphic */
+  --bgSurfaceHighlight: 20 20 20; /* #141414 */
   --textMain: 255 255 255; /* #ffffff */
-  --textMuted: 209 209 209; /* #d1d1d1 */
-  --borderColor: 44 44 44; /* #2c2c2c (approx 10% white over surface) */
+  --textMuted: 163 163 163; /* #a3a3a3 */
+  --borderColor: 26 26 26; /* #1a1a1a ultra-thin border */
 
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
@@ -55,7 +55,7 @@ body {
 
 @layer utilities {
   .glass-card {
-    @apply bg-bgSurface border border-borderColor rounded-xl shadow-sm backdrop-blur-sm;
+    @apply bg-bgSurface/80 border border-borderColor rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] backdrop-blur-md;
   }
 
   .glass-button {
@@ -67,15 +67,15 @@ body {
   }
 
   .nav-link.active {
-    @apply bg-primary/10 text-primary shadow-sm border border-primary/20;
+    @apply bg-gradient-to-r from-raven-600/40 to-raven-900/40 border border-raven-500/30 text-white shadow-[0_0_15px_rgba(139,92,246,0.1)];
   }
 
   .btn-primary {
-    @apply bg-primary hover:bg-primaryHover text-white shadow-sm shadow-primary/20 active:scale-95;
+    @apply bg-gradient-to-r from-raven-500 to-raven-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-bgSurfaceHighlight border border-borderColor text-textMain hover:bg-bgSurface active:scale-95;
+    @apply bg-bgSurfaceHighlight border border-borderColor text-white hover:bg-bgSurface active:scale-95;
   }
 
   .brand-label {
@@ -83,10 +83,10 @@ body {
   }
 
   .brand-input {
-    @apply w-full rounded-2xl border border-borderColor bg-bgSurface px-5 py-4 text-sm font-semibold text-textMain outline-none transition-all placeholder:text-textMuted focus:border-primary/60 focus:bg-bgSurfaceHighlight;
+    @apply w-full rounded-2xl border border-borderColor bg-bgSurface/50 backdrop-blur-md px-5 py-4 text-sm font-semibold text-textMain outline-none transition-all placeholder:text-textMuted focus:border-white/20 focus:bg-white/5;
   }
 
   .brand-textarea {
-    @apply w-full rounded-3xl border border-borderColor bg-bgSurface p-6 text-sm font-medium leading-6 text-textMain outline-none transition-all placeholder:text-textMuted focus:border-primary/60 focus:bg-bgSurfaceHighlight;
+    @apply w-full rounded-3xl border border-borderColor bg-bgSurface/50 backdrop-blur-md p-6 text-sm font-medium leading-6 text-textMain outline-none transition-all placeholder:text-textMuted focus:border-white/20 focus:bg-white/5;
   }
 }
