@@ -4,6 +4,7 @@ import {
   Calendar, TrendingUp, Users, ArrowRight,
   MessageSquare, BarChart3, Radio, Share2, Shield, Workflow, Lock, Zap
 } from 'lucide-react';
+import heroImage from '../assets/hero-person-wide.png';
 export default function Home() {
   return (
     <div className="bg-bgColor font-sans min-h-screen text-textMain selection:bg-primary/30 relative overflow-hidden">
@@ -66,36 +67,15 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-24 w-full relative"
+          className="mt-24 w-full relative max-w-5xl mx-auto"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bgColor/50 to-bgColor z-10 pointer-events-none"></div>
-          <div className="rounded-2xl border border-borderColor bg-bgSurface/50 p-2 backdrop-blur-xl shadow-2xl overflow-hidden">
-             <div className="rounded-xl border border-borderColor bg-[#0a0a0a] h-[400px] lg:h-[600px] w-full flex flex-col relative overflow-hidden">
-                {/* Mockup UI Header */}
-                <div className="h-12 border-b border-borderColor flex items-center px-4 gap-2">
-                   <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                   <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/50"></div>
-                   <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                </div>
-                {/* Mockup Body */}
-                <div className="flex-1 p-8 flex gap-6">
-                   <div className="w-64 border-r border-borderColor h-full space-y-4">
-                      <div className="h-8 bg-bgSurfaceHighlight rounded-lg w-full"></div>
-                      <div className="h-8 bg-bgSurfaceHighlight/50 rounded-lg w-3/4"></div>
-                      <div className="h-8 bg-bgSurfaceHighlight/50 rounded-lg w-5/6"></div>
-                   </div>
-                   <div className="flex-1 space-y-6">
-                      <div className="flex gap-6 h-32">
-                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor p-4 relative overflow-hidden">
-                           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
-                        </div>
-                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor"></div>
-                        <div className="flex-1 bg-bgSurfaceHighlight/30 rounded-2xl border border-borderColor"></div>
-                      </div>
-                      <div className="h-64 bg-bgSurfaceHighlight/20 rounded-2xl border border-borderColor w-full"></div>
-                   </div>
-                </div>
-             </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bgColor/10 to-bgColor z-10 pointer-events-none"></div>
+          <div className="rounded-2xl border border-borderColor bg-bgSurface/30 p-2 lg:p-4 backdrop-blur-xl shadow-2xl shadow-primary/10 overflow-hidden">
+             <img 
+               src={heroImage} 
+               alt="Social Raven Platform" 
+               className="w-full h-auto rounded-xl border border-borderColor object-cover"
+             />
           </div>
         </motion.div>
       </section>
