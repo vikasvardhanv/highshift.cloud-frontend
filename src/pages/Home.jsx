@@ -21,7 +21,7 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-medium text-textMuted shadow-xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-medium text-white/80 shadow-xl">
             <span className="w-2 h-2 rounded-full bg-raven-500 animate-pulse shadow-[0_0_8px_rgba(139,92,246,0.8)]"></span>
             New: Autonomous Distribution Engine
           </div>
@@ -67,10 +67,10 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-24 w-full relative max-w-5xl mx-auto"
+          className="mt-24 w-full relative max-w-[1400px] mx-auto px-4 lg:px-0"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#000000]/50 to-[#000000] z-10 pointer-events-none"></div>
-          <div className="rounded-2xl border border-white/10 bg-[#0a0a0a]/50 p-2 lg:p-4 backdrop-blur-xl shadow-[0_0_50px_rgba(139,92,246,0.1)] overflow-hidden">
+          <div className="rounded-2xl border border-white/10 bg-[#0a0a0a]/50 p-2 lg:p-4 backdrop-blur-xl shadow-[0_0_100px_rgba(139,92,246,0.15)] overflow-hidden">
              <img 
                src={heroImage} 
                alt="Social Raven Platform" 
