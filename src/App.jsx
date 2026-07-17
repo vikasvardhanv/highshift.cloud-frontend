@@ -72,10 +72,10 @@ function PublicLayout({ children }) {
 }
 
 function App() {
- useEffect(() => {
- const theme = localStorage.getItem('theme') || 'light';
- document.documentElement.classList.toggle('dark', theme === 'dark');
- }, []);
+  useEffect(() => {
+    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add('dark');
+  }, []);
 
  return (
  <Router>
