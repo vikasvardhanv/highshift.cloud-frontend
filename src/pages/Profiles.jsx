@@ -2,250 +2,250 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfiles, createProfile, deleteProfile, getAuthUrl, disconnectAccount } from '../services/api';
 import {
-    Facebook, Twitter, Instagram, Linkedin, Youtube,
-    Trash2, Plus, Loader2, User, Globe, ExternalLink, Users, Zap
+ Facebook, Twitter, Instagram, Linkedin, Youtube,
+ Trash2, Plus, Loader2, User, Globe, ExternalLink, Users, Zap
 } from 'lucide-react';
 
 const PLATFORMS = [
-    { id: 'twitter', name: 'Twitter', icon: Twitter, color: 'text-sky-500', bg: 'bg-sky-50 dark:bg-sky-900/20' },
-    { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-900/20' },
-    { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'text-pink-600', bg: 'bg-pink-50 dark:bg-pink-900/20' },
-    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-700', bg: 'bg-blue-50 dark:bg-blue-900/20' },
-    { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-50 dark:bg-red-900/20' },
+ { id: 'twitter', name: 'Twitter', icon: Twitter, color: 'text-sky-500', bg: 'bg-sky-50 dark:bg-sky-900/20' },
+ { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'text-blue-600', bg: 'bg-blue-50 dark:bg-blue-900/20' },
+ { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'text-pink-600', bg: 'bg-pink-50 dark:bg-pink-900/20' },
+ { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-700', bg: 'bg-blue-50 dark:bg-blue-900/20' },
+ { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-50 dark:bg-red-900/20' },
 ];
 
 export default function Profiles() {
-    const navigate = useNavigate();
-    const [profiles, setProfiles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [newProfileName, setNewProfileName] = useState('');
-    const [creating, setCreating] = useState(false);
+ const navigate = useNavigate();
+ const [profiles, setProfiles] = useState([]);
+ const [loading, setLoading] = useState(true);
+ const [newProfileName, setNewProfileName] = useState('');
+ const [creating, setCreating] = useState(false);
 
-    useEffect(() => {
-        loadData();
-    }, []);
+ useEffect(() => {
+ loadData();
+ }, []);
 
-    const loadData = async () => {
-        try {
-            const data = await getProfiles();
-            setProfiles(data || []);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
+ const loadData = async () => {
+ try {
+ const data = await getProfiles();
+ setProfiles(data || []);
+ } catch (err) {
+ console.error(err);
+ } finally {
+ setLoading(false);
+ }
+ };
 
-    const handleCreateProfile = async () => {
-        if (!newProfileName.trim()) return;
-        setCreating(true);
-        try {
-            await createProfile(newProfileName);
-            setNewProfileName('');
-            await loadData();
-        } catch (err) {
-            alert('Failed to create profile: ' + (err.response?.data?.detail || err.message));
-        } finally {
-            setCreating(false);
-        }
-    };
+ const handleCreateProfile = async () => {
+ if (!newProfileName.trim()) return;
+ setCreating(true);
+ try {
+ await createProfile(newProfileName);
+ setNewProfileName('');
+ await loadData();
+ } catch (err) {
+ alert('Failed to create profile: ' + (err.response?.data?.detail || err.message));
+ } finally {
+ setCreating(false);
+ }
+ };
 
-    const handleDeleteProfile = async (id) => {
-        if (!confirm('Delete this profile? All connected accounts will be removed.')) return;
-        try {
-            await deleteProfile(id);
-            await loadData();
-        } catch (err) {
-            alert('Failed to delete profile');
-        }
-    };
+ const handleDeleteProfile = async (id) => {
+ if (!confirm('Delete this profile? All connected accounts will be removed.')) return;
+ try {
+ await deleteProfile(id);
+ await loadData();
+ } catch (err) {
+ alert('Failed to delete profile');
+ }
+ };
 
-    const handleDisconnect = async (platform, accountId) => {
-        if (!confirm("Disconnect this account?")) return;
-        try {
-            await disconnectAccount(platform, accountId);
-            await loadData();
-        } catch (err) {
-            alert('Failed to disconnect');
-        }
-    };
+ const handleDisconnect = async (platform, accountId) => {
+ if (!confirm("Disconnect this account?")) return;
+ try {
+ await disconnectAccount(platform, accountId);
+ await loadData();
+ } catch (err) {
+ alert('Failed to disconnect');
+ }
+ };
 
-    if (loading) return <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-raven-400 w-8 h-8" /></div>;
+ if (loading) return <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-raven-400 w-8 h-8" /></div>;
 
-    const totalAccounts = profiles.reduce((sum, p) => sum + (p.accounts?.length || 0), 0);
+ const totalAccounts = profiles.reduce((sum, p) => sum + (p.accounts?.length || 0), 0);
 
-    return (
-        <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                <div>
-                    <h1 className="text-3xl font-bold text-white">Profiles</h1>
-                    <p className="text-gray-500 text-gray-400 mt-1">
-                        Organize your social accounts into profiles for easy management.
-                    </p>
-                </div>
+ return (
+ <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500 pb-20">
+ {/* Header */}
+ <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+ <div>
+ <h1 className="text-3xl font-bold text-textMain">Profiles</h1>
+ <p className="text-textMuted text-textMuted mt-1">
+ Organize your social accounts into profiles for easy management.
+ </p>
+ </div>
 
-                {/* Stats */}
-                <div className="flex gap-4">
-                    <div className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-xl px-4 py-3 text-center min-w-[100px]">
-                        <div className="text-2xl font-bold text-raven-400">{profiles.length}</div>
-                        <div className="text-xs text-gray-500 font-medium">Profiles</div>
-                    </div>
-                    <div className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-xl px-4 py-3 text-center min-w-[100px]">
-                        <div className="text-2xl font-bold text-emerald-600">{totalAccounts}</div>
-                        <div className="text-xs text-gray-500 font-medium">Accounts</div>
-                    </div>
-                </div>
-            </div>
+ {/* Stats */}
+ <div className="flex gap-4">
+ <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
+ <div className="text-2xl font-bold text-raven-400">{profiles.length}</div>
+ <div className="text-xs text-textMuted font-medium">Profiles</div>
+ </div>
+ <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
+ <div className="text-2xl font-bold text-emerald-600">{totalAccounts}</div>
+ <div className="text-xs text-textMuted font-medium">Accounts</div>
+ </div>
+ </div>
+ </div>
 
-            {/* Quick Actions Bar */}
-            <div className="bg-gradient-to-r from-raven-500 to-purple-600 rounded-2xl p-6 text-white">
-                <div className="flex flex-col md:flex-row md:items-center gap-4">
-                    <div className="flex-1">
-                        <h3 className="font-bold text-lg mb-1">Create New Profile</h3>
-                        <p className="text-raven-100 text-sm">
-                            Each profile can hold multiple social accounts. Use profiles to separate clients, brands, or teams.
-                        </p>
-                    </div>
-                    <div className="flex gap-2">
-                        <input
-                            type="text"
-                            value={newProfileName}
-                            onChange={(e) => setNewProfileName(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
-                            placeholder="Profile name..."
-                            className="px-4 py-2.5 bg-white/20 backdrop-blur border border-white/30 rounded-xl text-white placeholder:text-raven-200 focus:outline-none focus:ring-2 focus:ring-white/50 min-w-[200px]"
-                        />
-                        <button
-                            onClick={handleCreateProfile}
-                            disabled={creating || !newProfileName.trim()}
-                            className="px-5 py-2.5 bg-white text-raven-400 font-bold rounded-xl hover:bg-raven-500/10 disabled:opacity-50 transition-all flex items-center gap-2"
-                        >
-                            {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-                            Create
-                        </button>
-                    </div>
-                </div>
-            </div>
+ {/* Quick Actions Bar */}
+ <div className="bg-gradient-to-r from-raven-500 to-purple-600 rounded-2xl p-6 text-textMain">
+ <div className="flex flex-col md:flex-row md:items-center gap-4">
+ <div className="flex-1">
+ <h3 className="font-bold text-lg mb-1">Create New Profile</h3>
+ <p className="text-raven-100 text-sm">
+ Each profile can hold multiple social accounts. Use profiles to separate clients, brands, or teams.
+ </p>
+ </div>
+ <div className="flex gap-2">
+ <input
+ type="text"
+ value={newProfileName}
+ onChange={(e) => setNewProfileName(e.target.value)}
+ onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
+ placeholder="Profile name..."
+ className="px-4 py-2.5 bg-white/20 backdrop-blur border border-white/30 rounded-xl text-textMain placeholder:text-raven-200 focus:outline-none focus:ring-2 focus:ring-white/50 min-w-[200px]"
+ />
+ <button
+ onClick={handleCreateProfile}
+ disabled={creating || !newProfileName.trim()}
+ className="px-5 py-2.5 bg-bgSurface text-raven-400 font-bold rounded-xl hover:bg-raven-500/10 disabled:opacity-50 transition-all flex items-center gap-2"
+ >
+ {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+ Create
+ </button>
+ </div>
+ </div>
+ </div>
 
-            {/* Profiles Grid */}
-            {profiles.length === 0 ? (
-                <div className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl p-12 text-center">
-                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-                        <Users className="w-8 h-8 text-gray-400" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-300 mb-2">No profiles yet</h3>
-                    <p className="text-gray-500 text-sm max-w-md mx-auto">
-                        Create your first profile above to start connecting social media accounts.
-                    </p>
-                </div>
-            ) : (
-                <div className="grid gap-6">
-                    {profiles.map(profile => (
-                        <div
-                            key={profile.id}
-                            className="bg-white dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
-                        >
-                            {/* Profile Header */}
-                            <div className="p-5 border-b border-white/5 dark:border-white/10 flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-raven-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-                                        {profile.name.charAt(0).toUpperCase()}
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-white">{profile.name}</h3>
-                                        <p className="text-xs text-gray-500">
-                                            {profile.accounts?.length || 0} connected account{profile.accounts?.length !== 1 ? 's' : ''}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={() => navigate('/connections')}
-                                        className="px-3 py-1.5 text-sm font-medium text-raven-400 bg-raven-900/30 rounded-lg hover:bg-raven-500/10 hover:bg-raven-900/50 transition-colors flex items-center gap-1.5"
-                                    >
-                                        <Plus className="w-3.5 h-3.5" /> Add Account
-                                    </button>
-                                    <button
-                                        onClick={() => handleDeleteProfile(profile.id)}
-                                        className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-                                        title="Delete Profile"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
+ {/* Profiles Grid */}
+ {profiles.length === 0 ? (
+ <div className="bg-bgSurface border border-borderColor rounded-2xl p-12 text-center">
+ <div className="w-16 h-16 rounded-full bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-4">
+ <Users className="w-8 h-8 text-textMuted" />
+ </div>
+ <h3 className="text-lg font-bold text-textMuted mb-2">No profiles yet</h3>
+ <p className="text-textMuted text-sm max-w-md mx-auto">
+ Create your first profile above to start connecting social media accounts.
+ </p>
+ </div>
+ ) : (
+ <div className="grid gap-6">
+ {profiles.map(profile => (
+ <div
+ key={profile.id}
+ className="bg-bgSurface border border-borderColor rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
+ >
+ {/* Profile Header */}
+ <div className="p-5 border-b border-borderColor flex items-center justify-between">
+ <div className="flex items-center gap-3">
+ <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-raven-500 to-purple-600 flex items-center justify-center text-textMain font-bold text-lg">
+ {profile.name.charAt(0).toUpperCase()}
+ </div>
+ <div>
+ <h3 className="font-bold text-textMain">{profile.name}</h3>
+ <p className="text-xs text-textMuted">
+ {profile.accounts?.length || 0} connected account{profile.accounts?.length !== 1 ? 's' : ''}
+ </p>
+ </div>
+ </div>
+ <div className="flex items-center gap-2">
+ <button
+ onClick={() => navigate('/connections')}
+ className="px-3 py-1.5 text-sm font-medium text-raven-400 bg-raven-900/30 rounded-lg hover:bg-raven-500/10 hover:bg-raven-900/50 transition-colors flex items-center gap-1.5"
+ >
+ <Plus className="w-3.5 h-3.5" /> Add Account
+ </button>
+ <button
+ onClick={() => handleDeleteProfile(profile.id)}
+ className="p-2 text-textMuted hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+ title="Delete Profile"
+ >
+ <Trash2 className="w-4 h-4" />
+ </button>
+ </div>
+ </div>
 
-                            {/* Connected Accounts */}
-                            <div className="p-5">
-                                {(!profile.accounts || profile.accounts.length === 0) ? (
-                                    <div className="text-center py-6">
-                                        <p className="text-gray-400 text-sm mb-3">No accounts connected yet</p>
-                                        <button
-                                            onClick={() => navigate('/connections')}
-                                            className="text-sm font-medium text-raven-400 hover:underline flex items-center gap-1 mx-auto"
-                                        >
-                                            <Zap className="w-4 h-4" /> Connect your first account
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                        {profile.accounts.map(acc => {
-                                            const platformCfg = PLATFORMS.find(p => p.id === acc.platform);
-                                            const Icon = platformCfg?.icon || Globe;
+ {/* Connected Accounts */}
+ <div className="p-5">
+ {(!profile.accounts || profile.accounts.length === 0) ? (
+ <div className="text-center py-6">
+ <p className="text-textMuted text-sm mb-3">No accounts connected yet</p>
+ <button
+ onClick={() => navigate('/connections')}
+ className="text-sm font-medium text-raven-400 hover:underline flex items-center gap-1 mx-auto"
+ >
+ <Zap className="w-4 h-4" /> Connect your first account
+ </button>
+ </div>
+ ) : (
+ <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+ {profile.accounts.map(acc => {
+ const platformCfg = PLATFORMS.find(p => p.id === acc.platform);
+ const Icon = platformCfg?.icon || Globe;
 
-                                            return (
-                                                <div
-                                                    key={acc.accountId}
-                                                    className={`flex items-center gap-3 p-3 rounded-xl border border-white/5 dark:border-white/10 ${platformCfg?.bg || 'bg-obsidian-950'}`}
-                                                >
-                                                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${platformCfg?.color}`}>
-                                                        <Icon className="w-5 h-5" />
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-medium text-gray-200 dark:text-gray-200 text-sm truncate">
-                                                            @{acc.username}
-                                                        </div>
-                                                        <div className="text-xs text-gray-500 capitalize">{acc.platform}</div>
-                                                    </div>
-                                                    <button
-                                                        onClick={() => handleDisconnect(acc.platform, acc.accountId)}
-                                                        className="p-1.5 text-gray-400 hover:text-red-500 rounded transition-colors"
-                                                        title="Disconnect"
-                                                    >
-                                                        <Trash2 className="w-3.5 h-3.5" />
-                                                    </button>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+ return (
+ <div
+ key={acc.accountId}
+ className={`flex items-center gap-3 p-3 rounded-xl border border-borderColor ${platformCfg?.bg || 'bg-bgColor'}`}
+ >
+ <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${platformCfg?.color}`}>
+ <Icon className="w-5 h-5" />
+ </div>
+ <div className="flex-1 min-w-0">
+ <div className="font-medium text-textMain dark:text-textMain text-sm truncate">
+ @{acc.username}
+ </div>
+ <div className="text-xs text-textMuted capitalize">{acc.platform}</div>
+ </div>
+ <button
+ onClick={() => handleDisconnect(acc.platform, acc.accountId)}
+ className="p-1.5 text-textMuted hover:text-red-500 rounded transition-colors"
+ title="Disconnect"
+ >
+ <Trash2 className="w-3.5 h-3.5" />
+ </button>
+ </div>
+ );
+ })}
+ </div>
+ )}
+ </div>
+ </div>
+ ))}
+ </div>
+ )}
 
-            {/* Help Card */}
-            <div className="bg-obsidian-950 dark:bg-obsidian-950 border border-white/10 dark:border-white/10 rounded-2xl p-6">
-                <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 flex-shrink-0">
-                        <Zap className="w-5 h-5" />
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-gray-200 dark:text-gray-200 mb-1">Pro Tip: API Integration</h4>
-                        <p className="text-sm text-gray-400">
-                            Use profiles to let your customers connect their own accounts. Pass the profile name as the <code className="bg-white/10 bg-white/5 px-1.5 py-0.5 rounded text-xs">user</code> parameter in API requests.
-                        </p>
-                        <button
-                            onClick={() => navigate('/developer')}
-                            className="mt-3 text-sm font-medium text-raven-400 hover:underline flex items-center gap-1"
-                        >
-                            View API Documentation <ExternalLink className="w-3.5 h-3.5" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+ {/* Help Card */}
+ <div className="bg-bgColor border border-borderColor rounded-2xl p-6">
+ <div className="flex items-start gap-4">
+ <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 flex-shrink-0">
+ <Zap className="w-5 h-5" />
+ </div>
+ <div>
+ <h4 className="font-bold text-textMain dark:text-textMain mb-1">Pro Tip: API Integration</h4>
+ <p className="text-sm text-textMuted">
+ Use profiles to let your customers connect their own accounts. Pass the profile name as the <code className="bg-white/10 bg-bgSurfaceHighlight px-1.5 py-0.5 rounded text-xs">user</code> parameter in API requests.
+ </p>
+ <button
+ onClick={() => navigate('/developer')}
+ className="mt-3 text-sm font-medium text-raven-400 hover:underline flex items-center gap-1"
+ >
+ View API Documentation <ExternalLink className="w-3.5 h-3.5" />
+ </button>
+ </div>
+ </div>
+ </div>
+ </div>
+ );
 }

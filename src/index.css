@@ -14,13 +14,13 @@
 }
 
 :root {
-  /* SOCIAL RAVEN - Light Mode Semantic Colors */
-  --bgColor: 248 250 252;
-  --bgSurface: 255 255 255;
-  --bgSurfaceHighlight: 241 245 249;
-  --textMain: 15 23 42;
-  --textMuted: 100 116 139;
-  --borderColor: 226 232 240;
+  /* SOCIAL RAVEN - Default Semantic Colors (Postiz Marketing Aesthetic) */
+  --bgColor: 13 13 13; /* #0d0d0d */
+  --bgSurface: 26 25 25; /* #1A1919 */
+  --bgSurfaceHighlight: 42 41 41; /* Slightly lighter than surface */
+  --textMain: 255 255 255; /* #ffffff */
+  --textMuted: 209 209 209; /* #d1d1d1 */
+  --borderColor: 44 44 44; /* #2c2c2c (approx 10% white over surface) */
   
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
@@ -32,13 +32,13 @@
 }
 
 .dark {
-  /* SOCIAL RAVEN - Dark Mode Semantic Colors */
-  --bgColor: 10 10 10;
-  --bgSurface: 17 17 17;
-  --bgSurfaceHighlight: 28 28 28;
-  --textMain: 248 250 252;
-  --textMuted: 148 163 184;
-  --borderColor: 38 38 38;
+  /* SOCIAL RAVEN - Dark Mode Semantic Colors (Postiz Marketing Aesthetic) */
+  --bgColor: 13 13 13; /* #0d0d0d */
+  --bgSurface: 26 25 25; /* #1A1919 */
+  --bgSurfaceHighlight: 42 41 41; /* Slightly lighter than surface */
+  --textMain: 255 255 255; /* #ffffff */
+  --textMuted: 209 209 209; /* #d1d1d1 */
+  --borderColor: 44 44 44; /* #2c2c2c (approx 10% white over surface) */
 
   --primary: 124 58 237;
   --primary-hover: 109 40 217;
