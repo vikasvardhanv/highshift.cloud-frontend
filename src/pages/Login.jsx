@@ -84,28 +84,28 @@ export default function Login() {
  <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-raven-400/10 blur-[150px] rounded-full"></div>
  </div>
 
- <div className="glass-card w-full max-w-md p-8 rounded-2xl relative z-10 animate-fade-in bg-white/95 border border-borderColor shadow-2xl">
+ <div className="glass-card w-full max-w-md p-8 rounded-2xl relative z-10 animate-fade-in border border-borderColor shadow-2xl">
  <div className="text-center mb-8">
  <div className="w-12 h-12 rounded-xl bg-raven-600 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-raven-500/20">
  <span className="font-bold text-xl text-textMain">R</span>
  </div>
- <h1 className="text-2xl font-bold mb-2 text-slate-950">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
- <p className="text-slate-500 text-sm">
+ <h1 className="text-2xl font-bold mb-2 text-textMain">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+ <p className="text-textMuted text-sm">
  {isLogin ? 'Sign in to continue to Social Raven' : 'Get started with Social Raven today'}
  </p>
  </div>
 
  {/* Tabs */}
- <div className="flex p-1 bg-slate-100 rounded-xl mb-6">
+ <div className="flex p-1 bg-bgColor rounded-xl mb-6">
  <button
  onClick={() => { setIsLogin(true); setError(''); }}
- className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${isLogin ? 'bg-bgSurface text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-950'}`}
+ className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${isLogin ? 'bg-bgSurfaceHighlight text-textMain shadow-sm' : 'text-textMuted hover:text-textMain'}`}
  >
  Login
  </button>
  <button
  onClick={() => { setIsLogin(false); setError(''); }}
- className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${!isLogin ? 'bg-bgSurface text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-950'}`}
+ className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${!isLogin ? 'bg-bgSurfaceHighlight text-textMain shadow-sm' : 'text-textMuted hover:text-textMain'}`}
  >
  Sign Up
  </button>
@@ -115,7 +115,7 @@ export default function Login() {
  {/* Google Button */}
  <button
  onClick={handleGoogleLogin}
- className="w-full py-3 px-4 bg-bgSurface text-textMain border border-borderColor hover:bg-slate-50 rounded-xl font-bold transition-all flex items-center justify-center gap-3 shadow-sm"
+ className="w-full py-3 px-4 bg-bgSurfaceHighlight text-textMain border border-borderColor hover:bg-borderColor rounded-xl font-bold transition-all flex items-center justify-center gap-3 shadow-sm"
  >
  <svg className="w-5 h-5" viewBox="0 0 24 24">
  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -131,7 +131,7 @@ export default function Login() {
  <div className="w-full border-t border-borderColor"></div>
  </div>
  <div className="relative flex justify-center text-xs uppercase">
- <span className="bg-bgSurface px-2 text-slate-500">Or continue with email</span>
+ <span className="bg-bgSurface px-2 text-textMuted">Or continue with email</span>
  </div>
  </div>
 
@@ -150,7 +150,7 @@ export default function Login() {
  required
  value={formData.email}
  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
- className="w-full px-4 py-3 rounded-xl border border-borderColor bg-bgSurface text-slate-950 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
+ className="w-full px-4 py-3 rounded-xl border border-borderColor bg-bgSurfaceHighlight text-textMain placeholder:text-textMuted outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
  />
  <input
  type="password"
@@ -158,7 +158,7 @@ export default function Login() {
  required
  value={formData.password}
  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
- className="w-full px-4 py-3 rounded-xl border border-borderColor bg-bgSurface text-slate-950 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
+ className="w-full px-4 py-3 rounded-xl border border-borderColor bg-bgSurfaceHighlight text-textMain placeholder:text-textMuted outline-none focus:ring-2 focus:ring-raven-500/40 transition-all"
  />
  </div>
 
