@@ -70,7 +70,7 @@ export default function Login() {
  navigate(redirectPath);
  } catch (err) {
  console.error("Auth Error:", err);
- setError(err.response?.data?.detail ||"Authentication successfuly failed. Please try again.");
+ setError(err.response?.data?.detail ||"Authentication failed. Please try again.");
  } finally {
  setIsLoading(false);
  }
