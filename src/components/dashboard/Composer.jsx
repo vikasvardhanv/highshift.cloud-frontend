@@ -94,7 +94,15 @@ export default function Composer({
  setGenerating(true);
  try {
  const result = await generateContent(aiPrompt, 'twitter', 'Professional');
- setPostText(result?.content || '');
+ 
+ if (result?.type === 'video' || result?.type === 'image') {
+   setUploadMethod('url');
+   setMediaUrls(result.content);
+   setPostText('Check out this amazing content! 🚀');
+ } else {
+   setPostText(result?.content || '');
+ }
+ 
  setShowAiModal(false);
  setAiPrompt('');
  } catch (err) {
