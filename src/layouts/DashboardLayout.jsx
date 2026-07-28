@@ -106,11 +106,11 @@ export default function DashboardLayout({ children }) {
  {user?.avatar ? (
  <img src={user.avatar} className="w-full h-full rounded-full object-cover" />
  ) : (
- user?.initials || 'A'
+ user?.initials || (user === null ? '...' : 'U')
  )}
  </div>
  <span className="text-sm font-semibold text-textMain hidden sm:block truncate max-w-[100px]">
- {user?.name || 'Admin'}
+ {user?.name || (user === null ? 'Loading...' : 'User')}
  </span>
  <ChevronDown className={`w-4 h-4 text-textMuted transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
  </button>
