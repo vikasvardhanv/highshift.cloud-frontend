@@ -252,6 +252,20 @@ export default function Publisher() {
  return;
  }
 
+ // YouTube Validation: Prevent submission if the upload failed or is missing
+ const hasYoutube = selectedAccounts.some(accId => {
+ const acc = accounts.find(a => a.accountId === accId);
+ return acc && acc.platform === 'youtube';
+ });
+ 
+ if (hasYoutube) {
+ const hasVideo = mediaFiles.some(m => m.type === 'video' || (m.url && (m.url.includes('youtube.com') || m.url.includes('vimeo.com'))));
+ if (!hasVideo) {
+ setToast({ type: 'error', message: 'YouTube requires a video. If you uploaded one, please ensure the upload completes successfully.' });
+ return;
+ }
+ }
+
  setIsSubmitting(true);
  try {
  // Separate actual media files (imgs/mp4s) from Rich Embeds (YouTube)
