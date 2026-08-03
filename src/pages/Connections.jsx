@@ -8,11 +8,16 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PLATFORMS = [
- { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-500/10' },
- { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'text-blue-600', bg: 'bg-blue-600/10' },
- { id: 'twitter', name: 'X / Twitter', icon: Twitter, color: 'text-textMain', bg: 'bg-white/10' },
- { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-500', bg: 'bg-blue-500/10' },
- { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-600/10' },
+  { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-500/10' },
+  { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'text-blue-600', bg: 'bg-blue-600/10' },
+  { id: 'twitter', name: 'X / Twitter', icon: Twitter, color: 'text-textMain', bg: 'bg-white/10' },
+  { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+  { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-600/10' },
+  { id: 'tiktok', name: 'TikTok', icon: Music, color: 'text-cyan-400', bg: 'bg-cyan-400/10' },
+  { id: 'pinterest', name: 'Pinterest', icon: Globe, color: 'text-red-500', bg: 'bg-red-500/10' },
+  { id: 'threads', name: 'Threads', icon: Globe, color: 'text-textMain', bg: 'bg-white/10' },
+  { id: 'mastodon', name: 'Mastodon', icon: Globe, color: 'text-indigo-500', bg: 'bg-indigo-500/10' },
+  { id: 'bluesky', name: 'Bluesky', icon: Globe, color: 'text-blue-400', bg: 'bg-blue-400/10' },
 ];
 
 const PENDING_PROFILE_KEY = 'pending_connection_profile_id';
@@ -79,7 +84,12 @@ export default function Connections() {
  localStorage.setItem(PENDING_PLATFORM_KEY, platformId);
  const data = await getAuthUrl(platformId, window.location.origin + '/auth/callback', selectedProfile.id);
  if (data.authUrl) {
- window.location.href = data.authUrl;
+ // Hotfix: Force override the dead backend Vercel URL in the OAuth payload
+ let finalAuthUrl = data.authUrl;
+ if (finalAuthUrl.includes('highshift-cloud-backend.vercel.app')) {
+     finalAuthUrl = finalAuthUrl.replace(/highshift-cloud-backend\.vercel\.app/g, 'api.highshift.cloud');
+ }
+ window.location.href = finalAuthUrl;
  }
  } catch (err) {
  localStorage.removeItem(PENDING_PROFILE_KEY);
