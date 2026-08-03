@@ -13,11 +13,6 @@ const PLATFORMS = [
   { id: 'twitter', name: 'X / Twitter', icon: Twitter, color: 'text-textMain', bg: 'bg-white/10' },
   { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-500', bg: 'bg-blue-500/10' },
   { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-600/10' },
-  { id: 'tiktok', name: 'TikTok', icon: Music, color: 'text-cyan-400', bg: 'bg-cyan-400/10' },
-  { id: 'pinterest', name: 'Pinterest', icon: Globe, color: 'text-red-500', bg: 'bg-red-500/10' },
-  { id: 'threads', name: 'Threads', icon: Globe, color: 'text-textMain', bg: 'bg-white/10' },
-  { id: 'mastodon', name: 'Mastodon', icon: Globe, color: 'text-indigo-500', bg: 'bg-indigo-500/10' },
-  { id: 'bluesky', name: 'Bluesky', icon: Globe, color: 'text-blue-400', bg: 'bg-blue-400/10' },
 ];
 
 const PENDING_PROFILE_KEY = 'pending_connection_profile_id';
