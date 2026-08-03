@@ -23,12 +23,15 @@ export default function ScheduleCalendar() {
  const [profiles, setProfiles] = useState([]);
  const [selectedAccounts, setSelectedAccounts] = useState([]);
  const [recentActivity, setRecentActivity] = useState([]);
+ const [isLoading, setIsLoading] = useState(true);
 
  useEffect(() => {
- loadSchedule();
- loadAccounts();
- loadProfiles();
- loadActivity();
+ Promise.all([
+ loadSchedule(),
+ loadAccounts(),
+ loadProfiles(),
+ loadActivity()
+ ]).finally(() => setIsLoading(false));
 
  // Real-time polling for activity
  const interval = setInterval(() => {
@@ -91,12 +94,9 @@ export default function ScheduleCalendar() {
 
  const loadSchedule = async () => {
  try {
- const [calendarPosts, scheduledPosts] = await Promise.all([
- getScheduleCalendar().catch(() => []),
- getScheduledPosts().catch(() => []),
- ]);
+ const rawPosts = await getScheduleCalendar().catch(() => []);
  const seen = new Set();
- const rawPosts = [...calendarPosts, ...scheduledPosts].filter((post) => {
+ const filteredPosts = rawPosts.filter((post) => {
  const key = post.id || `${post.scheduledFor || post.scheduled_for}-${post.content}`;
  if (seen.has(key)) return false;
  seen.add(key);
@@ -104,8 +104,8 @@ export default function ScheduleCalendar() {
  });
  const grouped = {};
 
- if (Array.isArray(rawPosts)) {
- rawPosts.forEach(post => {
+ if (Array.isArray(filteredPosts)) {
+ filteredPosts.forEach(post => {
  const postTime = post.scheduledFor || post.scheduled_for || post.scheduled_time || post.time;
  if (!postTime) return;
 
@@ -153,6 +153,18 @@ export default function ScheduleCalendar() {
  // Date click handler
 
  const renderCalendar = () => {
+ if (isLoading) {
+ return Array.from({ length: 35 }).map((_, i) => (
+ <div key={`skeleton-${i}`} className="h-32 border border-borderColor p-2 bg-bgSurface">
+ <div className="w-6 h-6 rounded bg-slate-200 dark:bg-slate-700 animate-pulse mb-2"></div>
+ <div className="space-y-2">
+ {i % 5 === 0 && <div className="h-12 rounded-lg bg-slate-200 dark:bg-slate-700 animate-pulse"></div>}
+ {i % 8 === 0 && <div className="h-12 rounded-lg bg-slate-200 dark:bg-slate-700 animate-pulse"></div>}
+ </div>
+ </div>
+ ));
+ }
+
  const daysInMonth = getDaysInMonth(currentDate);
  const firstDay = getFirstDayOfMonth(currentDate);
  const days = [];
