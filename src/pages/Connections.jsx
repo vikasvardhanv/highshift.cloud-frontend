@@ -84,10 +84,12 @@ export default function Connections() {
  localStorage.setItem(PENDING_PLATFORM_KEY, platformId);
  const data = await getAuthUrl(platformId, window.location.origin + '/auth/callback', selectedProfile.id);
  if (data.authUrl) {
- // Hotfix: Force override the dead backend Vercel URL in the OAuth payload
+ // Hotfix: Force override the dead backend Vercel URL and the legacy /auth path in the OAuth payload
  let finalAuthUrl = data.authUrl;
  if (finalAuthUrl.includes('highshift-cloud-backend.vercel.app')) {
-     finalAuthUrl = finalAuthUrl.replace(/highshift-cloud-backend\.vercel\.app/g, 'api.highshift.cloud');
+     // Must use /connect instead of /auth so that the backend token exchange perfectly matches
+     finalAuthUrl = finalAuthUrl.replace(/highshift-cloud-backend\.vercel\.app%2Fauth/g, 'api.highshift.cloud%2Fconnect');
+     finalAuthUrl = finalAuthUrl.replace(/highshift-cloud-backend\.vercel\.app\/auth/g, 'api.highshift.cloud/connect');
  }
  window.location.href = finalAuthUrl;
  }
