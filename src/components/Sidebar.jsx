@@ -20,18 +20,18 @@ import {
 } from 'lucide-react';
 
 const NAV_ITEMS = [
- { label: 'Instances', path: '/connections', icon: Network },
- { label: 'Profiles', path: '/profiles', icon: User },
- { label: 'Publishing', path: '/publishing', icon: LayoutDashboard },
- { label: 'Schedule', path: '/schedule', icon: Calendar },
- { label: 'Media Library', path: '/media', icon: Image },
- { label: 'Analytics', path: '/analytics', icon: BarChart2 },
- { label: 'Smart Inbox', path: '/inbox', icon: MessageSquare },
- { label: 'Brand Kit', path: '/brand', icon: Palette },
- { label: 'Social Raven AI', path: '/ai', icon: Zap },
- { label: 'Instant Publish', path: '/instant', icon: Sparkles },
- { label: 'Developer API', path: '/developer', icon: PenTool },
- { label: 'Settings', path: '/settings', icon: Settings },
+  { label: 'Instances', key: 'instances', path: '/connections', icon: Network },
+  { label: 'Profiles', key: 'profiles', path: '/profiles', icon: User },
+  { label: 'Publishing', key: 'publishing', path: '/publishing', icon: LayoutDashboard },
+  { label: 'Schedule', key: 'schedule', path: '/schedule', icon: Calendar },
+  { label: 'Media Library', key: 'mediaLibrary', path: '/media', icon: Image },
+  { label: 'Analytics', key: 'analytics', path: '/analytics', icon: BarChart2 },
+  { label: 'Smart Inbox', key: 'smartInbox', path: '/inbox', icon: MessageSquare },
+  { label: 'Brand Kit', key: 'brandKit', path: '/brand', icon: Palette },
+  { label: 'Social Raven AI', key: 'socialRavenAi', path: '/ai', icon: Zap },
+  { label: 'Instant Publish', key: 'instantPublish', path: '/instant', icon: Sparkles },
+  { label: 'Developer API', key: 'developerApi', path: '/developer', icon: PenTool },
+  { label: 'Settings', key: 'settings', path: '/settings', icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, onToggle, onClose }) {
@@ -68,7 +68,7 @@ export default function Sidebar({ isOpen, onToggle, onClose }) {
             >
               <item.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-white' : 'text-textMuted group-hover:text-white'}`} strokeWidth={isActive ? 2.5 : 2} />
               <span className={`whitespace-nowrap transition-opacity text-sm ${isOpen ? 'opacity-100' : 'opacity-0 lg:w-0 overflow-hidden'}`}>
-                {t(`nav.${item.label.replace(/\\s+/g, '').replace(/^[A-Z]/, c => c.toLowerCase())}`, item.label)}
+                {t(`nav.${item.key}`, item.label)}
               </span>
             </Link>
           );
