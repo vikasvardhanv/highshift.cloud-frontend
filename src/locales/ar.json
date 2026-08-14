@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "instances": "مثيلات",
+    "profiles": "الملفات الشخصية",
+    "publishing": "النشر",
+    "schedule": "الجدول الزمني",
+    "mediaLibrary": "مكتبة الوسائط",
+    "analytics": "التحليلات",
+    "smartInbox": "البريد الوارد الذكي",
+    "brandKit": "مجموعة العلامة التجارية",
+    "socialRavenAi": "الذكاء الاصطناعي",
+    "instantPublish": "نشر فوري",
+    "developerApi": "واجهة برمجة التطبيقات",
+    "settings": "الإعدادات"
+  },
+  "common": {
+    "language": "لغة",
+    "loading": "جار التحميل..."
+  }
+}

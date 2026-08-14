@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import { getCurrentUser } from '../services/api';
 import { User, ChevronDown, LogOut, Menu, Settings, Search } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
+import LanguageSwitcher from '../components/common/LanguageSwitcher';
 
 export default function DashboardLayout({ children }) {
  const [sidebarOpen, setSidebarOpen] = useState(false); // Default closed on mobile, logic below handles desktop
@@ -94,6 +95,7 @@ export default function DashboardLayout({ children }) {
 
           {/* Right Actions */}
  <div className="flex items-center gap-2 lg:gap-4">
+ <LanguageSwitcher />
  <ThemeToggle />
  <div className="h-6 w-px bg-borderColor hidden md:block" />
 

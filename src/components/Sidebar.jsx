@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
  LayoutDashboard,
  BarChart2,
@@ -35,6 +36,7 @@ const NAV_ITEMS = [
 
 export default function Sidebar({ isOpen, onToggle, onClose }) {
  const location = useLocation();
+ const { t } = useTranslation();
 
   return (
     <aside
@@ -66,7 +68,7 @@ export default function Sidebar({ isOpen, onToggle, onClose }) {
             >
               <item.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-white' : 'text-textMuted group-hover:text-white'}`} strokeWidth={isActive ? 2.5 : 2} />
               <span className={`whitespace-nowrap transition-opacity text-sm ${isOpen ? 'opacity-100' : 'opacity-0 lg:w-0 overflow-hidden'}`}>
-                {item.label}
+                {t(`nav.${item.label.replace(/\\s+/g, '').replace(/^[A-Z]/, c => c.toLowerCase())}`, item.label)}
               </span>
             </Link>
           );

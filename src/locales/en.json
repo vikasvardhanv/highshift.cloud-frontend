@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "instances": "Instances",
+    "profiles": "Profiles",
+    "publishing": "Publishing",
+    "schedule": "Schedule",
+    "mediaLibrary": "Media Library",
+    "analytics": "Analytics",
+    "smartInbox": "Smart Inbox",
+    "brandKit": "Brand Kit",
+    "socialRavenAi": "Social Raven AI",
+    "instantPublish": "Instant Publish",
+    "developerApi": "Developer API",
+    "settings": "Settings"
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading..."
+  }
+}

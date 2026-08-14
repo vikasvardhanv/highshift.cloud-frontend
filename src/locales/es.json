@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "dashboard": "Tablero",
+    "profiles": "Perfiles",
+    "connections": "Conexiones",
+    "schedule": "Horario",
+    "analytics": "Análisis",
+    "settings": "Ajustes"
+  },
+  "common": {
+    "language": "Idioma",
+    "loading": "Cargando..."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "profiles": "Profile",
+    "connections": "Verbindungen",
+    "schedule": "Zeitplan",
+    "analytics": "Analytik",
+    "settings": "Einstellungen"
+  },
+  "common": {
+    "language": "Sprache",
+    "loading": "Laden..."
+  }
+}

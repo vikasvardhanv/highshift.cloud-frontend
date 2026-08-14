@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "profiles": "Profils",
+    "connections": "Connexions",
+    "schedule": "Calendrier",
+    "analytics": "Analytique",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "language": "Langue",
+    "loading": "Chargement..."
+  }
+}

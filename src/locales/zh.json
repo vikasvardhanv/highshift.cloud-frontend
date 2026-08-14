@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "dashboard": "仪表板",
+    "profiles": "简介",
+    "connections": "连接",
+    "schedule": "日程安排",
+    "analytics": "分析",
+    "settings": "设置"
+  },
+  "common": {
+    "language": "语言",
+    "loading": "加载中..."
+  }
+}
