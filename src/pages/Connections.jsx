@@ -6,6 +6,7 @@ import {
  Trash2, Plus, Loader2, Globe, CheckCircle2, AlertCircle, ArrowRight, X, User, ChevronRight, Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const PLATFORMS = [
   { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-500/10' },
@@ -26,6 +27,7 @@ export default function Connections() {
  const [isCreatingProfile, setIsCreatingProfile] = useState(false);
  const [newProfileName, setNewProfileName] = useState('');
  const [showPlatformSelect, setShowPlatformSelect] = useState(false);
+ const { t } = useTranslation();
 
  useEffect(() => {
  loadData();
@@ -66,7 +68,7 @@ export default function Connections() {
  await loadData();
  } catch (err) {
  console.error(err);
- alert('Failed to create profile');
+ alert(t('connections.failedToCreate', 'Failed to create profile'));
  } finally {
  setLoading(false);
  }
@@ -99,18 +101,18 @@ export default function Connections() {
  localStorage.removeItem(PENDING_PROFILE_KEY);
  localStorage.removeItem(PENDING_PLATFORM_KEY);
  const detail = err.response?.data?.detail || err.response?.data?.error || err.message;
- alert(`Failed to start authentication${detail ? `: ${detail}` : ''}`);
+ alert(`${t('connections.failedToStartAuth', 'Failed to start authentication')}${detail ? `: ${detail}` : ''}`);
  }
  };
 
  const handleDisconnect = async (platform, accountId) => {
- if (!confirm("Disconnect this account?")) return;
+ if (!confirm(t('connections.disconnectConfirm', "Disconnect this account?"))) return;
  try {
  await disconnectAccount(platform, accountId);
  await loadData();
  } catch (err) {
  console.error(err);
- alert('Failed to disconnect');
+ alert(t('connections.failedToDisconnect', 'Failed to disconnect'));
  }
  };
 
@@ -125,14 +127,14 @@ export default function Connections() {
  {/* Header */}
  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
  <div>
- <h1 className="text-4xl font-black italic uppercase tracking-tighter mb-2 text-textMain">Social Connections</h1>
- <p className="text-textMuted font-bold uppercase tracking-widest text-xs">Profile-Based Account Orchestration</p>
+ <h1 className="text-4xl font-black italic uppercase tracking-tighter mb-2 text-textMain">{t('connections.title', 'Social Connections')}</h1>
+ <p className="text-textMuted font-bold uppercase tracking-widest text-xs">{t('connections.subtitle', 'Profile-Based Account Orchestration')}</p>
  </div>
  <button
  onClick={() => setIsCreatingProfile(true)}
  className="flex items-center gap-2 px-6 py-3 bg-bgSurface text-textMain font-black uppercase italic tracking-tighter rounded-xl hover:bg-gray-100 dark:hover:bg-bgSurfaceHighlight transition-all active:scale-95 shadow-xl shadow-white/5"
  >
- <Plus className="w-5 h-5" /> New Profile
+ <Plus className="w-5 h-5" /> {t('connections.newProfile', 'New Profile')}
  </button>
  </div>
 
@@ -141,7 +143,7 @@ export default function Connections() {
 
  {/* Left: Profiles List */}
  <div className="space-y-4">
- <h3 className="text-[10px] font-black text-textMuted uppercase tracking-[0.2em] mb-6">Select Profile</h3>
+ <h3 className="text-[10px] font-black text-textMuted uppercase tracking-[0.2em] mb-6">{t('connections.selectProfile', 'Select Profile')}</h3>
  {profiles.map(p => (
  <button
  key={p.id}
@@ -155,7 +157,7 @@ export default function Connections() {
  <div className="text-left">
  <div className="font-black italic uppercase tracking-tighter text-lg">{p.name}</div>
  <div className={`text-[10px] font-bold uppercase tracking-widest ${selectedProfile?.id === p.id ? 'text-raven-200' : 'text-textMuted'}`}>
- {p.accounts?.length || 0} Accounts
+ {t('connections.accountsCount', { count: p.accounts?.length || 0, defaultValue: `${p.accounts?.length || 0} Accounts` })}
  </div>
  </div>
  </div>
@@ -169,7 +171,7 @@ export default function Connections() {
  {profiles.length === 0 && !isCreatingProfile && (
  <div className="p-12 text-center bg-bgSurfaceHighlight border border-dashed border-borderColor rounded-2xl">
  <User className="w-12 h-12 text-textMuted mx-auto mb-4" />
- <p className="text-textMuted font-bold uppercase tracking-widest text-xs">No Profiles Found</p>
+ <p className="text-textMuted font-bold uppercase tracking-widest text-xs">{t('connections.noProfilesFound', 'No Profiles Found')}</p>
  </div>
  )}
  </div>
@@ -192,14 +194,14 @@ export default function Connections() {
  <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
  <div className="space-y-2">
  <h2 className="text-5xl font-black italic uppercase tracking-tighter text-textMain">{selectedProfile.name}</h2>
- <p className="text-textMuted font-medium">Orchestrate social flows for this profile</p>
+ <p className="text-textMuted font-medium">{t('connections.orchestrate', 'Orchestrate social flows for this profile')}</p>
  </div>
  <button
  onClick={() => setShowPlatformSelect(!showPlatformSelect)}
  className="px-8 py-4 bg-raven-600 hover:bg-raven-500 text-textMain font-black uppercase italic tracking-tighter rounded-2xl shadow-2xl shadow-raven-600/30 transition-all active:scale-95 flex items-center gap-3"
  >
  {showPlatformSelect ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
- {showPlatformSelect ? 'Cancel' : 'Link Social Account'}
+ {showPlatformSelect ? t('connections.cancel', 'Cancel') : t('connections.linkSocialAccount', 'Link Social Account')}
  </button>
  </div>
  </div>
@@ -228,12 +230,12 @@ export default function Connections() {
 
  {/* Connected Accounts List */}
  <div className="space-y-4">
- <h3 className="text-[10px] font-black text-textMuted uppercase tracking-[0.2em] mb-6">Connected Accounts</h3>
+ <h3 className="text-[10px] font-black text-textMuted uppercase tracking-[0.2em] mb-6">{t('connections.connectedAccounts', 'Connected Accounts')}</h3>
  {(!selectedProfile.accounts || selectedProfile.accounts.length === 0) ? (
  <div className="p-20 text-center bg-bgSurfaceHighlight rounded-3xl border border-borderColor">
  <Globe className="w-12 h-12 text-textMuted mx-auto mb-4" />
- <p className="text-textMuted font-bold uppercase tracking-widest text-xs">No Accounts Linked</p>
- <p className="text-textMuted text-xs mt-2">Link your first account to start publishing</p>
+ <p className="text-textMuted font-bold uppercase tracking-widest text-xs">{t('connections.noAccountsLinked', 'No Accounts Linked')}</p>
+ <p className="text-textMuted text-xs mt-2">{t('connections.linkFirstAccount', 'Link your first account to start publishing')}</p>
  </div>
  ) : (
  <div className="grid gap-4">
@@ -256,7 +258,7 @@ export default function Connections() {
  </div>
  <div className="flex items-center gap-4">
  <span className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-black uppercase tracking-widest">
- <CheckCircle2 className="w-3 h-3" /> Live
+ <CheckCircle2 className="w-3 h-3" /> {t('connections.live', 'Live')}
  </span>
  <button
  onClick={() => handleDisconnect(acc.platform, acc.accountId)}
@@ -279,8 +281,8 @@ export default function Connections() {
  <User className="w-10 h-10 text-textMuted" />
  </div>
  <div>
- <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-2 text-textMain text-textMain">Select a Profile</h3>
- <p className="text-textMuted font-medium max-w-xs mx-auto">Click a profile on the left to manage its social accounts or create a new one.</p>
+ <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-2 text-textMain text-textMain">{t('connections.selectProfileTitle', 'Select a Profile')}</h3>
+ <p className="text-textMuted font-medium max-w-xs mx-auto">{t('connections.selectProfileDesc', 'Click a profile on the left to manage its social accounts or create a new one.')}</p>
  </div>
  </div>
  </div>
@@ -308,12 +310,12 @@ export default function Connections() {
  <Plus className="w-10 h-10 text-textMain" />
  </div>
 
- <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4 !text-textMain">Create Profile</h2>
- <p className="text-textMuted font-medium mb-10">Profiles group your social accounts for seamless brand management.</p>
+ <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-4 !text-textMain">{t('connections.createProfileTitle', 'Create Profile')}</h2>
+ <p className="text-textMuted font-medium mb-10">{t('connections.createProfileDesc', 'Profiles group your social accounts for seamless brand management.')}</p>
 
  <input
  autoFocus type="text" value={newProfileName} onChange={(e) => setNewProfileName(e.target.value)}
- placeholder="Profile Name"
+ placeholder={t('connections.profileNamePlaceholder', 'Profile Name')}
  className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-2xl px-8 py-6 text-2xl font-black italic uppercase tracking-tighter text-textMain placeholder:text-textMuted focus:outline-none focus:border-raven-500 transition-all mb-8 text-center"
  onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
  />
@@ -323,7 +325,7 @@ export default function Connections() {
  disabled={!newProfileName.trim() || loading}
  className="w-full bg-bgSurface text-textMain py-6 rounded-2xl font-black italic uppercase tracking-tighter text-xl shadow-2xl shadow-white/10 hover:bg-white/10 transition-all active:scale-95 disabled:opacity-50"
  >
- {loading ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : 'Create Profile'}
+ {loading ? <Loader2 className="w-8 h-8 animate-spin mx-auto" /> : t('connections.createProfileTitle', 'Create Profile')}
  </button>
  </motion.div>
  </motion.div>

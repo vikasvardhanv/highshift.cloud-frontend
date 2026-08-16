@@ -11,10 +11,36 @@
     "socialRavenAi": "الذكاء الاصطناعي",
     "instantPublish": "نشر فوري",
     "developerApi": "واجهة برمجة التطبيقات",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "dashboard": "لوحة القيادة"
   },
   "common": {
     "language": "لغة",
-    "loading": "جار التحميل..."
+    "loading": "جار التحميل...",
+    "search": "يبحث..."
+  },
+  "connections": {
+    "title": "الروابط الاجتماعية",
+    "subtitle": "تنسيق الحساب بناءً على الملف الشخصي",
+    "newProfile": "ملف شخصي جديد",
+    "selectProfile": "تحديد الملف الشخصي",
+    "accountsCount": "حسابات {{count}}",
+    "noProfilesFound": "لم يتم العثور على ملفات شخصية",
+    "orchestrate": "تنسيق التدفقات الاجتماعية لهذا الملف الشخصي",
+    "cancel": "إلغاء",
+    "linkSocialAccount": "ربط حساب اجتماعي",
+    "connectedAccounts": "الحسابات المرتبطة",
+    "noAccountsLinked": "لا توجد حسابات مرتبطة",
+    "linkFirstAccount": "اربط حسابك الأول للبدء في النشر",
+    "live": "مباشر",
+    "selectProfileTitle": "حدد ملفًا شخصيًا",
+    "selectProfileDesc": "انقر فوق ملف تعريف على اليسار لإدارة حساباته الاجتماعية أو إنشاء حساب جديد.",
+    "createProfileTitle": "إنشاء ملف شخصي",
+    "createProfileDesc": "تقوم الملفات الشخصية بتجميع حساباتك الاجتماعية لإدارة العلامة التجارية بسلاسة.",
+    "profileNamePlaceholder": "اسم الملف الشخصي",
+    "failedToCreate": "فشل في إنشاء الملف الشخصي",
+    "failedToStartAuth": "فشل بدء المصادقة",
+    "disconnectConfirm": "فصل هذا الحساب؟",
+    "failedToDisconnect": "فشل في الفصل"
   }
 }

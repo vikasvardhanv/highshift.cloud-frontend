@@ -1,14 +1,46 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "instances": "Instanzen",
     "profiles": "Profile",
-    "connections": "Verbindungen",
+    "publishing": "Veröffentlichen",
     "schedule": "Zeitplan",
+    "mediaLibrary": "Mediathek",
     "analytics": "Analytik",
-    "settings": "Einstellungen"
+    "smartInbox": "Posteingang",
+    "brandKit": "Marken-Kit",
+    "socialRavenAi": "Social Raven KI",
+    "instantPublish": "Sofort veröffentlichen",
+    "developerApi": "Entwickler-API",
+    "settings": "Einstellungen",
+    "dashboard": "Dashboard"
   },
   "common": {
     "language": "Sprache",
-    "loading": "Laden..."
+    "loading": "Laden...",
+    "search": "Suchen..."
+  },
+  "connections": {
+    "title": "Soziale Verbindungen",
+    "subtitle": "Profilbasierte Konten-Orchestrierung",
+    "newProfile": "Neues Profil",
+    "selectProfile": "Profil auswählen",
+    "accountsCount": "{{count}} Konten",
+    "noProfilesFound": "Keine Profile gefunden",
+    "orchestrate": "Soziale Workflows für dieses Profil orchestrieren",
+    "cancel": "Abbrechen",
+    "linkSocialAccount": "Soziales Konto verknüpfen",
+    "connectedAccounts": "Verbundene Konten",
+    "noAccountsLinked": "Keine Konten verknüpft",
+    "linkFirstAccount": "Verknüpfen Sie Ihr erstes Konto, um mit der Veröffentlichung zu beginnen",
+    "live": "Live",
+    "selectProfileTitle": "Wählen Sie ein Profil",
+    "selectProfileDesc": "Klicken Sie links auf ein Profil, um dessen soziale Konten zu verwalten oder ein neues zu erstellen.",
+    "createProfileTitle": "Profil Erstellen",
+    "createProfileDesc": "Profile gruppieren Ihre sozialen Konten für ein nahtloses Markenmanagement.",
+    "profileNamePlaceholder": "Profilname",
+    "failedToCreate": "Profil konnte nicht erstellt werden",
+    "failedToStartAuth": "Authentifizierung konnte nicht gestartet werden",
+    "disconnectConfirm": "Dieses Konto trennen?",
+    "failedToDisconnect": "Trennen fehlgeschlagen"
   }
 }

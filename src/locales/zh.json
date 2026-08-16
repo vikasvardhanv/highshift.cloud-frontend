@@ -1,14 +1,46 @@
 {
   "nav": {
-    "dashboard": "仪表板",
+    "instances": "实例",
     "profiles": "简介",
-    "connections": "连接",
+    "publishing": "发布",
     "schedule": "日程安排",
+    "mediaLibrary": "媒体库",
     "analytics": "分析",
-    "settings": "设置"
+    "smartInbox": "智能收件箱",
+    "brandKit": "品牌资产",
+    "socialRavenAi": "Social Raven AI",
+    "instantPublish": "即时发布",
+    "developerApi": "开发者 API",
+    "settings": "设置",
+    "dashboard": "仪表板"
   },
   "common": {
     "language": "语言",
-    "loading": "加载中..."
+    "loading": "加载中...",
+    "search": "搜索..."
+  },
+  "connections": {
+    "title": "社交连接",
+    "subtitle": "基于资料的账户编排",
+    "newProfile": "新资料",
+    "selectProfile": "选择资料",
+    "accountsCount": "{{count}} 个账户",
+    "noProfilesFound": "未找到资料",
+    "orchestrate": "为此资料编排社交流程",
+    "cancel": "取消",
+    "linkSocialAccount": "链接社交账户",
+    "connectedAccounts": "已连接的账户",
+    "noAccountsLinked": "未链接任何账户",
+    "linkFirstAccount": "链接您的第一个账户以开始发布",
+    "live": "在线",
+    "selectProfileTitle": "选择一个资料",
+    "selectProfileDesc": "点击左侧的资料以管理其社交账户或创建一个新账户。",
+    "createProfileTitle": "创建资料",
+    "createProfileDesc": "资料对您的社交账户进行分组，实现无缝的品牌管理。",
+    "profileNamePlaceholder": "资料名称",
+    "failedToCreate": "创建资料失败",
+    "failedToStartAuth": "启动认证失败",
+    "disconnectConfirm": "断开此账户连接？",
+    "failedToDisconnect": "断开连接失败"
   }
 }

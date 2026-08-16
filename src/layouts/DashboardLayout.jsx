@@ -3,10 +3,12 @@ import { useLocation, Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { getCurrentUser } from '../services/api';
 import { User, ChevronDown, LogOut, Menu, Settings, Search } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguageSwitcher from '../components/common/LanguageSwitcher';
 
 export default function DashboardLayout({ children }) {
+ const { t } = useTranslation();
  const [sidebarOpen, setSidebarOpen] = useState(false); // Default closed on mobile, logic below handles desktop
  const [user, setUser] = useState(null);
  const [showDropdown, setShowDropdown] = useState(false);
@@ -85,11 +87,11 @@ export default function DashboardLayout({ children }) {
  <Menu className="w-6 h-6" />
  </button>
             <h1 className="text-base lg:text-lg font-bold text-white truncate max-w-[150px] md:max-w-none">
-              {location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard'}
+              {t(`nav.${location.pathname.split('/').pop() || 'dashboard'}`, location.pathname.split('/').pop()?.charAt(0).toUpperCase() + location.pathname.split('/').pop()?.slice(1) || 'Dashboard')}
             </h1>
             <div className="hidden lg:flex items-center ml-8 bg-bgSurfaceHighlight border border-white/5 rounded-full px-4 py-1.5 w-64 focus-within:ring-1 focus-within:ring-raven-500 transition-all">
                <Search className="w-4 h-4 text-textMuted mr-2" />
-               <input type="text" placeholder="Search..." className="bg-transparent border-none outline-none text-sm text-white placeholder:text-textMuted w-full" />
+               <input type="text" placeholder={t('common.search', 'Search...')} className="bg-transparent border-none outline-none text-sm text-white placeholder:text-textMuted w-full" />
             </div>
           </div>
 
@@ -112,7 +114,7 @@ export default function DashboardLayout({ children }) {
  )}
  </div>
  <span className="text-sm font-semibold text-textMain hidden sm:block truncate max-w-[100px]">
- {user?.name || (user === null ? 'Loading...' : 'User')}
+ {user?.name || (user === null ? t('common.loading') : 'User')}
  </span>
  <ChevronDown className={`w-4 h-4 text-textMuted transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
  </button>

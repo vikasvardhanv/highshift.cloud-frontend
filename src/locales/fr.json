@@ -1,14 +1,46 @@
 {
   "nav": {
-    "dashboard": "Tableau de bord",
+    "instances": "Instances",
     "profiles": "Profils",
-    "connections": "Connexions",
+    "publishing": "Publication",
     "schedule": "Calendrier",
+    "mediaLibrary": "Médiathèque",
     "analytics": "Analytique",
-    "settings": "Paramètres"
+    "smartInbox": "Boîte de réception",
+    "brandKit": "Kit de Marque",
+    "socialRavenAi": "IA Social Raven",
+    "instantPublish": "Publication instantanée",
+    "developerApi": "API Développeur",
+    "settings": "Paramètres",
+    "dashboard": "Tableau de bord"
   },
   "common": {
     "language": "Langue",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "search": "Recherche..."
+  },
+  "connections": {
+    "title": "Connexions Sociales",
+    "subtitle": "Orchestration des comptes par profil",
+    "newProfile": "Nouveau Profil",
+    "selectProfile": "Sélectionner un Profil",
+    "accountsCount": "{{count}} Comptes",
+    "noProfilesFound": "Aucun profil trouvé",
+    "orchestrate": "Orchestrer les flux sociaux pour ce profil",
+    "cancel": "Annuler",
+    "linkSocialAccount": "Lier un Compte Social",
+    "connectedAccounts": "Comptes Connectés",
+    "noAccountsLinked": "Aucun Compte Lié",
+    "linkFirstAccount": "Liez votre premier compte pour commencer à publier",
+    "live": "En direct",
+    "selectProfileTitle": "Sélectionnez un Profil",
+    "selectProfileDesc": "Cliquez sur un profil à gauche pour gérer ses comptes sociaux ou en créer un nouveau.",
+    "createProfileTitle": "Créer un Profil",
+    "createProfileDesc": "Les profils regroupent vos comptes sociaux pour une gestion de marque fluide.",
+    "profileNamePlaceholder": "Nom du Profil",
+    "failedToCreate": "Échec de la création du profil",
+    "failedToStartAuth": "Échec du démarrage de l'authentification",
+    "disconnectConfirm": "Déconnecter ce compte ?",
+    "failedToDisconnect": "Échec de la déconnexion"
   }
 }

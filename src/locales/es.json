@@ -1,14 +1,46 @@
 {
   "nav": {
-    "dashboard": "Tablero",
+    "instances": "Instancias",
     "profiles": "Perfiles",
-    "connections": "Conexiones",
+    "publishing": "Publicación",
     "schedule": "Horario",
+    "mediaLibrary": "Biblioteca de Medios",
     "analytics": "Análisis",
-    "settings": "Ajustes"
+    "smartInbox": "Bandeja de Entrada",
+    "brandKit": "Kit de Marca",
+    "socialRavenAi": "IA de Social Raven",
+    "instantPublish": "Publicación Instantánea",
+    "developerApi": "API de Desarrolladores",
+    "settings": "Ajustes",
+    "dashboard": "Tablero"
   },
   "common": {
     "language": "Idioma",
-    "loading": "Cargando..."
+    "loading": "Cargando...",
+    "search": "Buscar..."
+  },
+  "connections": {
+    "title": "Conexiones Sociales",
+    "subtitle": "Orquestación de cuentas basada en perfiles",
+    "newProfile": "Nuevo Perfil",
+    "selectProfile": "Seleccionar Perfil",
+    "accountsCount": "{{count}} Cuentas",
+    "noProfilesFound": "No se encontraron perfiles",
+    "orchestrate": "Orquesta los flujos sociales para este perfil",
+    "cancel": "Cancelar",
+    "linkSocialAccount": "Vincular Cuenta Social",
+    "connectedAccounts": "Cuentas Conectadas",
+    "noAccountsLinked": "No hay cuentas vinculadas",
+    "linkFirstAccount": "Vincula tu primera cuenta para empezar a publicar",
+    "live": "En vivo",
+    "selectProfileTitle": "Selecciona un Perfil",
+    "selectProfileDesc": "Haz clic en un perfil a la izquierda para administrar sus cuentas sociales o crear uno nuevo.",
+    "createProfileTitle": "Crear Perfil",
+    "createProfileDesc": "Los perfiles agrupan tus cuentas sociales para una gestión de marca perfecta.",
+    "profileNamePlaceholder": "Nombre del Perfil",
+    "failedToCreate": "Error al crear perfil",
+    "failedToStartAuth": "Error al iniciar autenticación",
+    "disconnectConfirm": "¿Desconectar esta cuenta?",
+    "failedToDisconnect": "Error al desconectar"
   }
 }

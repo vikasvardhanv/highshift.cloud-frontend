@@ -11,10 +11,36 @@
     "socialRavenAi": "Social Raven AI",
     "instantPublish": "Instant Publish",
     "developerApi": "Developer API",
-    "settings": "Settings"
+    "settings": "Settings",
+    "dashboard": "Dashboard"
   },
   "common": {
     "language": "Language",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "search": "Search..."
+  },
+  "connections": {
+    "title": "Social Connections",
+    "subtitle": "Profile-Based Account Orchestration",
+    "newProfile": "New Profile",
+    "selectProfile": "Select Profile",
+    "accountsCount": "{{count}} Accounts",
+    "noProfilesFound": "No Profiles Found",
+    "orchestrate": "Orchestrate social flows for this profile",
+    "cancel": "Cancel",
+    "linkSocialAccount": "Link Social Account",
+    "connectedAccounts": "Connected Accounts",
+    "noAccountsLinked": "No Accounts Linked",
+    "linkFirstAccount": "Link your first account to start publishing",
+    "live": "Live",
+    "selectProfileTitle": "Select a Profile",
+    "selectProfileDesc": "Click a profile on the left to manage its social accounts or create a new one.",
+    "createProfileTitle": "Create Profile",
+    "createProfileDesc": "Profiles group your social accounts for seamless brand management.",
+    "profileNamePlaceholder": "Profile Name",
+    "failedToCreate": "Failed to create profile",
+    "failedToStartAuth": "Failed to start authentication",
+    "disconnectConfirm": "Disconnect this account?",
+    "failedToDisconnect": "Failed to disconnect"
   }
 }
