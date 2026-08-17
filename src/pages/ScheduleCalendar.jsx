@@ -8,11 +8,13 @@ import {
 import { getScheduleCalendar, getScheduledPosts, processDueScheduledPosts, getAccounts, getActivityLog, getProfiles } from '../services/api';
 import Composer from '../components/dashboard/Composer';
 import { formatLocalTime, getLocalDateKey } from '../utils/scheduleTime';
+import { useTranslation } from 'react-i18next';
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export default function ScheduleCalendar() {
+ const { t } = useTranslation();
  const location = useLocation();
  const navigate = useNavigate();
  const [currentDate, setCurrentDate] = useState(new Date());
@@ -174,7 +176,7 @@ export default function ScheduleCalendar() {
  </span>
  {dayPosts.length > 0 && (
  <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase tracking-wide border border-emerald-500/20">
- {dayPosts.length} Posts
+ {t('schedule.postsCount', { count: dayPosts.length })}
  </span>
  )}
  <button
@@ -240,8 +242,8 @@ export default function ScheduleCalendar() {
  <div className="flex-1 flex flex-col space-y-6 overflow-hidden">
  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-1">
  <div>
- <h1 className="text-3xl font-extrabold tracking-tight text-textMain">Temporal Command</h1>
- <p className="text-slate-500 text-sm font-medium mt-1">Orchestrate your global transmission capability.</p>
+ <h1 className="text-3xl font-extrabold tracking-tight text-textMain">{t('schedule.title')}</h1>
+ <p className="text-slate-500 text-sm font-medium mt-1">{t('schedule.subtitle')}</p>
  </div>
 
  <div className="flex items-center gap-4">
@@ -261,7 +263,7 @@ export default function ScheduleCalendar() {
  className="bg-indigo-600 hover:bg-indigo-700 text-textMain px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
  >
  <Plus className="w-4 h-4" />
- <span>Schedule Post</span>
+ <span>{t('schedule.schedulePost')}</span>
  </button>
  </div>
  </div>
@@ -283,7 +285,7 @@ export default function ScheduleCalendar() {
  {/* Recent Activity Sidebar */}
  <div className="w-80 shrink-0 hidden xl:flex flex-col gap-6 p-1">
  <div className="flex items-center justify-between">
- <h2 className="text-lg font-bold text-textMain">Recent Activity</h2>
+ <h2 className="text-lg font-bold text-textMain">{t('schedule.recentActivity')}</h2>
  <button onClick={loadActivity} className="p-2 rounded-lg hover:bg-bgSurfaceHighlight transition-colors" title="Refresh">
  <MoreVertical className="w-4 h-4 text-slate-400" />
  </button>
@@ -326,15 +328,15 @@ export default function ScheduleCalendar() {
  ) : (
  <div className="text-center py-10 text-slate-500">
  <Activity className="w-8 h-8 mx-auto mb-2 opacity-50" />
- <p className="text-sm">No recent activity</p>
+ <p className="text-sm">{t('schedule.noRecentActivity')}</p>
  </div>
  )}
  </div>
 
  <div className="mt-auto p-6 rounded-2xl bg-indigo-600 text-textMain shadow-xl shadow-indigo-500/20 relative overflow-hidden group cursor-pointer">
  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-700 group-hover:scale-110"></div>
- <h3 className="text-lg font-bold relative z-10">View Full History</h3>
- <p className="text-indigo-100 text-xs font-medium mt-1 relative z-10">Analyze your transmission logs.</p>
+ <h3 className="text-lg font-bold relative z-10">{t('schedule.viewHistory')}</h3>
+ <p className="text-indigo-100 text-xs font-medium mt-1 relative z-10">{t('schedule.viewHistoryDesc')}</p>
  </div>
  </div>
 
@@ -356,7 +358,7 @@ export default function ScheduleCalendar() {
  className="w-full max-w-2xl bg-bgSurface rounded-3xl shadow-2xl shadow-indigo-500/10 border border-borderColor overflow-hidden"
  >
  <div className="p-4 border-b border-borderColor flex justify-between items-center bg-bgSurface/50">
- <h3 className="font-bold text-textMain dark:text-textMain">New Transmission</h3>
+ <h3 className="font-bold text-textMain dark:text-textMain">{t('schedule.newTransmission')}</h3>
  <button onClick={() => { setShowComposer(false); setComposerInitialContent(''); }} className="p-2 hover:bg-bgSurfaceHighlight rounded-full transition-colors">
  <X className="w-5 h-5 text-slate-500" />
  </button>

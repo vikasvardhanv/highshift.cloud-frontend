@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getAccounts, getInboxThreads, getThreadMessages, sendReply } from '../services/api';
+import { useTranslation } from 'react-i18next';
 
 const NETWORKS = ['all', 'facebook', 'instagram'];
 
@@ -34,6 +35,7 @@ const getAccountName = (account) => (
 );
 
 export default function SmartInbox() {
+ const { t } = useTranslation();
  // Accounts state
  const [accounts, setAccounts] = useState([]);
  const [loading, setLoading] = useState(true);
@@ -207,18 +209,18 @@ export default function SmartInbox() {
  <div>
  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-borderColor bg-bgSurfaceHighlight px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
  <Inbox className="h-3.5 w-3.5 text-primary" />
- Unified social inbox
+ {t('smartinbox.workspaceLabel')}
  </div>
- <h1 className="text-3xl font-extrabold tracking-tight text-textMain">Facebook and Instagram, one queue</h1>
+ <h1 className="text-3xl font-extrabold tracking-tight text-textMain">{t('smartinbox.title')}</h1>
  <p className="mt-2 max-w-3xl text-sm font-medium leading-6 text-textMuted">
- One operational inbox for every connected Facebook Page and Instagram Business profile.
+ {t('smartinbox.subtitle')}
  </p>
  </div>
 
  <div className="grid min-w-[280px] grid-cols-3 gap-3">
- <Metric label="Accounts" value={counts.all} />
- <Metric label="FB" value={counts.facebook} />
- <Metric label="IG" value={counts.instagram} />
+ <Metric label={t('smartinbox.metricAccounts')} value={counts.all} />
+ <Metric label={t('smartinbox.metricFB')} value={counts.facebook} />
+ <Metric label={t('smartinbox.metricIG')} value={counts.instagram} />
  </div>
  </header>
 
@@ -228,8 +230,8 @@ export default function SmartInbox() {
  <div className="flex items-center gap-3 border-b border-borderColor pb-4">
  <UsersRound className="h-5 w-5 text-textMuted" />
  <div>
- <h2 className="text-sm font-extrabold text-textMain">Connected inboxes</h2>
- <p className="text-xs font-medium text-textMuted">Choose what feeds the shared queue</p>
+ <h2 className="text-sm font-extrabold text-textMain">{t('smartinbox.connectedInboxes')}</h2>
+ <p className="text-xs font-medium text-textMuted">{t('smartinbox.connectedInboxesDesc')}</p>
  </div>
  </div>
 
@@ -241,7 +243,7 @@ export default function SmartInbox() {
  onClick={() => setNetwork(item)}
  className={`rounded-2xl border px-3 py-3 text-xs font-extrabold uppercase tracking-widest transition-all ${network === item ? 'border-primary bg-primary/20 text-primary' : 'border-borderColor bg-bgSurfaceHighlight text-textMuted hover:border-textMuted hover:text-textMain'}`}
  >
- {item === 'all' ? 'All' : platformMeta[item].label}
+ {item === 'all' ? t('smartinbox.all') : platformMeta[item].label}
  </button>
  ))}
  </div>
@@ -251,16 +253,16 @@ export default function SmartInbox() {
  <input
  value={query}
  onChange={(event) => setQuery(event.target.value)}
- placeholder="Search accounts"
+ placeholder={t('smartinbox.searchAccounts')}
  className="w-full rounded-2xl border border-borderColor bg-bgSurfaceHighlight py-3 pl-11 pr-4 text-sm font-semibold text-textMain outline-none placeholder:text-textMuted focus:border-primary/60"
  />
  </label>
 
  <div className="mt-4 flex items-center justify-between rounded-2xl border border-borderColor bg-black/20 px-4 py-3">
- <span className="text-xs font-bold text-textMuted">{selectedVisibleCount} visible selected</span>
+ <span className="text-xs font-bold text-textMuted">{t('smartinbox.visibleSelected', { count: selectedVisibleCount })}</span>
  <div className="flex items-center gap-3">
- <button type="button" onClick={selectVisibleAccounts} className="text-xs font-bold text-primary hover:text-textMain">All</button>
- <button type="button" onClick={clearVisibleAccounts} className="text-xs font-bold text-textMuted hover:text-textMain">Clear</button>
+ <button type="button" onClick={selectVisibleAccounts} className="text-xs font-bold text-primary hover:text-textMain">{t('smartinbox.all')}</button>
+ <button type="button" onClick={clearVisibleAccounts} className="text-xs font-bold text-textMuted hover:text-textMain">{t('smartinbox.clear')}</button>
  </div>
  </div>
 
@@ -274,8 +276,8 @@ export default function SmartInbox() {
  />
  )) : (
  <EmptyPanel
- title="No matching accounts"
- text="Connect a Facebook Page or Instagram Business account, or change the current filters."
+ title={t('smartinbox.noMatchingAccounts')}
+ text={t('smartinbox.noMatchingAccountsDesc')}
  />
  )}
  </div>
@@ -285,20 +287,20 @@ export default function SmartInbox() {
  <main className={`flex min-h-0 flex-col overflow-hidden rounded-3xl border border-borderColor bg-bgSurface shadow-sm ${selectedThreadId ? 'hidden md:flex' : 'flex'}`}>
  <div className="flex flex-col gap-4 border-b border-borderColor px-6 py-5 md:flex-row md:items-center md:justify-between shrink-0">
  <div>
- <h2 className="text-lg font-extrabold text-textMain">All conversations</h2>
+ <h2 className="text-lg font-extrabold text-textMain">{t('smartinbox.allConversations')}</h2>
  <p className="mt-1 text-xs font-medium text-textMuted">
- {visibleThreads.length} active threads across {selectedPlatforms.size || 0} networks
+ {t('smartinbox.activeThreads', { threadCount: visibleThreads.length, platformCount: selectedPlatforms.size || 0 })}
  </p>
  </div>
  <div className="inline-flex items-center gap-2 rounded-2xl border border-borderColor bg-bgSurfaceHighlight px-4 py-3 text-xs font-bold uppercase tracking-widest text-textMuted">
  <Filter className="h-4 w-4" />
- Unified view
+ {t('smartinbox.unifiedView')}
  </div>
  </div>
 
  {visibleThreads.length === 0 ? (
  <div className="flex-1 flex items-center justify-center p-8">
- <EmptyInbox selectedCount={selectedAccountIds.length} />
+ <EmptyInbox selectedCount={selectedAccountIds.length} t={t} />
  </div>
  ) : (
  <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
@@ -347,17 +349,17 @@ export default function SmartInbox() {
  <div className="flex items-center gap-3 border-b border-borderColor pb-4">
  <MessageSquareMore className="h-5 w-5 text-textMuted" />
  <div>
- <h2 className="text-sm font-extrabold text-textMain">Thread details</h2>
- <p className="text-xs font-medium text-textMuted">Reply panel will open here</p>
+ <h2 className="text-sm font-extrabold text-textMain">{t('smartinbox.threadDetails')}</h2>
+ <p className="text-xs font-medium text-textMuted">{t('smartinbox.threadDetailsDesc')}</p>
  </div>
  </div>
  <div className="mt-6 space-y-4">
  <EmptyPanel
- title="Select a conversation"
- text="Thread detail, channel, and reply context will appear in this pane."
+ title={t('smartinbox.selectConversation')}
+ text={t('smartinbox.selectConversationDesc')}
  />
  <div className="rounded-3xl border border-borderColor bg-black/20 p-5">
- <p className="text-xs font-bold uppercase tracking-[0.2em] text-textMuted">Channels included</p>
+ <p className="text-xs font-bold uppercase tracking-[0.2em] text-textMuted">{t('smartinbox.channelsIncluded')}</p>
  <div className="mt-4 flex flex-wrap gap-2">
  <PlatformBadge platform="facebook" />
  <PlatformBadge platform="instagram" />
@@ -428,7 +430,7 @@ export default function SmartInbox() {
  type="text" 
  value={replyText}
  onChange={e => setReplyText(e.target.value)}
- placeholder="Type a reply..." 
+ placeholder={t('smartinbox.typeReply')}
  className="w-full bg-bgSurfaceHighlight border border-borderColor rounded-2xl pl-5 pr-14 py-4 text-sm text-textMain focus:outline-none focus:border-primary/50 transition-colors shadow-inner"
  />
  <button 
@@ -503,17 +505,17 @@ function PlatformBadgeIcon({ platform }) {
  );
 }
 
-function EmptyInbox({ selectedCount }) {
+function EmptyInbox({ selectedCount, t }) {
  return (
  <div className="max-w-xl text-center">
  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl border border-primary/20 bg-primary/10">
  <Inbox className="h-7 w-7 text-primary" />
  </div>
- <h3 className="mt-5 text-xl font-extrabold text-textMain">Unified queue ready</h3>
+ <h3 className="mt-5 text-xl font-extrabold text-textMain">{t('smartinbox.unifiedQueueReady')}</h3>
  <p className="mt-3 text-sm font-medium leading-6 text-textMuted">
  {selectedCount
- ? `${selectedCount} selected inboxes are combined in this queue.`
- : 'No inboxes selected.'}
+ ? t('smartinbox.unifiedQueueDesc', { count: selectedCount })
+ : t('smartinbox.noInboxesSelected')}
  </p>
  </div>
  );

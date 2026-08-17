@@ -1,69 +1,72 @@
 import { useNavigate } from 'react-router-dom';
 import { Check, X, Zap, Shield, Globe } from 'lucide-react';
 
-const TIERS = [
+import { useTranslation } from 'react-i18next';
+
+export default function Pricing() {
+ const navigate = useNavigate();
+ const { t } = useTranslation();
+
+ const TIERS = [
  {
  name: 'Starter',
  price: '$15',
  period: '/month',
- description: 'For solopreneurs and new creators',
+ description: t('pricing.starterDesc'),
  features: [
- '5 Social Accounts',
- 'Unlimited Scheduling',
- 'AI Caption Generator',
- 'Basic Analytics (30 days)',
- '1 User Seat',
+ t('pricing.starterF1'),
+ t('pricing.starterF2'),
+ t('pricing.starterF3'),
+ t('pricing.starterF4'),
+ t('pricing.starterF5'),
  ],
  notIncluded: [
- 'Team Collaboration',
- 'White Label Reports',
- 'Priority Support'
+ t('pricing.starterNF1'),
+ t('pricing.starterNF2'),
+ t('pricing.starterNF3')
  ],
- cta: 'Get Started',
+ cta: t('pricing.starterCta'),
  highlight: false
  },
  {
  name: 'Growth',
  price: '$49',
  period: '/month',
- description: 'Perfect for growing brands and small teams',
+ description: t('pricing.growthDesc'),
  features: [
- '15 Social Accounts',
- 'Everything in Starter',
- 'Advanced Analytics (1 Year)',
- 'Team Collaboration (3 Seats)',
- 'AI Image Generation (Beta)',
- 'Priority Support'
+ t('pricing.growthF1'),
+ t('pricing.growthF2'),
+ t('pricing.growthF3'),
+ t('pricing.growthF4'),
+ t('pricing.growthF5'),
+ t('pricing.growthF6')
  ],
  notIncluded: [
- 'White Label Reports',
- 'API Access'
+ t('pricing.growthNF1'),
+ t('pricing.growthNF2')
  ],
- cta: 'Start Free Trial',
+ cta: t('pricing.growthCta'),
  highlight: true,
- tag: 'Most Popular'
+ tag: t('pricing.mostPopular')
  },
  {
  name: 'Agency',
  price: '$99',
  period: '/month',
- description: 'For agencies managing multiple clients',
+ description: t('pricing.agencyDesc'),
  features: [
- '50+ Social Accounts',
- 'Everything in Growth',
- 'White Label Reports & Client Portals',
- 'Unlimited Team Seats',
- 'Approval Workflows',
- 'Dedicated Account Manager'
+ t('pricing.agencyF1'),
+ t('pricing.agencyF2'),
+ t('pricing.agencyF3'),
+ t('pricing.agencyF4'),
+ t('pricing.agencyF5'),
+ t('pricing.agencyF6')
  ],
  notIncluded: [],
- cta: 'Contact Sales',
+ cta: t('pricing.agencyCta'),
  highlight: false
  }
-];
-
-export default function Pricing() {
- const navigate = useNavigate();
+ ];
 
  return (
  <div className="min-h-screen py-20 px-4 animate-fade-in">
@@ -71,10 +74,10 @@ export default function Pricing() {
  {/* Header */}
  <div className="text-center mb-16 max-w-3xl mx-auto">
  <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
- Simple, Transparent Pricing
+ {t('pricing.title')}
  </h1>
  <p className="text-textMuted text-lg">
- Choose the plan that fits your growth. No hidden fees. Cancel anytime.
+ {t('pricing.subtitle')}
  </p>
  </div>
 
@@ -134,7 +137,7 @@ export default function Pricing() {
 
  {/* Trust/Social Proof */}
  <div className="mt-24 text-center border-t border-borderColor pt-16">
- <p className="text-sm font-semibold text-textMuted uppercase tracking-wider mb-8">Trusted by next-gen creators</p>
+ <p className="text-sm font-semibold text-textMuted uppercase tracking-wider mb-8">{t('pricing.trustedBy')}</p>
  <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
  {/* Mock Logos */}
  <div className="flex items-center gap-2 text-xl font-bold"><Globe className="w-6 h-6" /> GlobalScale</div>

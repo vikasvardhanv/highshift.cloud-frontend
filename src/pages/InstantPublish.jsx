@@ -5,8 +5,10 @@ import {
  Instagram, Facebook, Twitter, Linkedin, Cloud, Key, Settings, User, Network
 } from 'lucide-react';
 import { triggerInstantPublish, getDeveloperKeys, updateDeveloperKeys } from '../services/api';
+import { useTranslation } from 'react-i18next';
 
 export default function InstantPublish() {
+ const { t } = useTranslation();
  const [topic, setTopic] = useState('');
  const [audience, setAudience] = useState('');
  const [date, setDate] = useState('');
@@ -46,9 +48,9 @@ export default function InstantPublish() {
  try {
  await updateDeveloperKeys({ upload_post: apiKey });
  localStorage.setItem('social_api_key', apiKey);
- setStatus({ type: 'success', message: 'API Key saved to profile!' });
+ setStatus({ type: 'success', message: t('instant.successKey') });
  } catch (err) {
- setStatus({ type: 'error', message: 'Failed to save API Key.' });
+ setStatus({ type: 'error', message: t('instant.errorKey') });
  } finally {
  setLoading(false);
  setTimeout(() => setStatus(null), 3000);
@@ -70,9 +72,9 @@ export default function InstantPublish() {
  apiKey: apiKey,
  ...handles
  });
- setStatus({ type: 'success', message: 'Orchestration triggered successfully!' });
+ setStatus({ type: 'success', message: t('instant.successTrigger') });
  } catch (err) {
- setStatus({ type: 'error', message: 'Failed to trigger automation.' });
+ setStatus({ type: 'error', message: t('instant.errorTrigger') });
  } finally {
  setLoading(false);
  }
@@ -85,10 +87,10 @@ export default function InstantPublish() {
  {/* Header */}
  <div className="mb-12">
  <h1 style={{ color: '#0f172a' }} className="text-6xl font-black italic uppercase tracking-tighter mb-4 dark:!text-textMain">
- Instant Publish
+ {t('instant.title')}
  </h1>
  <p className="text-textMuted text-textMuted font-bold uppercase tracking-[0.2em] text-xs">
- Autonomous Content Distribution Engine
+ {t('instant.subtitle')}
  </p>
  </div>
 
@@ -98,29 +100,29 @@ export default function InstantPublish() {
  <form onSubmit={handleSubmit} className="space-y-8">
  <div className="grid md:grid-cols-2 gap-8">
  <div className="space-y-4">
- <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">Core Topic</label>
+ <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">{t('instant.coreTopic')}</label>
  <textarea
  required
  value={topic}
  onChange={(e) => setTopic(e.target.value)}
- placeholder="What's the story today?"
+ placeholder={t('instant.coreTopicPlaceholder')}
  className="w-full h-40 bg-bgColor border border-borderColor rounded-3xl p-6 text-xl font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all resize-none text-textMain text-textMain placeholder:text-textMuted"
  />
  </div>
  <div className="space-y-8">
  <div className="space-y-4">
- <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">Target Audience</label>
+ <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">{t('instant.targetAudience')}</label>
  <input
  type="text"
  required
  value={audience}
  onChange={(e) => setAudience(e.target.value)}
- placeholder="e.g. Tech Founders"
+ placeholder={t('instant.targetAudiencePlaceholder')}
  className="w-full bg-bgColor border border-borderColor rounded-2xl p-6 font-black italic uppercase tracking-tighter focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted"
  />
  </div>
  <div className="space-y-4">
- <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">Publish Date</label>
+ <label className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-2">{t('instant.publishDate')}</label>
  <input
  type="date"
  required
@@ -137,7 +139,7 @@ export default function InstantPublish() {
  <div className="flex items-center gap-4 mb-8">
  <Network className="w-5 h-5 text-raven-400" />
  <h3 style={{ color: '#0f172a' }} className="text-xl font-black italic uppercase tracking-tighter dark:!text-textMain">
- Distribution Points
+ {t('instant.distributionPoints')}
  </h3>
  </div>
  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,7 +159,7 @@ export default function InstantPublish() {
  type="text"
  value={handles[p]}
  onChange={(e) => setHandles({ ...handles, [p]: e.target.value })}
- placeholder="@handle"
+ placeholder={t('instant.handlePlaceholder')}
  className="w-full bg-bgColor border border-borderColor rounded-2xl px-5 py-4 text-sm font-bold text-textMain text-textMain focus:outline-none focus:border-raven-500 transition-all placeholder:text-textMuted"
  />
  </div>
@@ -172,9 +174,9 @@ export default function InstantPublish() {
  <div className="space-y-2">
  <div className="flex items-center gap-4">
  <Settings className="w-5 h-5 text-raven-400" />
- <h3 className="text-xl font-black italic uppercase tracking-tighter text-textMain">Engine Configuration</h3>
+ <h3 className="text-xl font-black italic uppercase tracking-tighter text-textMain">{t('instant.engineConfig')}</h3>
  </div>
- <p className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-9">Distribution Strategy & Authentication</p>
+ <p className="text-[10px] font-black text-textMuted text-textMuted uppercase tracking-widest pl-9">{t('instant.engineConfigDesc')}</p>
  </div>
 
  <div className="flex-1 flex flex-col sm:flex-row items-center gap-6">
@@ -213,7 +215,7 @@ export default function InstantPublish() {
  type="password"
  value={apiKey}
  onChange={(e) => setApiKey(e.target.value)}
- placeholder="Paste Key to persist..."
+ placeholder={t('instant.pasteKey')}
  className="w-full bg-bgSurface border border-borderColor rounded-3xl pl-16 pr-6 py-5 font-bold text-xs tracking-widest focus:outline-none focus:border-raven-500 transition-all text-textMain text-textMain placeholder:text-textMuted shadow-sm"
  />
  </div>
@@ -224,7 +226,7 @@ export default function InstantPublish() {
  className="px-10 py-5 bg-bgColor text-textMain rounded-3xl font-black italic uppercase tracking-tighter hover:bg-bgSurfaceHighlight transition-all active:scale-95 disabled:opacity-50 whitespace-nowrap shadow-xl shadow-obsidian-950/10 flex items-center gap-3 text-sm"
  >
  {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4 text-amber-400" />}
- Persist
+ {t('instant.persist')}
  </button>
  </div>
  </div>
@@ -241,7 +243,7 @@ export default function InstantPublish() {
  <Loader2 className="w-10 h-10 animate-spin" />
  ) : (
  <>
- <span className="text-3xl font-black italic uppercase tracking-tighter">Initiate Orchestration</span>
+ <span className="text-3xl font-black italic uppercase tracking-tighter">{t('instant.initiate')}</span>
  <Send className="w-8 h-8 group-hover:translate-x-3 group-hover:-translate-y-2 transition-transform" />
  </>
  )}

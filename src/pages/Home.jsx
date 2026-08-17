@@ -5,7 +5,10 @@ import {
   MessageSquare, BarChart3, Radio, Share2, Shield, Workflow, Lock, Zap
 } from 'lucide-react';
 import heroImage from '../assets/hero-social-raven.png';
+import { useTranslation } from 'react-i18next';
+
 export default function Home() {
+  const { t } = useTranslation();
   return (
     <div className="bg-[#000000] font-sans min-h-screen text-white selection:bg-primary/30 relative overflow-hidden">
       
@@ -23,7 +26,7 @@ export default function Home() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm font-medium text-white/80 shadow-xl">
             <span className="w-2 h-2 rounded-full bg-raven-500 animate-pulse shadow-[0_0_8px_rgba(139,92,246,0.8)]"></span>
-            New: Autonomous Distribution Engine
+            {t('home.newEngine')}
           </div>
         </motion.div>
 
@@ -33,9 +36,9 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 max-w-5xl leading-[1.1]"
         >
-          The operating system for <br className="hidden md:block" />
+          {t('home.osTitle')} <br className="hidden md:block" />
           <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
-            social distribution.
+            {t('home.socialDistribution')}
           </span>
         </motion.h1>
 
@@ -45,7 +48,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-textMuted max-w-2xl mb-12"
         >
-          Social Raven unifies your campaigns, predictive analytics, and creator management into a single, high-performance platform. Stop guessing, start scaling.
+          {t('home.heroDesc')}
         </motion.p>
 
         <motion.div 
@@ -55,10 +58,10 @@ export default function Home() {
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <Link to="/login" className="px-8 py-4 bg-white text-black hover:bg-white/90 font-bold rounded-xl transition-all flex items-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-            Start Free Trial <ArrowRight className="w-4 h-4" />
+            {t('home.startTrial')} <ArrowRight className="w-4 h-4" />
           </Link>
           <Link to="/product" className="px-8 py-4 bg-[#0a0a0a] border border-white/10 hover:border-white/30 text-white font-medium rounded-xl transition-all shadow-xl">
-            View Documentation
+            {t('home.viewDocs')}
           </Link>
         </motion.div>
 
@@ -83,7 +86,7 @@ export default function Home() {
       {/* STRATEGIC VALUE (BENTO BOX) */}
       <section className="py-32 px-4 max-w-7xl mx-auto relative z-10">
         <div className="mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Everything you need to <br/><span className="text-textMuted">scale distribution.</span></h2>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">{t('home.scaleDistribution')} <br/><span className="text-textMuted">{t('home.scaleDistributionSub')}</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
@@ -95,8 +98,8 @@ export default function Home() {
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Multi-Channel Campaigns</h3>
-              <p className="text-textMuted max-w-md">Launch synchronized campaigns across LinkedIn, X, and Instagram. One visual calendar gives you total control without the chaos.</p>
+              <h3 className="text-2xl font-bold mb-2">{t('home.campaignsTitle')}</h3>
+              <p className="text-textMuted max-w-md">{t('home.campaignsDesc')}</p>
             </div>
           </div>
 
@@ -106,8 +109,8 @@ export default function Home() {
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                 <TrendingUp className="w-6 h-6 text-emerald-400" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Revenue Attribution</h3>
-              <p className="text-textMuted text-sm">Track the direct impact of social posts on your bottom line with CRM integration.</p>
+              <h3 className="text-2xl font-bold mb-2">{t('home.revenueTitle')}</h3>
+              <p className="text-textMuted text-sm">{t('home.revenueDesc')}</p>
             </div>
           </div>
 
@@ -117,8 +120,8 @@ export default function Home() {
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                 <MessageSquare className="w-6 h-6 text-sky-400" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Unified Inbox</h3>
-              <p className="text-textMuted text-sm">Consolidate every DM and comment into a single priority inbox.</p>
+              <h3 className="text-2xl font-bold mb-2">{t('home.inboxTitle')}</h3>
+              <p className="text-textMuted text-sm">{t('home.inboxDesc')}</p>
             </div>
           </div>
 
@@ -129,8 +132,8 @@ export default function Home() {
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                 <BarChart3 className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Predictive Analytics</h3>
-              <p className="text-textMuted max-w-md">Our AI analyzes historical data to tell you exactly what to post and when for maximum reach. Go beyond vanity metrics.</p>
+              <h3 className="text-2xl font-bold mb-2">{t('home.analyticsTitle')}</h3>
+              <p className="text-textMuted max-w-md">{t('home.analyticsDesc')}</p>
             </div>
           </div>
 
@@ -142,40 +145,40 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
         <div className="container mx-auto px-4 max-w-7xl relative">
           <div className="mb-20 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Autonomous Intelligence</h2>
-            <p className="text-textMuted">Engineered for absolute distribution and brand authority.</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">{t('home.autonomousIntell')}</h2>
+            <p className="text-textMuted">{t('home.engineeredAuthority')}</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             <FeatureBox 
               icon={Users}
-              title="Creator Management"
-              desc="Discover, vet, and manage influencer partnerships in one seamless CRM."
+              title={t('home.creatorManage')}
+              desc={t('home.creatorManageDesc')}
             />
             <FeatureBox 
               icon={Share2}
-              title="Employee Amplification"
-              desc="Turn your workforce into a distribution engine with curated sharing."
+              title={t('home.employeeAmp')}
+              desc={t('home.employeeAmpDesc')}
             />
             <FeatureBox 
               icon={Radio}
-              title="Competitor Listening"
-              desc="Monitor share of voice and sentiment against your market rivals."
+              title={t('home.competitorList')}
+              desc={t('home.competitorListDesc')}
             />
             <FeatureBox 
               icon={Workflow}
-              title="Team Workflows"
-              desc="Specialized roles, approval chains, and audit logs keep your team compliant."
+              title={t('home.teamWorkflows')}
+              desc={t('home.teamWorkflowsDesc')}
             />
             <FeatureBox 
               icon={Shield}
-              title="Enterprise Grade"
-              desc="SOC2 compliant infrastructure with dedicated IP nodes for massive scale."
+              title={t('home.enterpriseGrade')}
+              desc={t('home.enterpriseGradeDesc')}
             />
             <FeatureBox 
               icon={Zap}
-              title="AI Ghostwriter"
-              desc="Generate high-converting copy specifically tuned to your brand voice."
+              title={t('home.aiGhostwriter')}
+              desc={t('home.aiGhostwriterDesc')}
             />
           </div>
         </div>
@@ -187,10 +190,10 @@ export default function Home() {
         <div className="absolute bottom-[-50%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-raven-600/20 blur-[150px] rounded-full pointer-events-none"></div>
         
         <div className="container mx-auto px-4 max-w-3xl text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">Ready to scale?</h2>
-          <p className="text-xl text-textMuted mb-12">Join thousands of brands orchestrating their social presence with Social Raven.</p>
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">{t('home.readyScale')}</h2>
+          <p className="text-xl text-textMuted mb-12">{t('home.joinThousands')}</p>
           <Link to="/login" className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold rounded-2xl hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-            Get Started Now <ArrowRight className="w-5 h-5" />
+            {t('home.getStarted')} <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

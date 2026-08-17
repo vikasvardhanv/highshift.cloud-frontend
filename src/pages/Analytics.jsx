@@ -3,6 +3,7 @@ import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, R
 import { ArrowUpRight, ArrowDownRight, Users, Eye, MousePointer, Loader2 } from 'lucide-react';
 import { getAccounts, getAnalytics } from '../services/api';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const MOCK_DATA = [
  { name: 'Mon', views: 0, likes: 0 },
@@ -46,6 +47,7 @@ const StatCard = ({ title, value, change, isPositive, icon: Icon }) => (
 );
 
 export default function Analytics() {
+ const { t } = useTranslation();
  const [data, setData] = useState(MOCK_DATA);
  const [stats, setStats] = useState({
  impressions: 0,
@@ -78,7 +80,7 @@ export default function Analytics() {
  if (loading) return (
  <div className="flex flex-col items-center justify-center p-24 gap-4">
  <Loader2 className="animate-spin text-primary w-12 h-12" />
- <p className="text-[10px] font-bold text-textMuted uppercase tracking-widest">Aggregating Global Metrics...</p>
+ <p className="text-[10px] font-bold text-textMuted uppercase tracking-widest">{t('analytics.aggregating')}</p>
  </div>
  );
 
@@ -104,9 +106,9 @@ export default function Analytics() {
  >
  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
  <div>
- <h1 className="text-4xl font-extrabold tracking-tight mb-2">Neural Insights</h1>
+ <h1 className="text-4xl font-extrabold tracking-tight mb-2">{t('analytics.title')}</h1>
  <p className="text-textMuted font-medium leading-relaxed max-w-xl">
- Real-time synthesis of cross-platform performance and audience resonance protocols.
+ {t('analytics.subtitle')}
  </p>
  </div>
  </div>
@@ -114,21 +116,21 @@ export default function Analytics() {
  {/* Stats Grid */}
  <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-3 gap-8">
  <StatCard
- title="Total Impressions"
+ title={t('analytics.totalImpressions')}
  value={(stats.impressions || 0).toLocaleString()}
  change={stats.changes?.impressions || 0}
  isPositive={(stats.changes?.impressions || 0) >= 0}
  icon={Eye}
  />
  <StatCard
- title="Total Engagement"
+ title={t('analytics.totalEngagement')}
  value={(stats.engagement || 0).toLocaleString()}
  change={stats.changes?.engagement || 0}
  isPositive={(stats.changes?.engagement || 0) >= 0}
  icon={MousePointer}
  />
  <StatCard
- title="Total Followers"
+ title={t('analytics.totalFollowers')}
  value={(stats.followers || 0).toLocaleString()}
  change={stats.changes?.followers || 0}
  isPositive={(stats.changes?.followers || 0) >= 0}
@@ -145,7 +147,7 @@ export default function Analytics() {
  <div className="flex items-center justify-between mb-10">
  <h3 className="text-xl font-extrabold flex items-center gap-3">
  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
- Growth Trajectory
+ {t('analytics.growthTrajectory')}
  </h3>
  <div className="flex gap-2">
  {['7D', '30D', '90D'].map(period => (
@@ -209,7 +211,7 @@ export default function Analytics() {
 
  {/* Engagement Chart */}
  <div className="glass-card p-10 rounded-[2.5rem] bg-white/[0.02] border-borderColor shadow-2xl">
- <h3 className="text-xl font-extrabold mb-10 text-center">Engagement Pulsar</h3>
+ <h3 className="text-xl font-extrabold mb-10 text-center">{t('analytics.engagementPulsar')}</h3>
  <div className="h-[400px]">
  <ResponsiveContainer width="100%" height="100%">
  <BarChart data={data}>
@@ -246,7 +248,7 @@ export default function Analytics() {
  </ResponsiveContainer>
  </div>
  <div className="mt-6 p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 text-[10px] items-center justify-center font-bold text-blue-400 uppercase tracking-widest text-center">
- Peak Performance: Wednesday
+ {t('analytics.peakPerformance')}
  </div>
  </div>
  </motion.div>

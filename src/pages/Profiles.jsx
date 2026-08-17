@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfiles, createProfile, deleteProfile, getAuthUrl, disconnectAccount } from '../services/api';
+import { useTranslation } from 'react-i18next';
 import {
  Facebook, Twitter, Instagram, Linkedin, Youtube,
  Trash2, Plus, Loader2, User, Globe, ExternalLink, Users, Zap
@@ -16,6 +17,7 @@ const PLATFORMS = [
 
 export default function Profiles() {
  const navigate = useNavigate();
+ const { t } = useTranslation();
  const [profiles, setProfiles] = useState([]);
  const [loading, setLoading] = useState(true);
  const [newProfileName, setNewProfileName] = useState('');
@@ -44,29 +46,29 @@ export default function Profiles() {
  setNewProfileName('');
  await loadData();
  } catch (err) {
- alert('Failed to create profile: ' + (err.response?.data?.detail || err.message));
+ alert(t('profiles.failedToCreate') + (err.response?.data?.detail || err.message));
  } finally {
  setCreating(false);
  }
  };
 
  const handleDeleteProfile = async (id) => {
- if (!confirm('Delete this profile? All connected accounts will be removed.')) return;
+ if (!confirm(t('profiles.deleteConfirm'))) return;
  try {
  await deleteProfile(id);
  await loadData();
  } catch (err) {
- alert('Failed to delete profile');
+ alert(t('profiles.failedToDelete'));
  }
  };
 
  const handleDisconnect = async (platform, accountId) => {
- if (!confirm("Disconnect this account?")) return;
+ if (!confirm(t('profiles.disconnectConfirm'))) return;
  try {
  await disconnectAccount(platform, accountId);
  await loadData();
  } catch (err) {
- alert('Failed to disconnect');
+ alert(t('profiles.failedToDisconnect'));
  }
  };
 
@@ -79,9 +81,9 @@ export default function Profiles() {
  {/* Header */}
  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
  <div>
- <h1 className="text-3xl font-bold text-textMain">Profiles</h1>
+ <h1 className="text-3xl font-bold text-textMain">{t('profiles.title')}</h1>
  <p className="text-textMuted text-textMuted mt-1">
- Organize your social accounts into profiles for easy management.
+ {t('profiles.subtitle')}
  </p>
  </div>
 
@@ -89,11 +91,11 @@ export default function Profiles() {
  <div className="flex gap-4">
  <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
  <div className="text-2xl font-bold text-raven-400">{profiles.length}</div>
- <div className="text-xs text-textMuted font-medium">Profiles</div>
+ <div className="text-xs text-textMuted font-medium">{t('profiles.profilesCount')}</div>
  </div>
  <div className="bg-bgSurface border border-borderColor rounded-xl px-4 py-3 text-center min-w-[100px]">
  <div className="text-2xl font-bold text-emerald-600">{totalAccounts}</div>
- <div className="text-xs text-textMuted font-medium">Accounts</div>
+ <div className="text-xs text-textMuted font-medium">{t('profiles.accountsCount')}</div>
  </div>
  </div>
  </div>
@@ -102,9 +104,9 @@ export default function Profiles() {
  <div className="bg-gradient-to-r from-raven-500 to-purple-600 rounded-2xl p-6 text-textMain">
  <div className="flex flex-col md:flex-row md:items-center gap-4">
  <div className="flex-1">
- <h3 className="font-bold text-lg mb-1">Create New Profile</h3>
+ <h3 className="font-bold text-lg mb-1">{t('profiles.createNew')}</h3>
  <p className="text-raven-100 text-sm">
- Each profile can hold multiple social accounts. Use profiles to separate clients, brands, or teams.
+ {t('profiles.createNewDesc')}
  </p>
  </div>
  <div className="flex gap-2">
@@ -113,7 +115,7 @@ export default function Profiles() {
  value={newProfileName}
  onChange={(e) => setNewProfileName(e.target.value)}
  onKeyDown={(e) => e.key === 'Enter' && handleCreateProfile()}
- placeholder="Profile name..."
+ placeholder={t('profiles.profileNamePlaceholder')}
  className="px-4 py-2.5 bg-white/20 backdrop-blur border border-white/30 rounded-xl text-textMain placeholder:text-raven-200 focus:outline-none focus:ring-2 focus:ring-white/50 min-w-[200px]"
  />
  <button
@@ -122,7 +124,7 @@ export default function Profiles() {
  className="px-5 py-2.5 bg-bgSurface text-raven-400 font-bold rounded-xl hover:bg-raven-500/10 disabled:opacity-50 transition-all flex items-center gap-2"
  >
  {creating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
- Create
+ {t('profiles.create')}
  </button>
  </div>
  </div>
@@ -134,9 +136,9 @@ export default function Profiles() {
  <div className="w-16 h-16 rounded-full bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-4">
  <Users className="w-8 h-8 text-textMuted" />
  </div>
- <h3 className="text-lg font-bold text-textMuted mb-2">No profiles yet</h3>
+ <h3 className="text-lg font-bold text-textMuted mb-2">{t('profiles.noProfiles')}</h3>
  <p className="text-textMuted text-sm max-w-md mx-auto">
- Create your first profile above to start connecting social media accounts.
+ {t('profiles.createFirstDesc')}
  </p>
  </div>
  ) : (
@@ -155,7 +157,7 @@ export default function Profiles() {
  <div>
  <h3 className="font-bold text-textMain">{profile.name}</h3>
  <p className="text-xs text-textMuted">
- {profile.accounts?.length || 0} connected account{profile.accounts?.length !== 1 ? 's' : ''}
+ {t('profiles.connectedCount', { count: profile.accounts?.length || 0 })}
  </p>
  </div>
  </div>
@@ -164,7 +166,7 @@ export default function Profiles() {
  onClick={() => navigate('/connections')}
  className="px-3 py-1.5 text-sm font-medium text-raven-400 bg-raven-900/30 rounded-lg hover:bg-raven-500/10 hover:bg-raven-900/50 transition-colors flex items-center gap-1.5"
  >
- <Plus className="w-3.5 h-3.5" /> Add Account
+ <Plus className="w-3.5 h-3.5" /> {t('profiles.addAccount')}
  </button>
  <button
  onClick={() => handleDeleteProfile(profile.id)}
@@ -180,12 +182,12 @@ export default function Profiles() {
  <div className="p-5">
  {(!profile.accounts || profile.accounts.length === 0) ? (
  <div className="text-center py-6">
- <p className="text-textMuted text-sm mb-3">No accounts connected yet</p>
+ <p className="text-textMuted text-sm mb-3">{t('profiles.noAccounts')}</p>
  <button
  onClick={() => navigate('/connections')}
  className="text-sm font-medium text-raven-400 hover:underline flex items-center gap-1 mx-auto"
  >
- <Zap className="w-4 h-4" /> Connect your first account
+ <Zap className="w-4 h-4" /> {t('profiles.connectFirst')}
  </button>
  </div>
  ) : (
@@ -211,7 +213,7 @@ export default function Profiles() {
  <button
  onClick={() => handleDisconnect(acc.platform, acc.accountId)}
  className="p-1.5 text-textMuted hover:text-red-500 rounded transition-colors"
- title="Disconnect"
+ title={t('profiles.disconnect')}
  >
  <Trash2 className="w-3.5 h-3.5" />
  </button>
@@ -233,15 +235,15 @@ export default function Profiles() {
  <Zap className="w-5 h-5" />
  </div>
  <div>
- <h4 className="font-bold text-textMain dark:text-textMain mb-1">Pro Tip: API Integration</h4>
+ <h4 className="font-bold text-textMain dark:text-textMain mb-1">{t('profiles.proTip')}</h4>
  <p className="text-sm text-textMuted">
- Use profiles to let your customers connect their own accounts. Pass the profile name as the <code className="bg-white/10 bg-bgSurfaceHighlight px-1.5 py-0.5 rounded text-xs">user</code> parameter in API requests.
+ {t('profiles.proTipDesc1')}<code className="bg-white/10 bg-bgSurfaceHighlight px-1.5 py-0.5 rounded text-xs">user</code>{t('profiles.proTipDesc2')}
  </p>
  <button
  onClick={() => navigate('/developer')}
  className="mt-3 text-sm font-medium text-raven-400 hover:underline flex items-center gap-1"
  >
- View API Documentation <ExternalLink className="w-3.5 h-3.5" />
+ {t('profiles.viewApiDoc')} <ExternalLink className="w-3.5 h-3.5" />
  </button>
  </div>
  </div>

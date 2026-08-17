@@ -3,6 +3,7 @@ import {
   TrendingUp, Users, Calendar as CalendarIcon, Activity, 
   MessageSquare, Heart, Share2, MoreHorizontal, CheckCircle2, ChevronRight
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Reusable Card Component
 function DashboardCard({ title, subtitle, children, action, className = "" }) {
@@ -23,6 +24,8 @@ function DashboardCard({ title, subtitle, children, action, className = "" }) {
 }
 
 export default function Dashboard() {
+  const { t } = useTranslation();
+  
   return (
     <div className="max-w-[1600px] mx-auto w-full space-y-6">
       
@@ -30,7 +33,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            Overview: Engagement & Growth <span className="text-textMuted font-normal text-sm">(Last 30 Days)</span>
+            {t('dashboard.title')} <span className="text-textMuted font-normal text-sm">{t('dashboard.last30Days')}</span>
           </h2>
         </div>
       </div>
@@ -43,23 +46,23 @@ export default function Dashboard() {
           
           {/* Reach & Engagement Chart */}
           <DashboardCard 
-            title="Reach & Engagement" 
+            title={t('dashboard.reachEngagement')} 
             action={
               <button className="text-xs bg-bgSurfaceHighlight hover:bg-white/10 text-white px-3 py-1.5 rounded-lg border border-white/5 transition-colors flex items-center gap-1">
-                All Impressions <ChevronRight className="w-3 h-3" />
+                {t('dashboard.allImpressions')} <ChevronRight className="w-3 h-3" />
               </button>
             }
           >
             <div className="flex items-start gap-8 mb-6">
               <div>
-                <p className="text-xs text-textMuted mb-1">Total Impressions</p>
+                <p className="text-xs text-textMuted mb-1">{t('dashboard.totalImpressions')}</p>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-bold text-white">125K</span>
                   <span className="text-xs font-semibold text-emerald-400">+15.2%</span>
                 </div>
               </div>
               <div>
-                <p className="text-xs text-textMuted mb-1">Engagements</p>
+                <p className="text-xs text-textMuted mb-1">{t('dashboard.engagements')}</p>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl font-bold text-white">42.8K</span>
                   <span className="text-xs font-semibold text-emerald-400">+18.1%</span>
@@ -102,7 +105,7 @@ export default function Dashboard() {
           </DashboardCard>
 
           {/* Social Media Performance */}
-          <DashboardCard title="Social Media Performance">
+          <DashboardCard title={t('dashboard.socialPerformance')}>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Twitter */}
                 <div className="bg-bgSurfaceHighlight border border-white/5 rounded-xl p-4">
@@ -116,7 +119,7 @@ export default function Dashboard() {
                    </div>
                    <div className="mb-2">
                      <div className="text-2xl font-bold text-white">1.2M</div>
-                     <div className="text-[10px] text-textMuted uppercase tracking-wider">Followers</div>
+                     <div className="text-[10px] text-textMuted uppercase tracking-wider">{t('dashboard.followers')}</div>
                    </div>
                    <div className="mt-4 flex items-end justify-between">
                       <svg className="w-16 h-8" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -136,7 +139,7 @@ export default function Dashboard() {
                    </div>
                    <div className="mb-2">
                      <div className="text-2xl font-bold text-white">250K</div>
-                     <div className="text-[10px] text-textMuted uppercase tracking-wider">Followers</div>
+                     <div className="text-[10px] text-textMuted uppercase tracking-wider">{t('dashboard.followers')}</div>
                    </div>
                    <div className="mt-4 flex items-end justify-between">
                       <svg className="w-16 h-8" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -156,7 +159,7 @@ export default function Dashboard() {
                    </div>
                    <div className="mb-2">
                      <div className="text-2xl font-bold text-white">850K</div>
-                     <div className="text-[10px] text-textMuted uppercase tracking-wider">Followers</div>
+                     <div className="text-[10px] text-textMuted uppercase tracking-wider">{t('dashboard.followers')}</div>
                    </div>
                    <div className="mt-4 flex items-end justify-between">
                       <svg className="w-16 h-8" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -173,7 +176,7 @@ export default function Dashboard() {
         <div className="space-y-6">
           
           {/* Upcoming Posts & Approval Queue */}
-          <DashboardCard title="Upcoming Posts & Queue" className="h-[400px]">
+          <DashboardCard title={t('dashboard.upcomingQueue')} className="h-[400px]">
              <div className="space-y-3 overflow-y-auto pr-2">
                 
                 {[1, 2, 3, 4].map((i) => (
@@ -188,13 +191,13 @@ export default function Dashboard() {
                         )}
                      </div>
                      <div className="flex-1 min-w-0">
-                        <h4 className="text-white text-xs font-semibold truncate mb-1">Product Launch 🚀</h4>
+                        <h4 className="text-white text-xs font-semibold truncate mb-1">{t('dashboard.productLaunch')}</h4>
                         <p className="text-[10px] text-textMuted line-clamp-2 leading-relaxed">
-                          We're so excited to announce the launch of our new features. Read more about it on our blog!
+                          {t('dashboard.productLaunchDesc')}
                         </p>
                         <div className="mt-2 flex items-center gap-2">
-                           <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-raven-500/20 text-raven-300">Scheduled</span>
-                           <span className="text-[9px] text-textMuted">Tomorrow, 11:00 AM</span>
+                           <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-raven-500/20 text-raven-300">{t('dashboard.scheduled')}</span>
+                           <span className="text-[9px] text-textMuted">{t('dashboard.tomorrow')}</span>
                         </div>
                      </div>
                   </div>
@@ -204,27 +207,27 @@ export default function Dashboard() {
           </DashboardCard>
 
           {/* Recent Activity Feed */}
-          <DashboardCard title="Recent Activity Feed">
+          <DashboardCard title={t('dashboard.recentActivity')}>
              <div className="space-y-4">
                 <div className="flex gap-3">
                    <div className="mt-1 w-2 h-2 rounded-full bg-raven-500 shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
                    <div>
-                      <p className="text-xs text-white"><span className="font-semibold">Linked Account</span> • 15m ago</p>
-                      <p className="text-xs text-textMuted mt-0.5">LinkedIn post "Product Launch" was successfully published.</p>
+                      <p className="text-xs text-white"><span className="font-semibold">{t('dashboard.linkedAccount')}</span> • {t('dashboard.minAgo15')}</p>
+                      <p className="text-xs text-textMuted mt-0.5">{t('dashboard.activity1')}</p>
                    </div>
                 </div>
                 <div className="flex gap-3">
                    <div className="mt-1 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                    <div>
-                      <p className="text-xs text-white"><span className="font-semibold">System</span> • 3h ago</p>
-                      <p className="text-xs text-textMuted mt-0.5">Generated weekly analytics report for all profiles.</p>
+                      <p className="text-xs text-white"><span className="font-semibold">{t('dashboard.system')}</span> • {t('dashboard.hoursAgo3')}</p>
+                      <p className="text-xs text-textMuted mt-0.5">{t('dashboard.activity2')}</p>
                    </div>
                 </div>
                 <div className="flex gap-3">
                    <div className="mt-1 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
                    <div>
-                      <p className="text-xs text-white"><span className="font-semibold">Team Member</span> • 5h ago</p>
-                      <p className="text-xs text-textMuted mt-0.5">Added a new asset to the Brand Kit.</p>
+                      <p className="text-xs text-white"><span className="font-semibold">{t('dashboard.teamMember')}</span> • {t('dashboard.hoursAgo5')}</p>
+                      <p className="text-xs text-textMuted mt-0.5">{t('dashboard.activity3')}</p>
                    </div>
                 </div>
              </div>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getMediaLibrary } from '../services/api';
 import { Loader2, Image as ImageIcon, Trash2, Calendar, Download, Film } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function MediaLibrary() {
+ const { t } = useTranslation();
  const [media, setMedia] = useState([]);
  const [loading, setLoading] = useState(true);
 
@@ -28,9 +30,9 @@ export default function MediaLibrary() {
  {/* Header */}
  <div className="flex items-end justify-between">
  <div>
- <h1 className="text-3xl font-bold text-textMain">Media Library</h1>
+ <h1 className="text-3xl font-bold text-textMain">{t('media.title')}</h1>
  <p className="text-textMuted text-textMuted mt-1">
- Your uploaded images and videos.
+ {t('media.subtitle')}
  </p>
  </div>
  </div>
@@ -41,9 +43,9 @@ export default function MediaLibrary() {
  <div className="w-16 h-16 rounded-full bg-bgSurfaceHighlight flex items-center justify-center mx-auto mb-4">
  <ImageIcon className="w-8 h-8 text-textMuted" />
  </div>
- <h3 className="text-lg font-bold text-textMuted mb-2">No media yet</h3>
+ <h3 className="text-lg font-bold text-textMuted mb-2">{t('media.noMedia')}</h3>
  <p className="text-textMuted text-sm max-w-md mx-auto">
- Upload images or videos when composing posts to see them here.
+ {t('media.noMediaDesc')}
  </p>
  </div>
  ) : (

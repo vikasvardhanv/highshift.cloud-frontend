@@ -4,8 +4,10 @@ import {
  Zap, Sparkles, Globe, BarChart3, MessageSquare, 
  Shield, Cpu, Layers, Target, Clock, ArrowRight 
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function ProductPage() {
+ const { t } = useTranslation();
  return (
  <div className="min-h-screen bg-black text-textMain selection:bg-raven-500/30 overflow-x-hidden font-sans">
  
@@ -23,18 +25,19 @@ export default function ProductPage() {
  <div className="w-24 h-24 rounded-[2rem] bg-raven-600 flex items-center justify-center shadow-2xl shadow-raven-600/30">
  <Zap className="w-12 h-12 text-textMain fill-white" />
  </div>
- <h1 className="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-[0.8] mb-4 text-textMain">
- Engineered<br/>For Impact
- </h1>
+ <h1 
+  className="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-[0.8] mb-4 text-textMain"
+  dangerouslySetInnerHTML={{ __html: t('product.heroTitle') }}
+ />
  <p className="text-xl md:text-2xl text-textMuted font-bold uppercase tracking-[0.2em] mb-12">
- The Silent Engine of Social Success
+ {t('product.heroSubtitle')}
  </p>
  <div className="flex gap-4">
  <Link to="/login" className="px-10 py-5 bg-bgSurface text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all inline-block">
- Deploy Raven
+ {t('product.deployRaven')}
  </Link>
  <Link to="/docs" className="px-10 py-5 bg-bgSurfaceHighlight border border-borderColor text-textMain font-black uppercase italic tracking-tighter text-xl rounded-2xl backdrop-blur-md hover:bg-white/10 transition-all inline-block">
- Documentation
+ {t('product.documentation')}
  </Link>
  </div>
  </motion.div>
@@ -48,9 +51,9 @@ export default function ProductPage() {
  {/* Multi-Profile Orchestration */}
  <Module 
  icon={Layers}
- title="Profile Orchestration"
- headline="Group Your Worlds"
- desc="Separate clients, brands, or projects into distinct Profiles. Link multiple social accounts under each profile to keep your data siloed and your workflow clean."
+ title={t('product.profileTitle')}
+ headline={t('product.profileHeadline')}
+ desc={t('product.profileDesc')}
  color="text-raven-400"
  link="/features/publishing"
  />
@@ -58,9 +61,9 @@ export default function ProductPage() {
  {/* Instant Publish */}
  <Module 
  icon={Sparkles}
- title="Instant Distribution"
- headline="The Speed of AI"
- desc="Enter a topic, define your audience, and let Social Raven handle the rest. Our orchestration engine instantly crafts and distributes optimized content across your nodes."
+ title={t('product.instantTitle')}
+ headline={t('product.instantHeadline')}
+ desc={t('product.instantDesc')}
  reverse
  color="text-emerald-400"
  link="/features/publishing"
@@ -69,9 +72,9 @@ export default function ProductPage() {
  {/* AI Ghostwriter */}
  <Module 
  icon={Cpu}
- title="Neural Engine"
- headline="Your AI Ghostwriter"
- desc="Built-in AI writing assistant that learns your brand tone and crafts compelling hooks for X, LinkedIn, Instagram, and more."
+ title={t('product.neuralTitle')}
+ headline={t('product.neuralHeadline')}
+ desc={t('product.neuralDesc')}
  color="text-purple-400"
  link="/features/ghostwriter"
  />
@@ -83,15 +86,15 @@ export default function ProductPage() {
  <section className="py-32 bg-bgSurfaceHighlight border-y border-borderColor relative overflow-hidden">
  <div className="max-w-7xl mx-auto px-6">
  <div className="mb-20 text-center">
- <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 text-textMain">Advanced Architecture</h2>
- <p className="text-textMuted font-bold tracking-widest uppercase text-xs">A Technical Masterpiece Built for Scale</p>
+ <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4 text-textMain">{t('product.archTitle')}</h2>
+ <p className="text-textMuted font-bold tracking-widest uppercase text-xs">{t('product.archSubtitle')}</p>
  </div>
 
  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
- <StatCard icon={Target} title="Smart Targeting" value="100%" desc="Algorithm Optimized" />
- <StatCard icon={Globe} title="Unified Hub" value="Global" desc="Cross-Platform Support" />
- <StatCard icon={BarChart3} title="Deep Insights" value="Real-time" desc="Engagement Tracking" />
- <StatCard icon={Shield} title="Bank-Grade" value="Encrypted" desc="Key Management" />
+ <StatCard icon={Target} title={t('product.stat1Title')} value="100%" desc={t('product.stat1Desc')} />
+ <StatCard icon={Globe} title={t('product.stat2Title')} value="Global" desc={t('product.stat2Desc')} />
+ <StatCard icon={BarChart3} title={t('product.stat3Title')} value="Real-time" desc={t('product.stat3Desc')} />
+ <StatCard icon={Shield} title={t('product.stat4Title')} value="Encrypted" desc={t('product.stat4Desc')} />
  </div>
  </div>
  </section>
@@ -99,9 +102,9 @@ export default function ProductPage() {
  {/* Bottom CTA */}
  <section className="py-40 px-6 text-center">
  <div className="max-w-4xl mx-auto">
- <h2 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-12 text-textMain">Take Flight Today</h2>
+ <h2 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter mb-12 text-textMain">{t('product.ctaTitle')}</h2>
  <Link to="/login" className="group relative inline-flex px-16 py-8 bg-raven-600 text-textMain font-black uppercase italic tracking-tighter text-3xl rounded-[2.5rem] shadow-2xl shadow-raven-600/40 hover:scale-110 active:scale-95 transition-all overflow-hidden items-center justify-center">
- <span className="relative z-10 flex items-center gap-4">Start Your Evolution <ArrowRight className="w-10 h-10 group-hover:translate-x-3 transition-transform" /></span>
+ <span className="relative z-10 flex items-center gap-4">{t('product.ctaButton')} <ArrowRight className="w-10 h-10 group-hover:translate-x-3 transition-transform" /></span>
  <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-raven-500 opacity-0 group-hover:opacity-100 transition-opacity" />
  </Link>
  </div>
@@ -121,7 +124,7 @@ function Module({ icon: Icon, title, headline, desc, reverse, color, link }) {
  <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-tight text-textMain">{headline}</h2>
  <p className="text-xl text-textMuted font-medium max-w-xl leading-relaxed">{desc}</p>
  <Link to={link} className="inline-flex items-center gap-2 text-textMain font-black italic uppercase tracking-widest text-xs group">
- Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+ <TranslationLinkText />
  </Link>
  </div>
  <div className="flex-1 w-full aspect-video rounded-[3.5rem] bg-raven-600/5 border border-borderColor flex items-center justify-center p-12 overflow-hidden relative">
@@ -130,6 +133,15 @@ function Module({ icon: Icon, title, headline, desc, reverse, color, link }) {
  </div>
  </div>
  );
+}
+
+function TranslationLinkText() {
+  const { t } = useTranslation();
+  return (
+    <>
+      {t('product.learnMore')} <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+    </>
+  );
 }
 
 function StatCard({ icon: Icon, title, value, desc }) {

@@ -1,27 +1,29 @@
 import { useState } from 'react';
 import { User, Bell, Shield, CreditCard, Save, ExternalLink, Zap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Settings() {
- const [activeTab, setActiveTab] = useState('profile');
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState('profile');
  const [formData, setFormData] = useState({
  name: 'Neural User',
  email: 'user@socialraven.cloud'
  });
 
  const tabs = [
- { id: 'profile', label: 'Identity', icon: User },
- { id: 'notifications', label: 'Alerts', icon: Bell },
- { id: 'security', label: 'Security', icon: Shield },
- { id: 'billing', label: 'Subscription', icon: CreditCard },
+ { id: 'profile', label: t('settings.tabIdentity'), icon: User },
+ { id: 'notifications', label: t('settings.tabAlerts'), icon: Bell },
+ { id: 'security', label: t('settings.tabSecurity'), icon: Shield },
+ { id: 'billing', label: t('settings.tabSubscription'), icon: CreditCard },
  ];
 
  return (
  <div className="space-y-10 pb-20 animate-fade-in relative z-10">
  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
  <div>
- <h1 className="text-4xl font-extrabold tracking-tight mb-2">System Config</h1>
+ <h1 className="text-4xl font-extrabold tracking-tight mb-2">{t('settings.systemConfig')}</h1>
  <p className="text-textMuted font-medium leading-relaxed max-w-xl">
- Calibrate your neural interface and manage authentication protocols for the socialraven network.
+ {t('settings.systemConfigDesc')}
  </p>
  </div>
  </div>
@@ -49,13 +51,13 @@ export default function Settings() {
  {activeTab === 'profile' && (
  <div className="space-y-10 animate-fade-in">
  <div>
- <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Identity Matrix</h3>
- <p className="text-xs text-textMuted font-medium">Update your public signature across the network.</p>
+ <h3 className="text-xl font-black mb-2 uppercase tracking-tight">{t('settings.identityMatrix')}</h3>
+ <p className="text-xs text-textMuted font-medium">{t('settings.identityMatrixDesc')}</p>
  </div>
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
  <div className="space-y-4">
- <label className="text-[10px] font-black text-textMuted uppercase tracking-widest ml-1">Display Label</label>
+ <label className="text-[10px] font-black text-textMuted uppercase tracking-widest ml-1">{t('settings.displayLabel')}</label>
  <input
  type="text"
  value={formData.name}
@@ -64,7 +66,7 @@ export default function Settings() {
  />
  </div>
  <div className="space-y-4">
- <label className="text-[10px] font-black text-textMuted uppercase tracking-widest ml-1">Neural Address</label>
+ <label className="text-[10px] font-black text-textMuted uppercase tracking-widest ml-1">{t('settings.neuralAddress')}</label>
  <input
  type="email"
  value={formData.email}
@@ -77,7 +79,7 @@ export default function Settings() {
  <div className="pt-6">
  <button className="flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primaryHover rounded-2xl text-[10px] font-black text-textMain uppercase tracking-[0.2em] transition-all shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
  <Save className="w-4 h-4" />
- Synchronize profile
+ {t('settings.syncProfile')}
  </button>
  </div>
  </div>
@@ -89,14 +91,14 @@ export default function Settings() {
  <CreditCard className="w-10 h-10 text-primary animate-pulse" />
  </div>
  <div>
- <h3 className="text-2xl font-black mb-3 uppercase tracking-tighter">Premium Access Active</h3>
+ <h3 className="text-2xl font-black mb-3 uppercase tracking-tighter">{t('settings.premiumActive')}</h3>
  <p className="text-sm text-textMuted font-medium max-w-sm mx-auto leading-relaxed">
- Your subscription is managed through our secure stripe portal. Review invoices and plan details below.
+ {t('settings.premiumActiveDesc')}
  </p>
  </div>
  <div className="pt-4">
  <button className="px-10 py-5 bg-bgSurface text-textMain hover:bg-white/10 rounded-3xl text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
- Access Stripe Portal
+ {t('settings.accessStripe')}
  <ExternalLink className="w-4 h-4" />
  </button>
  </div>
@@ -108,8 +110,8 @@ export default function Settings() {
  <div className="w-16 h-16 bg-bgColor border border-borderColor rounded-2xl flex items-center justify-center mb-6">
  <Zap className="w-8 h-8 text-textMuted" />
  </div>
- <h3 className="text-lg font-black uppercase tracking-tight mb-2">Protocol Under Development</h3>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest">Neural link for {activeTab} coming soon</p>
+ <h3 className="text-lg font-black uppercase tracking-tight mb-2">{t('settings.protocolUnderDev')}</h3>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest">{t('settings.neuralLinkComingSoon', { tab: tabs.find(t => t.id === activeTab)?.label })}</p>
  </div>
  )}
  </div>

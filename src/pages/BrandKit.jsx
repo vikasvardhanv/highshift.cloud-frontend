@@ -21,6 +21,7 @@ import {
  getBrandKit,
  updateBrandKit
 } from '../services/api';
+import { useTranslation } from 'react-i18next';
 
 const toneOptions = ['Professional', 'Friendly', 'Witty', 'Inspirational', 'Direct'];
 const defaultPresets = {
@@ -42,6 +43,7 @@ const parseDownloadName = (headers) => {
 };
 
 export default function BrandKit() {
+ const { t } = useTranslation();
  const [activeTab, setActiveTab] = useState('voice');
  const [loading, setLoading] = useState(true);
  const [saving, setSaving] = useState(false);
@@ -110,7 +112,7 @@ export default function BrandKit() {
  });
  }
  } catch (err) {
- setError(err?.response?.data?.detail || 'Could not load the HighShift brand workspace.');
+ setError(err?.response?.data?.detail || t('brandkit.errorLoad'));
  } finally {
  setLoading(false);
  }
@@ -139,9 +141,9 @@ export default function BrandKit() {
  }
  };
  await updateBrandKit(payload);
- showStatus('HighShift brand workspace saved.');
+ showStatus(t('brandkit.successSave'));
  } catch (err) {
- setError(err?.response?.data?.detail || 'Failed to save brand workspace.');
+ setError(err?.response?.data?.detail || t('brandkit.errorSave'));
  } finally {
  setSaving(false);
  }
@@ -171,7 +173,7 @@ export default function BrandKit() {
 
  const handleGenerate = async () => {
  if (!assetFile) {
- setError('Upload a logo or source image before generating assets.');
+ setError(t('brandkit.errorUpload'));
  return;
  }
  setGenerating(true);
@@ -201,10 +203,10 @@ export default function BrandKit() {
  link.click();
  link.remove();
  window.URL.revokeObjectURL(url);
- showStatus('HighShift asset pack generated.');
+ showStatus(t('brandkit.successGenerate'));
  } catch (err) {
  const detail = err?.response?.data?.detail;
- setError(typeof detail === 'string' ? detail : 'Asset generation failed.');
+ setError(typeof detail === 'string' ? detail : t('brandkit.errorGenerate'));
  } finally {
  setGenerating(false);
  }
@@ -228,12 +230,12 @@ export default function BrandKit() {
  <div className="space-y-3">
  <div className="inline-flex items-center gap-2 rounded-full border border-borderColor bg-bgSurfaceHighlight px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-textMuted">
  <Sparkles className="w-3.5 h-3.5 text-primary" />
- HighShift brand workspace
+ {t('brandkit.workspaceLabel')}
  </div>
  <div>
- <h1 className="text-4xl font-extrabold tracking-tight">Identity Hub</h1>
+ <h1 className="text-4xl font-extrabold tracking-tight">{t('brandkit.title')}</h1>
  <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-textMuted">
- Keep your voice, visual defaults, and ready-to-use asset exports in one place.
+ {t('brandkit.subtitle')}
  </p>
  </div>
  </div>
@@ -242,13 +244,13 @@ export default function BrandKit() {
  onClick={() => setActiveTab('voice')}
  className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'voice' ? 'bg-bgSurface text-textMain' : 'bg-bgSurfaceHighlight text-textMuted hover:bg-white/10'}`}
  >
- Voice
+ {t('brandkit.tabVoice')}
  </button>
  <button
  onClick={() => setActiveTab('assets')}
  className={`rounded-2xl px-5 py-3 text-xs font-extrabold uppercase tracking-widest transition-all active:scale-95 ${activeTab === 'assets' ? 'bg-bgSurface text-textMain' : 'bg-bgSurfaceHighlight text-textMuted hover:bg-white/10'}`}
  >
- Assets
+ {t('brandkit.tabAssets')}
  </button>
  <button
  onClick={handleSave}
@@ -256,7 +258,7 @@ export default function BrandKit() {
  className="inline-flex items-center gap-3 rounded-2xl bg-primary px-6 py-3 text-xs font-extrabold uppercase tracking-widest text-textMain shadow-lg shadow-primary/20 transition-all hover:bg-primaryHover active:scale-95 disabled:opacity-50"
  >
  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
- Save
+ {t('brandkit.saveButton')}
  </button>
  </div>
  </div>
@@ -278,25 +280,25 @@ export default function BrandKit() {
  <Type className="w-6 h-6 text-primary" />
  </div>
  <div>
- <h2 className="text-xl font-extrabold">Brand Voice</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">Used by HighShift content generation</p>
+ <h2 className="text-xl font-extrabold">{t('brandkit.voiceTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.voiceSubtitle')}</p>
  </div>
  </div>
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
- <Field label="Brand name">
+ <Field label={t('brandkit.brandName')}>
  <input value={formData.company_name} onChange={(e) => setFormData({ ...formData, company_name: e.target.value })} className="brand-input" placeholder="HighShift" />
  </Field>
- <Field label="Industry">
+ <Field label={t('brandkit.industry')}>
  <input value={formData.industry} onChange={(e) => setFormData({ ...formData, industry: e.target.value })} className="brand-input" placeholder="Social automation" />
  </Field>
- <Field label="Website" className="md:col-span-2">
+ <Field label={t('brandkit.website')} className="md:col-span-2">
  <input value={formData.website} onChange={(e) => setFormData({ ...formData, website: e.target.value })} className="brand-input" placeholder="https://highshift.cloud" />
  </Field>
  </div>
 
  <div className="mt-8">
- <label className="brand-label">Tone</label>
+ <label className="brand-label">{t('brandkit.tone')}</label>
  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
  {toneOptions.map((tone) => (
  <button
@@ -312,14 +314,14 @@ export default function BrandKit() {
 
  <div className="mt-8">
  <div className="flex items-center justify-between">
- <label className="brand-label">Personality blueprint</label>
+ <label className="brand-label">{t('brandkit.personality')}</label>
  <span className="text-[10px] font-bold tracking-widest text-textMuted">{formData.description.length} / 1000</span>
  </div>
  <textarea
  value={formData.description}
  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
  className="brand-textarea h-44"
- placeholder="Describe how HighShift should sound, what it believes, and the words it should avoid."
+ placeholder={t('brandkit.personalityPlaceholder')}
  />
  </div>
  </section>
@@ -331,11 +333,11 @@ export default function BrandKit() {
  <Hash className="w-6 h-6 text-emerald-300" />
  </div>
  <div>
- <h2 className="text-lg font-extrabold">Context</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">Keywords and phrases</p>
+ <h2 className="text-lg font-extrabold">{t('brandkit.contextTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.contextSubtitle')}</p>
  </div>
  </div>
- <textarea value={formData.keywords} onChange={(e) => setFormData({ ...formData, keywords: e.target.value })} className="brand-textarea h-36" placeholder="AI agents, scheduling, analytics" />
+ <textarea value={formData.keywords} onChange={(e) => setFormData({ ...formData, keywords: e.target.value })} className="brand-textarea h-36" placeholder={t('brandkit.contextPlaceholder')} />
  </section>
 
  <section className="glass-card rounded-3xl p-8 bg-white/[0.03] border-borderColor">
@@ -344,8 +346,8 @@ export default function BrandKit() {
  <Palette className="w-6 h-6 text-sky-300" />
  </div>
  <div>
- <h2 className="text-lg font-extrabold">Colors</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">Shared with asset exports</p>
+ <h2 className="text-lg font-extrabold">{t('brandkit.colorsTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.colorsSubtitle')}</p>
  </div>
  </div>
  <input value={formData.colors} onChange={(e) => setFormData({ ...formData, colors: e.target.value })} className="brand-input" placeholder="#4f46e5, #111827" />
@@ -365,15 +367,15 @@ export default function BrandKit() {
  <ImageUp className="w-6 h-6 text-primary" />
  </div>
  <div>
- <h2 className="text-xl font-extrabold">Source Image</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">Logo, mark, or campaign visual</p>
+ <h2 className="text-xl font-extrabold">{t('brandkit.sourceImageTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.sourceImageSubtitle')}</p>
  </div>
  </div>
 
  <label className="flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-3xl border border-dashed border-white/15 bg-black/20 p-8 text-center transition-all hover:border-primary/50 hover:bg-primary/5">
  <FileImage className="w-10 h-10 text-textMuted" />
- <span className="mt-4 text-sm font-extrabold text-textMain">{assetFile ? assetFile.name : 'Upload image'}</span>
- <span className="mt-2 max-w-xs text-xs font-medium leading-5 text-textMuted">PNG, JPG, WEBP, or GIF. The backend exports a ready-to-use zip.</span>
+ <span className="mt-4 text-sm font-extrabold text-textMain">{assetFile ? assetFile.name : t('brandkit.uploadImage')}</span>
+ <span className="mt-2 max-w-xs text-xs font-medium leading-5 text-textMuted">{t('brandkit.uploadDesc')}</span>
  <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={(e) => setAssetFile(e.target.files?.[0] || null)} />
  </label>
 
@@ -392,8 +394,8 @@ export default function BrandKit() {
  <Layers className="w-6 h-6 text-emerald-300" />
  </div>
  <div>
- <h2 className="text-xl font-extrabold">Export Sizes</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{selectedFormats.length} sizes selected</p>
+ <h2 className="text-xl font-extrabold">{t('brandkit.exportSizesTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.exportSizesSubtitle', { count: selectedFormats.length })}</p>
  </div>
  </div>
 
@@ -402,7 +404,7 @@ export default function BrandKit() {
  <div key={category}>
  <div className="mb-3 flex items-center justify-between">
  <h3 className="text-xs font-extrabold uppercase tracking-[0.2em] text-textMuted">{category}</h3>
- <button onClick={() => setSelectedFormats((current) => Array.from(new Set([...current, ...formats])))} className="text-[11px] font-bold text-primary hover:text-textMain">Select all</button>
+ <button onClick={() => setSelectedFormats((current) => Array.from(new Set([...current, ...formats])))} className="text-[11px] font-bold text-primary hover:text-textMain">{t('brandkit.selectAll')}</button>
  </div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
  {formats.map((format) => {
@@ -434,30 +436,30 @@ export default function BrandKit() {
  <SlidersHorizontal className="w-6 h-6 text-sky-300" />
  </div>
  <div>
- <h2 className="text-lg font-extrabold">Processing</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">Resize behavior</p>
+ <h2 className="text-lg font-extrabold">{t('brandkit.processingTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.processingSubtitle')}</p>
  </div>
  </div>
 
- <Field label="Canvas fill">
+ <Field label={t('brandkit.canvasFill')}>
  <select value={assetOptions.fill_mode} onChange={(e) => setAssetOptions({ ...assetOptions, fill_mode: e.target.value })} className="brand-input">
- <option value="contain">Contain</option>
- <option value="cover">Cover</option>
- <option value="transparent">Transparent</option>
+ <option value="contain">{t('brandkit.contain')}</option>
+ <option value="cover">{t('brandkit.cover')}</option>
+ <option value="transparent">{t('brandkit.transparent')}</option>
  </select>
  </Field>
- <Field label="Background color">
+ <Field label={t('brandkit.backgroundColor')}>
  <input value={assetOptions.background_color} onChange={(e) => setAssetOptions({ ...assetOptions, background_color: e.target.value })} className="brand-input" placeholder="#111827" />
  </Field>
 
  <div className="mt-5 space-y-3">
  {[
- ['auto_crop', 'Auto crop'],
- ['enhance_contrast', 'Contrast'],
- ['sharpen', 'Sharpen'],
- ['grayscale', 'Grayscale'],
- ['bw', 'Black and white'],
- ['invert', 'Invert']
+ ['auto_crop', t('brandkit.autoCrop')],
+ ['enhance_contrast', t('brandkit.contrast')],
+ ['sharpen', t('brandkit.sharpen')],
+ ['grayscale', t('brandkit.grayscale')],
+ ['bw', t('brandkit.blackAndWhite')],
+ ['invert', t('brandkit.invert')]
  ].map(([key, label]) => (
  <Toggle key={key} label={label} checked={assetOptions[key]} onChange={() => setAssetOptions({ ...assetOptions, [key]: !assetOptions[key] })} />
  ))}
@@ -470,8 +472,8 @@ export default function BrandKit() {
  <Archive className="w-6 h-6 text-raven-400" />
  </div>
  <div>
- <h2 className="text-lg font-extrabold">Package</h2>
- <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{formatCount} files estimated</p>
+ <h2 className="text-lg font-extrabold">{t('brandkit.packageTitle')}</h2>
+ <p className="text-xs text-textMuted font-bold uppercase tracking-widest mt-1">{t('brandkit.packageSubtitle', { count: formatCount })}</p>
  </div>
  </div>
 
@@ -485,7 +487,7 @@ export default function BrandKit() {
 
  <button onClick={handleGenerate} disabled={generating || !selectedFormats.length} className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-bgSurface px-5 py-4 text-xs font-extrabold uppercase tracking-widest text-textMain transition-all hover:bg-gray-200 active:scale-95 disabled:opacity-50">
  {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
- Generate zip
+ {t('brandkit.generateZip')}
  </button>
  </section>
  </aside>
