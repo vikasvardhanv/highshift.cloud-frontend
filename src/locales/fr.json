@@ -309,5 +309,63 @@
     "ctaTitle": "Prenez Votre Envol Aujourd'hui",
     "ctaButton": "Commencez Votre Évolution",
     "learnMore": "En Savoir Plus"
+  },
+  "profiles": {
+    "title": "Profils",
+    "subtitle": "Organisez vos comptes sociaux en profils pour une gestion facile.",
+    "profilesCount": "Profils",
+    "accountsCount": "Comptes",
+    "createNew": "Créer un Nouveau Profil",
+    "createNewDesc": "Chaque profil peut contenir plusieurs comptes sociaux. Utilisez les profils pour séparer clients, marques ou équipes.",
+    "profileNamePlaceholder": "Nom du profil...",
+    "create": "Créer",
+    "noProfiles": "Pas encore de profils",
+    "createFirstDesc": "Créez votre premier profil ci-dessus pour commencer à connecter des comptes de réseaux sociaux.",
+    "connectedCount": "{{count}} compte connecté",
+    "connectedCount_plural": "{{count}} comptes connectés",
+    "addAccount": "Ajouter un Compte",
+    "deleteProfile": "Supprimer le Profil",
+    "noAccounts": "Aucun compte connecté",
+    "connectFirst": "Connectez votre premier compte",
+    "disconnect": "Déconnecter",
+    "proTip": "Astuce de Pro",
+    "proTipDesc1": "Vous pouvez utiliser notre API ",
+    "proTipDesc2": " pour automatiser la création de profils et de publications.",
+    "viewApiDoc": "Voir la Documentation de l'API"
+  },
+  "ai_studio": {
+    "initialMessage": "Je suis votre Assistant Créatif Social Raven AI. Je peux générer des publications à fort impact ou créer des visuels. Demandez-moi simplement de 'écrire un post sur...' ou 'générer une image de...'.",
+    "tones": {
+      "professional": "Professionnel",
+      "witty": "Spirituel",
+      "bold": "Audacieux",
+      "empathetic": "Empathique",
+      "minimal": "Minimaliste"
+    },
+    "errorConnection": "Ma connexion au réseau neuronal a été interrompue. Veuillez réessayer.",
+    "title": "IA de Social Raven",
+    "subtitle": "Moteur Créatif Multimodal",
+    "generatedBy": "Généré par l'IA de Social Raven",
+    "openFull": "Ouvrir en Entier",
+    "copy": "Copier",
+    "schedule": "Programmer",
+    "retry": "Réessayer",
+    "placeholder": "Demandez : 'Écris un tweet sur le lancement...' ou 'Génère une image d'une ville futuriste...'",
+    "generate": "Générer",
+    "poweredBy": "Propulsé par les Modèles d'IA Social Raven"
+  },
+  "publisher": {
+    "postAsProfile": "Publier en tant que (Profil)",
+    "selectAccounts": "Sélectionner des Comptes",
+    "startWriting": "Commencez à écrire votre publication...",
+    "schedulingOptions": "Options de Programmation",
+    "saveDraft": "Enregistrer le Brouillon",
+    "processing": "Traitement en cours...",
+    "schedulePost": "Programmer la Publication",
+    "publishNow": "Publier Maintenant",
+    "networkPreview": "Aperçu du Réseau",
+    "mobile": "Mobile",
+    "desktop": "Bureau",
+    "previewDisclaimer": "L'aperçu donne une idée de l'affichage de votre contenu. Les réseaux sociaux peuvent modifier leur interface à tout moment."
   }
 }

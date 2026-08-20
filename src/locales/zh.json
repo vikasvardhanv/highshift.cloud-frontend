@@ -309,5 +309,63 @@
     "ctaTitle": "今天起飞",
     "ctaButton": "开始您的演进",
     "learnMore": "了解更多"
+  },
+  "profiles": {
+    "title": "简介",
+    "subtitle": "将您的社交帐户组织到配置文件中以便于管理。",
+    "profilesCount": "配置文件",
+    "accountsCount": "帐户",
+    "createNew": "创建新配置文件",
+    "createNewDesc": "每个配置文件可以容纳多个社交帐户。使用配置文件来区分客户、品牌或团队。",
+    "profileNamePlaceholder": "配置文件名称...",
+    "create": "创建",
+    "noProfiles": "暂无配置文件",
+    "createFirstDesc": "在上方创建您的第一个配置文件以开始连接社交媒体帐户。",
+    "connectedCount": "{{count}} 个已连接帐户",
+    "connectedCount_plural": "{{count}} 个已连接帐户",
+    "addAccount": "添加帐户",
+    "deleteProfile": "删除配置文件",
+    "noAccounts": "未连接任何帐户",
+    "connectFirst": "连接您的第一个帐户",
+    "disconnect": "断开连接",
+    "proTip": "专业提示",
+    "proTipDesc1": "您可以使用我们的 ",
+    "proTipDesc2": " API 自动创建配置文件和发布内容。",
+    "viewApiDoc": "查看 API 文档"
+  },
+  "ai_studio": {
+    "initialMessage": "我是您的 Social Raven AI 创意助手。我可以生成高影响力的帖子或创建视觉内容。只需让我“写一篇关于……的帖子”或“生成一张……的图片”。",
+    "tones": {
+      "professional": "专业",
+      "witty": "风趣",
+      "bold": "大胆",
+      "empathetic": "共情",
+      "minimal": "极简"
+    },
+    "errorConnection": "我与神经网络的连接已中断。请重试。",
+    "title": "Social Raven AI",
+    "subtitle": "多模态创意引擎",
+    "generatedBy": "由 Social Raven AI 生成",
+    "openFull": "全屏打开",
+    "copy": "复制",
+    "schedule": "安排",
+    "retry": "重试",
+    "placeholder": "提问：'写一条关于发布的推文...' 或 '生成一张未来城市的图片...'",
+    "generate": "生成",
+    "poweredBy": "由 Social Raven AI 模型驱动"
+  },
+  "publisher": {
+    "postAsProfile": "作为（配置文件）发布",
+    "selectAccounts": "选择帐户",
+    "startWriting": "开始编写您的帖子...",
+    "schedulingOptions": "发布安排选项",
+    "saveDraft": "保存草稿",
+    "processing": "处理中...",
+    "schedulePost": "安排帖子",
+    "publishNow": "立即发布",
+    "networkPreview": "网络预览",
+    "mobile": "移动端",
+    "desktop": "桌面端",
+    "previewDisclaimer": "预览仅反映内容的近似显示效果。社交网络可能随时更新其用户界面。"
   }
 }

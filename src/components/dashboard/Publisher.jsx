@@ -7,8 +7,10 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { getAccounts, uploadMedia, postContent, schedulePost, getProfiles, getMediaLibrary, deleteMedia } from '../../services/api';
 import { buildScheduledIso, formatSchedulePreview } from '../../utils/scheduleTime';
+import { useTranslation } from 'react-i18next';
 
 export default function Publisher() {
+  const { t } = useTranslation();
  const navigate = useNavigate();
  const [profiles, setProfiles] = useState([]);
  const [selectedProfileId, setSelectedProfileId] = useState(null);
@@ -324,7 +326,7 @@ export default function Publisher() {
  <div className="flex flex-col gap-4">
  {/* Profile Selector */}
  <div>
- <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2 block">Post As (Profile)</label>
+ <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2 block">{t('publisher.postAsProfile', 'Post As (Profile)')}</label>
  <div className="relative">
  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-textMuted" />
  <select
@@ -343,7 +345,7 @@ export default function Publisher() {
 
  {/* Accounts List (Horizontal Scroll) */}
  <div>
- <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2 block">Select Accounts</label>
+ <label className="text-xs font-bold text-textMuted uppercase tracking-wider mb-2 block">{t('publisher.selectAccounts', 'Select Accounts')}</label>
  <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
  {accounts.map(acc => {
  const isSelected = selectedAccounts.includes(acc.accountId);
@@ -408,7 +410,7 @@ export default function Publisher() {
  <textarea
  value={content}
  onChange={(e) => setContent(e.target.value)}
- placeholder="Start writing your post..."
+ placeholder={t('publisher.startWriting', 'Start writing your post...')}
  className="flex-1 w-full p-6 bg-transparent resize-none focus:outline-none text-textMain text-lg placeholder:text-textMuted"
  />
 
@@ -497,7 +499,7 @@ export default function Publisher() {
  onClick={() => setShowSchedule(!showSchedule)}
  className="flex items-center gap-2 text-sm font-semibold text-textMuted w-full justify-between"
  >
- <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-raven-500" /> Scheduling Options</span>
+ <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-raven-500" /> {t('publisher.schedulingOptions', 'Scheduling Options')}</span>
  <ChevronDown className={`w-4 h-4 transition-transform ${showSchedule ? 'rotate-180' : ''}`} />
  </button>
 
@@ -553,7 +555,7 @@ export default function Publisher() {
 
  <div className="flex items-center justify-end gap-3">
  <button className="px-5 py-2.5 text-sm font-bold text-textMuted hover:text-textMain text-textMuted dark:hover:text-textMain transition-colors">
- Save Draft
+ {t('publisher.saveDraft', 'Save Draft')}
  </button>
  <button
  onClick={() => handleSubmit()}
@@ -562,8 +564,8 @@ export default function Publisher() {
  >
  {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : ((showSchedule && scheduleDate && scheduleTime) ? <Clock className="w-4 h-4" /> : <Send className="w-4 h-4" />)}
  {isSubmitting
- ? 'Processing...'
- : ((showSchedule && scheduleDate && scheduleTime) ? 'Schedule Post' : 'Publish Now')
+ ? t('publisher.processing', 'Processing...')
+ : ((showSchedule && scheduleDate && scheduleTime) ? t('publisher.schedulePost', 'Schedule Post') : t('publisher.publishNow', 'Publish Now'))
  }
  </button>
  </div>
@@ -574,19 +576,19 @@ export default function Publisher() {
       <div className="lg:col-span-1 hidden lg:block h-full">
         <div className="glass-card h-full p-6 flex flex-col">
  <div className="flex items-center justify-between mb-6">
- <h3 className="font-bold text-textMuted text-sm uppercase tracking-wider">Network Preview</h3>
+ <h3 className="font-bold text-textMuted text-sm uppercase tracking-wider">{t('publisher.networkPreview', 'Network Preview')}</h3>
  <div className="flex gap-2">
  <button
  onClick={() => setPreviewMode('mobile')}
  className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'mobile' ? 'text-raven-400 bg-raven-900/30 dark:text-raven-400' : 'text-textMuted hover:text-textMain text-textMuted hover:text-textMuted'}`}
  >
- Mobile
+ {t('publisher.mobile', 'Mobile')}
  </button>
  <button
  onClick={() => setPreviewMode('desktop')}
  className={`text-xs font-semibold px-3 py-1 rounded-full transition-colors ${previewMode === 'desktop' ? 'text-raven-400 bg-raven-900/30 dark:text-raven-400' : 'text-textMuted hover:text-textMain text-textMuted hover:text-textMuted'}`}
  >
- Desktop
+ {t('publisher.desktop', 'Desktop')}
  </button>
  </div>
  </div>
@@ -654,7 +656,7 @@ export default function Publisher() {
  <div className="mt-6 text-center">
  <p className="text-xs text-textMuted max-w-xs mx-auto">
  <AlertCircle className="w-3 h-3 inline mr-1" />
- Preview approximates how your content will display. Social networks may update their UI at any time.
+ {t('publisher.previewDisclaimer', 'Preview approximates how your content will display. Social networks may update their UI at any time.')}
  </p>
           </div>
         </div>
