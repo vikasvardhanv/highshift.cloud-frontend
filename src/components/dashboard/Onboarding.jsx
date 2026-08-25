@@ -5,8 +5,10 @@ export default function Onboarding({ onComplete }) {
 
  const handleConnect = async (platform) => {
  try {
- const authUrl = await getAuthUrl(platform, window.location.origin + '/publishing');
- window.location.href = authUrl;
+ const data = await getAuthUrl(platform, window.location.origin + '/publishing');
+ if (data.authUrl) {
+    window.location.href = data.authUrl;
+ }
  } catch (err) {
  console.error('Failed to get auth URL:', err);
  alert('Failed to connect to ' + platform + '. Please try again.');
